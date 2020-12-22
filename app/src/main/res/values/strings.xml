@@ -63,6 +63,7 @@
 
     <string name="doctor_business_info_title">Doctor Business Info</string>
     <string name="serviceproviderbusiness">Service Provider Business</string>
+    <string name="editserviceproviderbusiness">Edit Service Provider Business</string>
     <string name="image">Image</string>
     <string name="clinic_name">Clinic name</string>
     <string name="business_name">Business name</string>
@@ -292,6 +293,8 @@
     <string name="recent_search">Recent search</string>
     <string name="today_deal">Todays deal</string>
     <string name="most_searched_products">most searched products</string>
+    <string name="community">Community</string>
+
 
     <string name="review_msg">Our team is reviewing your profile and will get in touch with you to close the formalities</string>
     <string name="back_to_login">Back to login</string>
@@ -320,6 +323,7 @@
     <string name="my_dogs">My Dog</string>
     <string name="trainer">Trainer!</string>
     <string name="supporting_sub_text_here">Supporting Sub Text Here</string>
+
 
 
 </resources>

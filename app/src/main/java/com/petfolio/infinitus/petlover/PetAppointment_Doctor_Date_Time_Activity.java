@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -43,6 +44,9 @@ import com.petfolio.infinitus.responsepojo.PetDoctorAvailableTimeResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
+
+import com.vivekkaushik.datepicker.DatePickerTimeline;
+import com.vivekkaushik.datepicker.OnDateSelectedListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
 
@@ -57,7 +61,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,9 +79,8 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
     private TextView noRecordFound;
     private String TAG = "PetAppointment_Doctor_Date_Time_Activity";
 
-    CalendarView calendar;
+   // CalendarView calendar;
 
-    private ProgressDialog progressDialog;
     AlertDialog.Builder alertDialogBuilder;
     AlertDialog alertDialog;
 
@@ -100,44 +102,26 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
     private String Comm_type_video = "";
 
     SessionManager session;
-    String isCheckedChat = "No", isCheckedVideo = "No";
-
-    String doctorChatAvailable, doctorVideoAvailable;
 
 
-/*    PatientDoctorAvailableTimeResponse doctorDateAvailabilityResponse;
-    private List<PatientDoctorAvailableTimeResponse.DataBean> doctorDateAvailabilityResponseList = null;
-    private List<PatientDoctorAvailableTimeResponse.DataBean.TimesBean> timesBeanList = null;*/
 
-    String patientname = "",patientemailid = "";
-
-    String Languages = "",Specilization = "",Service = "",Id = "",Pic = "",Name = "",DOB = "",Qualifications = "",HighestQualifications = "",Experience = "",Information = "",
-            Availabletype = "",Specialmention = "",Charge = "",Chargeper15mins = "",Gender ="";
-    String DocEmail = "";
 
     private Boolean isAppointment = true;
     View view;
     TextView tvlblavailabletime,tvlbldoctoravailable;
 
-    //List<TimeSlotDivider> timeSlotDividerList= new ArrayList<>();
-    List<String> stringLinkedList= new LinkedList<>();
-
-
-    int timeslotcount;
-    private RadioButton lastCheckedRB = null;
-
-
-    boolean isDoctorChatavl = false,isDoctorVideoavl = false;
 
 
 
-    boolean isvalid = false;
-    String doctortitle;
 
-
-
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.datePickerTimeline)
+    DatePickerTimeline datePickerTimeline ;
+
     private List<PetDoctorAvailableTimeResponse.DataBean> doctorDateAvailabilityResponseList;
     private List<PetDoctorAvailableTimeResponse.DataBean.TimesBean> timesBeanList;
     private String petid,allergies,probleminfo;
@@ -186,17 +170,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
 
             Log.w(TAG,"petid-->"+petid+ "allergies : "+allergies+"  probleminfo : "+probleminfo+" selectedAppointmentType : "+selectedAppointmentType);
 
-            if(Languages != null && !Languages.isEmpty()){
-                Languages = Languages.replaceAll("\\[", "").replaceAll("\\]","");
-                Log.w(TAG,"Languages-->"+Languages);
-            }
 
-            if(Specilization != null && !Specilization.isEmpty()){
-                Specilization = Specilization.replaceAll("\\[", "").replaceAll("\\]","");
-                Log.w(TAG,"Specilization-->"+Specilization);
-            }
-
-            Service = extras.getString("Service");
 
 
 
@@ -219,8 +193,8 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         }
 
 
-        calendar = findViewById(R.id.calender);
-        calendar.setMinDate(System.currentTimeMillis() - 1000);
+      /*  calendar = findViewById(R.id.calender);
+        calendar.setMinDate(System.currentTimeMillis() - 1000);*/
 
         radioButton1 = findViewById(R.id.radioButton1);
         radioButton2 = findViewById(R.id.radioButton2);
@@ -260,7 +234,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
 
 
 
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+      /*  calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
@@ -293,8 +267,62 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
 
 
             }
+        });*/
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int date = calendar.get(Calendar.DATE);
+
+        // Set a Start date (Default, 1 Jan 1970)
+        datePickerTimeline.setInitialDate(year, month, date);
+
+        datePickerTimeline.setDateTextColor(Color.parseColor("#009675"));
+        datePickerTimeline.setDayTextColor(Color.parseColor("#009675"));
+        datePickerTimeline.setMonthTextColor(Color.parseColor("#009675"));
+      // Set a date Selected Listener
+        datePickerTimeline.setOnDateSelectedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(int year, int month, int dayOfMonth, int dayOfWeek) {
+                // Do Something
+
+                String strdayOfMonth = "";
+                String strMonth = "";
+                int month1 =(month + 1);
+                if(dayOfMonth == 9 || dayOfMonth <9){
+                    strdayOfMonth = "0"+dayOfMonth;
+                    Log.w(TAG,"Selected dayOfMonth-->"+strdayOfMonth);
+                }else{
+                    strdayOfMonth = String.valueOf(dayOfMonth);
+                }
+
+                if(month1 == 9 || month1 <9){
+                    strMonth = "0"+month1;
+                    Log.w(TAG,"Selected month1-->"+strMonth);
+                }else{
+                    strMonth = String.valueOf(month1);
+                }
+
+                String Date = strdayOfMonth + "-" + strMonth + "-" + year;
+                Log.w(TAG,"Selected Date-->"+Date);
+
+                if (new ConnectionDetector(PetAppointment_Doctor_Date_Time_Activity.this).isNetworkAvailable(PetAppointment_Doctor_Date_Time_Activity.this)) {
+
+                    petDoctorAvailableTimeResponseCall(formattedDate);
+                }
+
+
+            }
+
+            @Override
+            public void onDisabledDateSelected(int year, int month, int day, int dayOfWeek, boolean isDisabled) {
+                // Do Something
+            }
         });
 
+      /*// Disable date
+        Date[] dates = {Calendar.getInstance().getTime()};
+        datePickerTimeline.deactivateDates(dates);*/
 
 
 
