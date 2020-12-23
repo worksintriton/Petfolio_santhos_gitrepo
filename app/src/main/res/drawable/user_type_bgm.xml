@@ -3,7 +3,7 @@
 
 
     <!-- Border Color -->
-    <stroke android:width="2dp" android:color="@color/green_color" />
+    <stroke android:width="2dp" android:color="@color/new_green_btn" />
 
     <!-- Round Corners -->
     <corners android:radius="10dp" />
