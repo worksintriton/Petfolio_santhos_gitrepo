@@ -89,6 +89,33 @@ public class ServiceProviderRegisterFormCreateResponse {
         private List<BusServiceGallBean> bus_service_gall;
         private List<BusCertifBean> bus_certif;
 
+        private String sp_loc;
+        private double sp_lat;
+        private double sp_long;
+
+        public String getSp_loc() {
+            return sp_loc;
+        }
+
+        public void setSp_loc(String sp_loc) {
+            this.sp_loc = sp_loc;
+        }
+
+        public double getSp_lat() {
+            return sp_lat;
+        }
+
+        public void setSp_lat(double sp_lat) {
+            this.sp_lat = sp_lat;
+        }
+
+        public double getSp_long() {
+            return sp_long;
+        }
+
+        public void setSp_long(double sp_long) {
+            this.sp_long = sp_long;
+        }
 
         public String get_id() {
             return _id;
@@ -231,10 +258,24 @@ public class ServiceProviderRegisterFormCreateResponse {
 
         public static class BusServiceListBean  {
             /**
+             * amount
              * bus_service_list : Service - 1
+             * time_slots : 15 mins
              */
 
+            private Integer amount;
+
+            public Integer getAmount() {
+                return amount;
+            }
+
+            public void setAmount(Integer amount) {
+                this.amount = amount;
+            }
+
             private String bus_service_list;
+            private String time_slots;
+
 
             public String getBus_service_list() {
                 return bus_service_list;
@@ -242,6 +283,17 @@ public class ServiceProviderRegisterFormCreateResponse {
 
             public void setBus_service_list(String bus_service_list) {
                 this.bus_service_list = bus_service_list;
+
+            }
+
+
+            public String getTime_slots() {
+                return time_slots;
+            }
+
+            public void setTime_slots(String time_slots) {
+                this.time_slots = time_slots;
+
             }
         }
 

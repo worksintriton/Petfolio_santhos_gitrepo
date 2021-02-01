@@ -16,7 +16,6 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/image"
             android:src="@drawable/back" />
@@ -149,17 +148,15 @@
                         android:textSize="14sp"
                         tools:ignore="Autofill,LabelFor" />
 
-                    <EditText
-                        android:id="@+id/edtx_edu_yr"
+                    <TextView
+                        android:id="@+id/txt_edu_yr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/rectangle_corner_white"
                         android:fontFamily="@font/futuramediumbt"
                         android:hint="@string/year_of_completion"
-                        android:inputType="none"
                         android:maxLength="25"
-                        android:focusable="false"
                         android:padding="15dp"
                         android:textColorHint="@color/dark_gray"
                         android:textSize="14sp"
@@ -755,6 +752,21 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/edtx_service_charge_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_corner"
+                android:fontFamily="@font/futuramediumbt"
+                android:hint="@string/charge_amount"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp"
+                tools:ignore="Autofill,LabelFor" />
 
 
         </LinearLayout>

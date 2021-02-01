@@ -3,18 +3,24 @@ package com.petfolio.infinitus.api;
 import com.petfolio.infinitus.requestpojo.AddReviewRequest;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCancelledRequest;
+import com.petfolio.infinitus.requestpojo.AppoinmentCloseRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCompleteRequest;
 import com.petfolio.infinitus.requestpojo.AppointmentCheckRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.CreateHolidayRequest;
 import com.petfolio.infinitus.requestpojo.DocBusInfoUploadRequest;
+import com.petfolio.infinitus.requestpojo.DoctorBusinessInfoUpdateRequest;
 import com.petfolio.infinitus.requestpojo.DoctorCheckStatusRequest;
+import com.petfolio.infinitus.requestpojo.DoctorDetailsByUserIdRequest;
 import com.petfolio.infinitus.requestpojo.DoctorDetailsRequest;
 import com.petfolio.infinitus.requestpojo.DoctorMyCalendarAvlDaysRequest;
 import com.petfolio.infinitus.requestpojo.DoctorMyCalendarAvlTimesRequest;
 import com.petfolio.infinitus.requestpojo.DoctorMyCalendarUpdateDocDateRequest;
 import com.petfolio.infinitus.requestpojo.DoctorNewAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.DoctorSearchRequest;
+import com.petfolio.infinitus.requestpojo.DoctorStartAppointmentRequest;
+import com.petfolio.infinitus.requestpojo.DoctorUpdateProfileImageRequest;
+import com.petfolio.infinitus.requestpojo.EmailOTPRequest;
 import com.petfolio.infinitus.requestpojo.FBTokenUpdateRequest;
 import com.petfolio.infinitus.requestpojo.FilterDoctorRequest;
 import com.petfolio.infinitus.requestpojo.HolidayDeleteRequest;
@@ -34,23 +40,36 @@ import com.petfolio.infinitus.requestpojo.PetEditRequest;
 import com.petfolio.infinitus.requestpojo.PetListRequest;
 import com.petfolio.infinitus.requestpojo.PetLoverAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.PetLoverDashboardRequest;
+import com.petfolio.infinitus.requestpojo.PetNewAppointmentDetailsRequest;
+import com.petfolio.infinitus.requestpojo.PetNoShowRequest;
 import com.petfolio.infinitus.requestpojo.PrescriptionCreateRequest;
+import com.petfolio.infinitus.requestpojo.PrescriptionDetailsRequest;
+import com.petfolio.infinitus.requestpojo.ProfileUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ResendOTPRequest;
+import com.petfolio.infinitus.requestpojo.SPAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.SPCheckStatusRequest;
+import com.petfolio.infinitus.requestpojo.SPCreateAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.SPDetailsByUserIdRequest;
+import com.petfolio.infinitus.requestpojo.SPDetailsRequest;
+import com.petfolio.infinitus.requestpojo.SPMyCalendarAvlDaysRequest;
+import com.petfolio.infinitus.requestpojo.SPSpecificServiceDetailsRequest;
+import com.petfolio.infinitus.requestpojo.ServiceCatRequest;
 import com.petfolio.infinitus.requestpojo.SignupRequest;
 import com.petfolio.infinitus.requestpojo.UserStatusUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ServiceProviderRegisterFormCreateRequest;
+import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
 import com.petfolio.infinitus.responsepojo.AddReviewResponse;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
 import com.petfolio.infinitus.responsepojo.AppoinmentCancelledResponse;
 import com.petfolio.infinitus.responsepojo.AppoinmentCompleteResponse;
 import com.petfolio.infinitus.responsepojo.AppointmentCheckResponse;
+import com.petfolio.infinitus.responsepojo.AppointmentsUpdateResponse;
 import com.petfolio.infinitus.responsepojo.BreedTypeResponse;
 import com.petfolio.infinitus.responsepojo.CreateHolidayResponse;
 import com.petfolio.infinitus.responsepojo.DocBusInfoUploadResponse;
 import com.petfolio.infinitus.responsepojo.DoctorCheckStatusResponse;
 import com.petfolio.infinitus.responsepojo.DoctorCompletedAppointmentResponse;
+import com.petfolio.infinitus.responsepojo.DoctorDetailsByUserIdResponse;
 import com.petfolio.infinitus.responsepojo.DoctorDetailsResponse;
 import com.petfolio.infinitus.responsepojo.DoctorMissedAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.DoctorMyCalendarAvlDaysResponse;
@@ -58,7 +77,9 @@ import com.petfolio.infinitus.responsepojo.DoctorMyCalendarAvlTimesResponse;
 import com.petfolio.infinitus.responsepojo.DoctorMyCalendarUpdateDocDateResponse;
 import com.petfolio.infinitus.responsepojo.DoctorNewAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.DoctorSearchResponse;
+import com.petfolio.infinitus.responsepojo.DoctorUpdateProfileImageResponse;
 import com.petfolio.infinitus.responsepojo.DropDownListResponse;
+import com.petfolio.infinitus.responsepojo.EmailOTPResponse;
 import com.petfolio.infinitus.responsepojo.FBTokenUpdateResponse;
 import com.petfolio.infinitus.responsepojo.FileUploadResponse;
 import com.petfolio.infinitus.responsepojo.FilterDoctorResponse;
@@ -72,21 +93,32 @@ import com.petfolio.infinitus.responsepojo.LocationUpdateResponse;
 import com.petfolio.infinitus.responsepojo.LoginResponse;
 import com.petfolio.infinitus.responsepojo.PetAddImageResponse;
 import com.petfolio.infinitus.responsepojo.PetAppointmentCreateResponse;
+import com.petfolio.infinitus.responsepojo.PetAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.PetDeleteResponse;
 import com.petfolio.infinitus.responsepojo.PetDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PetDoctorAvailableTimeResponse;
 import com.petfolio.infinitus.responsepojo.PetListResponse;
 import com.petfolio.infinitus.responsepojo.PetLoverDashboardResponse;
+import com.petfolio.infinitus.responsepojo.PetNewAppointmentDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PetNewAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.PetTypeListResponse;
 import com.petfolio.infinitus.responsepojo.PrescriptionCreateResponse;
+import com.petfolio.infinitus.responsepojo.ProfileUpdateResponse;
 import com.petfolio.infinitus.responsepojo.ResendOTPResponse;
+import com.petfolio.infinitus.responsepojo.SPAppointmentResponse;
+import com.petfolio.infinitus.responsepojo.SPAvailableTimeResponse;
 import com.petfolio.infinitus.responsepojo.SPCheckStatusResponse;
+import com.petfolio.infinitus.responsepojo.SPCreateAppointmentResponse;
+import com.petfolio.infinitus.responsepojo.SPDetailsRepsonse;
+import com.petfolio.infinitus.responsepojo.SPFilterPriceListResponse;
 import com.petfolio.infinitus.responsepojo.SPServiceListResponse;
+import com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse;
+import com.petfolio.infinitus.responsepojo.ServiceCatResponse;
 import com.petfolio.infinitus.responsepojo.SignupResponse;
 import com.petfolio.infinitus.responsepojo.UserStatusUpdateResponse;
 import com.petfolio.infinitus.responsepojo.UserTypeListResponse;
 import com.petfolio.infinitus.responsepojo.ServiceProviderRegisterFormCreateResponse;
+import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -107,6 +139,15 @@ public interface RestApiInterface {
     @POST("userdetails/create")
     Call<SignupResponse> signupResponseCall(@Header("Content-Type") String type, @Body SignupRequest signupRequest);
 
+    /*Signup create*/
+    @POST("userdetails/send/emailotp")
+    Call<EmailOTPResponse> emailOTPResponseCall(@Header("Content-Type") String type, @Body EmailOTPRequest emailOTPRequest);
+
+
+    /*Profile update*/
+    @POST("userdetails/mobile/update/profile")
+    Call<ProfileUpdateResponse> profileUpdateResponseCall(@Header("Content-Type") String type, @Body ProfileUpdateRequest profileUpdateRequest);
+
     /*User Staus update*/
     @POST("userdetails/mobile/edit")
     Call<UserStatusUpdateResponse> userStatusUpdateResponse(@Header("Content-Type") String type, @Body UserStatusUpdateRequest userStatusUpdateRequest );
@@ -123,21 +164,17 @@ public interface RestApiInterface {
     @POST("userdetails/mobile/update/fb_token")
     Call<FBTokenUpdateResponse>fBTokenUpdateResponseCall(@Header("Content-Type") String type, @Body FBTokenUpdateRequest fbTokenUpdateRequest);
 
-
+    /*Pet Lover*/
     /*dropdown list*/
     @GET("petdetails/mobile/dropdownslist")
     Call<DropDownListResponse> dropDownListResponseCall(@Header("Content-Type") String type);
-
-    /*service provider services list*/
-    @GET("service_provider/sp_dropdown")
-    Call<SPServiceListResponse> SPServiceListResponseCall(@Header("Content-Type") String type);
 
     /*Add your pet*/
     @POST("petdetails/mobile/create")
     Call<AddYourPetResponse> addYourPetResponseCall(@Header("Content-Type") String type, @Body AddYourPetRequest addYourPetRequest );
 
     /*Pet lover dashboard*/
-    @POST("userdetails/petlove/mobile/dashboard")
+    @POST("userdetails/petlove/mobile/dashboard1")
     Call<PetLoverDashboardResponse> petLoverDashboardResponseCall(@Header("Content-Type") String type, @Body PetLoverDashboardRequest petLoverDashboardRequest);
 
     /*Add location*/
@@ -149,9 +186,122 @@ public interface RestApiInterface {
     @POST("upload")
     Call<FileUploadResponse> getImageStroeResponse(@Part MultipartBody.Part file);
 
+    /*Listing all pets*/
+    @GET("pettype/mobile/getlist")
+    Call<PetTypeListResponse> petTypeListResponseCall(@Header("Content-Type") String type);
+
+    /*Listing all breed by Pet ID*/
+    @POST("breedtype/mobile/getlist_id")
+    Call<BreedTypeResponse>breedTypeResponseByPetIdCall(@Header("Content-Type") String type, @Body BreedTypeRequest breedTypeRequest );
+
+    /*Pet Details List by User ID*/
+    @POST("petdetails/mobile/getlist_id")
+    Call<PetDetailsResponse>petDetailsResponseByUserIdCall(@Header("Content-Type") String type, @Body PetDetailsRequest petDetailsRequest  );
+
+    /*Pet Doctor available timeslot*/
+    @POST("new_doctortime/get_doc_new1")
+    Call<PetDoctorAvailableTimeResponse>petDoctorAvailableTimeResponseCall(@Header("Content-Type") String type, @Body PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest   );
+
+    /*Appointment check */
+    @POST("appointments/check")
+    Call<AppointmentCheckResponse>appointmentCheckResponseCall(@Header("Content-Type") String type, @Body AppointmentCheckRequest appointmentCheckRequest);
+
+    /*Pet Appointment Create*/
+    @POST("appointments/mobile/create")
+    Call<PetAppointmentCreateResponse>petAppointmentCreateResponseCall(@Header("Content-Type") String type, @Body PetAppointmentCreateRequest petAppointmentCreateRequest);
+
+    /*Pet Current Appointment*/
+    @POST("appointments/mobile/plove_getlist/newapp1")
+    Call<PetAppointmentResponse>petAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
+
+
+    /*Pet Current Appointment*/
+    @POST("appointments/mobile/plove_getlist/newapp")
+    Call<PetNewAppointmentResponse>petNewAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
+
+    /*Pet Completed Appointment*/
+    @POST("appointments/mobile/plove_getlist/comapp1")
+    Call<PetAppointmentResponse>petCompletedAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
+
+    /*Pet Cancelled Appointment*/
+    @POST("appointments/mobile/plove_getlist/missapp1")
+    Call<PetAppointmentResponse>petMissedAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
+
+
+    /*Listing Location by ID*/
+    @POST("locationdetails/mobile/getlist_id")
+    Call<LocationListAddressResponse>locationListAddressResponseCall(@Header("Content-Type") String type, @Body LocationListAddressRequest locationListAddressRequest  );
+
+    /*Pet Details List by User ID*/
+    @POST("petdetails/mobile/getlist_id")
+    Call<PetListResponse>petListResponseCall(@Header("Content-Type") String type, @Body PetListRequest petListRequest  );
+
+
+    /*update petimage Petdetails Using User id*/
+    @POST("petdetails/edit")
+    Call<PetAddImageResponse>PetAddImageResponseCall(@Header("Content-Type") String type, @Body PetAddImageRequest petAddImageRequest  );
+
+    /*Edit Petdetails Using User id*/
+    @POST("petdetails/edit")
+    Call<PetAddImageResponse>petUpdateResponseCall(@Header("Content-Type") String type, @Body PetEditRequest petEditRequest   );
+
+    /*Delete Petdetails Using User id*/
+    @POST("petdetails/delete")
+    Call<PetDeleteResponse>petDeleteResponseCall(@Header("Content-Type") String type, @Body PetDeleteRequest petDeleteRequest  );
+
+    /*location list delete*/
+    @POST("locationdetails/delete")
+    Call<LocationDeleteResponse> locationDeleteResponseCall(@Header("Content-Type") String type, @Body LocationDeleteRequest locationDeleteRequest);
+
+    /*Location status change*/
+    @POST("locationdetails/default/edit")
+    Call<LocationStatusChangeResponse>locationStatusChangeResponseCall(@Header("Content-Type") String type, @Body LocationStatusChangeRequest locationStatusChangeRequest);
+
+    /*Location update*/
+    @POST("locationdetails/edit")
+    Call<LocationUpdateResponse>locationUpdateResponseCall(@Header("Content-Type") String type, @Body LocationUpdateRequest locationUpdateRequest);
+
+    /*Pet lover review add*/
+    @POST("appointments/reviews/update")
+    Call<AddReviewResponse>addReviewResponseCall(@Header("Content-Type") String type, @Body AddReviewRequest addReviewRequest  );
+
+
+    /*Specific service*/
+    @POST("service_provider/mobile/servicedetails")
+    Call<SPSpecificServiceDetailsResponse>SPSpecificServiceDetailsResponseCall(@Header("Content-Type") String type, @Body SPSpecificServiceDetailsRequest spSpecificServiceDetailsRequest);
+
+    /*Service category list*/
+    @POST("service_provider/mobile/service_cat")
+    Call<ServiceCatResponse>ServiceCatResponseCall(@Header("Content-Type") String type, @Body ServiceCatRequest serviceCatRequest );
+
+    /*Service Details*/
+    @POST("service_provider/mobile/sp_fetch_by_id")
+    Call<SPDetailsRepsonse>SPDetailsRepsonseCall(@Header("Content-Type") String type, @Body SPDetailsRequest spDetailsRequest );
+
+
+    /*SP available timeslot*/
+    @POST("sp_available_time/get_sp_new")
+    Call<SPAvailableTimeResponse>spAvailableTimeResponseCall(@Header("Content-Type") String type, @Body PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest   );
+
+
+    /*Doctor*/
+
     /*Doctor Business info create*/
     @POST("doctordetails/create")
     Call<DocBusInfoUploadResponse> docsBusInfoUpldResponse(@Header("Content-Type") String type, @Body DocBusInfoUploadRequest docBusInfoUploadRequest);
+
+    /*update doctor profile image Using User id*/
+    @POST("userdetails/mobile/update/profile")
+    Call<DoctorUpdateProfileImageResponse>DoctorUpdateProfileImageResponseCall(@Header("Content-Type") String type, @Body DoctorUpdateProfileImageRequest doctorUpdateProfileImageRequest  );
+
+
+    /*Doctor Business info getby id*/
+    @POST("doctordetails/fetch_doctor_user_id")
+    Call<DoctorDetailsByUserIdResponse> doctorDetailsByUserIdResponseCall(@Header("Content-Type") String type, @Body DoctorDetailsByUserIdRequest doctorDetailsByUserIdRequest);
+
+   /*Doctor Business info update*/
+    @POST("doctordetails/edit")
+    Call<DocBusInfoUploadResponse> doctorBusinessInfoUpdateResponseCall(@Header("Content-Type") String type, @Body DoctorBusinessInfoUpdateRequest doctorBusinessInfoUpdateRequest);
 
 
     /*Doctor Create holiday*/
@@ -197,44 +347,6 @@ public interface RestApiInterface {
     Call<DoctorDetailsResponse>doctorDetailsResponseCall(@Header("Content-Type") String type, @Body DoctorDetailsRequest doctorDetailsRequest );
 
 
-    /*Listing all pets*/
-    @GET("pettype/mobile/getlist")
-    Call<PetTypeListResponse> petTypeListResponseCall(@Header("Content-Type") String type);
-
-    /*Listing all breed by Pet ID*/
-    @POST("breedtype/mobile/getlist_id")
-    Call<BreedTypeResponse>breedTypeResponseByPetIdCall(@Header("Content-Type") String type, @Body BreedTypeRequest breedTypeRequest );
-
-    /*Pet Details List by User ID*/
-    @POST("petdetails/mobile/getlist_id")
-    Call<PetDetailsResponse>petDetailsResponseByUserIdCall(@Header("Content-Type") String type, @Body PetDetailsRequest petDetailsRequest  );
-
-
-    /*Pet Doctor available timeslot*/
-    @POST("new_doctortime/get_doc_new")
-    Call<PetDoctorAvailableTimeResponse>petDoctorAvailableTimeResponseCall(@Header("Content-Type") String type, @Body PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest   );
-
-
-    /*Appointment check */
-    @POST("appointments/check")
-    Call<AppointmentCheckResponse>appointmentCheckResponseCall(@Header("Content-Type") String type, @Body AppointmentCheckRequest appointmentCheckRequest);
-
-    /*Pet Appointment Create*/
-    @POST("appointments/mobile/create")
-    Call<PetAppointmentCreateResponse>petAppointmentCreateResponseCall(@Header("Content-Type") String type, @Body PetAppointmentCreateRequest petAppointmentCreateRequest);
-
-    /*Pet Current Appointment*/
-    @POST("appointments/mobile/plove_getlist/newapp")
-    Call<PetNewAppointmentResponse>petNewAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
-
-    /*Pet Completed Appointment*/
-    @POST("appointments/mobile/plove_getlist/comapp")
-    Call<PetNewAppointmentResponse>petCompletedAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
-
-    /*Pet Cancelled Appointment*/
-    @POST("appointments/mobile/plove_getlist/missapp")
-    Call<PetNewAppointmentResponse>petMissedAppointmentResponseCall(@Header("Content-Type") String type, @Body PetLoverAppointmentRequest petLoverAppointmentRequest);
-
     /*Doctor Check status*/
     @POST("doctordetails/check_status")
     Call<DoctorCheckStatusResponse>doctorCheckStatusResponseCall(@Header("Content-Type") String type, @Body DoctorCheckStatusRequest doctorCheckStatusRequest );
@@ -242,6 +354,10 @@ public interface RestApiInterface {
     /*Prescriptoin Create*/
     @POST("prescription/create")
     Call<PrescriptionCreateResponse>prescriptionCreateRequestCall(@Header("Content-Type") String type, @Body PrescriptionCreateRequest prescriptionCreateRequest);
+
+    /*Prescriptoin Details*/
+    @POST("prescription/fetch_by_appointment_id")
+    Call<PrescriptionCreateResponse>prescriptionDetailsResponseCall(@Header("Content-Type") String type, @Body PrescriptionDetailsRequest prescriptionDetailsRequest);
 
     /*Update Appointment Status complete*/
     @POST("appointments/edit")
@@ -251,38 +367,18 @@ public interface RestApiInterface {
     @POST("appointments/edit")
     Call<AppoinmentCancelledResponse>appoinmentCancelledResponseCall(@Header("Content-Type") String type, @Body AppoinmentCancelledRequest appoinmentCancelledRequest );
 
-    /*Listing Location by ID*/
-    @POST("locationdetails/mobile/getlist_id")
-    Call<LocationListAddressResponse>locationListAddressResponseCall(@Header("Content-Type") String type, @Body LocationListAddressRequest locationListAddressRequest  );
+    /*doctor appointment close conversation*/
+    @POST("appointments/edit")
+    Call<AppointmentsUpdateResponse>appoinmentcloseconversationResponseCall(@Header("Content-Type") String type, @Body AppoinmentCloseRequest appoinmentCloseRequest );
 
-    /*Pet Details List by User ID*/
-    @POST("petdetails/mobile/getlist_id")
-    Call<PetListResponse>petListResponseCall(@Header("Content-Type") String type, @Body PetListRequest petListRequest  );
+    /*doctor appointment pet no show*/
+    @POST("appointments/edit")
+    Call<AppointmentsUpdateResponse>appoinmentpetnoResponseCall(@Header("Content-Type") String type, @Body PetNoShowRequest petNoShowRequest );
 
+   /*doctor appointment start appointment*/
+    @POST("appointments/edit")
+    Call<AppointmentsUpdateResponse>doctorStartAppointmentResponseCall(@Header("Content-Type") String type, @Body DoctorStartAppointmentRequest doctorStartAppointmentRequest );
 
-    /*update petimage Petdetails Using User id*/
-    @POST("petdetails/edit")
-    Call<PetAddImageResponse>PetAddImageResponseCall(@Header("Content-Type") String type, @Body PetAddImageRequest petAddImageRequest  );
-
-    /*Edit Petdetails Using User id*/
-    @POST("petdetails/edit")
-    Call<PetAddImageResponse>petUpdateResponseCall(@Header("Content-Type") String type, @Body PetEditRequest petEditRequest   );
-
-    /*Delete Petdetails Using User id*/
-    @POST("petdetails/delete")
-    Call<PetDeleteResponse>petDeleteResponseCall(@Header("Content-Type") String type, @Body PetDeleteRequest petDeleteRequest  );
-
-    /*location list delete*/
-    @POST("locationdetails/delete")
-    Call<LocationDeleteResponse> locationDeleteResponseCall(@Header("Content-Type") String type, @Body LocationDeleteRequest locationDeleteRequest);
-
-    /*Location status change*/
-    @POST("locationdetails/default/edit")
-    Call<LocationStatusChangeResponse>locationStatusChangeResponseCall(@Header("Content-Type") String type, @Body LocationStatusChangeRequest locationStatusChangeRequest);
-
-    /*Location update*/
-    @POST("locationdetails/edit")
-    Call<LocationUpdateResponse>locationUpdateResponseCall(@Header("Content-Type") String type, @Body LocationUpdateRequest locationUpdateRequest);
 
     /*Doctor Name and specialization search*/
     @POST("doctordetails/text_search")
@@ -293,12 +389,17 @@ public interface RestApiInterface {
     Call<FilterDoctorResponse>filterDoctorResponseCall(@Header("Content-Type") String type, @Body FilterDoctorRequest filterDoctorRequest );
 
 
-    /*Pet lover review add*/
-    @POST("appointments/reviews/update")
-    Call<AddReviewResponse>addReviewResponseCall(@Header("Content-Type") String type, @Body AddReviewRequest addReviewRequest  );
 
 
+    /*Service Provider*/
 
+    /*service provider services list*/
+    @GET("service_provider/sp_dropdown")
+    Call<SPServiceListResponse> SPServiceListResponseCall(@Header("Content-Type") String type);
+
+    /*service provider filter price list*/
+    @GET("service_provider/filter_price_list")
+    Call<SPFilterPriceListResponse> SPFilterPriceListResponseCall(@Header("Content-Type") String type);
 
     /*Service provider register form create*/
     @POST("service_provider/create")
@@ -317,6 +418,18 @@ public interface RestApiInterface {
     @POST("service_provider/check_status")
     Call<SPCheckStatusResponse>SPCheckStatusResponseCall(@Header("Content-Type") String type, @Body SPCheckStatusRequest spCheckStatusRequest );
 
+    /*sp my calendar available days*/
+    @POST("sp_available_time/fetch_dates")
+    Call<DoctorMyCalendarAvlDaysResponse>spMyCalendarAvlDaysResponseCall(@Header("Content-Type") String type, @Body SPMyCalendarAvlDaysRequest spMyCalendarAvlDaysRequest);
+
+    /*sp my calendar available times*/
+    @POST("sp_available_time/get_time_Details")
+    Call<DoctorMyCalendarAvlTimesResponse>spMyCalendarAvlTimesResponseCall(@Header("Content-Type") String type, @Body DoctorMyCalendarAvlTimesRequest doctorMyCalendarAvlTimesRequest);
+
+    /*sp my calendar update*/
+    @POST("sp_available_time/update_doc_date")
+    Call<DoctorMyCalendarUpdateDocDateResponse>spMyCalendarUpdateDocDateResponseCall(@Header("Content-Type") String type, @Body DoctorMyCalendarUpdateDocDateRequest doctorMyCalendarUpdateDocDateRequest);
+
 
     /*SP Create holiday*/
     @POST("sp_holiday/create")
@@ -330,5 +443,45 @@ public interface RestApiInterface {
     @POST("sp_holiday/delete")
     Call<HolidayDeleteResponse>spHolidayDeleteResponseCall(@Header("Content-Type") String type, @Body HolidayDeleteRequest holidayDeleteRequest  );
 
+    /*SP Create Appointment*/
+    @POST(" sp_appointments/mobile/create")
+    Call<SPCreateAppointmentResponse>SPCreateAppointmentResponseCall(@Header("Content-Type") String type, @Body SPCreateAppointmentRequest spCreateAppointmentRequest);
+
+    /*SP New Appointment*/
+    @POST("sp_appointments/mobile/sp_getlist/newapp")
+    Call<SPAppointmentResponse>spNewAppointmentResponseCall(@Header("Content-Type") String type, @Body SPAppointmentRequest spAppointmentRequest);
+
+    /*SP Completed Appointment*/
+    @POST("sp_appointments/mobile/sp_getlist/comapp")
+    Call<SPAppointmentResponse>spCompletedAppointmentResponseCall(@Header("Content-Type") String type, @Body SPAppointmentRequest spAppointmentRequest);
+
+    /*SP Missed Appointment*/
+    @POST("sp_appointments/mobile/sp_getlist/missapp")
+    Call<SPAppointmentResponse>spMissedAppointmentResponseCall(@Header("Content-Type") String type, @Body SPAppointmentRequest spAppointmentRequest);
+
+    /*Update Appointment Status complete*/
+    @POST("sp_appointments/edit")
+    Call<AppoinmentCompleteResponse>spappoinmentCompleteResponseCall(@Header("Content-Type") String type, @Body AppoinmentCompleteRequest appoinmentCompleteRequest );
+
+    /*Update Appointment Status cancel*/
+    @POST("sp_appointments/edit")
+    Call<AppoinmentCancelledResponse>spappoinmentCancelledResponseCall(@Header("Content-Type") String type, @Body AppoinmentCancelledRequest appoinmentCancelledRequest );
+
+
+
+    /*Vendor*/
+
+    /*Service provider register form create*/
+    @POST("product_vendor/create")
+    Call<VendorRegisterFormCreateResponse>vendorRegisterFormCreateResponseCall(@Header("Content-Type") String type, @Body VendorRegisterFormCreateRequest vendorRegisterFormCreateRequest );
+
+
+    /*Vendor Check status*/
+    @POST("product_vendor/check_status")
+    Call<SPCheckStatusResponse>VendorCheckStatusResponseCall(@Header("Content-Type") String type, @Body SPCheckStatusRequest spCheckStatusRequest );
+
+    /*Pet New Appointment Details*/
+    @POST("appointments/mobile/fetch_appointment_id")
+    Call<PetNewAppointmentDetailsResponse> petNewAppointDetailResponseCall(@Header("Content-Type") String type, @Body PetNewAppointmentDetailsRequest petNewAppointmentDetailsRequest);
 
 }

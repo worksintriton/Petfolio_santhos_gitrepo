@@ -124,6 +124,26 @@
                 android:textSize="16sp"
                 tools:ignore="Autofill,LabelFor,TextFields" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/btn_verify_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rounded_color_pr"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text="Verify Email"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,14 +151,13 @@
                 android:background="@drawable/rectangle_corner"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_phone"
+                <TextView
+                    android:id="@+id/txt_phone"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:fontFamily="@font/futuramediumbt"
                     android:hint="@string/phone"
-                    android:inputType="phone"
                     android:maxLength="10"
                     android:padding="15dp"
                     android:textColor="@color/new_light_green"
@@ -157,7 +176,7 @@
                     android:padding="10dp"
                     android:text="@string/ind"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
@@ -183,7 +202,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
         app:indicatorColor="@color/green"
         app:indicatorName="LineSpinFadeLoaderIndicator" />
 

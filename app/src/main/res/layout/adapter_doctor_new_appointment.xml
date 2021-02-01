@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_new"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,28 +15,45 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:id="@+id/img_emergency_appointment"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/emergency_call"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/image" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:id="@+id/img_emergency_appointment"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/emergency_call"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/img_videocall"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_chat"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_pet"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardPreventCornerOverlap="false"
@@ -52,7 +70,8 @@
                         android:layout_centerInParent="true"
                         android:contentDescription="@string/image"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/image_thumbnail" />
+                        app:srcCompat="@drawable/image_thumbnail"
+                        />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -61,9 +80,9 @@
                 android:id="@+id/ly_petname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/cv_pet"
                 android:orientation="vertical"
-                android:layout_toEndOf="@id/cv_pet">
+                android:layout_toEndOf="@id/cv_pet"
+                android:layout_marginTop="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,7 +92,7 @@
 
                     <TextView
                         android:id="@+id/txt_petnamelabel"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -97,7 +116,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
@@ -115,7 +133,7 @@
 
                     <TextView
                         android:id="@+id/txt_pettypelabel"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -137,7 +155,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
@@ -154,7 +171,7 @@
 
                     <TextView
                         android:id="@+id/txt_lbl_type"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -178,7 +195,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
@@ -196,7 +212,7 @@
 
                     <TextView
                         android:id="@+id/txt_service_costlabel"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -218,7 +234,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
@@ -252,7 +267,8 @@
                     android:text="@string/cancel"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:ignore="ButtonStyle" />
 
                 <Button
                     android:id="@+id/btn_complete"
@@ -260,13 +276,13 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/new_rounded_corner_btn"
                     android:fontFamily="@font/futuramediumbt"
                     android:text="@string/complete"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:ignore="ButtonStyle" />
 
 
             </LinearLayout>
@@ -284,8 +300,7 @@
                 android:maxLines="1"
                 android:text="@string/completed_on_date"
                 android:textColor="@color/new_green_btn"
-                android:textSize="12sp"
-                android:layout_marginLeft="10dp" />
+                android:textSize="12sp" />
 
         </RelativeLayout>
 

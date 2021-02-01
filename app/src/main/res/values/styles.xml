@@ -11,11 +11,6 @@
 
     </style>
 
-    <style name="WhiteCheck">
-        <item name="colorAccent">@color/white</item>
-    </style>
-
-
     <style name="spinnerTheme">
         <item name="android:textColor">@color/green</item>
     </style>

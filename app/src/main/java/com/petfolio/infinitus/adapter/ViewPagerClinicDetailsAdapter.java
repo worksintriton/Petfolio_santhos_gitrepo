@@ -26,7 +26,7 @@ public class ViewPagerClinicDetailsAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     private View itemView;
 
-    private String TAG = "ViewPagerDashboardAdapter";
+    private String TAG = "ViewPagerClinicDetailsAdapter";
 
     public ViewPagerClinicDetailsAdapter(Context context, List<DoctorDetailsResponse.DataBean.ClinicPicBean> doctorclinicdetailsResponseList){
 

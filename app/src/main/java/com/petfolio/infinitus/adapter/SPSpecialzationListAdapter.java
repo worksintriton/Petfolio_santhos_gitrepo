@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,29 +55,27 @@ public class SPSpecialzationListAdapter extends  RecyclerView.Adapter<RecyclerVi
 
         holder.txt_spectypes.setText(currentItem.getSpecialization());
 
-        holder.chx_spectypes.setChecked(currentItem.isSelected());
 
-        holder.chx_spectypes.setTag(position);
 
-        holder.chx_spectypes.setOnClickListener(v -> {
+        holder.chx_spectypes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String chspecialization = spSpecialzationList.get(position).getSpecialization();
 
-            Integer pos = (Integer) holder.chx_spectypes.getTag();
+                if(isChecked){
+                    if (holder.chx_spectypes.isChecked()) {
+                        spSpecialzationChckedListener.onItemSPSpecialzationCheck(position,chspecialization);
+                    }
 
-            if (spSpecialzationList.get(pos).isSelected())
-            {
-                spSpecialzationList.get(pos).setSelected(false);
+                }else{
 
-                spSpecialzationChckedListener.onItemSPSpecialzationUnCheck(pos,spSpecialzationList.get(pos).getSpecialization());
+                    spSpecialzationChckedListener.onItemSPSpecialzationUnCheck(position,chspecialization);
 
-            }
-
-            else
-            {
-                spSpecialzationChckedListener.onItemSPSpecialzationCheck(pos,spSpecialzationList.get(pos).getSpecialization(),spSpecialzationList);
+                }
 
             }
-
         });
+
 
     }
     @Override

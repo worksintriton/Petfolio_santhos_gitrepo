@@ -25,6 +25,7 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.interfaces.OnItemClickSpecialization;
 import com.petfolio.infinitus.requestpojo.DoctorMyCalendarAvlDaysRequest;
+import com.petfolio.infinitus.requestpojo.SPMyCalendarAvlDaysRequest;
 import com.petfolio.infinitus.responsepojo.DoctorMyCalendarAvlDaysResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
@@ -119,7 +120,7 @@ public class SPMyCalendarActivity extends AppCompatActivity implements OnItemCli
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
         RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
-        Call<DoctorMyCalendarAvlDaysResponse> call = ApiService.doctorMyCalendarAvlDaysResponseCall(RestUtils.getContentType(),doctorMyCalendarAvlDaysRequest());
+        Call<DoctorMyCalendarAvlDaysResponse> call = ApiService.spMyCalendarAvlDaysResponseCall(RestUtils.getContentType(),spMyCalendarAvlDaysRequest());
         Log.w(TAG,"url  :%s"+" "+call.request().url().toString());
 
         call.enqueue(new Callback<DoctorMyCalendarAvlDaysResponse>() {
@@ -166,18 +167,18 @@ public class SPMyCalendarActivity extends AppCompatActivity implements OnItemCli
 
     }
     @SuppressLint("LongLogTag")
-    private DoctorMyCalendarAvlDaysRequest doctorMyCalendarAvlDaysRequest() {
+    private SPMyCalendarAvlDaysRequest spMyCalendarAvlDaysRequest() {
         /*
-         * Doctor_email_id : mohammedimthi23956@gmail.com
-         * Doctor_name : mohammed6
+         * sp_name : imthi
          * types : 1
+         * user_id : 5fe18d0bf9ed795ad2f594941
          */
-        DoctorMyCalendarAvlDaysRequest doctorMyCalendarAvlDaysRequest = new DoctorMyCalendarAvlDaysRequest();
-        doctorMyCalendarAvlDaysRequest.setUser_id(userid);
-        doctorMyCalendarAvlDaysRequest.setDoctor_name(doctorname);
-        doctorMyCalendarAvlDaysRequest.setTypes(1);
-        Log.w(TAG,"doctorMyCalendarAvlDaysRequest"+ "--->" + new Gson().toJson(doctorMyCalendarAvlDaysRequest));
-        return doctorMyCalendarAvlDaysRequest;
+        SPMyCalendarAvlDaysRequest spMyCalendarAvlDaysRequest = new SPMyCalendarAvlDaysRequest();
+        spMyCalendarAvlDaysRequest.setUser_id(userid);
+        spMyCalendarAvlDaysRequest.setSp_name(doctorname);
+        spMyCalendarAvlDaysRequest.setTypes(1);
+        Log.w(TAG,"spMyCalendarAvlDaysRequest"+ "--->" + new Gson().toJson(spMyCalendarAvlDaysRequest));
+        return spMyCalendarAvlDaysRequest;
     }
 
     private void setViewAvlDays() {

@@ -70,6 +70,8 @@ public class SPServiceListResponse {
         }
         private List<ServiceListBean> service_list;
         private List<SpecializationBean> Specialization;
+        private List<TimeBean> time;
+
 
 
         public List<ServiceListBean> getService_list() {
@@ -90,25 +92,68 @@ public class SPServiceListResponse {
             this.Specialization = Specialization;
 
         }
+        public List<TimeBean> getTime() {
+            return time;
+        }
+
+        public void setTime(List<TimeBean> time) {
+            this.time = time;
+        }
 
         public static class ServiceListBean  {
 
-            private boolean isSelected;
 
-            public boolean isSelected() {
-                return isSelected;
-            }
-
-            public void setSelected(boolean selected) {
-                isSelected = selected;
-            }
 
             /**
              * service_list : Service - 1
              */
 
             private String service_list;
+            private String bus_service_list;
+            private String time_slots;
+            private Integer amount;
+            private boolean isChbxChecked;
+            private boolean isValueAdded;
 
+            public boolean isValueAdded() {
+                return isValueAdded;
+            }
+
+            public void setValueAdded(boolean valueAdded) {
+                isValueAdded = valueAdded;
+            }
+
+            public boolean isChbxChecked() {
+                return isChbxChecked;
+            }
+
+            public void setChbxChecked(boolean chbxChecked) {
+                isChbxChecked = chbxChecked;
+            }
+
+            public String getBus_service_list() {
+                return bus_service_list;
+            }
+
+            public void setBus_service_list(String bus_service_list) {
+                this.bus_service_list = bus_service_list;
+            }
+
+            public String getTime_slots() {
+                return time_slots;
+            }
+
+            public void setTime_slots(String time_slots) {
+                this.time_slots = time_slots;
+            }
+
+            public Integer getAmount() {
+                return amount;
+            }
+
+            public void setAmount(Integer amount) {
+                this.amount = amount;
+            }
 
             public String getService_list() {
                 return service_list;
@@ -122,15 +167,7 @@ public class SPServiceListResponse {
 
         public static class SpecializationBean {
 
-            private boolean isSelected;
 
-            public boolean isSelected() {
-                return isSelected;
-            }
-
-            public void setSelected(boolean selected) {
-                isSelected = selected;
-            }
             /**
              * Specialization : Specialization - 1
              */
@@ -147,5 +184,24 @@ public class SPServiceListResponse {
 
             }
         }
+
+        public static class TimeBean  {
+            /**
+             * time : 15 mins
+             */
+
+            private String time;
+
+
+            public String getTime() {
+                return time;
+            }
+
+            public void setTime(String time) {
+                this.time = time;
+
+            }
+        }
+
     }
 }

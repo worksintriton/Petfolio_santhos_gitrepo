@@ -1,5 +1,6 @@
 package com.petfolio.infinitus.fragmentdoctor;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -47,18 +50,24 @@ public class FragmentDoctorMissedAppointment extends Fragment implements View.On
 
 
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_no_records)
     TextView txt_no_records;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rv_missedappointment)
     RecyclerView rv_missedappointment;
 
+
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_load_more)
     Button btn_load_more;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_filter)
     Button btn_filter;
 
@@ -97,9 +106,9 @@ public class FragmentDoctorMissedAppointment extends Fragment implements View.On
 
         doctorid = user.get(SessionManager.KEY_ID);
 
-        String patientname = user.get(SessionManager.KEY_FIRST_NAME);
+        String doctorname = user.get(SessionManager.KEY_FIRST_NAME);
 
-        Log.w(TAG,"Doctorid"+doctorid +"patientname :"+patientname);
+        Log.w(TAG,"Doctorid"+doctorid +"doctorname :"+doctorname);
 
       
 
@@ -164,8 +173,11 @@ public class FragmentDoctorMissedAppointment extends Fragment implements View.On
 
     }
     private DoctorNewAppointmentRequest doctorNewAppointmentRequest() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateandTime = simpleDateFormat.format(new Date());
         DoctorNewAppointmentRequest doctorNewAppointmentRequest = new DoctorNewAppointmentRequest();
         doctorNewAppointmentRequest.setDoctor_id(doctorid);
+        doctorNewAppointmentRequest.setCurrent_time(currentDateandTime);
         Log.w(TAG,"doctorNewAppointmentRequest"+ "--->" + new Gson().toJson(doctorNewAppointmentRequest));
         return doctorNewAppointmentRequest;
     }

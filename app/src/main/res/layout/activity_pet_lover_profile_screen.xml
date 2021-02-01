@@ -49,43 +49,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:gravity="end">
+                android:gravity="end"
+                android:layout_marginStart="10dp">
 
                 <ImageView
+                    android:id="@+id/img_sos"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_sos"
                     tools:ignore="ContentDescription" />
 
                 <ImageView
+                    android:id="@+id/img_notification"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_notifications"
                     tools:ignore="ContentDescription" />
-
                 <ImageView
+                    android:id="@+id/img_cart"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_bag"
-                    tools:ignore="ContentDescription" />
-
+                    tools:ignore="ContentDescription"
+                    android:layout_marginStart="20dp" />
                 <ImageView
+                    android:id="@+id/img_profile1"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
                     android:src="@drawable/ic_user"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp" />
             </LinearLayout>
 
 
@@ -99,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/footerView"
         android:layout_below="@+id/headerView"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:id="@+id/content"
@@ -127,22 +123,22 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/upload" />
-
                     <TextView
                         android:id="@+id/txt_edit_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/img_profile"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:ellipsize="end"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="false"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
-                        android:text="@string/edit_no_underline"
+                        android:text="@string/edit"
                         android:textColor="@color/new_light_green"
                         android:textSize="14sp"
-                        android:visibility="gone"/>
+                        android:gravity="center"/>
+
 
                 </RelativeLayout>
 
@@ -449,7 +445,7 @@
             app:elevation="8dp"
             app:itemIconSize="20dp"
             app:menu="@menu/bottom_navigation"
-            android:background="@drawable/rounded_curve"
+            android:background="@drawable/new_rounded_corner_btn"
             app:itemBackground="@drawable/selected_state"
             app:itemIconTint="@color/selector"
             app:itemTextColor="@color/selector"

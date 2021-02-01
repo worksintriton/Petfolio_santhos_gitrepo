@@ -39,6 +39,8 @@ import com.petfolio.infinitus.serviceprovider.ServiceProviderRegisterFormActivit
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
+import com.petfolio.infinitus.vendor.VenderRegisterFormActivity;
+import com.petfolio.infinitus.vendor.VendorDashboardActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.concurrent.TimeUnit;
@@ -94,8 +96,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
     private boolean isOTPExpired ;
     private String userid;
-    private String token;
+    private String token = "";
     private String firstname,lastname,useremail;
+    private String verifyemailstatus = "false";
 
 
     @Override
@@ -253,8 +256,10 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
          }
 
          if (can_proceed) {
+           //  Toasty.success(getApplicationContext(),"userid : "+userid+ "fbtoken : "+token, Toast.LENGTH_SHORT, true).show();
+
              if (new ConnectionDetector(VerifyOtpActivity.this).isNetworkAvailable(VerifyOtpActivity.this)) {
-                 if(token != null && userid != null){
+                 if(userid != null){
                     fBTokenUpdateResponseCall();
                 }
 
@@ -364,12 +369,17 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onResponse(@NonNull Call<FBTokenUpdateResponse> call, @NonNull Response<FBTokenUpdateResponse> response) {
 
-                Log.w(TAG,"NotificationUpdateResponse"+ "--->" + new Gson().toJson(response.body()));
+                Log.w(TAG,"fBTokenUpdateResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+            //    Toasty.success(getApplicationContext(),"NotificationUpdateResponse : "+new Gson().toJson(response.body()), Toast.LENGTH_SHORT, true).show();
 
                 avi_indicator.smoothToHide();
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
+                        if(response.body().getData().isUser_email_verification()){
+                            verifyemailstatus = "true";
+                        }
 
                         SessionManager sessionManager = new SessionManager(VerifyOtpActivity.this);
                         sessionManager.setIsLogin(true);
@@ -380,7 +390,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
                                 useremail,
                                 phonenumber,
                                 String.valueOf(usertype),
-                                userstatus
+                                userstatus,
+                                response.body().getData().getProfile_img(),
+                                verifyemailstatus
 
                         );
 
@@ -391,6 +403,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
                                 }else if(usertype == 2 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, ServiceProviderDashboardActivity.class));
+
+                                }else if(usertype == 3 ){
+                                    startActivity(new Intent(VerifyOtpActivity.this, VendorDashboardActivity.class));
 
                                 }else if(usertype == 4 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, DoctorDashboardActivity.class));
@@ -405,6 +420,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
                                 }else if(usertype == 2 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, ServiceProviderRegisterFormActivity.class));
+
+                                }else if(usertype == 3 ){
+                                    startActivity(new Intent(VerifyOtpActivity.this, VenderRegisterFormActivity.class));
 
                                 }else if(usertype == 4 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, DoctorBusinessInfoActivity.class));
@@ -426,7 +444,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
             public void onFailure(@NonNull Call<FBTokenUpdateResponse> call, @NonNull Throwable t) {
 
                 avi_indicator.smoothToHide();
-                Log.w(TAG,"FBTokenUpdateResponse"+"--->" + t.getMessage());
+                Log.w(TAG,"FBTokenUpdateResponse flr"+"--->" + t.getMessage());
+                //Toasty.success(getApplicationContext(),"NotificationUpdateResponse flr : "+t.getMessage(), Toast.LENGTH_SHORT, true).show();
+
             }
         });
 
@@ -436,6 +456,8 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
         fbTokenUpdateRequest.setUser_id(userid);
         fbTokenUpdateRequest.setFb_token(token);
         Log.w(TAG,"fbTokenUpdateRequest"+ "--->" + new Gson().toJson(fbTokenUpdateRequest));
+      //  Toasty.success(getApplicationContext(),"fbTokenUpdateRequest : "+new Gson().toJson(fbTokenUpdateRequest), Toast.LENGTH_SHORT, true).show();
+
         return fbTokenUpdateRequest;
     }
 }

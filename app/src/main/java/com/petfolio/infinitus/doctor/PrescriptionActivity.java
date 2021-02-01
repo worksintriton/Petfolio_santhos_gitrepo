@@ -55,7 +55,7 @@ public class PrescriptionActivity extends AppCompatActivity {
     Button btnSubmit;
     LinearLayout ll_headername;
 
-    String TAG = "PrescriptionChatActivity";
+    String TAG = "PrescriptionActivity";
 
     AVLoadingIndicatorView avi_indicator;
     AlertDialog.Builder alertDialogBuilder;
@@ -69,7 +69,6 @@ public class PrescriptionActivity extends AppCompatActivity {
     private String Doctor_Name = "";
     private String Doctor_Image = "";
     private String Doctor_ID = "";
-    private String Appointment_ID = "";
     private String Treatment_Done_by = "";
     private String Patient_Name = "";
     private String Patient_Image = "";
@@ -89,13 +88,10 @@ public class PrescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription);
 
-
-
-
         session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getProfileDetails();
         Doctor_Name = user.get(SessionManager.KEY_FIRST_NAME);
-        Doctor_ID = user.get(SessionManager.KEY_ID);
+        userid = user.get(SessionManager.KEY_ID);
 
         avi_indicator = findViewById(R.id.avi_indicator);
         avi_indicator.setVisibility(View.GONE);
@@ -103,12 +99,9 @@ public class PrescriptionActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-
             appoinmentid = extras.getString("id");
-            userid = extras.getString("userid");
-
-
-            Log.w(TAG,"userid :"+" "+userid);
+            Doctor_ID = extras.getString("doctorid");
+            Log.w(TAG,"userid :"+" "+appoinmentid);
 
         }
 
@@ -294,6 +287,7 @@ public class PrescriptionActivity extends AppCompatActivity {
          * user_id : 5ef2c092c006bb0ed174c771
          * Prescription_data : [{"Quantity":"3","Tablet_name":"dolo","consumption":"twice"}]
          * Treatment_Done_by : Self
+         * Appointment_ID
          */
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
@@ -303,11 +297,12 @@ public class PrescriptionActivity extends AppCompatActivity {
         prescriptionCreateRequest.setDate(currentDateandTime);
         prescriptionCreateRequest.setDoctor_Comments(etdoctorcomments.getText().toString().trim());
         prescriptionCreateRequest.setPDF_format("");
-        prescriptionCreateRequest.setPrescription_type("");
+        prescriptionCreateRequest.setPrescription_type("PDF");
         prescriptionCreateRequest.setPrescription_img("");
         prescriptionCreateRequest.setUser_id(userid);
         prescriptionCreateRequest.setPrescription_data(prescriptionDataList);
         prescriptionCreateRequest.setTreatment_Done_by(Treatment_Done_by);
+        prescriptionCreateRequest.setAppointment_ID(appoinmentid);
         Log.w(TAG,"prescriptionCreateRequest"+ "--->" + new Gson().toJson(prescriptionCreateRequest));
         return prescriptionCreateRequest;
     }
@@ -337,22 +332,6 @@ public class PrescriptionActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toasty.warning(getApplicationContext(), "This action is disabled in this screen..", Toast.LENGTH_SHORT, true).show();
-
-        /*super.onBackPressed();
-        Intent intent = new Intent(PrescriptionChatActivity.this,DoctorChatDetailsActivity.class);
-        intent.putExtra("id", Appointment_ID);
-        intent.putExtra("doctorname", Doctor_Name);
-        intent.putExtra("doctorimage", Doctor_Image);
-        intent.putExtra("doctoremailid", Doctor_Email_id);
-        intent.putExtra("doctorid", Doctor_ID);
-        intent.putExtra("patientname", Patient_Name);
-        intent.putExtra("patientemailid", Patient_Email_id);
-        intent.putExtra("patientid", Patient_ID);
-        intent.putExtra("Bookingfor", Treatment_Done_by);
-        intent.putExtra("Familyid", Family_ID);
-        intent.putExtra("Familyname", Family_Name);
-        startActivity(intent);
-        finish();*/
     }
 
 

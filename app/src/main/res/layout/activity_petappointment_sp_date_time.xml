@@ -41,7 +41,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/futuramediumbt"
                 android:text="@string/appointment"
-                android:textColor="@color/new_txt_color"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -101,12 +101,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <com.vivekkaushik.datepicker.DatePickerTimeline
+                android:id="@+id/datePickerTimeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <CalendarView
                 android:id="@+id/calender"
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
-
+                android:layout_height="300dp"
+                android:visibility="gone">
             </CalendarView>
 
             <TextView
@@ -115,53 +127,110 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/futuramediumbt"
-                android:text="@string/time"
-                android:textColor="@color/new_txt_color"
+                android:text="Time"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:id="@+id/rootContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginStart="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:orientation="vertical">
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp">
 
 
-                <RelativeLayout
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="UselessParent"
-                    >
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rv_doctoravailabeslottime"
+                    />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_spavailabeslottime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/tvNoRecords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/norecordsfound"
+                    android:textSize="16sp"
+                    android:textColor="@color/color"
+                    android:gravity="center"
+                    android:visibility="gone"/>
 
-                    <TextView
-                        android:id="@+id/tvNoRecords"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerInParent="true"
-                        android:text="@string/norecordsfound"
-                        android:textColor="@color/color"
-                        android:textSize="16sp"
-                        android:visibility="gone" />
-
-                </RelativeLayout>
 
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/tvlbldoctoravailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/futurabt"
+                android:text="Appointment Type"
+                android:textColor="@color/color"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+            <RelativeLayout
+                android:id="@+id/sub_layer1"
+                android:layout_width="263dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioGroup_check"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:checkedButton="1">
+
+                    <CheckBox
+                        android:id="@+id/chat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Chat"
+                        android:textSize="20sp"
+                        android:theme="@style/MyCheckBox"
+                        />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="2dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@color/color" />
+
+                    <CheckBox
+                        android:id="@+id/video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="3dp"
+                        android:text="Video"
+                        android:textSize="20sp"
+                        android:theme="@style/MyCheckBox"
+                        android:layout_alignParentRight="true" />
+                </RadioGroup>
+            </RelativeLayout>
+
 
         </LinearLayout>
-
     </ScrollView>
+
+
 
     <LinearLayout
         android:id="@+id/footerView"
@@ -171,17 +240,17 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_continues"
+            android:id="@+id/btn_bookappointment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/new_rounded_corner_btn"
-            android:text="@string/continues"
-            android:textColor="@color/whiteFive"
-            android:textSize="18sp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/futuramediumbt"
             android:layout_margin="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/new_rounded_corner_btn"
+            android:fontFamily="@font/futuramediumbt"
+            android:text="@string/continues"
+            android:textAllCaps="false"
+            android:textColor="@color/whiteFive"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <com.wang.avi.AVLoadingIndicatorView

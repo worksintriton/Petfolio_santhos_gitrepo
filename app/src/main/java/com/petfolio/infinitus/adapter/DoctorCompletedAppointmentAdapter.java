@@ -2,12 +2,15 @@ package com.petfolio.infinitus.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.doctor.DoctorCompletedAppointmentDetailsActivity;
+import com.petfolio.infinitus.doctor.DoctorNewAppointmentDetailsActivity;
+import com.petfolio.infinitus.doctor.DoctorPrescriptionDetailsActivity;
 import com.petfolio.infinitus.responsepojo.DoctorCompletedAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.DoctorNewAppointmentResponse;
 
@@ -64,8 +70,8 @@ public class DoctorCompletedAppointmentAdapter extends  RecyclerView.Adapter<Rec
         if(completedAppointmentResponseList.get(position).getAppointment_types() != null){
             holder.txt_type.setText(completedAppointmentResponseList.get(position).getAppointment_types());
         }
-        if(completedAppointmentResponseList.get(position).getService_amount() != null){
-            holder.txt_service_cost.setText(completedAppointmentResponseList.get(position).getService_amount());
+        if(completedAppointmentResponseList.get(position).getAmount() != null){
+            holder.txt_service_cost.setText("\u20B9 "+completedAppointmentResponseList.get(position).getAmount());
         }
 
         if (completedAppointmentResponseList.get(position).getPet_id().getPet_img() != null && !completedAppointmentResponseList.get(0).getPet_id().getPet_img().isEmpty()) {
@@ -82,6 +88,38 @@ public class DoctorCompletedAppointmentAdapter extends  RecyclerView.Adapter<Rec
 
         }
 
+        holder.btn__prescriptiondetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(completedAppointmentResponseList.get(position).get_id() != null) {
+                    Intent i = new Intent(context, DoctorPrescriptionDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("id", completedAppointmentResponseList.get(position).get_id());
+                    context.startActivity(i);
+                }
+
+            }
+        });
+
+        holder.ll_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, DoctorCompletedAppointmentDetailsActivity.class);
+
+                //Create the bundle
+                Bundle bundle = new Bundle();
+
+                Log.w("appointment_id",completedAppointmentResponseList.get(position).get_id());
+
+                //Add your data from getFactualResults method to bundle
+                bundle.putString("appointment_id",completedAppointmentResponseList.get(position).get_id());
+
+                //Add the bundle to the intent
+                intent.putExtras(bundle);
+
+                context.startActivity(intent);
+            }
+        });
 
 
 
@@ -96,7 +134,7 @@ public class DoctorCompletedAppointmentAdapter extends  RecyclerView.Adapter<Rec
 
 
 
-        }
+    }
 
 
     @Override
@@ -112,9 +150,9 @@ public class DoctorCompletedAppointmentAdapter extends  RecyclerView.Adapter<Rec
 
     static class ViewHolderOne extends RecyclerView.ViewHolder {
         public TextView txt_petname,txt_pettype,txt_type,txt_service_cost,txt_completed_date;
-        public ImageView img_pet_imge;
-        public Button btn_cancel,btn_complete;
-
+        public ImageView img_pet_imge,img_prescriptiondetails;
+        public Button btn_cancel,btn_complete,btn__prescriptiondetails;
+        LinearLayout ll_new;
 
 
         public ViewHolderOne(View itemView) {
@@ -127,8 +165,9 @@ public class DoctorCompletedAppointmentAdapter extends  RecyclerView.Adapter<Rec
             txt_completed_date = itemView.findViewById(R.id.txt_completed_date);
             btn_cancel = itemView.findViewById(R.id.btn_cancel);
             btn_complete = itemView.findViewById(R.id.btn_complete);
-
-
+            //img_prescriptiondetails = itemView.findViewById(R.id.img_prescriptiondetails);
+            ll_new = itemView.findViewById(R.id.ll_new);
+            btn__prescriptiondetails = itemView.findViewById(R.id.btn_prescriptiondetails);
 
         }
 

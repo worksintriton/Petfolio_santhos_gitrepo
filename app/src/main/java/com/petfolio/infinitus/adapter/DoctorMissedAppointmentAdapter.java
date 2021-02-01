@@ -2,12 +2,15 @@ package com.petfolio.infinitus.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.doctor.DoctorMissedxAppointmentDetailsActivity;
+import com.petfolio.infinitus.doctor.DoctorNewAppointmentDetailsActivity;
 import com.petfolio.infinitus.responsepojo.DoctorMissedAppointmentResponse;
 
 import java.util.List;
@@ -65,8 +70,8 @@ public class DoctorMissedAppointmentAdapter extends  RecyclerView.Adapter<Recycl
         if(missedAppointmentResponseList.get(position).getAppointment_types() != null){
             holder.txt_type.setText(missedAppointmentResponseList.get(position).getAppointment_types());
         }
-        if(missedAppointmentResponseList.get(position).getService_amount() != null){
-            holder.txt_service_cost.setText(missedAppointmentResponseList.get(position).getService_amount());
+        if(missedAppointmentResponseList.get(position).getAmount() != null){
+            holder.txt_service_cost.setText("\u20B9 "+missedAppointmentResponseList.get(position).getAmount());
         }
         if (missedAppointmentResponseList.get(position).getPet_id().getPet_img() != null && !missedAppointmentResponseList.get(position).getPet_id().getPet_img().isEmpty()) {
 
@@ -82,8 +87,48 @@ public class DoctorMissedAppointmentAdapter extends  RecyclerView.Adapter<Recycl
 
         }
 
+        if(missedAppointmentResponseList.get(position).getAppoint_patient_st() != null && missedAppointmentResponseList.get(position).getAppoint_patient_st().equalsIgnoreCase("Petowner Cancelled appointment")){
+            holder.ll_appointmentstatus.setVisibility(View.VISIBLE);
+            holder.txt_appointment_status.setText("Not available");
+        }
+        else if(missedAppointmentResponseList.get(position).getAppoint_patient_st() != null && missedAppointmentResponseList.get(position).getAppoint_patient_st().equalsIgnoreCase("Doctor Cancelled appointment")){
 
-       }
+        }else if(missedAppointmentResponseList.get(position).getAppoint_patient_st() != null && missedAppointmentResponseList.get(position).getAppoint_patient_st().equalsIgnoreCase("Doctor missed appointment")){
+            holder.ll_appointmentstatus.setVisibility(View.VISIBLE);
+            holder.txt_appointment_status.setText("Not available");
+        }else if(missedAppointmentResponseList.get(position).getAppoint_patient_st() != null && missedAppointmentResponseList.get(position).getAppoint_patient_st().equalsIgnoreCase("Petowner Not Available")){
+            holder.ll_appointmentstatus.setVisibility(View.VISIBLE);
+            holder.txt_appointment_status.setText("No show");
+        }
+
+        if(missedAppointmentResponseList.get(position).getAppoinment_status() != null && missedAppointmentResponseList.get(position).getAppoinment_status().equalsIgnoreCase("no show")){
+            holder.ll_appointmentstatus.setVisibility(View.VISIBLE);
+            holder.txt_appointment_status.setText("No show");
+        }
+
+        holder.ll_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, DoctorMissedxAppointmentDetailsActivity.class);
+
+                //Create the bundle
+                Bundle bundle = new Bundle();
+
+                Log.w("appointment_id",missedAppointmentResponseList.get(position).get_id());
+
+                //Add your data from getFactualResults method to bundle
+                bundle.putString("appointment_id",missedAppointmentResponseList.get(position).get_id());
+
+                //Add the bundle to the intent
+                intent.putExtras(bundle);
+
+                context.startActivity(intent);
+            }
+        });
+
+
+    }
 
 
     @Override
@@ -98,10 +143,11 @@ public class DoctorMissedAppointmentAdapter extends  RecyclerView.Adapter<Recycl
     }
 
     static class ViewHolderOne extends RecyclerView.ViewHolder {
-        public TextView txt_petname,txt_pettype,txt_type,txt_service_cost,txt_missed_date;
+        public TextView txt_petname,txt_pettype,txt_type,txt_service_cost,txt_missed_date,txt_appointment_status;
         public ImageView img_pet_imge;
         public Button btn_cancel,btn_complete;
-
+        public LinearLayout ll_appointmentstatus;
+        LinearLayout ll_new;
 
 
         public ViewHolderOne(View itemView) {
@@ -114,7 +160,10 @@ public class DoctorMissedAppointmentAdapter extends  RecyclerView.Adapter<Recycl
             txt_missed_date = itemView.findViewById(R.id.txt_missed_date);
             btn_cancel = itemView.findViewById(R.id.btn_cancel);
             btn_complete = itemView.findViewById(R.id.btn_complete);
-
+            txt_appointment_status = itemView.findViewById(R.id.txt_appointment_status);
+            ll_appointmentstatus = itemView.findViewById(R.id.ll_appointmentstatus);
+            ll_appointmentstatus.setVisibility(View.GONE);
+            ll_new = itemView.findViewById(R.id.ll_new);
 
 
         }

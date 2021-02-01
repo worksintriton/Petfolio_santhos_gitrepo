@@ -11,6 +11,7 @@ public class SessionManager {
 
     public static final String KEY_FIRST_NAME = "firstname" ;
     public static final String KEY_LAST_NAME = "lastname";
+    public static final String KEY_PROFILE_IMAGE = "profileimage" ;
     String TAG = "SessionManager";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -20,6 +21,7 @@ public class SessionManager {
     public static final String IS_LOGIN = "IsLoggedIn";
 
     public static final String KEY_PROFILE_STATUS= "profilestatus";
+    public static final String KEY_VERIFY_EMAIL_STATUS= "verifyemailstatus";
 
 
 
@@ -30,6 +32,7 @@ public class SessionManager {
     public static final String KEY_ID = "id";
 
     public static final String KEEPLOGIN = "keeplogin";
+    public static final String KEEPPROFILEUPDATE = "keepprofileupdate";
 
 
 
@@ -50,7 +53,7 @@ public class SessionManager {
 
 
     public void createLoginSession(String id, String firstname, String lastname, String useremail,String userphone,String usertype,
-                                 String userstatus) {
+                                 String userstatus,String profileimage, String verifyemailstatus) {
 
 
         editor.putBoolean(IS_LOGIN, true);
@@ -61,6 +64,8 @@ public class SessionManager {
         editor.putString(KEY_MOBILE, userphone);
         editor.putString(KEY_TYPE, usertype);
         editor.putString(KEY_PROFILE_STATUS, userstatus);
+        editor.putString(KEY_PROFILE_IMAGE, profileimage);
+        editor.putString(KEY_VERIFY_EMAIL_STATUS,verifyemailstatus);
         Log.e(TAG, "................................>> session Login Details " + "KEY_ID" + id);
 
         editor.commit();
@@ -82,6 +87,8 @@ public class SessionManager {
         user.put(KEY_MOBILE, pref.getString(KEY_MOBILE, ""));
         user.put(KEY_TYPE, pref.getString(KEY_TYPE, ""));
         user.put(KEY_PROFILE_STATUS, pref.getString(KEY_PROFILE_STATUS, ""));
+        user.put(KEY_PROFILE_IMAGE, pref.getString(KEY_PROFILE_IMAGE, ""));
+        user.put(KEY_VERIFY_EMAIL_STATUS, pref.getString(KEY_VERIFY_EMAIL_STATUS, ""));
         return user;
     }
 
@@ -108,6 +115,16 @@ public class SessionManager {
 
         return pref.getBoolean(KEEPLOGIN, false);
     }
+
+    public boolean isProfileUpdate() {
+        return pref.getBoolean(KEEPPROFILEUPDATE, false);
+    }
+
+    public void setIsProfileUpdate(boolean isProfileUpdate){
+        editor.putBoolean(KEEPPROFILEUPDATE,isProfileUpdate);
+        editor.apply();
+    }
+
 
 
 

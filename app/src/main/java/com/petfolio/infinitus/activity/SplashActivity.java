@@ -12,6 +12,7 @@ import com.petfolio.infinitus.doctor.DoctorDashboardActivity;
 import com.petfolio.infinitus.petlover.PetLoverDashboardActivity;
 import com.petfolio.infinitus.serviceprovider.ServiceProviderDashboardActivity;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
+import com.petfolio.infinitus.vendor.VendorDashboardActivity;
 
 import java.util.HashMap;
 
@@ -54,6 +55,10 @@ public class SplashActivity extends AppCompatActivity {
 
                     }else if(usertype.equalsIgnoreCase("2")){
                         startActivity(new Intent(SplashActivity.this, ServiceProviderDashboardActivity.class));
+                        finish();
+
+                    }else if(usertype.equalsIgnoreCase("3")){
+                        startActivity(new Intent(SplashActivity.this, VendorDashboardActivity.class));
                         finish();
 
                     }else if(usertype.equalsIgnoreCase("4")){

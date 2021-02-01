@@ -1,5 +1,6 @@
 package com.petfolio.infinitus.fragmentdoctor;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -31,13 +32,10 @@ import com.petfolio.infinitus.adapter.DoctorNewAppointmentAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.doctor.DoctorDashboardActivity;
-import com.petfolio.infinitus.doctor.PrescriptionActivity;
 import com.petfolio.infinitus.interfaces.OnAppointmentCancel;
 import com.petfolio.infinitus.requestpojo.AppoinmentCancelledRequest;
-import com.petfolio.infinitus.requestpojo.AppoinmentCompleteRequest;
 import com.petfolio.infinitus.requestpojo.DoctorNewAppointmentRequest;
 import com.petfolio.infinitus.responsepojo.AppoinmentCancelledResponse;
-import com.petfolio.infinitus.responsepojo.AppoinmentCompleteResponse;
 import com.petfolio.infinitus.responsepojo.DoctorNewAppointmentResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
@@ -62,15 +60,19 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
 
 
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_no_records)
     TextView txt_no_records;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rv_newappointment)
     RecyclerView rv_newappointment;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_load_more)
     Button btn_load_more;
 
@@ -109,9 +111,9 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
 
         doctorid = user.get(SessionManager.KEY_ID);
 
-        String patientname = user.get(SessionManager.KEY_FIRST_NAME);
+        String doctorname = user.get(SessionManager.KEY_FIRST_NAME);
 
-        Log.w(TAG,"Doctorid"+doctorid +"patientname :"+patientname);
+        Log.w(TAG,"Doctorid"+doctorid +"doctorname :"+doctorname);
 
 
         if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
@@ -176,13 +178,12 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
 
     }
     private DoctorNewAppointmentRequest doctorNewAppointmentRequest() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateandTime = simpleDateFormat.format(new Date());
 
         DoctorNewAppointmentRequest doctorNewAppointmentRequest = new DoctorNewAppointmentRequest();
-
         doctorNewAppointmentRequest.setDoctor_id(doctorid);
-
-
-
+        doctorNewAppointmentRequest.setCurrent_time(currentDateandTime);
         Log.w(TAG,"doctorNewAppointmentRequest"+ "--->" + new Gson().toJson(doctorNewAppointmentRequest));
         return doctorNewAppointmentRequest;
     }
@@ -190,7 +191,7 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
         rv_newappointment.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_newappointment.setItemAnimator(new DefaultItemAnimator());
         int size = 3;
-        DoctorNewAppointmentAdapter doctorNewAppointmentAdapter = new DoctorNewAppointmentAdapter(getContext(), newAppointmentResponseList, rv_newappointment,size,this);
+        DoctorNewAppointmentAdapter doctorNewAppointmentAdapter = new DoctorNewAppointmentAdapter(getContext(), newAppointmentResponseList, rv_newappointment,size,this,avi_indicator);
         rv_newappointment.setAdapter(doctorNewAppointmentAdapter);
 
     }
@@ -198,14 +199,14 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
         rv_newappointment.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_newappointment.setItemAnimator(new DefaultItemAnimator());
         int size = newAppointmentResponseList.size();
-        DoctorNewAppointmentAdapter doctorNewAppointmentAdapter = new DoctorNewAppointmentAdapter(getContext(), newAppointmentResponseList, rv_newappointment,size,this);
+        DoctorNewAppointmentAdapter doctorNewAppointmentAdapter = new DoctorNewAppointmentAdapter(getContext(), newAppointmentResponseList, rv_newappointment,size,this,avi_indicator);
         rv_newappointment.setAdapter(doctorNewAppointmentAdapter);
 
     }
 
 
     @Override
-    public void onAppointmentCancel(String id) {
+    public void onAppointmentCancel(String id,String appointmenttype) {
         if(id != null){
             showStatusAlert(id);
         }
@@ -303,6 +304,7 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
          * missed_at : 23-10-2000 10 : 00 AM
          * doc_feedback : One Emergenecy work i am cancelling this appointment
          * appoinment_status : Missed
+         * appoint_patient_st:Doctor Cancelled appointment
          */
 
 
@@ -314,6 +316,7 @@ public class FragmentDoctorNewAppointment extends Fragment implements OnAppointm
         appoinmentCancelledRequest.setMissed_at(currentDateandTime);
         appoinmentCancelledRequest.setDoc_feedback("");
         appoinmentCancelledRequest.setAppoinment_status("Missed");
+        appoinmentCancelledRequest.setAppoint_patient_st("Doctor Cancelled appointment");
         Log.w(TAG,"appoinmentCancelledRequest"+ "--->" + new Gson().toJson(appoinmentCancelledRequest));
         return appoinmentCancelledRequest;
     }

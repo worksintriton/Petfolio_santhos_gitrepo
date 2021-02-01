@@ -57,16 +57,16 @@ public class PetLoverProductsAdapter extends  RecyclerView.Adapter<RecyclerView.
     private void initLayoutOne(ViewHolderOne holder, final int position) {
 
           currentItem = productDetailsResponseList.get(position);
-          Log.w(TAG,"Offervalue :"+currentItem.getProduct_offer_value());
+         /* Log.w(TAG,"Offervalue :"+currentItem.getProduct_offer_value());
           holder.txt_products_title.setText(currentItem.getProduct_title());
         //  holder.txt_products_price.setText(currentItem.getProduct_prices()+"");
           holder.txt_products_offer.setText("  "+currentItem.getProduct_offer_value()+" % off");
           holder.txt_star_rating.setText( productDetailsResponseList.get(position).getReview_count()+"");
-          holder.txt_review_count.setText( productDetailsResponseList.get(position).getReview_count()+"");
-          if (currentItem.getProducts_img() != null && !currentItem.getProducts_img().isEmpty()) {
+          holder.txt_review_count.setText( productDetailsResponseList.get(position).getReview_count()+"");*/
+          if (currentItem.getImg_path() != null && !currentItem.getImg_path().isEmpty()) {
 
             Glide.with(context)
-                    .load(currentItem.getProducts_img())
+                    .load(currentItem.getImg_path())
                     //.load(R.drawable.logo)
                     .into(holder.img_products_image);
 
