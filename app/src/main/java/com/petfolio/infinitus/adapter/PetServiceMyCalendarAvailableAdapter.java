@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.interfaces.OnItemSelectedTime;
-import com.petfolio.infinitus.petlover.PetAppointment_Doctor_Date_Time_Activity;
 import com.petfolio.infinitus.petlover.PetServiceAppointment_Doctor_Date_Time_Activity;
 import com.petfolio.infinitus.responsepojo.PetDoctorAvailableTimeResponse;
 import com.petfolio.infinitus.responsepojo.SPAvailableTimeResponse;
@@ -67,11 +66,15 @@ public class PetServiceMyCalendarAvailableAdapter extends  RecyclerView.Adapter<
 
     private void initLayoutOne(ViewHolderOne holder, final int position) {
 
-       // currentItem = dataBeanList.get(position);
-        for (int i = 0; i < timesBeanList.size(); i++) {
-            holder.txt_days.setText(timesBeanList.get(position).getTime());
-            Log.w(TAG,"Times : "+timesBeanList.get(position).getTime());
+        if(timesBeanList != null && timesBeanList.size()>0) {
+            // currentItem = dataBeanList.get(position);
+            for (int i = 0; i < timesBeanList.size(); i++) {
+                if(timesBeanList.get(position).getTime() != null ) {
+                    holder.txt_days.setText(timesBeanList.get(position).getTime());
+                    Log.w(TAG, "Times : " + timesBeanList.get(position).getTime());
+                }
 
+            }
         }
 
         holder.txt_days.setOnClickListener(new View.OnClickListener() {

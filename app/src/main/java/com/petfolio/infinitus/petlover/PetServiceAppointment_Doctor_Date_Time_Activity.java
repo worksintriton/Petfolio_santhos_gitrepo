@@ -1,13 +1,19 @@
 package com.petfolio.infinitus.petlover;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -19,21 +25,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.activity.NotificationActivity;
+import com.petfolio.infinitus.adapter.PetLoverSOSAdapter;
 import com.petfolio.infinitus.adapter.PetMyCalendarAvailableAdapter;
 import com.petfolio.infinitus.adapter.PetServiceMyCalendarAvailableAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.interfaces.OnItemSelectedTime;
+import com.petfolio.infinitus.interfaces.SoSCallListener;
 import com.petfolio.infinitus.requestpojo.AppointmentCheckRequest;
 import com.petfolio.infinitus.requestpojo.PetDoctorAvailableTimeRequest;
 import com.petfolio.infinitus.responsepojo.AppointmentCheckResponse;
 import com.petfolio.infinitus.responsepojo.PetDoctorAvailableTimeResponse;
+import com.petfolio.infinitus.responsepojo.PetLoverDashboardResponse;
 import com.petfolio.infinitus.responsepojo.SPAvailableTimeResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
@@ -57,7 +70,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatActivity implements OnItemSelectedTime {
+public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatActivity implements OnItemSelectedTime, View.OnClickListener, SoSCallListener {
 
     private Button btn_bookappointment;
     private CheckBox chat, video;
@@ -90,8 +103,7 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
     private String SP_email_id ="";
     private String SP_ava_Date = "";
     private String selectedTimeSlot = "";
-    private String Comm_type_chat = "";
-    private String Comm_type_video = "";
+
 
     SessionManager session;
 
@@ -115,6 +127,23 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
     DatePickerTimeline datePickerTimeline ;
 
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_sos)
+    ImageView img_sos;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_notification)
+    ImageView img_notification;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_cart)
+    ImageView img_cart;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_profile)
+    ImageView img_profile;
+
+
     private String petid,allergies,probleminfo;
     private String userid;
     private String selectedAppointmentType;
@@ -132,6 +161,10 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
     private int serviceamount;
     private List<SPAvailableTimeResponse.DataBean> spDateAvailabilityResponseList;
     private List<SPAvailableTimeResponse.DataBean.TimesBean> timesBeanList;
+
+    private static final int REQUEST_PHONE_CALL =1 ;
+    private String sosPhonenumber;
+    private Dialog dialog;
 
 
     @Override
@@ -160,6 +193,10 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
 
 
 
+        img_sos.setOnClickListener(this);
+        img_notification.setOnClickListener(this);
+        img_cart.setOnClickListener(this);
+        img_profile.setOnClickListener(this);
 
 
 
@@ -314,6 +351,7 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
 
 
 
+    @SuppressLint("LogNotTimber")
     private void spAvailableTimeResponseCall(String Date) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -323,6 +361,7 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
         Log.w(TAG,"spAvailableTimeResponseCall url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<SPAvailableTimeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<SPAvailableTimeResponse> call, @NonNull Response<SPAvailableTimeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -331,23 +370,23 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
-                        spDateAvailabilityResponseList = response.body().getData();
-                        timesBeanList = response.body().getData().get(0).getTimes();
+                        if(response.body().getData() != null) {
+                            spDateAvailabilityResponseList = response.body().getData();
+                        }
+                        if(response.body().getData().get(0).getTimes() != null) {
+                            timesBeanList = response.body().getData().get(0).getTimes();
+                        }
                         Log.w(TAG,"Size"+spDateAvailabilityResponseList.size());
                         if(!response.body().getData().isEmpty()){
                             SP_name = response.body().getData().get(0).getSp_name();
                             SP_email_id = response.body().getData().get(0).getSp_email_id();
                             SP_ava_Date = response.body().getData().get(0).getSp_ava_Date();
-                            Comm_type_chat = response.body().getData().get(0).getComm_type_chat();
-                            Comm_type_video = response.body().getData().get(0).getComm_type_video();
+
                             Log.w(TAG,"doctorDateAvailabilityResponseCall SP_ava_Date: "+SP_ava_Date);
                             sub_layer1.setVisibility(View.VISIBLE);
                             btn_bookappointment.setVisibility(View.VISIBLE);
-                            List<PetDoctorAvailableTimeResponse.DataBean.TimesBean>timeBeanList = new ArrayList<>();
 
-                            if(spDateAvailabilityResponseList.size()>0) {
-
-
+                            if(spDateAvailabilityResponseList != null && spDateAvailabilityResponseList.size()>0) {
                                 setViewAvlDays();
 
                             }
@@ -358,10 +397,6 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
                             video.setVisibility(View.GONE);
                             view.setVisibility(View.GONE);
                             tvlblavailabletime.setVisibility(View.VISIBLE);
-                            //tvlbldoctoravailable.setVisibility(View.VISIBLE);
-                            Comm_type_chat = response.body().getData().get(0).getComm_type_chat();
-                            Comm_type_video = response.body().getData().get(0).getComm_type_video();
-                            Log.w(TAG,"doctorDateAvailabilityResponseCall11 Comm_type_chat : "+Comm_type_chat+" Comm_type_video : "+Comm_type_video);
 
                             String  doctorChatAvailable = response.body().getData().get(0).getComm_type_chat();
                             String doctorVideoAvailable = response.body().getData().get(0).getComm_type_video();
@@ -415,6 +450,7 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest(String Date) {
 
         /*
@@ -422,7 +458,10 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
          * user_id : 1234567890
          * cur_date : 31-11-2020
          * cur_time : 01:00 AM
+         * current_time
          */
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateandTime = sf.format(new Date());
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
         String currentDateandTime24hrs = simpleDateFormat.format(new Date());
@@ -432,6 +471,7 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
         PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest = new PetDoctorAvailableTimeRequest();
         petDoctorAvailableTimeRequest.setUser_id(spuserid);
         petDoctorAvailableTimeRequest.setDate(Date);
+        petDoctorAvailableTimeRequest.setCurrent_time(currentDateandTime);
         petDoctorAvailableTimeRequest.setCur_time(currenttime);
         petDoctorAvailableTimeRequest.setCur_date(currentdate);
         Log.w(TAG,"spAvailableTimeResponseRequest"+ "--->" + new Gson().toJson(petDoctorAvailableTimeRequest));
@@ -519,5 +559,99 @@ public class PetServiceAppointment_Doctor_Date_Time_Activity extends AppCompatAc
     }
 
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_sos:
+                showSOSAlert(APIClient.sosList);
+                break;
+            case R.id.img_notification:
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+                break;
+            case R.id.img_cart:
+                break;
+            case R.id.img_profile:
+                Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
+                intent.putExtra("fromactivity",TAG);
+                startActivity(intent);
+                break;
+        }
+    }
 
+    private void showSOSAlert(List<PetLoverDashboardResponse.DataBean.SOSBean> sosList) {
+
+        try {
+
+            dialog = new Dialog(PetServiceAppointment_Doctor_Date_Time_Activity.this);
+            dialog.setContentView(R.layout.sos_popup_layout);
+            RecyclerView rv_sosnumbers = (RecyclerView)dialog.findViewById(R.id.rv_sosnumbers);
+            Button btn_call = (Button)dialog.findViewById(R.id.btn_call);
+            TextView txt_no_records = (TextView)dialog.findViewById(R.id.txt_no_records);
+            ImageView img_close = (ImageView)dialog.findViewById(R.id.img_close);
+            img_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            if(sosList != null && sosList.size()>0){
+                rv_sosnumbers.setVisibility(View.VISIBLE);
+                btn_call.setVisibility(View.VISIBLE);
+                txt_no_records.setVisibility(View.GONE);
+                rv_sosnumbers.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                rv_sosnumbers.setItemAnimator(new DefaultItemAnimator());
+                PetLoverSOSAdapter petLoverSOSAdapter = new PetLoverSOSAdapter(getApplicationContext(), sosList,this);
+                rv_sosnumbers.setAdapter(petLoverSOSAdapter);
+            }else{
+                rv_sosnumbers.setVisibility(View.GONE);
+                btn_call.setVisibility(View.GONE);
+                txt_no_records.setVisibility(View.VISIBLE);
+                txt_no_records.setText("No phone numbers");
+
+            }
+
+            btn_call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(PetServiceAppointment_Doctor_Date_Time_Activity.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+                    }
+                    else
+                    {
+                        gotoPhone();
+                    }
+
+                }
+            });
+
+
+
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+    private void gotoPhone() {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + sosPhonenumber));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(intent);
+    }
+
+    @Override
+    public void soSCallListener(long phonenumber) {
+        if(phonenumber != 0){
+            sosPhonenumber = String.valueOf(phonenumber);
+        }
+
+    }
 }

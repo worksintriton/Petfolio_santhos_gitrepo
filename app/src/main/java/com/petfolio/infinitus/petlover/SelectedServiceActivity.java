@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.adapter.PetLoverSOSAdapter;
 import com.petfolio.infinitus.adapter.SelectedServiceProviderAdapter;
 import com.petfolio.infinitus.api.APIClient;
@@ -121,7 +122,7 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
 
     private List<SPSpecificServiceDetailsResponse.DataBean.ServiceProviderBean> serviceProviderList;
     private String userid;
-    private String catid;
+    private String catid = "";
     private String from;
     private Dialog dialog;
     private static final int REQUEST_PHONE_CALL =1 ;
@@ -166,6 +167,8 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
             distance = extras.getInt("distance");
             selectedprice = extras.getString("selectedprice");
         }
+        Log.w(TAG,"selectedprice : "+selectedprice);
+
 
         if(PetLoverDashboardActivity.cityName != null){
             txt_currentlocation.setText(PetLoverDashboardActivity.cityName);
@@ -230,6 +233,7 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void SPSpecificServiceDetailsResponseCall(int distance, int reviewcount, int count_value_start, int count_value_end) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -238,7 +242,7 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         Log.w(TAG,"SPSpecificServiceDetailsResponseCall url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<SPSpecificServiceDetailsResponse>() {
-            @SuppressLint("SetTextI18n")
+            @SuppressLint({"SetTextI18n", "LogNotTimber"})
             @Override
             public void onResponse(@NonNull Call<SPSpecificServiceDetailsResponse> call, @NonNull Response<SPSpecificServiceDetailsResponse> response) {
                 avi_indicator.smoothToHide();
@@ -248,22 +252,26 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
                     if (200 == response.body().getCode()) {
                         txt_no_records.setVisibility(View.GONE);
                         if (response.body().getData() != null) {
-                            if (response.body().getData().getService_Details().getImage_path() != null) {
+                            if (response.body().getData().getService_Details().getImage_path() != null && !response.body().getData().getService_Details().getImage_path().isEmpty()) {
                                 Glide.with(SelectedServiceActivity.this)
                                         .load(response.body().getData().getService_Details().getImage_path())
                                         .into(img_selectedserviceimage);
                             } else {
                                 Glide.with(SelectedServiceActivity.this)
-                                        .load(R.drawable.image_thumbnail)
+                                        .load(APIClient.PROFILE_IMAGE_URL)
                                         .into(img_selectedserviceimage);
 
                             }
                             if(response.body().getData().getService_Details().getTitle() != null){
                                 txt_selected_service.setText(response.body().getData().getService_Details().getTitle());
                             }
-                            catid = response.body().getData().getService_Details().get_id();
+                            if(response.body().getData().getService_Details().get_id() != null) {
+                                catid = response.body().getData().getService_Details().get_id();
+                            }
                             Log.w(TAG,"catid : "+catid);
-                            serviceProviderList = response.body().getData().getService_provider();
+                            if(response.body().getData().getService_provider() != null) {
+                                serviceProviderList = response.body().getData().getService_provider();
+                            }
 
                             if(serviceProviderList != null && serviceProviderList.size()>0){
                                 txt_totalproviders.setText(serviceProviderList.size()+" Providers");
@@ -280,13 +288,13 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
                         }
                     }else{
                         txt_no_records.setVisibility(View.VISIBLE);
-                        if (response.body().getData().getService_Details().getImage_path() != null) {
+                        if (response.body().getData().getService_Details().getImage_path() != null && !response.body().getData().getService_Details().getImage_path().isEmpty()) {
                             Glide.with(SelectedServiceActivity.this)
                                     .load(response.body().getData().getService_Details().getImage_path())
                                     .into(img_selectedserviceimage);
                         } else {
                             Glide.with(SelectedServiceActivity.this)
-                                    .load(R.drawable.image_thumbnail)
+                                    .load(APIClient.PROFILE_IMAGE_URL)
                                     .into(img_selectedserviceimage);
 
                         }
@@ -308,6 +316,7 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private SPSpecificServiceDetailsRequest spSpecificServiceDetailsRequest(int distance, int reviewcount, int count_value_start, int count_value_end) {
         /*
          * cata_id : 5fe185d61996f651f5133693
@@ -345,6 +354,9 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.img_sos:
                 goto_SOS();
+                break;
+            case R.id.img_notification:
+                startActivity(new Intent(SelectedServiceActivity.this, NotificationActivity.class));
                 break;
             case R.id.img_profile:
                 goto_Profile();

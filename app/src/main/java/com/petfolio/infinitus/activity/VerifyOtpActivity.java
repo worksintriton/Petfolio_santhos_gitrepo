@@ -39,7 +39,7 @@ import com.petfolio.infinitus.serviceprovider.ServiceProviderRegisterFormActivit
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
-import com.petfolio.infinitus.vendor.VenderRegisterFormActivity;
+import com.petfolio.infinitus.vendor.VendorRegisterFormActivity;
 import com.petfolio.infinitus.vendor.VendorDashboardActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -304,7 +304,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
                         edt_otp.setText("");
                         startTimer();
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
-                        otp = response.body().getData().getUser_Details().getOtp();
+                        if(response.body().getData().getUser_Details() != null) {
+                            otp = response.body().getData().getUser_Details().getOtp();
+                        }
 
                     } else {
                         showErrorLoading(response.body().getMessage());
@@ -357,7 +359,7 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-
+    @SuppressLint("LogNotTimber")
     private void fBTokenUpdateResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -371,14 +373,15 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
                 Log.w(TAG,"fBTokenUpdateResponseCall"+ "--->" + new Gson().toJson(response.body()));
 
-            //    Toasty.success(getApplicationContext(),"NotificationUpdateResponse : "+new Gson().toJson(response.body()), Toast.LENGTH_SHORT, true).show();
 
                 avi_indicator.smoothToHide();
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
-                        if(response.body().getData().isUser_email_verification()){
-                            verifyemailstatus = "true";
+                        if(response.body().getData() != null) {
+                            if (response.body().getData().isUser_email_verification()) {
+                                verifyemailstatus = "true";
+                            }
                         }
 
                         SessionManager sessionManager = new SessionManager(VerifyOtpActivity.this);
@@ -422,7 +425,7 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
                                     startActivity(new Intent(VerifyOtpActivity.this, ServiceProviderRegisterFormActivity.class));
 
                                 }else if(usertype == 3 ){
-                                    startActivity(new Intent(VerifyOtpActivity.this, VenderRegisterFormActivity.class));
+                                    startActivity(new Intent(VerifyOtpActivity.this, VendorRegisterFormActivity.class));
 
                                 }else if(usertype == 4 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, DoctorBusinessInfoActivity.class));
@@ -460,4 +463,6 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
         return fbTokenUpdateRequest;
     }
+
+
 }

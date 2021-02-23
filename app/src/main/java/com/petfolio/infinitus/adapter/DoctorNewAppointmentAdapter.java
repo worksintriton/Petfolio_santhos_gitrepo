@@ -40,7 +40,11 @@ import com.petfolio.infinitus.responsepojo.DoctorNewAppointmentResponse;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +64,7 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
     private int size;
     private String communicationtype;
     AVLoadingIndicatorView avi_indicator;
+    private boolean isVaildDate;
 
 
     public DoctorNewAppointmentAdapter(Context context, List<DoctorNewAppointmentResponse.DataBean> newAppointmentResponseList, RecyclerView inbox_list,int size,OnAppointmentCancel onAppointmentCancel, AVLoadingIndicatorView avi_indicator) {
@@ -93,10 +98,16 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
         Log.w(TAG,"Pet name-->"+newAppointmentResponseList.get(position).getPet_id().getPet_name());
 
         currentItem = newAppointmentResponseList.get(position);
-        communicationtype = newAppointmentResponseList.get(position).getCommunication_type();
+        if(newAppointmentResponseList.get(position).getCommunication_type() != null ) {
+            communicationtype = newAppointmentResponseList.get(position).getCommunication_type();
+        }
+        if(newAppointmentResponseList.get(position).getPet_id().getPet_name() != null) {
+            holder.txt_petname.setText(newAppointmentResponseList.get(position).getPet_id().getPet_name());
+        }
+        if(newAppointmentResponseList.get(position).getPet_id().getPet_type() != null) {
+            holder.txt_pettype.setText(newAppointmentResponseList.get(position).getPet_id().getPet_type());
+        }
 
-        holder.txt_petname.setText(newAppointmentResponseList.get(position).getPet_id().getPet_name());
-        holder.txt_pettype.setText(newAppointmentResponseList.get(position).getPet_id().getPet_type());
         if(newAppointmentResponseList.get(position).getAppointment_types() != null){
             holder.txt_type.setText(newAppointmentResponseList.get(position).getAppointment_types());
         }
@@ -118,7 +129,7 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
             }
            else{
                 Glide.with(context)
-                        .load(R.drawable.image_thumbnail)
+                        .load(APIClient.PROFILE_IMAGE_URL)
                         .into(holder.img_pet_imge);
 
             }
@@ -158,10 +169,21 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
             }
         });
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        String bookingDateandTime = newAppointmentResponseList.get(position).getBooking_date_time();
+        compareDatesandTime(currentDateandTime,bookingDateandTime);
+
+        if(isVaildDate){
+            holder.btn_cancel.setVisibility(View.VISIBLE);
+        }else{
+            holder.btn_cancel.setVisibility(View.GONE);
+        }
+
         holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onAppointmentCancel.onAppointmentCancel(newAppointmentResponseList.get(position).get_id(),newAppointmentResponseList.get(position).getAppointment_types());
+                onAppointmentCancel.onAppointmentCancel(newAppointmentResponseList.get(position).get_id(),newAppointmentResponseList.get(position).getAppointment_types(),newAppointmentResponseList.get(position).getUser_id().get_id(),newAppointmentResponseList.get(position).getDoctor_id().get_id(),newAppointmentResponseList.get(position).getAppointment_UID(),"");
 
             }
         });
@@ -193,21 +215,11 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
             holder.ll_new.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent i = new Intent(context, DoctorNewAppointmentDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("appointment_id",newAppointmentResponseList.get(position).get_id());
+                    i.putExtra("bookedat",newAppointmentResponseList.get(position).getBooking_date_time());
+                    context.startActivity(i);
 
-                    Intent intent = new Intent(context, DoctorNewAppointmentDetailsActivity.class);
-
-                    //Create the bundle
-                    Bundle bundle = new Bundle();
-
-                    Log.w("appointment_id",newAppointmentResponseList.get(position).get_id());
-
-                    //Add your data from getFactualResults method to bundle
-                    bundle.putString("appointment_id",newAppointmentResponseList.get(position).get_id());
-
-                    //Add the bundle to the intent
-                    intent.putExtras(bundle);
-
-                    context.startActivity(intent);
                 }
             });
 
@@ -319,4 +331,36 @@ public class DoctorNewAppointmentAdapter extends  RecyclerView.Adapter<RecyclerV
         Log.w(TAG,"doctorStartAppointmentRequest"+ "--->" + new Gson().toJson(doctorStartAppointmentRequest));
         return doctorStartAppointmentRequest;
     }
+
+    @SuppressLint("LogNotTimber")
+    private void compareDatesandTime(String currentDateandTime, String bookingDateandTime) {
+        try{
+
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+
+            String str1 = currentDateandTime;
+            Date currentDate = formatter.parse(str1);
+
+            String str2 = bookingDateandTime;
+            Date responseDate = formatter.parse(str2);
+
+            Log.w(TAG,"compareDatesandTime--->"+"responseDate :"+responseDate+" "+"currentDate :"+currentDate);
+
+            if (currentDate.compareTo(responseDate)<0 || responseDate.compareTo(currentDate) == 0)
+            {
+                Log.w(TAG,"date is equal");
+                isVaildDate = true;
+
+            }else{
+                Log.w(TAG,"date is not equal");
+                isVaildDate = false;
+            }
+
+
+
+        }catch (ParseException e1){
+            e1.printStackTrace();
+        }
+    }
+
 }

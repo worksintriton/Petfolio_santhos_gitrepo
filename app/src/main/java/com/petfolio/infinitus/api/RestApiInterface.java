@@ -6,6 +6,7 @@ import com.petfolio.infinitus.requestpojo.AppoinmentCancelledRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCloseRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCompleteRequest;
 import com.petfolio.infinitus.requestpojo.AppointmentCheckRequest;
+import com.petfolio.infinitus.requestpojo.AppointmentDetailsRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.CreateHolidayRequest;
 import com.petfolio.infinitus.requestpojo.DocBusInfoUploadRequest;
@@ -22,6 +23,7 @@ import com.petfolio.infinitus.requestpojo.DoctorStartAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.DoctorUpdateProfileImageRequest;
 import com.petfolio.infinitus.requestpojo.EmailOTPRequest;
 import com.petfolio.infinitus.requestpojo.FBTokenUpdateRequest;
+import com.petfolio.infinitus.requestpojo.FetctProductByCatRequest;
 import com.petfolio.infinitus.requestpojo.FilterDoctorRequest;
 import com.petfolio.infinitus.requestpojo.HolidayDeleteRequest;
 import com.petfolio.infinitus.requestpojo.HolidayListRequest;
@@ -31,6 +33,8 @@ import com.petfolio.infinitus.requestpojo.LocationListAddressRequest;
 import com.petfolio.infinitus.requestpojo.LocationStatusChangeRequest;
 import com.petfolio.infinitus.requestpojo.LocationUpdateRequest;
 import com.petfolio.infinitus.requestpojo.LoginRequest;
+import com.petfolio.infinitus.requestpojo.NotificationGetlistRequest;
+import com.petfolio.infinitus.requestpojo.NotificationSendRequest;
 import com.petfolio.infinitus.requestpojo.PetAddImageRequest;
 import com.petfolio.infinitus.requestpojo.PetAppointmentCreateRequest;
 import com.petfolio.infinitus.requestpojo.PetDeleteRequest;
@@ -52,11 +56,14 @@ import com.petfolio.infinitus.requestpojo.SPCreateAppointmentRequest;
 import com.petfolio.infinitus.requestpojo.SPDetailsByUserIdRequest;
 import com.petfolio.infinitus.requestpojo.SPDetailsRequest;
 import com.petfolio.infinitus.requestpojo.SPMyCalendarAvlDaysRequest;
+import com.petfolio.infinitus.requestpojo.SPNotificationSendRequest;
 import com.petfolio.infinitus.requestpojo.SPSpecificServiceDetailsRequest;
 import com.petfolio.infinitus.requestpojo.ServiceCatRequest;
+import com.petfolio.infinitus.requestpojo.ShopDashboardRequest;
 import com.petfolio.infinitus.requestpojo.SignupRequest;
 import com.petfolio.infinitus.requestpojo.UserStatusUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ServiceProviderRegisterFormCreateRequest;
+import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
 import com.petfolio.infinitus.responsepojo.AddReviewResponse;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
@@ -81,6 +88,7 @@ import com.petfolio.infinitus.responsepojo.DoctorUpdateProfileImageResponse;
 import com.petfolio.infinitus.responsepojo.DropDownListResponse;
 import com.petfolio.infinitus.responsepojo.EmailOTPResponse;
 import com.petfolio.infinitus.responsepojo.FBTokenUpdateResponse;
+import com.petfolio.infinitus.responsepojo.FetctProductByCatResponse;
 import com.petfolio.infinitus.responsepojo.FileUploadResponse;
 import com.petfolio.infinitus.responsepojo.FilterDoctorResponse;
 import com.petfolio.infinitus.responsepojo.HolidayDeleteResponse;
@@ -91,6 +99,8 @@ import com.petfolio.infinitus.responsepojo.LocationListAddressResponse;
 import com.petfolio.infinitus.responsepojo.LocationStatusChangeResponse;
 import com.petfolio.infinitus.responsepojo.LocationUpdateResponse;
 import com.petfolio.infinitus.responsepojo.LoginResponse;
+import com.petfolio.infinitus.responsepojo.NotificationGetlistResponse;
+import com.petfolio.infinitus.responsepojo.NotificationSendResponse;
 import com.petfolio.infinitus.responsepojo.PetAddImageResponse;
 import com.petfolio.infinitus.responsepojo.PetAppointmentCreateResponse;
 import com.petfolio.infinitus.responsepojo.PetAppointmentResponse;
@@ -105,6 +115,7 @@ import com.petfolio.infinitus.responsepojo.PetTypeListResponse;
 import com.petfolio.infinitus.responsepojo.PrescriptionCreateResponse;
 import com.petfolio.infinitus.responsepojo.ProfileUpdateResponse;
 import com.petfolio.infinitus.responsepojo.ResendOTPResponse;
+import com.petfolio.infinitus.responsepojo.SPAppointmentDetailsResponse;
 import com.petfolio.infinitus.responsepojo.SPAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.SPAvailableTimeResponse;
 import com.petfolio.infinitus.responsepojo.SPCheckStatusResponse;
@@ -114,10 +125,13 @@ import com.petfolio.infinitus.responsepojo.SPFilterPriceListResponse;
 import com.petfolio.infinitus.responsepojo.SPServiceListResponse;
 import com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse;
 import com.petfolio.infinitus.responsepojo.ServiceCatResponse;
+import com.petfolio.infinitus.responsepojo.ShopDashboardResponse;
 import com.petfolio.infinitus.responsepojo.SignupResponse;
+import com.petfolio.infinitus.responsepojo.SplashScreenResponse;
 import com.petfolio.infinitus.responsepojo.UserStatusUpdateResponse;
 import com.petfolio.infinitus.responsepojo.UserTypeListResponse;
 import com.petfolio.infinitus.responsepojo.ServiceProviderRegisterFormCreateResponse;
+import com.petfolio.infinitus.responsepojo.VendorOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 
 import okhttp3.MultipartBody;
@@ -131,6 +145,11 @@ import retrofit2.http.Part;
 
 public interface RestApiInterface {
 
+    /*splash screen list*/
+    @GET("splashscreen/getlist")
+    Call<SplashScreenResponse> splashScreenResponseCall(@Header("Content-Type") String type);
+
+
     /*user types list*/
     @GET("usertype/mobile/getlist")
     Call<UserTypeListResponse> userTypeListResponseCall(@Header("Content-Type") String type);
@@ -139,7 +158,7 @@ public interface RestApiInterface {
     @POST("userdetails/create")
     Call<SignupResponse> signupResponseCall(@Header("Content-Type") String type, @Body SignupRequest signupRequest);
 
-    /*Signup create*/
+    /*Email OTP */
     @POST("userdetails/send/emailotp")
     Call<EmailOTPResponse> emailOTPResponseCall(@Header("Content-Type") String type, @Body EmailOTPRequest emailOTPRequest);
 
@@ -264,6 +283,10 @@ public interface RestApiInterface {
     /*Pet lover review add*/
     @POST("appointments/reviews/update")
     Call<AddReviewResponse>addReviewResponseCall(@Header("Content-Type") String type, @Body AddReviewRequest addReviewRequest  );
+
+    /*SP lover review add*/
+    @POST("sp_appointments/reviews/update")
+    Call<AddReviewResponse>spaddReviewResponseCall(@Header("Content-Type") String type, @Body AddReviewRequest addReviewRequest  );
 
 
     /*Specific service*/
@@ -444,7 +467,7 @@ public interface RestApiInterface {
     Call<HolidayDeleteResponse>spHolidayDeleteResponseCall(@Header("Content-Type") String type, @Body HolidayDeleteRequest holidayDeleteRequest  );
 
     /*SP Create Appointment*/
-    @POST(" sp_appointments/mobile/create")
+    @POST("sp_appointments/mobile/create")
     Call<SPCreateAppointmentResponse>SPCreateAppointmentResponseCall(@Header("Content-Type") String type, @Body SPCreateAppointmentRequest spCreateAppointmentRequest);
 
     /*SP New Appointment*/
@@ -483,5 +506,34 @@ public interface RestApiInterface {
     /*Pet New Appointment Details*/
     @POST("appointments/mobile/fetch_appointment_id")
     Call<PetNewAppointmentDetailsResponse> petNewAppointDetailResponseCall(@Header("Content-Type") String type, @Body PetNewAppointmentDetailsRequest petNewAppointmentDetailsRequest);
+
+   /* SP Appointment Details*/
+    @POST("sp_appointments/mobile/fetch_appointment_id")
+    Call<SPAppointmentDetailsResponse> spAppointmentDetailsResponse(@Header("Content-Type") String type, @Body AppointmentDetailsRequest appointmentDetailsRequest);
+
+
+    /*notifications list*/
+    @POST("notification/mobile/getlist_id")
+    Call<NotificationGetlistResponse> notificationGetlistResponseCall(@Header("Content-Type") String type, @Body NotificationGetlistRequest notificationGetlistRequest);
+
+    /*notifications send request*/
+    @POST("notification/mobile/alert/notification")
+    Call<NotificationSendResponse> notificationSendResponseCall(@Header("Content-Type") String type, @Body NotificationSendRequest notificationSendRequest);
+
+    /*notifications spsend request*/
+    @POST("notification/mobile/alert/sp_notification")
+    Call<NotificationSendResponse> spnotificationSendResponseCall(@Header("Content-Type") String type, @Body SPNotificationSendRequest spNotificationSendRequest);
+
+    /*Vendor Order*/
+    @POST("order_details/getorder_list")
+    Call<VendorOrderResponse>vendorOrderResponseCall(@Header("Content-Type") String type, @Body VendorOrderRequest vendorOrderRequest);
+
+    /*shop dashboard list*/
+    @POST("product_details/getproductdetails_list")
+    Call<ShopDashboardResponse> shopDashboardResponseCall(@Header("Content-Type") String type,@Body ShopDashboardRequest ShopDashboardRequest);
+
+    /*View the Product's by cat id*/
+    @POST("product_details/fetch_product_by_cat")
+    Call<FetctProductByCatResponse> fetctProductByCatResponseCall(@Header("Content-Type") String type, @Body FetctProductByCatRequest fetctProductByCatRequest);
 
 }

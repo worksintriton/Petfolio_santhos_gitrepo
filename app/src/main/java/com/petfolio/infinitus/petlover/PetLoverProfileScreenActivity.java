@@ -35,6 +35,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.LoginActivity;
+import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.activity.location.ManageAddressActivity;
 import com.petfolio.infinitus.adapter.ManagePetListAdapter;
 import com.petfolio.infinitus.adapter.PetLoverSOSAdapter;
@@ -279,6 +280,12 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
             intent.putExtra("catid",catid);
             intent.putExtra("from",from);
             startActivity(intent);
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetMyappointmentsActivity")){
+            Intent intent = new Intent(getApplicationContext(),PetMyappointmentsActivity.class);
+            startActivity(intent);
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetServiceAppointment_Doctor_Date_Time_Activity")){
+            Intent intent = new Intent(getApplicationContext(),PetServiceAppointment_Doctor_Date_Time_Activity.class);
+            startActivity(intent);
         }
         else if(active_tag != null){
             callDirections(active_tag);
@@ -318,6 +325,9 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                 break;
             case R.id.img_sos:
                 goto_SOS();
+                break;
+                case R.id.img_notification:
+                    startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                 break;
         }
     }
@@ -373,6 +383,7 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
         Log.w(TAG,"PetListResponse url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<PetListResponse>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<PetListResponse> call, @NonNull Response<PetListResponse> response) {
 
@@ -383,7 +394,7 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
 
-                        if(response.body().getData().isEmpty()){
+                        if(response.body().getData() != null && response.body().getData().isEmpty()){
                             txt_no_records.setVisibility(View.VISIBLE);
                             txt_no_records.setText("No new pets");
                             ll_add.setVisibility(View.VISIBLE);
@@ -486,7 +497,8 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
 
 
     }
-    private void petDeleteResponseCall( String petid) {
+    @SuppressLint("LogNotTimber")
+    private void petDeleteResponseCall(String petid) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
 
@@ -496,6 +508,7 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
         Log.w(TAG,"url  :%s"+call.request().url().toString());
 
         call.enqueue(new Callback<PetDeleteResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NotNull Call<PetDeleteResponse> call, @NotNull Response<PetDeleteResponse> response) {
                 avi_indicator.smoothToHide();
@@ -525,6 +538,7 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private PetDeleteRequest petDeleteRequest(String petid) {
 
         /*

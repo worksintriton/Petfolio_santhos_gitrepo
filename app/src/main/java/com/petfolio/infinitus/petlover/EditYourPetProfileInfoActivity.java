@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import com.petfolio.infinitus.activity.LoginActivity;
 import com.petfolio.infinitus.activity.location.EditMyAddressActivity;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.PetAddImageRequest;
 import com.petfolio.infinitus.requestpojo.PetEditRequest;
@@ -68,55 +70,69 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
     private int petweight,petage;
 
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rgvaccinated)
     RadioGroup rgvaccinated;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.radioButton_Yes)
     RadioButton radioButton_Yes;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.radioButton_No)
     RadioButton radioButton_No;
+
     private String selectedRadioButton;
 
-
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_back)
     ImageView img_back;
 
-
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.edt_petname)
     EditText edt_petname;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.sprpettype)
     Spinner sprpettype;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.sprpetbreed)
     Spinner sprpetbreed;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.sprpetgender)
     Spinner sprpetgender;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.edt_petcolor)
     EditText edt_petcolor;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.edt_petweight)
     EditText edt_petweight;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.edt_petage)
     EditText edt_petage;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rlpetlastvaccinatedagedate)
     RelativeLayout rlpetlastvaccinatedagedate;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.llpetlastvaccinatedagedate)
     LinearLayout llpetlastvaccinatedagedate;
 
-
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_petlastvaccinatedage)
     TextView txt_petlastvaccinatedage;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_save_changes)
     Button btn_save_changes;
 
@@ -126,7 +142,6 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
     private String strPetType;
     private String strPetBreedType;
     private String strPetGenderType;
-    private String strPetColorType;
 
     private int year, month, day;
     String SelectedLastVaccinateddate = "";
@@ -139,10 +154,10 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
 
     HashMap<String, String> hashMap_PetTypeid = new HashMap<>();
     private String petTypeId;
-    private List<PetDetailsResponse.DataBean> petDetailsResponseByUserIdList;
     private List<BreedTypeResponse.DataBean> breedTypedataBeanList;
 
 
+    @SuppressLint({"LogNotTimber", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +168,9 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
         userid = user.get(SessionManager.KEY_ID);
         Log.w(TAG,"userid--->"+userid);
         avi_indicator.setVisibility(View.GONE);
+
+        edt_petage.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+
 
 
         Bundle extras = getIntent().getExtras();
@@ -361,7 +379,9 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"DropDownListResponse" + new Gson().toJson(response.body()));
-                        genderTypeList = response.body().getData().getGender();
+                        if(response.body().getData().getGender() != null) {
+                            genderTypeList = response.body().getData().getGender();
+                        }
                         if(genderTypeList != null && genderTypeList.size()>0){
                             setPetGenderType(genderTypeList);
                         }
@@ -535,7 +555,9 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"PetTypeListResponse" + new Gson().toJson(response.body()));
                         dropDownListResponseCall();
-                        usertypedataBeanList = response.body().getData().getUsertypedata();
+                        if(response.body().getData().getUsertypedata() != null) {
+                            usertypedataBeanList = response.body().getData().getUsertypedata();
+                        }
                         if(usertypedataBeanList != null && usertypedataBeanList.size()>0){
                             setPetType(usertypedataBeanList);
                         }
@@ -587,6 +609,7 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("LogNotTimber")
     private void breedTypeResponseByPetIdCall(String petTypeId) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -595,6 +618,7 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<BreedTypeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<BreedTypeResponse> call, @NonNull Response<BreedTypeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -603,7 +627,9 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        breedTypedataBeanList = response.body().getData();
+                        if(response.body().getData() != null) {
+                            breedTypedataBeanList = response.body().getData();
+                        }
                         if(breedTypedataBeanList != null && breedTypedataBeanList.size()>0){
                             setBreedType(breedTypedataBeanList);
                         }
@@ -722,7 +748,13 @@ public class EditYourPetProfileInfoActivity extends AppCompatActivity {
         PetEditRequest petEditRequest = new PetEditRequest();
         petEditRequest.set_id(petid);
         petEditRequest.setUser_id(userid);
-        petEditRequest.setPet_img(petimage);
+        if(petimage != null){
+            petEditRequest.setPet_img(petimage);
+
+        }else{
+            petEditRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
+
+        }
         petEditRequest.setPet_name(edt_petname.getText().toString());
         petEditRequest.setPet_type(strPetType);
         petEditRequest.setPet_breed(strPetBreedType);

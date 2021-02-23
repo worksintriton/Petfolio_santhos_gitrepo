@@ -12,6 +12,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -46,11 +47,13 @@ import com.petfolio.infinitus.appUtils.FileUtil;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.DocBusInfoUploadRequest;
+import com.petfolio.infinitus.requestpojo.NotificationSendRequest;
 import com.petfolio.infinitus.requestpojo.PetAppointmentCreateRequest;
 import com.petfolio.infinitus.requestpojo.PetDetailsRequest;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
 import com.petfolio.infinitus.responsepojo.BreedTypeResponse;
 import com.petfolio.infinitus.responsepojo.FileUploadResponse;
+import com.petfolio.infinitus.responsepojo.NotificationSendResponse;
 import com.petfolio.infinitus.responsepojo.PetAppointmentCreateResponse;
 import com.petfolio.infinitus.responsepojo.PetDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PetTypeListResponse;
@@ -209,7 +212,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     private String petimage;
     private String fromactivity;
     private String fromto;
-    private String Payment_id;
+    private String Payment_id = "";
 
     private String Doctor_ava_Date = "";
     private String selectedTimeSlot = "";
@@ -242,6 +245,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
             selectedTimeSlot = extras.getString("selectedTimeSlot");
 
             amount = extras.getInt("amount");
+            Log.w(TAG,"amount : "+amount);
             communicationtype = extras.getString("communicationtype");
             Log.w(TAG,"Bundle "+" doctorid : "+doctorid+" selectedTimeSlot : "+selectedTimeSlot+"communicationtype : "+communicationtype+" amount : "+amount);
         }
@@ -422,7 +426,16 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                         showErrorLoading("Please select communication type");
                     }else{
 
-                          startPayment();
+
+                          if(amount != 0){
+                              startPayment();
+                          }else {
+                               if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                                       petAppointmentCreateResponseCall();
+                                 }
+
+                          }
+
 
 
                        /* Intent intent = new Intent(BookAppointmentActivity.this, PetAppointment_Doctor_Date_Time_Activity.class);
@@ -492,6 +505,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
     }
 
+    @SuppressLint("LogNotTimber")
     public void petTypeListResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -501,6 +515,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<PetTypeListResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetTypeListResponse> call, @NonNull Response<PetTypeListResponse> response) {
                 avi_indicator.smoothToHide();
@@ -510,7 +525,9 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                     if (200 == response.body().getCode()) {
                         Log.w(TAG, "PetTypeListResponse" + new Gson().toJson(response.body()));
 
-                        usertypedataBeanList = response.body().getData().getUsertypedata();
+                        if(response.body().getData().getUsertypedata() != null) {
+                            usertypedataBeanList = response.body().getData().getUsertypedata();
+                        }
                         if (usertypedataBeanList != null && usertypedataBeanList.size() > 0) {
                             setPetType(usertypedataBeanList);
                         }
@@ -549,6 +566,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
         }
     }
+    @SuppressLint("LogNotTimber")
     private void breedTypeResponseByPetIdCall(String petTypeId) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -557,6 +575,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<BreedTypeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<BreedTypeResponse> call, @NonNull Response<BreedTypeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -565,9 +584,11 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        breedTypedataBeanList = response.body().getData();
-                        if (breedTypedataBeanList != null && breedTypedataBeanList.size() > 0) {
-                            setBreedType(breedTypedataBeanList);
+                        if(response.body().getData() != null) {
+                            breedTypedataBeanList = response.body().getData();
+                            if (breedTypedataBeanList != null && breedTypedataBeanList.size() > 0) {
+                                setBreedType(breedTypedataBeanList);
+                            }
                         }
 
                     }
@@ -614,6 +635,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void petDetailsResponseByUserIdCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -622,19 +644,23 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<PetDetailsResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetDetailsResponse> call, @NonNull Response<PetDetailsResponse> response) {
                 avi_indicator.smoothToHide();
                 Log.w(TAG, "PetDetailsResponse" + "--->" + new Gson().toJson(response.body()));
 
-                if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-
-                    petTypeListResponseCall();
-                }
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        petDetailsResponseByUserIdList = response.body().getData();
+                        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+
+                            petTypeListResponseCall();
+                        }
+                        if(response.body().getData() != null) {
+
+                            petDetailsResponseByUserIdList = response.body().getData();
+                        }
                         if (petDetailsResponseByUserIdList != null && petDetailsResponseByUserIdList.size() > 0) {
                             setSelectYourPetType(petDetailsResponseByUserIdList);
                         }
@@ -932,16 +958,14 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                         Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
                         petId = response.body().getData().get_id();
 
-                        startPayment();
-                        /*Intent intent = new Intent(BookAppointmentActivity.this, PetAppointment_Doctor_Date_Time_Activity.class);
-                        intent.putExtra("petid",response.body().getData().get_id());
-                        intent.putExtra("doctorid",doctorid);
-                        intent.putExtra("allergies",edt_allergies.getText().toString());
-                        intent.putExtra("probleminfo",edt_comment.getText().toString());
-                        intent.putExtra("selectedAppointmentType",selectedAppointmentType);
-                        Log.w(TAG,"selectedAppointmentType : "+selectedAppointmentType);
-                        startActivity(intent);
-*/
+                        if(amount != 0){
+                            startPayment();
+                        }else {
+                            if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                                petAppointmentCreateResponseCall();
+                            }
+
+                        }
                     } else {
                         showErrorLoading(response.body().getMessage());
                     }
@@ -979,9 +1003,16 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
 
+
+
         AddYourPetRequest addYourPetRequest = new AddYourPetRequest();
         addYourPetRequest.setUser_id(userid);
-        addYourPetRequest.setPet_img(uploadimagepath);
+        if(uploadimagepath != null && !uploadimagepath.isEmpty()){
+            addYourPetRequest.setPet_img(uploadimagepath);
+        }else{
+            addYourPetRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
+
+        }
         addYourPetRequest.setPet_name(edt_petname.getText().toString());
         addYourPetRequest.setPet_type(strPetType);
         addYourPetRequest.setPet_breed(strPetBreedType);
@@ -1100,10 +1131,14 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
             Log.w(TAG, "Exception in onPaymentSuccess", e);
         }
     }
+    @SuppressLint("LogNotTimber")
     @Override
     public void onPaymentError(int code, String response) {
         try {
-            Log.w(TAG,  "Payment failed: " + code + " " + response);
+            if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                 notificationSendResponseCall();
+            }
+                Log.w(TAG,  "Payment failed: " + code + " " + response);
             Toasty.error(getApplicationContext(), "Payment failed. Please try again with another payment method..", Toast.LENGTH_SHORT, true).show();
 
         } catch (Exception e) {
@@ -1112,6 +1147,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void petAppointmentCreateResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -1121,6 +1157,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<PetAppointmentCreateResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetAppointmentCreateResponse> call, @NonNull Response<PetAppointmentCreateResponse> response) {
                 avi_indicator.smoothToHide();
@@ -1159,6 +1196,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private PetAppointmentCreateRequest petAppointmentCreateRequest() {
 
         /*
@@ -1186,10 +1224,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
          */
         List<PetAppointmentCreateRequest.DocAttchedBean> doc_attched = new ArrayList<>();
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentDateandTime = simpleDateFormat.format(new Date());
-        /*String currenttime = currentDateandTime.substring(currentDateandTime.indexOf(' ') + 1);
-        String currentdate =  currentDateandTime.substring(0, currentDateandTime.indexOf(' '));*/
 
         @SuppressLint("SimpleDateFormat") DateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
         @SuppressLint("SimpleDateFormat") DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -1216,6 +1250,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         String displaydateandtime = outputDateStr+" "+outputTimeStr;
 
 
+
         PetAppointmentCreateRequest petAppointmentCreateRequest = new PetAppointmentCreateRequest();
         petAppointmentCreateRequest.setDoctor_id(doctorid);
         petAppointmentCreateRequest.setBooking_date(Doctor_ava_Date);
@@ -1223,6 +1258,13 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         petAppointmentCreateRequest.setBooking_date_time(Doctor_ava_Date+" "+selectedTimeSlot);
         petAppointmentCreateRequest.setCommunication_type(selectedCommunicationtype);
         petAppointmentCreateRequest.setVideo_id("");
+        if(userid != null){
+            petAppointmentCreateRequest.setUser_id(userid);
+
+        }else{
+            petAppointmentCreateRequest.setUser_id("");
+
+        }
         petAppointmentCreateRequest.setUser_id(userid);
         petAppointmentCreateRequest.setPet_id(petId);
         petAppointmentCreateRequest.setProblem_info(edt_comment.getText().toString());
@@ -1249,21 +1291,92 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         alertDialogBuilder.setMessage(errormesage);
         alertDialogBuilder.setPositiveButton("ok",
                 (arg0, arg1) -> hideLoadingSuccess());
-
-
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
+                startActivity(intent);
+                finish();
+                alertDialog.dismiss();
+            }
+        });
     }
     public void hideLoadingSuccess() {
         try {
             Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
             startActivity(intent);
+            finish();
             alertDialog.dismiss();
 
         } catch (Exception ignored) {
 
         }
+    }
+
+    private void notificationSendResponseCall() {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<NotificationSendResponse> call = ApiService.notificationSendResponseCall(RestUtils.getContentType(),notificationSendRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<NotificationSendResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<NotificationSendResponse> call, @NonNull Response<NotificationSendResponse> response) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"notificationSendResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+
+
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<NotificationSendResponse> call, @NonNull Throwable t) {
+                avi_indicator.smoothToHide();
+
+                Log.w(TAG,"NotificationSendResponse flr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+    private NotificationSendRequest notificationSendRequest() {
+
+        /**
+         * status : Payment Failed
+         * date : 23-10-2020 11:00 AM
+         * appointment_UID :
+         * user_id : 601b8ac3204c595ee52582f2
+         * doctor_id :
+         */
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+        String currentDateandTime = simpleDateFormat.format(new Date());
+
+
+
+        NotificationSendRequest notificationSendRequest = new NotificationSendRequest();
+        notificationSendRequest.setStatus("Payment Failed");
+        notificationSendRequest.setDate(currentDateandTime);
+        notificationSendRequest.setAppointment_UID("");
+        notificationSendRequest.setUser_id(userid);
+        notificationSendRequest.setDoctor_id(doctorid);
+
+
+        Log.w(TAG,"notificationSendRequest"+ "--->" + new Gson().toJson(notificationSendRequest));
+        return notificationSendRequest;
     }
 
 

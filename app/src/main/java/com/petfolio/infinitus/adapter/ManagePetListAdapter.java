@@ -20,11 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
-import com.petfolio.infinitus.activity.location.EditMyAddressActivity;
+import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.interfaces.PetDeleteListener;
 import com.petfolio.infinitus.petlover.AddYourPetOldUserActivity;
 import com.petfolio.infinitus.petlover.EditYourPetProfileInfoActivity;
-import com.petfolio.infinitus.responsepojo.LocationListAddressResponse;
 import com.petfolio.infinitus.responsepojo.PetListResponse;
 
 import java.util.List;
@@ -70,7 +69,9 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
     @SuppressLint("SetTextI18n")
     private void initLayoutOne(ViewHolderOne holder, final int position) {
         currentItem = petListResponseList.get(position);
-        holder.txt_pet_name.setText(petListResponseList.get(position).getPet_name());
+        if(petListResponseList.get(position).getPet_name() != null) {
+            holder.txt_pet_name.setText(petListResponseList.get(position).getPet_name());
+        }
 
         if (petListResponseList.get(position).getPet_img() != null && !petListResponseList.get(position).getPet_img().isEmpty()) {
 
@@ -81,7 +82,7 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
         }
         else{
             Glide.with(context)
-                    .load(R.drawable.image_thumbnail)
+                    .load(APIClient.PROFILE_IMAGE_URL)
                     .into(holder.img_pet_imge);
 
         }

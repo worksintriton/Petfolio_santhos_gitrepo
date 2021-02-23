@@ -64,6 +64,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.LoginActivity;
+import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.adapter.PetLoverSOSAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.interfaces.SoSCallListener;
@@ -270,6 +271,13 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
 
             }
         });
+        img_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+
+            }
+        });
         img_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -379,7 +387,6 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
             }
         });
     }
-
     public void drawerMethod() {
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -390,7 +397,6 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
         }
 
     }
-
     public void setContentView(int layoutId) {
 
         Log.e("BaseOncreate", "setContentView");

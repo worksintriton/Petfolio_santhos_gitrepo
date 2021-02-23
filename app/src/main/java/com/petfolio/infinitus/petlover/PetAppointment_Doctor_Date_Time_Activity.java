@@ -101,12 +101,10 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
 
 
     private String _id = "";
-    private String Doctor_name ="";
-    private String Doctor_email_id ="";
+
     private String Doctor_ava_Date = "";
     private String selectedTimeSlot = "";
-    private String Comm_type_chat = "";
-    private String Comm_type_video = "";
+
 
     SessionManager session;
 
@@ -189,17 +187,10 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
             selectedAppointmentType = extras.getString("selectedAppointmentType");
 
             amount = extras.getInt("amount");
+            Log.w(TAG,"amount : "+amount);
             communicationtype = extras.getString("communicationtype");
 
             Log.w(TAG,"petid-->"+petid+ "allergies : "+allergies+"  probleminfo : "+probleminfo+" selectedAppointmentType : "+selectedAppointmentType+" communicationtype : "+communicationtype);
-
-
-
-
-
-
-
-
 
         }
 
@@ -207,7 +198,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c);
 
         if (new ConnectionDetector(PetAppointment_Doctor_Date_Time_Activity.this).isNetworkAvailable(PetAppointment_Doctor_Date_Time_Activity.this)) {
@@ -254,44 +245,6 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
             }
         });
 
-
-
-
-      /*  calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
-                String strdayOfMonth = "";
-                String strMonth = "";
-                int month1 =(month + 1);
-                if(dayOfMonth == 9 || dayOfMonth <9){
-                    strdayOfMonth = "0"+dayOfMonth;
-                    Log.w(TAG,"Selected dayOfMonth-->"+strdayOfMonth);
-                }else{
-                    strdayOfMonth = String.valueOf(dayOfMonth);
-                }
-
-                if(month1 == 9 || month1 <9){
-                    strMonth = "0"+month1;
-                    Log.w(TAG,"Selected month1-->"+strMonth);
-                }else{
-                    strMonth = String.valueOf(month1);
-                }
-                //String Date = dayOfMonth + "-" + (month + 1) + "-" + year;
-
-                String Date = strdayOfMonth + "-" + strMonth + "-" + year;
-                Log.w(TAG,"Selected Date-->"+Date);
-
-                if (new ConnectionDetector(PetAppointment_Doctor_Date_Time_Activity.this).isNetworkAvailable(PetAppointment_Doctor_Date_Time_Activity.this)) {
-
-                    petDoctorAvailableTimeResponseCall(formattedDate);
-                }
-
-
-
-            }
-        });*/
-
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -303,8 +256,10 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         datePickerTimeline.setDateTextColor(Color.parseColor("#009675"));
         datePickerTimeline.setDayTextColor(Color.parseColor("#009675"));
         datePickerTimeline.setMonthTextColor(Color.parseColor("#009675"));
+
       // Set a date Selected Listener
         datePickerTimeline.setOnDateSelectedListener(new OnDateSelectedListener() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onDateSelected(int year, int month, int dayOfMonth, int dayOfWeek) {
                 // Do Something
@@ -346,9 +301,6 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         Date[] dates = {Calendar.getInstance().getTime()};
         datePickerTimeline.deactivateDates(dates);*/
 
-
-
-
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -357,10 +309,8 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
             }
         });
 
-
-
-
     }
+    @SuppressLint("LogNotTimber")
     private void petDoctorAvailableTimeResponseCall(String Date) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -370,6 +320,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<PetDoctorAvailableTimeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetDoctorAvailableTimeResponse> call, @NonNull Response<PetDoctorAvailableTimeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -378,16 +329,20 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
-                        doctorDateAvailabilityResponseList = response.body().getData();
-                        timesBeanList = response.body().getData().get(0).getTimes();
+                        if(response.body().getData() != null){
+                            doctorDateAvailabilityResponseList = response.body().getData();
+
+                        }
+                        if (response.body().getData() != null && response.body().getData().get(0).getTimes() != null) {
+                            timesBeanList = response.body().getData().get(0).getTimes();
+                        }
                         Log.w(TAG,"Size"+doctorDateAvailabilityResponseList.size());
-                        if(!response.body().getData().isEmpty()){
-                            Doctor_name = response.body().getData().get(0).getDoctor_name();
-                            Doctor_email_id = response.body().getData().get(0).getDoctor_email_id();
-                            Doctor_ava_Date = response.body().getData().get(0).getDoctor_ava_Date();
-                            Comm_type_chat = response.body().getData().get(0).getComm_type_chat();
-                            Comm_type_video = response.body().getData().get(0).getComm_type_video();
-                            Log.w(TAG,"doctorDateAvailabilityResponseCall Comm_type_chat : "+Comm_type_chat+" Comm_type_video : "+Comm_type_video);
+                        if(response.body().getData() != null && !response.body().getData().isEmpty()){
+
+                            if(response.body().getData().get(0).getDoctor_ava_Date() != null){
+                                Doctor_ava_Date = response.body().getData().get(0).getDoctor_ava_Date();
+                            }
+
                             sub_layer1.setVisibility(View.VISIBLE);
                             btn_bookappointment.setVisibility(View.VISIBLE);
                             List<PetDoctorAvailableTimeResponse.DataBean.TimesBean>timeBeanList = new ArrayList<>();
@@ -405,10 +360,6 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
                             video.setVisibility(View.GONE);
                             view.setVisibility(View.GONE);
                             tvlblavailabletime.setVisibility(View.VISIBLE);
-                            //tvlbldoctoravailable.setVisibility(View.VISIBLE);
-                            Comm_type_chat = response.body().getData().get(0).getComm_type_chat();
-                            Comm_type_video = response.body().getData().get(0).getComm_type_video();
-                            Log.w(TAG,"doctorDateAvailabilityResponseCall11 Comm_type_chat : "+Comm_type_chat+" Comm_type_video : "+Comm_type_video);
 
                             String  doctorChatAvailable = response.body().getData().get(0).getComm_type_chat();
                             String doctorVideoAvailable = response.body().getData().get(0).getComm_type_video();
@@ -462,6 +413,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest(String Date) {
 
         /*
@@ -469,7 +421,11 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
          * user_id : 1234567890
          * cur_date : 31-11-2020
          * cur_time : 01:00 AM
+         * current_time
          */
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDateandTime = sf.format(new Date());
+
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
         String currentDateandTime24hrs = simpleDateFormat.format(new Date());
         String currenttime = currentDateandTime24hrs.substring(currentDateandTime24hrs.indexOf(' ') + 1);
@@ -478,6 +434,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         PetDoctorAvailableTimeRequest petDoctorAvailableTimeRequest = new PetDoctorAvailableTimeRequest();
         petDoctorAvailableTimeRequest.setUser_id(doctorid);
         petDoctorAvailableTimeRequest.setDate(Date);
+        petDoctorAvailableTimeRequest.setCurrent_time(currentDateandTime);
         petDoctorAvailableTimeRequest.setCur_time(currenttime);
         petDoctorAvailableTimeRequest.setCur_date(currentdate);
         Log.w(TAG,"petDoctorAvailableTimeRequest"+ "--->" + new Gson().toJson(petDoctorAvailableTimeRequest));
@@ -557,6 +514,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void appointmentCheckResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -565,6 +523,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<AppointmentCheckResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<AppointmentCheckResponse> call, @NonNull Response<AppointmentCheckResponse> response) {
                 avi_indicator.smoothToHide();
@@ -584,10 +543,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
                         startActivity(intent);
                         Log.w(TAG,"communicationtype : "+communicationtype);
 
-                     /*  // startPayment();
-                        if (new ConnectionDetector(PetAppointment_Doctor_Date_Time_Activity.this).isNetworkAvailable(PetAppointment_Doctor_Date_Time_Activity.this)) {
-                            petAppointmentCreateResponseCall();
-                        }*/
+
 
                     }else{
                         showErrorLoading(response.body().getMessage());
@@ -607,6 +563,7 @@ public class PetAppointment_Doctor_Date_Time_Activity extends AppCompatActivity 
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private AppointmentCheckRequest appointmentCheckRequest() {
         /*
          * Booking_Date : 02-12-2020

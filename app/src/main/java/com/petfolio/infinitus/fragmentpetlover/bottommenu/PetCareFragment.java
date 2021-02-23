@@ -7,8 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 
 import android.location.Location;
 
@@ -21,11 +20,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
+
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,12 +38,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
-import com.petfolio.infinitus.activity.location.PickUpLocationAllowActivity;
-import com.petfolio.infinitus.activity.location.PickUpLocationDenyActivity;
+
 import com.petfolio.infinitus.adapter.PetLoverDoctorFilterAdapter;
 import com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter;
 
@@ -67,7 +62,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Timer;
 
 import butterknife.BindView;
@@ -273,6 +267,8 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, FiltersActivity.class);
+                intent.putExtra("specialization",specialization);
+                intent.putExtra("reviewcount",reviewcount);
                 startActivity(intent);
             }
         });
@@ -307,6 +303,7 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void doctorSearchResponseCall(String searchString, int communication_type) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -315,6 +312,7 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
         Log.w(TAG,"DoctorSearchResponse url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<DoctorSearchResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<DoctorSearchResponse> call, @NonNull Response<DoctorSearchResponse> response) {
                 avi_indicator.smoothToHide();
@@ -449,6 +447,7 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
 
 
 
+    @SuppressLint("LogNotTimber")
     private void filterDoctorResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -457,7 +456,7 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
         Log.w(TAG,"filterDoctorResponseCall url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<FilterDoctorResponse>() {
-            @SuppressLint("LogNotTimber")
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<FilterDoctorResponse> call, @NonNull Response<FilterDoctorResponse> response) {
                 avi_indicator.smoothToHide();
@@ -512,6 +511,7 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
         PetLoverDoctorFilterAdapter petLoverDoctorFilterAdapter = new PetLoverDoctorFilterAdapter(mContext, doctorFilterDetailsResponseList);
         rv_nearbydoctors.setAdapter(petLoverDoctorFilterAdapter);
     }
+    @SuppressLint("LogNotTimber")
     private FilterDoctorRequest filterDoctorRequest() {
         /*
          * user_id : 5fd841a67aa4cc1c6a1e5636

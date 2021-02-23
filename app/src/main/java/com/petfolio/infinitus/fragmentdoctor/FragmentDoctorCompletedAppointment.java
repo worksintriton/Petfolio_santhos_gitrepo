@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -112,11 +115,35 @@ public class FragmentDoctorCompletedAppointment extends Fragment implements View
         if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
             doctorCompletedAppointmentResponseCall();
         }
+
+
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        try {
+                            //your method here
+                            if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
+                                doctorCompletedAppointmentResponseCall();
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(doAsynchronousTask, 0, 30000);//you can put 30000(30 secs)
+
         return view;
     }
 
 
 
+    @SuppressLint("LogNotTimber")
     private void doctorCompletedAppointmentResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -125,6 +152,7 @@ public class FragmentDoctorCompletedAppointment extends Fragment implements View
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<DoctorCompletedAppointmentResponse>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<DoctorCompletedAppointmentResponse> call, @NonNull Response<DoctorCompletedAppointmentResponse> response) {
                avi_indicator.smoothToHide();
@@ -134,10 +162,12 @@ public class FragmentDoctorCompletedAppointment extends Fragment implements View
                if (response.body() != null) {
 
                    if(200 == response.body().getCode()){
-                       completedAppointmentResponseList = response.body().getData();
-                       Log.w(TAG,"Size"+completedAppointmentResponseList.size());
-                       Log.w(TAG,"completedAppointmentResponseList : "+new Gson().toJson(completedAppointmentResponseList));
-                       if(response.body().getData().isEmpty()){
+                       if(response.body().getData() != null) {
+                           completedAppointmentResponseList = response.body().getData();
+                           Log.w(TAG, "Size" + completedAppointmentResponseList.size());
+                           Log.w(TAG, "completedAppointmentResponseList : " + new Gson().toJson(completedAppointmentResponseList));
+                       }
+                       if(response.body().getData() != null && response.body().getData().isEmpty()){
                            txt_no_records.setVisibility(View.VISIBLE);
                            txt_no_records.setText("No completed appointments");
                            rv_completedappointment.setVisibility(View.GONE);
@@ -172,6 +202,7 @@ public class FragmentDoctorCompletedAppointment extends Fragment implements View
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private DoctorNewAppointmentRequest doctorNewAppointmentRequest() {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDateandTime = simpleDateFormat.format(new Date());

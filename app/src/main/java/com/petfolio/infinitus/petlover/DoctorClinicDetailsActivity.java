@@ -78,6 +78,10 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     TextView txt_drname;
 
     @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_dr_eduname)
+    TextView txt_dr_eduname;
+
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_dr_specialization)
     TextView txt_dr_specialization;
 
@@ -100,6 +104,14 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_dr_desc)
     TextView txt_dr_desc;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_dr_experience)
+    TextView txt_dr_experience;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_dr_consultationfees)
+    TextView txt_dr_consultationfees;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_book_now)
@@ -153,6 +165,8 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     private Dialog dialog;
     private static final int REQUEST_PHONE_CALL =1 ;
     private String sosPhonenumber;
+    private String education = "";
+    private int Doctor_exp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +259,7 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<DoctorDetailsResponse>() {
+            @SuppressLint({"SetTextI18n", "LogNotTimber"})
             @Override
             public void onResponse(@NonNull Call<DoctorDetailsResponse> call, @NonNull Response<DoctorDetailsResponse> response) {
                 avi_indicator.smoothToHide();
@@ -253,16 +268,30 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
 
                 if (response.body() != null) {
                     if(200 == response.body().getCode()){
+                        if(response.body().getData().getClinic_pic() != null) {
+                            doctorclinicdetailsResponseList = response.body().getData().getClinic_pic();
+                        }
+                        if(response.body().getData() != null) {
+                            clinicname = response.body().getData().getClinic_name();
+                            doctorname = response.body().getData().getDr_name();
+                            reviewcount = response.body().getData().getReview_count();
+                            starcount = response.body().getData().getStar_count();
+                            amount = response.body().getData().getAmount();
+                            Log.w(TAG, "amount : " + amount);
+                            communicationtype = response.body().getData().getCommunication_type();
+                            ClinicLocationname = response.body().getData().getClinic_loc();
+                             Doctor_exp = response.body().getData().getDoctor_exp();
+                            if(response.body().getData().getAmount() != 0){
+                                txt_dr_consultationfees.setText("\u20B9 "+response.body().getData().getAmount());
+                            }
+                        }
 
-                        doctorclinicdetailsResponseList  = response.body().getData().getClinic_pic();
-                        clinicname =  response.body().getData().getClinic_name();
-                        doctorname = response.body().getData().getDr_name();
-                        reviewcount  = response.body().getData().getReview_count();
-                        starcount =  response.body().getData().getStar_count();
-                        amount =  response.body().getData().getAmount();
-                        communicationtype =  response.body().getData().getCommunication_type();
+                        if(Doctor_exp != 0) {
+                            txt_dr_experience.setText(Doctor_exp+" Years");
+                        }
 
-                        ClinicLocationname = response.body().getData().getClinic_loc();
+
+
 
 
                         if(clinicname != null){
@@ -270,7 +299,9 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                         }
                         if(doctorname != null){
                             txt_drname.setText(doctorname);
+
                         }
+
                         if(reviewcount != null){
                             txt_review_count.setText(reviewcount+"");
                         }
@@ -314,9 +345,14 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                            }
                            txt_dr_specialization.setText(concatenatedStarNames);
 
-                       }
+                       }if(response.body().getData().getEducation_details() != null){
+                           for (int i = 0; i < response.body().getData().getEducation_details().size(); i++) {
+                               education += response.body().getData().getEducation_details().get(i).getEducation();
+                               if (i < response.body().getData().getEducation_details().size() - 1) education += ", ";
+                           }
+                           txt_dr_eduname.setText(education);
 
-                    }else{
+                       }
 
                     }
 
@@ -333,6 +369,7 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private DoctorDetailsRequest doctorDetailsRequest() {
         DoctorDetailsRequest doctorDetailsRequest = new DoctorDetailsRequest();
         doctorDetailsRequest.setUser_id(doctorid);

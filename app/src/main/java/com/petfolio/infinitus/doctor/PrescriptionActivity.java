@@ -2,6 +2,7 @@ package com.petfolio.infinitus.doctor;
 
 import android.animation.LayoutTransition;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
 import com.petfolio.infinitus.requestpojo.AppoinmentCompleteRequest;
 import com.petfolio.infinitus.requestpojo.DoctorCheckStatusRequest;
 import com.petfolio.infinitus.requestpojo.PrescriptionCreateRequest;
@@ -114,6 +116,10 @@ public class PrescriptionActivity extends AppCompatActivity {
         etquantity = findViewById(R.id.et_quanity);
         etconsumption = findViewById(R.id.et_consumption);
         etdoctorcomments = findViewById(R.id.etdoctorcomments);
+
+        etquantity.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+        etconsumption.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+
 
         buttonAdd = findViewById(R.id.add);
         ll_headername = findViewById(R.id.ll_headername);
@@ -238,6 +244,7 @@ public class PrescriptionActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void prescriptionCreateRequestCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -246,6 +253,7 @@ public class PrescriptionActivity extends AppCompatActivity {
         Log.w(TAG,"url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<PrescriptionCreateResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PrescriptionCreateResponse> call, @NonNull Response<PrescriptionCreateResponse> response) {
                 avi_indicator.smoothToHide();
@@ -276,6 +284,7 @@ public class PrescriptionActivity extends AppCompatActivity {
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private PrescriptionCreateRequest prescriptionCreateRequest() {
         /*
          * doctor_id : 5ef3472a4b9bd73eb1cff539
@@ -359,9 +368,7 @@ public class PrescriptionActivity extends AppCompatActivity {
 
 
                     }
-                    else{
-                        //showErrorLoading(response.body().getMessage());
-                    }
+
                 }
 
 

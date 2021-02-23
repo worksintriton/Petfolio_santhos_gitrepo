@@ -18,33 +18,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.appUtils.ApplicationData;
 import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
-import com.petfolio.infinitus.doctor.DoctorBusinessInfoActivity;
-import com.petfolio.infinitus.doctor.DoctorDashboardActivity;
-import com.petfolio.infinitus.petlover.AddYourPetActivity;
-import com.petfolio.infinitus.petlover.PetLoverDashboardActivity;
-import com.petfolio.infinitus.receiver.SmsBroadcastListener;
 import com.petfolio.infinitus.requestpojo.EmailOTPRequest;
-import com.petfolio.infinitus.requestpojo.FBTokenUpdateRequest;
-import com.petfolio.infinitus.requestpojo.ResendOTPRequest;
 import com.petfolio.infinitus.responsepojo.EmailOTPResponse;
-import com.petfolio.infinitus.responsepojo.FBTokenUpdateResponse;
-import com.petfolio.infinitus.responsepojo.ResendOTPResponse;
-import com.petfolio.infinitus.serviceprovider.ServiceProviderDashboardActivity;
-import com.petfolio.infinitus.serviceprovider.ServiceProviderRegisterFormActivity;
-import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
-import com.petfolio.infinitus.vendor.VenderRegisterFormActivity;
-import com.petfolio.infinitus.vendor.VendorDashboardActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.concurrent.TimeUnit;
@@ -249,6 +232,7 @@ public class VerifyEmailOtpActivity extends AppCompatActivity implements View.On
         finish();
     }
 
+    @SuppressLint("LogNotTimber")
     private void resendOtpResponseCall() {
         llresendotp.setVisibility(View.GONE);
         avi_indicator.setVisibility(View.VISIBLE);
@@ -267,7 +251,10 @@ public class VerifyEmailOtpActivity extends AppCompatActivity implements View.On
                         edt_otp.setText("");
                         startTimer();
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
-                        otp = response.body().getData().getOtp();
+                        if(response.body().getData().getOtp() !=0){
+                            otp = response.body().getData().getOtp();
+                        }
+
 
                     } else {
                         showErrorLoading(response.body().getMessage());
@@ -286,6 +273,7 @@ public class VerifyEmailOtpActivity extends AppCompatActivity implements View.On
         });
 
     }
+    @SuppressLint("LogNotTimber")
     private EmailOTPRequest emailOTPRequest() {
         /*
          * user_email : mohammedimthi2395@gmail.com

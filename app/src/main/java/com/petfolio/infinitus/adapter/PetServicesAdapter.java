@@ -8,16 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.petfolio.infinitus.R;
 
+import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.petlover.SelectedServiceActivity;
 import com.petfolio.infinitus.responsepojo.ServiceCatResponse;
 
@@ -43,8 +49,12 @@ public class PetServicesAdapter extends  RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_petloversplist, parent, false);
+
         return new ViewHolderOne(view);
+
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -58,12 +68,107 @@ public class PetServicesAdapter extends  RecyclerView.Adapter<RecyclerView.ViewH
           currentItem = serviceCatList.get(position);
           Log.w(TAG,"Size : "+serviceCatList.size()+" "+" Images : "+serviceCatList.get(position).getImage());
           if (currentItem.getImage() != null && !currentItem.getImage().isEmpty()) {
-              Glide.with(context)
-                    .load(currentItem.getImage())
-                    //.load(R.drawable.logo)
-                    .into(holder.img_petservice);
 
-        }
+
+
+              int pos = position % 2 ;
+
+              Log.w(TAG,"position "+pos);
+
+              if(position==0){
+                  if(currentItem.getImage() != null && !currentItem.getImage().isEmpty()) {
+                      Glide.with(context)
+                              .load(currentItem.getImage())
+                              .centerCrop()
+                              .apply(new RequestOptions().override(150, 250))
+                              //.load(R.drawable.logo)
+                              .into(holder.img_petservice);
+                  }else{
+                      Glide.with(context)
+                              .load(APIClient.PROFILE_IMAGE_URL)
+                              .centerCrop()
+                              .apply(new RequestOptions().override(150, 250))
+                              //.load(R.drawable.logo)
+                              .into(holder.img_petservice);
+
+                  }
+
+
+              }
+
+              else if(position==1){
+                  if(currentItem.getImage() != null && !currentItem.getImage().isEmpty()) {
+
+                      Glide.with(context)
+                              .load(currentItem.getImage())
+                              .centerCrop()
+                              .apply(new RequestOptions().override(150, 270))
+                              //.load(R.drawable.logo)
+                              .into(holder.img_petservice);
+                  }else{
+                      Glide.with(context)
+                              .load(APIClient.PROFILE_IMAGE_URL)
+                              .centerCrop()
+                              .apply(new RequestOptions().override(150, 270))
+                              //.load(R.drawable.logo)
+                              .into(holder.img_petservice);
+                  }
+
+
+              }
+
+              else {
+
+                  if(pos==0){
+                      if(currentItem.getImage() != null && !currentItem.getImage().isEmpty()) {
+
+                          Glide.with(context)
+                                  .load(currentItem.getImage())
+                                  .centerCrop()
+                                  .apply(new RequestOptions().override(150, 270))
+                                  //.load(R.drawable.logo)
+                                  .into(holder.img_petservice);
+                      }else {
+
+                          Glide.with(context)
+                                  .load(APIClient.PROFILE_IMAGE_URL)
+                                  .centerCrop()
+                                  .apply(new RequestOptions().override(150, 270))
+                                  //.load(R.drawable.logo)
+                                  .into(holder.img_petservice);
+                      }
+
+
+                  }
+
+                  else {
+                      if(currentItem.getImage() != null && !currentItem.getImage().isEmpty()) {
+
+
+                          Glide.with(context)
+                                  .load(currentItem.getImage())
+                                  .centerCrop()
+                                  .apply(new RequestOptions().override(150, 260))
+                                  .into(holder.img_petservice);
+                      }else{
+                          Glide.with(context)
+                                  .load(APIClient.PROFILE_IMAGE_URL)
+                                  .centerCrop()
+                                  .apply(new RequestOptions().override(150, 260))
+                                  .into(holder.img_petservice);
+                      }
+
+
+                  }
+
+
+              }
+
+
+
+
+
+          }
           else{
             Glide.with(context)
                     .load(R.drawable.services)

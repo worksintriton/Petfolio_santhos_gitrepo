@@ -12,6 +12,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -41,14 +42,18 @@ import com.petfolio.infinitus.adapter.AddImageListAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.appUtils.FileUtil;
+import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.DocBusInfoUploadRequest;
+import com.petfolio.infinitus.requestpojo.NotificationSendRequest;
 import com.petfolio.infinitus.requestpojo.PetDetailsRequest;
 import com.petfolio.infinitus.requestpojo.SPCreateAppointmentRequest;
+import com.petfolio.infinitus.requestpojo.SPNotificationSendRequest;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
 import com.petfolio.infinitus.responsepojo.BreedTypeResponse;
 import com.petfolio.infinitus.responsepojo.FileUploadResponse;
+import com.petfolio.infinitus.responsepojo.NotificationSendResponse;
 import com.petfolio.infinitus.responsepojo.PetDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PetTypeListResponse;
 import com.petfolio.infinitus.responsepojo.SPCreateAppointmentResponse;
@@ -64,6 +69,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,8 +110,8 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
     Spinner sprpetbreed;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.btn_continue)
-    Button btn_continue;
+    @BindView(R.id.btn_bookappointment)
+    Button btn_bookappointment;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_pettype)
@@ -239,6 +246,9 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         img_pet_imge.setVisibility(View.GONE);
         rv_upload_pet_images.setVisibility(View.GONE);
 
+        edt_petage.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             spid = extras.getString("spid");
@@ -291,6 +301,10 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                     edt_petname.setVisibility(View.GONE);
                     edt_petname.setEnabled(false);
                     edt_petname.setInputType(InputType.TYPE_NULL);
+
+                    edt_petcolor.setVisibility(View.GONE);
+                    edt_petweight.setVisibility(View.GONE);
+                    edt_petage.setVisibility(View.GONE);
 
                     if(petDetailsResponseByUserIdList != null && petDetailsResponseByUserIdList.size()>0) {
                         for(int i = 0;i<petDetailsResponseByUserIdList.size();i++) {
@@ -351,6 +365,10 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                     txt_pettype.setVisibility(View.GONE);
                     txt_petbreed.setVisibility(View.GONE);
                     img_pet_imge.setVisibility(View.GONE);
+
+                    edt_petcolor.setVisibility(View.VISIBLE);
+                    edt_petweight.setVisibility(View.VISIBLE);
+                    edt_petage.setVisibility(View.VISIBLE);
 
                     edt_petname.setText("");
                     edt_petname.setEnabled(true);
@@ -417,34 +435,30 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
             }
         });
 
-        btn_continue.setOnClickListener(v -> {
+        btn_bookappointment.setOnClickListener(v -> {
             Log.w(TAG,"btn_continue strPetBreedType : "+strPetBreedType);
             if (isSelectYourPet) {
                 if(validdSelectYourPetType()){
-                   /* if (edt_comment.getText().toString().trim().equals("")) {
-                        edt_comment.setError("Please enter comment");
-                        edt_comment.requestFocus();
-                    }*/
-                    startPayment();
+
+                    if(serviceamount != 0) {
+                        startPayment();
+                    } else if(new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                        spCreateAppointmentResponseCall();
+
+                    }
                 }
 
             } else {
                 if( bookAppointmentValidator()){
-                    if (validdSelectPetType()) {
+                    if (new ConnectionDetector(ServiceBookAppointmentActivity.this).isNetworkAvailable(ServiceBookAppointmentActivity.this)) {
+                        addYourPetResponseCall();
+                    }
+                    /*if (validdSelectPetType()) {
                         if(validdSelectPetBreedType()){
 
-                          /*if (edt_comment.getText().toString().trim().equals("")) {
-                                edt_comment.setError("Please enter comment");
-                                edt_comment.requestFocus();
-                            }else {
-
-                            }*/
-                            if (new ConnectionDetector(ServiceBookAppointmentActivity.this).isNetworkAvailable(ServiceBookAppointmentActivity.this)) {
-                                addYourPetResponseCall();
-                            }
                         }
 
-                    }
+                    }*/
 
 
 
@@ -460,7 +474,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     public void petTypeListResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -470,6 +484,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<PetTypeListResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetTypeListResponse> call, @NonNull Response<PetTypeListResponse> response) {
                 avi_indicator.smoothToHide();
@@ -478,8 +493,9 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
                         Log.w(TAG, "PetTypeListResponse" + new Gson().toJson(response.body()));
-
-                        usertypedataBeanList = response.body().getData().getUsertypedata();
+                        if(response.body().getData().getUsertypedata() != null) {
+                            usertypedataBeanList = response.body().getData().getUsertypedata();
+                        }
                         if (usertypedataBeanList != null && usertypedataBeanList.size() > 0) {
                             setPetType(usertypedataBeanList);
                         }
@@ -522,7 +538,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
     }
 
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     private void breedTypeResponseByPetIdCall(String petTypeId) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -531,6 +547,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<BreedTypeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<BreedTypeResponse> call, @NonNull Response<BreedTypeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -539,7 +556,9 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        breedTypedataBeanList = response.body().getData();
+                        if(response.body().getData() != null) {
+                            breedTypedataBeanList = response.body().getData();
+                        }
                         if (breedTypedataBeanList != null && breedTypedataBeanList.size() > 0) {
                             setBreedType(breedTypedataBeanList);
                         }
@@ -590,7 +609,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         return breedTypeRequest;
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     private void petDetailsResponseByUserIdCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -599,20 +618,23 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         Log.w(TAG, "url  :%s" + call.request().url().toString());
 
         call.enqueue(new Callback<PetDetailsResponse>() {
-            @SuppressLint("LongLogTag")
+            @SuppressLint({"LongLogTag", "LogNotTimber"})
             @Override
             public void onResponse(@NonNull Call<PetDetailsResponse> call, @NonNull Response<PetDetailsResponse> response) {
                 avi_indicator.smoothToHide();
                 Log.w(TAG, "PetDetailsResponse" + "--->" + new Gson().toJson(response.body()));
 
-                if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
 
-                    petTypeListResponseCall();
-                }
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        petDetailsResponseByUserIdList = response.body().getData();
+                        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+
+                            petTypeListResponseCall();
+                        }
+                        if(response.body().getData() != null) {
+                            petDetailsResponseByUserIdList = response.body().getData();
+                        }
                         if (petDetailsResponseByUserIdList != null && petDetailsResponseByUserIdList.size() > 0) {
                             setSelectYourPetType(petDetailsResponseByUserIdList);
                         }
@@ -914,17 +936,13 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                     if (200 == response.body().getCode()) {
                         Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
                         petId = response.body().getData().get_id();
+                        if(serviceamount != 0) {
+                            startPayment();
+                        } else if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                            spCreateAppointmentResponseCall();
 
-                        startPayment();
-                        /*Intent intent = new Intent(BookAppointmentActivity.this, PetAppointment_Doctor_Date_Time_Activity.class);
-                        intent.putExtra("petid",response.body().getData().get_id());
-                        intent.putExtra("doctorid",doctorid);
-                        intent.putExtra("allergies",edt_allergies.getText().toString());
-                        intent.putExtra("probleminfo",edt_comment.getText().toString());
-                        intent.putExtra("selectedAppointmentType",selectedAppointmentType);
-                        Log.w(TAG,"selectedAppointmentType : "+selectedAppointmentType);
-                        startActivity(intent);
-*/
+                        }
+
                     } else {
                         showErrorLoading(response.body().getMessage());
                     }
@@ -965,7 +983,12 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
         AddYourPetRequest addYourPetRequest = new AddYourPetRequest();
         addYourPetRequest.setUser_id(userid);
-        addYourPetRequest.setPet_img(uploadimagepath);
+        if(uploadimagepath != null && !uploadimagepath.isEmpty()){
+            addYourPetRequest.setPet_img(uploadimagepath);
+        }else{
+            addYourPetRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
+
+        }
         addYourPetRequest.setPet_name(edt_petname.getText().toString());
         addYourPetRequest.setPet_type(strPetType);
         addYourPetRequest.setPet_breed(strPetBreedType);
@@ -1012,7 +1035,12 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
             edt_petname.setError("Please enter pet name");
             edt_petname.requestFocus();
             can_proceed = false;
-        }else if (edt_petcolor.getText().toString().trim().equals("")) {
+        }else if (!validdSelectPetType()) {
+            can_proceed = false;
+        } else if(!validdSelectPetBreedType()){
+            can_proceed = false;
+        }
+        else if (edt_petcolor.getText().toString().trim().equals("")) {
             edt_petcolor.setError("Please enter pet color");
             edt_petcolor.requestFocus();
             can_proceed = false;
@@ -1031,8 +1059,6 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
             edt_petage.requestFocus();
             can_proceed = false;
         }
-
-
         return can_proceed;
     }
 
@@ -1116,6 +1142,9 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
     @Override
     public void onPaymentError(int code, String response) {
         try {
+            if(new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                spnotificationSendResponseCall();
+            }
             Log.w(TAG,  "Payment failed: " + code + " " + response);
             Toasty.error(getApplicationContext(), "Payment failed. Please try again with another payment method..", Toast.LENGTH_SHORT, true).show();
 
@@ -1201,12 +1230,35 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
          * missed_at :
          * mobile_type : Admin
          */
+
+
+
+        @SuppressLint("SimpleDateFormat") DateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = null;
+        try {
+            date = inputFormat.parse(SP_ava_Date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String outputDateStr = outputFormat.format(date);
+        String outputTimeStr = null;
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat h_mm_a   = new SimpleDateFormat("hh:mm aa");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat hh_mm_ss = new SimpleDateFormat("HH:mm:ss");
+
+        try {
+            Date d1 = h_mm_a.parse(selectedTimeSlot);
+            outputTimeStr =hh_mm_ss.format(d1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String displaydateandtime = outputDateStr+" "+outputTimeStr;
+
         List<SPCreateAppointmentRequest.SpAttchedBean> sp_attched = new ArrayList<>();
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
-        String currentDateandTime = simpleDateFormat.format(new Date());
-        /*String currenttime = currentDateandTime.substring(currentDateandTime.indexOf(' ') + 1);
-        String currentdate =  currentDateandTime.substring(0, currentDateandTime.indexOf(' '));*/
 
         SPCreateAppointmentRequest spCreateAppointmentRequest = new SPCreateAppointmentRequest();
         spCreateAppointmentRequest.setSp_id(spuserid);
@@ -1220,8 +1272,8 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         spCreateAppointmentRequest.setSp_feedback("");
         spCreateAppointmentRequest.setSp_rate("");
         spCreateAppointmentRequest.setUser_feedback("");
-        spCreateAppointmentRequest.setUser_rate("");
-        spCreateAppointmentRequest.setDisplay_date(currentDateandTime);
+        spCreateAppointmentRequest.setUser_rate("0");
+        spCreateAppointmentRequest.setDisplay_date(displaydateandtime);
         spCreateAppointmentRequest.setServer_date_time("");
         spCreateAppointmentRequest.setPayment_id(Payment_id);
         spCreateAppointmentRequest.setPayment_method("Online");
@@ -1244,17 +1296,93 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
+                startActivity(intent);
+                finish();
+                alertDialog.dismiss();
+            }
+        });
     }
     public void hideLoadingSuccess() {
         try {
             Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
             startActivity(intent);
+            finish();
             alertDialog.dismiss();
 
         } catch (Exception ignored) {
 
         }
     }
+
+    @SuppressLint("LongLogTag")
+    private void spnotificationSendResponseCall() {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<NotificationSendResponse> call = ApiService.spnotificationSendResponseCall(RestUtils.getContentType(),spNotificationSendRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<NotificationSendResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<NotificationSendResponse> call, @NonNull Response<NotificationSendResponse> response) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"notificationSendResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+
+
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<NotificationSendResponse> call, @NonNull Throwable t) {
+                avi_indicator.smoothToHide();
+
+                Log.w(TAG,"NotificationSendResponse flr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+    @SuppressLint("LongLogTag")
+    private SPNotificationSendRequest spNotificationSendRequest() {
+
+        /**
+         * status : Payment Failed
+         * date : 23-10-2020 11:00 AM
+         * appointment_UID :
+         * user_id : 601b8ac3204c595ee52582f2
+         * doctor_id :
+         */
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+        String currentDateandTime = simpleDateFormat.format(new Date());
+
+        SPNotificationSendRequest spNotificationSendRequest = new SPNotificationSendRequest();
+        spNotificationSendRequest.setStatus("Payment Failed");
+        spNotificationSendRequest.setDate(currentDateandTime);
+        spNotificationSendRequest.setAppointment_UID("");
+        spNotificationSendRequest.setUser_id(userid);
+        spNotificationSendRequest.setSp_id(spid);
+
+
+        Log.w(TAG,"spNotificationSendRequest"+ "--->" + new Gson().toJson(spNotificationSendRequest));
+        return spNotificationSendRequest;
+    }
+
+
 
 
 }

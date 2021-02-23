@@ -1,5 +1,6 @@
 package com.petfolio.infinitus.petlover;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import com.petfolio.infinitus.activity.LoginActivity;
 import com.petfolio.infinitus.activity.location.ManageAddressActivity;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
@@ -138,6 +140,8 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_your_pet_old_user);
         ButterKnife.bind(this);
         avi_indicator.setVisibility(View.GONE);
+
+        edt_petage.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
         SessionManager sessionManager = new SessionManager(AddYourPetOldUserActivity.this);
         HashMap<String, String> user = sessionManager.getProfileDetails();
@@ -300,7 +304,9 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"DropDownListResponse" + new Gson().toJson(response.body()));
 
-                        genderTypeList = response.body().getData().getGender();
+                        if(response.body().getData().getGender() != null) {
+                            genderTypeList = response.body().getData().getGender();
+                        }
 
 
                         if(genderTypeList != null && genderTypeList.size()>0){
@@ -465,6 +471,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("LogNotTimber")
     private void addYourPetResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -473,6 +480,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         Log.w(TAG,"AddYourPetResponse url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<AddYourPetResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<AddYourPetResponse> call, @NonNull Response<AddYourPetResponse> response) {
                 avi_indicator.smoothToHide();
@@ -480,9 +488,11 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
-                        Intent intent = new Intent(AddYourPetOldUserActivity.this,AddYourPetImageOlduserActivity.class);
-                        intent.putExtra("petid",response.body().getData().get_id());
-                        startActivity(intent);
+                        if(response.body().getData() != null) {
+                            Intent intent = new Intent(AddYourPetOldUserActivity.this, AddYourPetImageOlduserActivity.class);
+                            intent.putExtra("petid", response.body().getData().get_id());
+                            startActivity(intent);
+                        }
 
                     } else {
                         showErrorLoading(response.body().getMessage());
@@ -504,7 +514,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
     private AddYourPetRequest addYourPetRequest() {
         /*
          * user_id : 5fb36ca169f71e30a0ffd3f7
-         * pet_img : http://mysalveo.com/api/uploads/images.jpeg
+         * pet_img :
          * pet_name : POP
          * pet_type : Dog
          * pet_breed : breed 1
@@ -522,7 +532,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         
         AddYourPetRequest addYourPetRequest = new AddYourPetRequest();
         addYourPetRequest.setUser_id(userid);
-        addYourPetRequest.setPet_img("http://mysalveo.com/api/uploads/images.jpeg");
+        addYourPetRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
         addYourPetRequest.setPet_name(edt_petname.getText().toString());
         addYourPetRequest.setPet_type(strPetType);
         addYourPetRequest.setPet_breed(strPetBreedType);
@@ -566,6 +576,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("LogNotTimber")
     public void petTypeListResponseCall(){
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -575,6 +586,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<PetTypeListResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<PetTypeListResponse> call, @NonNull Response<PetTypeListResponse> response) {
                 avi_indicator.smoothToHide();
@@ -584,7 +596,9 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"PetTypeListResponse" + new Gson().toJson(response.body()));
                         dropDownListResponseCall();
-                        usertypedataBeanList = response.body().getData().getUsertypedata();
+                        if(response.body().getData().getUsertypedata() != null) {
+                            usertypedataBeanList = response.body().getData().getUsertypedata();
+                        }
                         if(usertypedataBeanList != null && usertypedataBeanList.size()>0){
                             setPetType(usertypedataBeanList);
                         }
@@ -631,6 +645,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("LogNotTimber")
     private void breedTypeResponseByPetIdCall(String petTypeId) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -639,6 +654,7 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<BreedTypeResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<BreedTypeResponse> call, @NonNull Response<BreedTypeResponse> response) {
                 avi_indicator.smoothToHide();
@@ -647,7 +663,9 @@ public class AddYourPetOldUserActivity extends AppCompatActivity {
 
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
-                        breedTypedataBeanList = response.body().getData();
+                        if(response.body().getData() != null) {
+                            breedTypedataBeanList = response.body().getData();
+                        }
                         if(breedTypedataBeanList != null && breedTypedataBeanList.size()>0){
                             setBreedType(breedTypedataBeanList);
                         }

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -90,6 +91,10 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
     TextView txt_address;
 
     String appointment_id;
+
+    LinearLayout ll_petlastvacinateddate;
+    TextView txt_petlastvaccinatedage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +114,7 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
 
 
         txt_serv_name=findViewById(R.id.txt_serv_name);
+        txt_serv_name.setVisibility(View.GONE);
 
 
         txt_serv_cost=findViewById(R.id.txt_serv_cost);
@@ -142,6 +148,9 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
 
 
         txt_vaccinated =findViewById(R.id.txt_vaccinated);
+        ll_petlastvacinateddate = findViewById(R.id.ll_petlastvacinateddate);
+        ll_petlastvacinateddate.setVisibility(View.GONE);
+        txt_petlastvaccinatedage = findViewById(R.id.txt_petlastvaccinatedage);
 
 
         txt_order_date=findViewById(R.id.txt_order_date);
@@ -168,6 +177,7 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
         }
     }
 
+    @SuppressLint("LogNotTimber")
     private void petNewAppointmentResponseCall() {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -186,59 +196,62 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
 
                     if (200 == response.body().getCode()) {
 
-                        String vaccinated , addr = null, usrname = null;
+                        String vaccinated, addr = null, usrname = null;
+                        if (response.body().getData() != null) {
+                            String usr_image = response.body().getData().getDoctor_id().getProfile_img();
 
-                        String usr_image = response.body().getData().getDoctor_id().getProfile_img();
+                            String servname = response.body().getData().getService_name();
 
-                        String servname = response.body().getData().getService_name();
+                            String servcost = response.body().getData().getService_amount();
 
-                        String servcost= response.body().getData().getService_amount();
+                            String pet_name = response.body().getData().getPet_id().getPet_name();
 
-                        String pet_name = response.body().getData().getPet_id().getPet_name();
+                            String pet_image = response.body().getData().getPet_id().getPet_img();
 
-                        String pet_image  = response.body().getData().getPet_id().getPet_img();
+                            String pet_type = response.body().getData().getPet_id().getPet_type();
 
-                        String pet_type = response.body().getData().getPet_id().getPet_type();
+                            String breed = response.body().getData().getPet_id().getPet_breed();
 
-                        String breed = response.body().getData().getPet_id().getPet_breed();
+                            String gender = response.body().getData().getPet_id().getPet_gender();
 
-                        String gender= response.body().getData().getPet_id().getPet_gender();
+                            String colour = response.body().getData().getPet_id().getPet_color();
 
-                        String colour= response.body().getData().getPet_id().getPet_color();
+                            String weight = String.valueOf(response.body().getData().getPet_id().getPet_weight());
 
-                        String weight= String.valueOf(response.body().getData().getPet_id().getPet_weight());
+                            String age = String.valueOf(response.body().getData().getPet_id().getPet_age());
 
-                        String age= String.valueOf(response.body().getData().getPet_id().getPet_age());
+                            if (response.body().getData().getPet_id().isVaccinated()) {
+                                vaccinated = "Yes";
+                                ll_petlastvacinateddate.setVisibility(View.VISIBLE);
+                                if (response.body().getData().getPet_id().getLast_vaccination_date() != null) {
+                                    txt_petlastvaccinatedage.setText(response.body().getData().getPet_id().getLast_vaccination_date());
+                                }
 
-                        if(response.body().getData().getPet_id().isVaccinated()){
-                            vaccinated= "Yes";
+                            } else {
+                                ll_petlastvacinateddate.setVisibility(View.GONE);
+                                vaccinated = "No";
+                            }
+                            String order_date = response.body().getData().getBooking_date();
+
+                            String orderid = response.body().getData().getAppointment_UID();
+
+                            String payment_method = response.body().getData().getPayment_method();
+
+                            String order_cost = response.body().getData().getAmount();
+
+                            List<PetNewAppointmentDetailsResponse.DataBean.DocBusinessInfoBean> Address = response.body().getData().getDoc_business_info();
+
+                            for (int i = 0; i < Address.size(); i++) {
+
+                                addr = Address.get(i).getClinic_loc();
+
+                                usrname = Address.get(i).getDr_name();
+                            }
+
+                            setView(usrname, usr_image, servname, servcost, pet_name, pet_image, pet_type, breed
+
+                                    , gender, colour, weight, age, order_date, orderid, payment_method, order_cost, vaccinated, addr);
                         }
-
-                        else {
-
-                            vaccinated="No" ;
-                        }
-
-                        String order_date= response.body().getData().getBooking_date();
-
-                        String orderid= response.body().getData().getAppointment_UID();
-
-                        String payment_method= response.body().getData().getPayment_method();
-
-                        String order_cost= response.body().getData().getAmount();
-
-                        List<PetNewAppointmentDetailsResponse.DataBean.DocBusinessInfoBean> Address= response.body().getData().getDoc_business_info();
-
-                        for(int i =0; i<Address.size(); i++){
-
-                            addr = Address.get(i).getClinic_loc();
-
-                            usrname = Address.get(i).getDr_name();
-                        }
-
-                        setView(usrname , usr_image , servname , servcost , pet_name , pet_image , pet_type , breed
-
-                                , gender, colour , weight , age , order_date , orderid , payment_method , order_cost, vaccinated , addr);
                     }
 
 
@@ -256,43 +269,47 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
     }
 
 
+    @SuppressLint("LogNotTimber")
     private PetNewAppointmentDetailsRequest petNewAppointmentDetailsRequest() {
-
         PetNewAppointmentDetailsRequest petNewAppointmentDetailsRequest = new PetNewAppointmentDetailsRequest();
         petNewAppointmentDetailsRequest.setApppointment_id(appointment_id);
         Log.w(TAG, "petNewAppointmentDetailsRequest" + "--->" + new Gson().toJson(petNewAppointmentDetailsRequest));
         return petNewAppointmentDetailsRequest;
     }
 
+    @SuppressLint("SetTextI18n")
     private void setView(String usrname, String usr_image, String servname, String servcost, String pet_name, String pet_image, String pet_type, String breed, String gender, String colour, String weight, String age, String order_date, String orderid, String payment_method, String order_cost, String vaccinated, String addr) {
 
 
-        if(!usr_image.equals("")){
-
+        if(usr_image !=null && !usr_image.equals("")){
             Glide.with(PetMissedAppointmentDetailsActivity.this)
                     .load(usr_image)
                     .into(img_user);
 
+        }else{
+            Glide.with(PetMissedAppointmentDetailsActivity.this)
+                    .load(APIClient.PROFILE_IMAGE_URL)
+                    .into(img_user);
         }
 
 
-        if(!usrname.equals("")){
+        if(usrname != null && !usrname.equals("")){
 
             txt_usrname.setText(usrname);
         }
 
-        if(!servname.equals("")){
+        if(servname != null && !servname.equals("")){
 
             txt_serv_name.setText(servname);
         }
 
-        if(!servcost.equals("")){
+        if(servcost != null && !servcost.equals("")){
 
             txt_serv_cost.setText(servcost);
         }
 
 
-        if(!pet_image.equals("")){
+        if(pet_image != null && !pet_image.equals("")){
 
             Glide.with(PetMissedAppointmentDetailsActivity.this)
                     .load(pet_image)
@@ -301,65 +318,66 @@ public class PetMissedAppointmentDetailsActivity extends AppCompatActivity imple
 
         }
 
-        if(!pet_name.equals("")){
+        if(pet_name != null && !pet_name.equals("")){
 
             txt_pet_name.setText(pet_name);
         }
 
-        if(!pet_type.equals("")){
+        if(pet_type != null && !pet_type.equals("")){
 
             txt_pet_type.setText(pet_type);
         }
 
-        if(!breed.equals("")){
+        if(breed != null && !breed.equals("")){
 
             txt_breed.setText(breed);
         }
 
-        if(!gender.equals("")){
+        if(gender != null && !gender.equals("")){
 
             txt_gender.setText(gender);
         }
 
-        if(!colour.equals("")){
+        if(colour != null && !colour.equals("")){
 
             txt_color.setText(colour);
         }
 
-        if(!weight.equals("")){
+        if(weight != null && !weight.equals("")){
 
             txt_weight.setText(weight);
         }
 
-        if(!age.equals("")){
+        if(age != null && !age.equals("")){
 
             txt_age.setText(age);
         }
 
         txt_vaccinated.setText(vaccinated);
 
-        if(!order_date.equals("")){
+        if(order_date != null && !order_date.equals("")){
 
             txt_order_date.setText(order_date);
         }
 
-        if(!orderid.equals("")){
+        if(orderid != null && !orderid.equals("")){
 
             txt_order_id.setText(orderid);
         }
 
-        if(!payment_method.equals("")) {
+        if(payment_method != null && !payment_method.equals("")) {
 
             txt_payment_method.setText(payment_method);
 
         }
 
-        if(!order_cost.equals("")){
+        if(order_cost != null && !order_cost.equals("")){
+            txt_order_cost.setText("\u20B9 "+order_cost);
+            txt_serv_cost.setText("\u20B9 "+order_cost);
 
-            txt_order_cost.setText(order_cost);
         }
 
-        if(!addr.equals("")){
+        if(addr != null && !addr.equals("")){
 
             txt_address.setText(addr);
         }
