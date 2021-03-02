@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -247,6 +248,8 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         rv_upload_pet_images.setVisibility(View.GONE);
 
         edt_petage.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+        edt_petweight.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
+
 
 
         Bundle extras = getIntent().getExtras();
@@ -1204,7 +1207,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         });
 
     }
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     private SPCreateAppointmentRequest spCreateAppointmentRequest() {
         /*
          * sp_id : 5ff7ef9b1c72093650a13a10
@@ -1283,6 +1286,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         spCreateAppointmentRequest.setCompleted_at("");
         spCreateAppointmentRequest.setMissed_at("");
         spCreateAppointmentRequest.setMobile_type("Android");
+        spCreateAppointmentRequest.setDate_and_time(currentDateandTime);
         Log.w(TAG,"spCreateAppointmentRequest"+ "--->" + new Gson().toJson(spCreateAppointmentRequest));
         return spCreateAppointmentRequest;
     }

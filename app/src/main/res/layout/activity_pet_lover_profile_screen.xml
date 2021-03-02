@@ -39,11 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/futuramediumbt"
                 android:text="@string/profile"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/new_txt_color"
+                android:textSize="@dimen/big_txt_size"  />
 
 
             <LinearLayout
@@ -330,7 +329,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/futuramediumbt"
                     android:text="@string/manage_address"
@@ -357,7 +355,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/futuramediumbt"
                     android:text="@string/subscribe"
@@ -384,7 +381,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/futuramediumbt"
                     android:text="@string/change_password"
