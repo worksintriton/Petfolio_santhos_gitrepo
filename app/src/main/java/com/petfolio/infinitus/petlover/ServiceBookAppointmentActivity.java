@@ -211,7 +211,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
     private String selectedAppointmentType = "Emergency";
     private String petId;
     private String doctorid;
-    private String petimage;
+
     private String fromactivity;
     private String fromto;
     private String Payment_id;
@@ -225,13 +225,12 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
     private String spuserid;
     private String selectedServiceTitle;
     private String petcolor;
-    private int petweight,petage;
+    private double petweight;
 
     private String servicetime;
     private int serviceamount;
-
-
-
+    private List<String> petimage;
+    private String petage;
 
 
     @SuppressLint("LongLogTag")
@@ -287,7 +286,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
         img_back.setOnClickListener(v -> onBackPressed());
 
         spr_selectyourpettype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @SuppressLint("SetTextI18n")
+            @SuppressLint({"SetTextI18n", "LogNotTimber"})
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int arg2, long arg3) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.green));
@@ -316,7 +315,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                                 petType = petDetailsResponseByUserIdList.get(i).getPet_type();
                                 petBreed = petDetailsResponseByUserIdList.get(i).getPet_breed();
                                 petId = petDetailsResponseByUserIdList.get(i).get_id();
-                                petimage = petDetailsResponseByUserIdList.get(i).getPet_img();
+                               // petimage = petDetailsResponseByUserIdList.get(i).getPet_img();
                                 petcolor = petDetailsResponseByUserIdList.get(i).getPet_color();
                                 petweight = petDetailsResponseByUserIdList.get(i).getPet_weight();
                                 petage = petDetailsResponseByUserIdList.get(i).getPet_age();
@@ -337,7 +336,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                         edt_petcolor.setText(petcolor);
                     }if(petweight != 0){
                         edt_petweight.setText(petweight+"");
-                    }if(petage != 0){
+                    }if(petage != null){
                         edt_petage.setText(petage+"");
                     }
 
@@ -964,7 +963,7 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     private AddYourPetRequest addYourPetRequest() {
         /*
          * user_id : 5fb36ca169f71e30a0ffd3f7
@@ -986,19 +985,19 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
 
         AddYourPetRequest addYourPetRequest = new AddYourPetRequest();
         addYourPetRequest.setUser_id(userid);
-        if(uploadimagepath != null && !uploadimagepath.isEmpty()){
+        /*if(uploadimagepath != null && !uploadimagepath.isEmpty()){
             addYourPetRequest.setPet_img(uploadimagepath);
         }else{
             addYourPetRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
 
-        }
+        }*/
         addYourPetRequest.setPet_name(edt_petname.getText().toString());
         addYourPetRequest.setPet_type(strPetType);
         addYourPetRequest.setPet_breed(strPetBreedType);
         addYourPetRequest.setPet_gender("");
         addYourPetRequest.setPet_color(edt_petcolor.getText().toString());
         addYourPetRequest.setPet_weight(Integer.parseInt(edt_petweight.getText().toString()));
-        addYourPetRequest.setPet_age(Integer.parseInt(edt_petage.getText().toString()));
+        addYourPetRequest.setPet_age(edt_petage.getText().toString());
         addYourPetRequest.setVaccinated(false);
         addYourPetRequest.setLast_vaccination_date("");
         addYourPetRequest.setDefault_status(true);

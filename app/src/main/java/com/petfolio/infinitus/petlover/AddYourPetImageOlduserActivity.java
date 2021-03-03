@@ -26,12 +26,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.LoginActivity;
 import com.petfolio.infinitus.activity.location.ManageAddressActivity;
+import com.petfolio.infinitus.adapter.AddPetImageListAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.appUtils.FileUtil;
@@ -45,14 +48,18 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -66,6 +73,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class AddYourPetImageOlduserActivity extends AppCompatActivity implements View.OnClickListener {
     private  String TAG = "AddYourPetImageOlduserActivity";
+
     @BindView(R.id.img_back)
     ImageView img_back;
 
@@ -88,6 +96,11 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
     private String petid;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rc_uploaded_pet_images)
+    RecyclerView rc_uploaded_pet_images;
+
+
     public final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 1;
     private static final String CAMERA_PERMISSION = CAMERA ;
     private static final String READ_EXTERNAL_STORAGE_PERMISSION = READ_EXTERNAL_STORAGE;
@@ -102,8 +115,8 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
     private static final int REQUEST_READ_CLINIC_PIC_PERMISSION = 786;
     private static final int REQUEST_CLINIC_CAMERA_PERMISSION_CODE = 785 ;
 
-
-
+    List<PetAddImageRequest.PetImgBean> pet_img = new ArrayList<>();
+    AddPetImageListAdapter addPetImageListAdapter;
 
     private static final int SELECT_CLINIC_CAMERA = 1000 ;
 
@@ -359,16 +372,37 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
                         Log.w(TAG, "ServerUrlImagePath " + ServerUrlImagePath);
 
-                        if( response.body().getData() != null){
-                            Glide.with(AddYourPetImageOlduserActivity.this)
-                                    .load(ServerUrlImagePath)
-                                    .into(img_pet_imge);
-                        }else{
-                            Glide.with(AddYourPetImageOlduserActivity.this)
-                                    .load(R.drawable.image_thumbnail)
-                                    .into(img_pet_imge);
+
+                        if(pet_img.size()>=4){
+
+                            Toasty.warning(AddYourPetImageOlduserActivity.this,"Sorry You can't Upload more than 4", Toasty.LENGTH_LONG).show();
 
                         }
+
+                        else
+                        {
+                            PetAddImageRequest.PetImgBean petImgBean = new PetAddImageRequest.PetImgBean();
+
+                            if(ServerUrlImagePath != null&&!ServerUrlImagePath.isEmpty())
+                            {
+                                petImgBean.setPet_img(ServerUrlImagePath);
+
+                                pet_img.add(petImgBean);
+
+                            }
+                            else
+                            {
+                                petImgBean.setPet_img(APIClient.PROFILE_IMAGE_URL);
+
+                                pet_img.add(petImgBean);
+
+                            }
+
+
+                            setView();
+
+                        }
+
 
 
 
@@ -387,6 +421,22 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
             }
         });
 
+
+    }
+
+    private void setView() {
+
+        rc_uploaded_pet_images.setHasFixedSize(true);
+
+        rc_uploaded_pet_images.setNestedScrollingEnabled(false);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(AddYourPetImageOlduserActivity.this, LinearLayoutManager.HORIZONTAL, false);
+
+        rc_uploaded_pet_images.setLayoutManager(layoutManager);
+
+        addPetImageListAdapter = new AddPetImageListAdapter(this, pet_img);
+
+        rc_uploaded_pet_images.setAdapter(addPetImageListAdapter);
 
     }
 
@@ -567,14 +617,19 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
     }
     @SuppressLint("LogNotTimber")
     private PetAddImageRequest petAddImageRequest() {
+        /*
+         * _id : 603e098e2c2b43125f8cb7f8
+         * pet_img : [{"pet_img":"http://54.212.108.156:3000/api/uploads/Pic_empty.jpg"},{"pet_img":"http://54.212.108.156:3000/api/uploads/Pic_empty.jpg"}]
+         */
+
         PetAddImageRequest petAddImageRequest = new PetAddImageRequest();
+
         petAddImageRequest.set_id(petid);
-        if(ServerUrlImagePath != null) {
-            petAddImageRequest.setPet_img(ServerUrlImagePath);
-        }else{
-            petAddImageRequest.setPet_img(APIClient.PROFILE_IMAGE_URL);
-        }
+
+        petAddImageRequest.setPet_img(pet_img);
+
         Log.w(TAG,"petAddImageRequest"+ "--->" + new Gson().toJson(petAddImageRequest));
+
         return petAddImageRequest;
     }
 }
