@@ -373,7 +373,7 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
                         Log.w(TAG, "ServerUrlImagePath " + ServerUrlImagePath);
 
 
-                        if(pet_img.size()>=4){
+                        if(pet_img.size()>=3){
 
                             Toasty.warning(AddYourPetImageOlduserActivity.this,"Sorry You can't Upload more than 4", Toasty.LENGTH_LONG).show();
 

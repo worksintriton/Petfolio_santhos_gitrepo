@@ -108,6 +108,7 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
             doctorimage = extras.getString("doctorimage");
             doctoremailid = extras.getString("doctoremailid");
             doctorid = extras.getString("doctorid");
+            Log.w(TAG , "Doctor_Id " +doctorid);
             patientname = extras.getString("patientname");
             patientimage = extras.getString("patientimage");
             patientemailid = extras.getString("patientemailid");
@@ -215,6 +216,7 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
                        // closeAppointmentNotifyResponseCall();
                         Intent intent = new Intent(getApplicationContext(),PrescriptionActivity.class);
                         intent.putExtra("id",appointmentid);
+                        intent.putExtra("patient_id",patientid);
                         startActivity(intent);
                     }
                     else{

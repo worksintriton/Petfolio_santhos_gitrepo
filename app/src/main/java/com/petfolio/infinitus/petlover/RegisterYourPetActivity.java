@@ -396,7 +396,7 @@ public class RegisterYourPetActivity extends AppCompatActivity implements View.O
                         if( response.body().getData() != null)
                         {
 
-                            if(pet_img.size()>=4){
+                            if(pet_img.size()>=3){
 
                                 Toasty.warning(RegisterYourPetActivity.this,"Sorry You can't Upload more than 4", Toasty.LENGTH_LONG).show();
 

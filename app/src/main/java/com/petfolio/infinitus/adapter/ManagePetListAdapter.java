@@ -3,7 +3,6 @@ package com.petfolio.infinitus.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,17 +21,13 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.interfaces.PetDeleteListener;
 import com.petfolio.infinitus.petlover.AddYourPetOldUserActivity;
 import com.petfolio.infinitus.petlover.EditYourPetProfileInfoActivity;
-import com.petfolio.infinitus.requestpojo.PetAddImageRequest;
 import com.petfolio.infinitus.responsepojo.PetListResponse;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private static final String TAG = " ManagePetListAdapter ";
 
     private final List<PetListResponse.DataBean> petListResponseList;
 
@@ -44,6 +39,7 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
 
 
     public static String id = "";
+    private List<PetListResponse.DataBean.PetImgBean> petImgBeanList;
 
 
     public ManagePetListAdapter(Context context, List<PetListResponse.DataBean> petListResponseList, PetDeleteListener petDeleteListener) {
@@ -80,25 +76,35 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
             String TAG = "ManagePetListAdapter";
             Log.w(TAG,"petListResponseList : "+new Gson().toJson(petListResponseList));
 
-            for (int i = 0; i < petListResponseList.size(); i++) {
-                List<PetListResponse.DataBean.PetImgBean>    petImgBeanList = petListResponseList.get(i).getPet_img();
-                Log.w(TAG,"petImgBeanList : "+new Gson().toJson(petImgBeanList));
-                if (petImgBeanList != null && petImgBeanList.size() > 0) {
 
-                    for(int j=0;j<petImgBeanList.size();j++) {
-                        if (petImgBeanList.get(j).getPet_img() != null && !petImgBeanList.get(j).getPet_img().isEmpty()) {
-                            Glide.with(context)
-                                    .load(petImgBeanList.get(j).getPet_img())
-                                    .into(holder.img_pet_imge);
-                        }else {
-                            Glide.with(context)
-                                    .load(APIClient.PROFILE_IMAGE_URL)
-                                    .into(holder.img_pet_imge);
+            petImgBeanList =   petListResponseList.get(position).getPet_img();
 
-                        }
+            String petImagePath = null;
 
-                    }
+
+            Log.w(TAG,"petImgBeanList : "+new Gson().toJson(petImgBeanList));
+
+            if (petImgBeanList != null && petImgBeanList.size() > 0) {
+
+                for(int j=0;j<petImgBeanList.size();j++) {
+                    petImagePath = petImgBeanList.get(j).getPet_img();
+
                 }
+            }
+
+
+
+
+            Log.w(TAG,"petImagePath : "+petImagePath);
+
+            if (petImagePath != null && !petImagePath.isEmpty()) {
+                Glide.with(context)
+                        .load(petImagePath)
+                        .into(holder.img_pet_imge);
+            }else {
+                Glide.with(context)
+                        .load(APIClient.PROFILE_IMAGE_URL)
+                        .into(holder.img_pet_imge);
 
             }
 
@@ -125,12 +131,7 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
                     Intent i = new Intent(context, EditYourPetProfileInfoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtra("id",petListResponseList.get(position).get_id());
                     i.putExtra("userid",petListResponseList.get(position).getUser_id());
-                    Log.w(TAG , petListResponseList.get(position).getPet_img().toString());
-                    Bundle args = new Bundle();
-                    int list = petListResponseList.get(position).getPet_img().size();
-                    Log.w(TAG, "list_size "+list);
-                    args.putSerializable("PETLIST", (Serializable) petListResponseList.get(position).getPet_img());
-                    i.putExtra("petimage",args);
+                    i.putExtra("petimage",petListResponseList.get(position).getPet_img().get(position).getPet_img());
                     i.putExtra("petname",petListResponseList.get(position).getPet_name());
                     i.putExtra("pettype",petListResponseList.get(position).getPet_type());
                     i.putExtra("petbreed",petListResponseList.get(position).getPet_breed());
@@ -148,6 +149,12 @@ public class ManagePetListAdapter extends  RecyclerView.Adapter<RecyclerView.Vie
                     i.putExtra("pet_microchipped",petListResponseList.get(position).isPet_microchipped());
                     i.putExtra("pet_tick_free",petListResponseList.get(position).isPet_tick_free());
                     i.putExtra("pet_private_part",petListResponseList.get(position).isPet_private_part());
+
+                    Bundle args = new Bundle();
+                    int list = petListResponseList.get(position).getPet_img().size();
+                    args.putSerializable("PETLIST", (Serializable) petListResponseList.get(position).getPet_img());
+                    i.putExtra("petimage",args);
+
                     context.startActivity(i);
 
                 } else if(titleName != null && titleName.equalsIgnoreCase("Delete")){

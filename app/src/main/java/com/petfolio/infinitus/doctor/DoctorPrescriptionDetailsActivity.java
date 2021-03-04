@@ -61,7 +61,7 @@ public class DoctorPrescriptionDetailsActivity extends AppCompatActivity {
 
 
     private String userid;
-    private String appoinmentid;
+    private String appoinmentid,doctor_id;
 
     RecyclerView rv_prescriptiondetails;
     TextView  txt_no_records;
@@ -96,7 +96,10 @@ public class DoctorPrescriptionDetailsActivity extends AppCompatActivity {
         if (extras != null) {
             appoinmentid = extras.getString("id");
             userid = extras.getString("userid");
+            doctor_id = extras.getString("doctor_id");
+            Log.w(TAG,"AppointID :"+" "+appoinmentid);
             Log.w(TAG,"userid :"+" "+userid);
+            Log.w(TAG,"doctorid :"+" "+doctor_id);
 
         }
 
@@ -160,7 +163,9 @@ public class DoctorPrescriptionDetailsActivity extends AppCompatActivity {
                                   webView.requestFocus();
                                   webView.getSettings().setJavaScriptEnabled(true);
 
-                                  String url = "https://docs.google.com/viewer?embedded = true&url = "+pdfUrl;
+                                  final String googleDocs = "https://docs.google.com/viewer?url=";
+
+                                  String url = googleDocs + pdfUrl;
                                   webView.loadUrl(pdfUrl);
                                   webView.setWebViewClient(new WebViewClient() {
                                       @Override

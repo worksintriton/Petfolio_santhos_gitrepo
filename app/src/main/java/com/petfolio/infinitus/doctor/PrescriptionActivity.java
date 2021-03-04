@@ -93,7 +93,7 @@ public class PrescriptionActivity extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getProfileDetails();
         Doctor_Name = user.get(SessionManager.KEY_FIRST_NAME);
-        userid = user.get(SessionManager.KEY_ID);
+        Doctor_ID = user.get(SessionManager.KEY_ID);
 
         avi_indicator = findViewById(R.id.avi_indicator);
         avi_indicator.setVisibility(View.GONE);
@@ -102,8 +102,9 @@ public class PrescriptionActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             appoinmentid = extras.getString("id");
-            Doctor_ID = extras.getString("doctorid");
-            Log.w(TAG,"userid :"+" "+appoinmentid);
+            userid = extras.getString("patient_id");
+            Log.w(TAG,"appnntid :"+" "+appoinmentid);
+            Log.w(TAG,"doctorid :"+" "+Doctor_ID);
 
         }
 
