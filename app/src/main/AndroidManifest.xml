@@ -46,6 +46,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:allowBackup,icon,theme,label,name">
+        <activity android:name=".MainActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -61,19 +63,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".petlover.PetOtherInformationsActivity"
+        <activity
+            android:name=".petlover.PetOtherInformationsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".petlover.PetEditOtherInformationsActivity"
+        <activity
+            android:name=".petlover.PetEditOtherInformationsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-
-
         <activity
             android:name=".activity.VerifyOtpActivity"
             android:screenOrientation="portrait"
@@ -98,10 +97,7 @@
             android:name=".activity.VerifyEmailOtpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <!-- Pet Lover -->
+            android:windowSoftInputMode="adjustPan" /> <!-- Pet Lover -->
         <activity
             android:name=".petlover.AddYourPetActivity"
             android:screenOrientation="portrait"
@@ -121,7 +117,7 @@
             android:name=".petlover.BookAppointmentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".petlover.DoctorClinicDetailsActivity"
             android:screenOrientation="portrait"
@@ -197,7 +193,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".petlover.ListOfProductsSeeMoreActivity"
             android:screenOrientation="portrait"
@@ -283,8 +278,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-
-
         <activity android:name=".activity.SliderActivity" />
         <activity
             android:name=".petlover.PetCompletedAppointmentDetailsActivity"
@@ -305,10 +298,7 @@
             android:name=".petlover.PetSPNewAppointmentDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <!-- Doctor -->
+            android:windowSoftInputMode="adjustPan" /> <!-- Doctor -->
         <activity
             android:name=".doctor.DoctorBusinessInfoActivity"
             android:screenOrientation="portrait"
@@ -458,10 +448,7 @@
             android:name=".serviceprovider.SPEditProfileImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <!-- Vendor -->
+            android:windowSoftInputMode="adjustPan" /> <!-- Vendor -->
         <activity
             android:name=".vendor.VendorRegisterFormActivity"
             android:screenOrientation="portrait"

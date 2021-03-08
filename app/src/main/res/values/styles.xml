@@ -76,5 +76,11 @@
         <item name="colorControlActivated">@color/orange_bgm_color</item>
     </style>
 
+    <style name="MyRatingBar1" parent="Theme.AppCompat">
+        <item name="android:minHeight">5dp</item>
+        <item name="android:maxHeight">5dp</item>
+        <item name="colorControlNormal">@color/orange_bgm_color</item>
+        <item name="colorControlActivated">@color/orange_bgm_color</item>
+    </style>
 
 </resources>

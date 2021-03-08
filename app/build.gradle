@@ -118,6 +118,11 @@ dependencies {
 
     implementation 'es.voghdev.pdfviewpager:library:1.1.2'
 
+    implementation 'com.synnapps:carouselview:0.1.4'
+
+    implementation "com.romandanylyk:pageindicatorview:0.1.1"
+
+
 }
 // Add the following line:
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
