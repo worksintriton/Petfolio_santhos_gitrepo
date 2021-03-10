@@ -117,7 +117,7 @@
             android:name=".petlover.BookAppointmentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".petlover.DoctorClinicDetailsActivity"
             android:screenOrientation="portrait"

@@ -43,7 +43,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-import com.petfolio.infinitus.Carousel.CustomPagerAdapter;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.adapter.AddImageListAdapter;
 import com.petfolio.infinitus.adapter.ViewPagerClinicDetailsAdapter;
@@ -51,7 +50,6 @@ import com.petfolio.infinitus.adapter.ViewPagerPetlistAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.appUtils.FileUtil;
-import com.petfolio.infinitus.doctor.DoctorMyCalendarActivity;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
 import com.petfolio.infinitus.requestpojo.BreedTypeRequest;
 import com.petfolio.infinitus.requestpojo.DocBusInfoUploadRequest;
@@ -71,12 +69,7 @@ import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
-import com.rd.PageIndicatorView;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
-import com.synnapps.carouselview.ViewListener;
 import com.wang.avi.AVLoadingIndicatorView;
-
 
 import org.json.JSONObject;
 
@@ -107,12 +100,6 @@ import retrofit2.Response;
 public class BookAppointmentActivity extends AppCompatActivity implements PaymentResultListener {
 
     private static final String TAG = "BookAppointmentActivity";
-
-    public static int PAGES;
-    public final static int FIRST_PAGE = 0  ;
-
-    public CustomPagerAdapter mAdapter;
-    public ViewPager mViewPager;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
@@ -214,14 +201,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     @BindView(R.id.radioButton_visit)
     RadioButton radioButton_visit;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.activity_main_view_pager)
-    ViewPager carousel_viewPager;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.tutorial_activity_page_indicator_view)
-    PageIndicatorView pageIndicatorView;
-
     private List<PetTypeListResponse.DataBean.UsertypedataBean> usertypedataBeanList;
     private String strPetType;
     private String strPetBreedType;
@@ -235,9 +214,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     private String petName;
     private String petType;
     private String petBreed;
-
-
-    List<String> list;
 
     private final List<DocBusInfoUploadRequest.ClinicPicBean> clinicPicBeans = new ArrayList<>();
 
@@ -272,8 +248,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -290,26 +264,18 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             doctorid = extras.getString("doctorid");
-            //doctorid="6040832b2c2b43125f8cb843";
             fromactivity = extras.getString("fromactivity");
-            //fromactivity = "DoctorMyCalendarActivity";
             fromto = extras.getString("fromto");
-            //fromto = "07-03-2021 to 08-03-2021";
             Doctor_ava_Date = extras.getString("Doctor_ava_Date");
-            //Doctor_ava_Date = "07-03-2021";
             selectedTimeSlot = extras.getString("selectedTimeSlot");
-            //selectedTimeSlot= "08.00 AM";
+
             amount = extras.getInt("amount");
-            //amount = 1000;
             Log.w(TAG,"amount : "+amount);
             communicationtype = extras.getString("communicationtype");
-            //communicationtype= "Online";
             Log.w(TAG,"Bundle "+" doctorid : "+doctorid+" selectedTimeSlot : "+selectedTimeSlot+"communicationtype : "+communicationtype+" amount : "+amount);
         }
         radioButton_online.setVisibility(View.GONE);
         radioButton_visit.setVisibility(View.GONE);
-
-        cv_pet_img.setVisibility(View.GONE);
 
         if(communicationtype != null){
             if(communicationtype.equalsIgnoreCase("Online Or Visit")){
@@ -361,9 +327,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                     txt_or.setVisibility(View.GONE);
                     txt_pettype.setVisibility(View.VISIBLE);
                     txt_petbreed.setVisibility(View.VISIBLE);
-                    cv_pet_img.setVisibility(View.GONE);
-                    carousel_viewPager.setVisibility(View.VISIBLE);
-                    pageIndicatorView.setVisibility(View.VISIBLE);
+                    cv_pet_img.setVisibility(View.VISIBLE);
                     edt_petname.setVisibility(View.GONE);
                     edt_petname.setEnabled(false);
                     edt_petname.setInputType(InputType.TYPE_NULL);
@@ -422,8 +386,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                     isSelectYourPet = false;
                     txt_or.setVisibility(View.VISIBLE);
                     edt_petname.setVisibility(View.VISIBLE);
-                    carousel_viewPager.setVisibility(View.GONE);
-                    pageIndicatorView.setVisibility(View.GONE);
+
                     txt_pettype.setVisibility(View.GONE);
                     txt_petbreed.setVisibility(View.GONE);
                     cv_pet_img.setVisibility(View.GONE);
@@ -573,141 +536,30 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     }
 
     private void viewpageData(List<PetDetailsResponse.DataBean.PetImgBean> petImgBeanList) {
+        tabLayout.setupWithViewPager(viewPager, true);
 
-        //        tabLayout.setupWithViewPager(viewPager, true);
-//
-//        ViewPagerPetlistAdapter viewPagerPetlistAdapter = new ViewPagerPetlistAdapter(getApplicationContext(), petImgBeanList);
-//        viewPager.setAdapter(viewPagerPetlistAdapter);
-//        /*After setting the adapter use the timer */
-//        final Handler handler = new Handler();
-//        final Runnable Update =  new Runnable() {
-//            public void run() {
-//                if (currentPage == petImgBeanList.size()) {
-//                    currentPage = 0;
-//                }
-//                viewPager.setCurrentItem(currentPage++, false);
-//            }
-//        };
-//
-//        timer = new Timer(); // This will create a new Thread
-//        timer.schedule(new TimerTask() { // task to be scheduled
-//            @Override
-//            public void run() {
-//                handler.post(Update);
-//            }
-//        }, DELAY_MS, PERIOD_MS);
-//
+        ViewPagerPetlistAdapter viewPagerPetlistAdapter = new ViewPagerPetlistAdapter(getApplicationContext(), petImgBeanList);
+        viewPager.setAdapter(viewPagerPetlistAdapter);
+        /*After setting the adapter use the timer */
+        final Handler handler = new Handler();
+        final Runnable Update =  new Runnable() {
+            public void run() {
+                if (currentPage == petImgBeanList.size()) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, false);
+            }
+        };
 
-
-        list = new ArrayList<>();
-
-        for(int i=0; i<petImgBeanList.size();i++){
-
-            // Just image URL
-            list.add(petImgBeanList.get(i).getPet_img());
-
-        }
-
-        PAGES = list.size();
-
-        mAdapter = new CustomPagerAdapter(this, list,this.getSupportFragmentManager());
-
-        carousel_viewPager.setAdapter(mAdapter);
-
-        carousel_viewPager.setPageTransformer(false, mAdapter);
-
-        // Set current item to the middle page so we can fling to both
-        // directions left and right
-        carousel_viewPager.setCurrentItem(FIRST_PAGE);
-
-        // Necessary or the mViewPager will only have one extra page to show
-        // make this at least however many pages you can see
-        carousel_viewPager.setOffscreenPageLimit(3);
-
-        // Set margin for pages as a negative number, so a part of next and
-        // previous pages will be showed
-        carousel_viewPager.setPageMargin(-200);
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, DELAY_MS, PERIOD_MS);
 
     }
-
-    ViewListener viewListener = new ViewListener() {
-
-        @Override
-        public View setViewForPosition(int position) {
-            View customView = getLayoutInflater().inflate(R.layout.carousel_model, null);
-            //set view attributes here
-
-            ImageView imageView = customView.findViewById(R.id.img_pet_imge);
-
-            if(list!=null&&!list.isEmpty()){
-
-
-                if(list.get(position) != null&&!list.get(position).isEmpty()){
-
-                    Glide.with(BookAppointmentActivity.this)
-                            .load(list.get(position))
-                            .into(imageView);
-
-                }
-
-                else
-                {
-                    Glide.with(BookAppointmentActivity.this)
-                            .load(R.drawable.image_thumbnail)
-                            .into(imageView);
-
-                }
-
-
-            }
-
-            else {
-
-                Glide.with(BookAppointmentActivity.this)
-                        .load(R.drawable.image_thumbnail)
-                        .into(imageView);
-
-            }
-
-
-            return customView;
-        }
-    };
-
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-
-           if(list!=null&&!list.isEmpty()){
-
-
-                    if(list.get(position) != null&&!list.get(position).isEmpty()){
-
-                        Glide.with(BookAppointmentActivity.this)
-                                .load(list.get(position))
-                                .into(imageView);
-
-                    }
-
-                    else
-                    {
-                        Glide.with(BookAppointmentActivity.this)
-                                .load(R.drawable.image_thumbnail)
-                                .into(imageView);
-
-                    }
-
-
-            }
-
-           else {
-
-
-
-           }
-
-        }
-    };
 
     @SuppressLint("LogNotTimber")
     public void petTypeListResponseCall() {

@@ -2,8 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:attrs="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/headerView"
@@ -339,34 +338,11 @@
                 android:src="@drawable/upload"
                 android:visibility="gone" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/activity_main_view_pager"
-                android:layout_width="wrap_content"
-                android:layout_height="240dp">
-
-            </androidx.viewpager.widget.ViewPager>
-
-            <com.rd.PageIndicatorView
-                android:id="@+id/tutorial_activity_page_indicator_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                attrs:piv_animationType="drop"
-                attrs:piv_dynamicCount="true"
-                attrs:piv_interactiveAnimation="true"
-                attrs:piv_padding="16dp"
-                attrs:piv_radius="8dp"
-                attrs:piv_selectedColor="@color/new_light_green"
-                attrs:piv_unselectedColor="@color/green_color"
-                attrs:piv_viewPager="@id/activity_main_view_pager" />
-
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cdvw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 app:cardBackgroundColor="@color/light_green"
                 app:cardCornerRadius="10dp">
 

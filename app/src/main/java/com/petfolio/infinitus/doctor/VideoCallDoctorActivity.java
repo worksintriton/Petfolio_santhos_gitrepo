@@ -1,6 +1,7 @@
 package com.petfolio.infinitus.doctor;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
+
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetActivityInterface;
@@ -35,6 +37,7 @@ import org.jitsi.meet.sdk.log.JitsiMeetLogger;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,12 +108,10 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
             doctorimage = extras.getString("doctorimage");
             doctoremailid = extras.getString("doctoremailid");
             doctorid = extras.getString("doctorid");
-            Log.w(TAG , "Doctor_Id " +doctorid);
             patientname = extras.getString("patientname");
             patientimage = extras.getString("patientimage");
             patientemailid = extras.getString("patientemailid");
             patientid = extras.getString("patientid");
-            Log.w(TAG , "patientid " +patientid);
             Bookingfor = extras.getString("Bookingfor");
             Familyid = extras.getString("Familyid");
             Familyname = extras.getString("Familyname");
@@ -181,7 +182,7 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
     public void onBackPressed() {
        // Toasty.warning(getApplicationContext(),R.string.onbackpressedmsg,Toasty.LENGTH_SHORT).show();
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), DoctorDashboardActivity.class));
+        startActivity(new Intent(getApplicationContext(),DoctorDashboardActivity.class));
         finish();
     }
 
@@ -212,9 +213,8 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
                        // closeAppointmentNotifyResponseCall();
-                        Intent intent = new Intent(getApplicationContext(), PrescriptionActivity.class);
+                        Intent intent = new Intent(getApplicationContext(),PrescriptionActivity.class);
                         intent.putExtra("id",appointmentid);
-                        intent.putExtra("patient_id",patientid);
                         startActivity(intent);
                     }
                     else{
@@ -345,7 +345,7 @@ public class VideoCallDoctorActivity extends AppCompatActivity implements JitsiM
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
                         // closeAppointmentNotifyResponseCall();
-                        Intent intent = new Intent(getApplicationContext(), DoctorDashboardActivity.class);
+                        Intent intent = new Intent(getApplicationContext(),DoctorDashboardActivity.class);
                         startActivity(intent);
                     }
                     else{
