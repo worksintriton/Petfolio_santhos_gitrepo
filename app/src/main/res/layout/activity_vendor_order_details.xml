@@ -159,7 +159,7 @@
                     android:maxLines="1"
                     android:text="\u20B9 880"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
 
             </RelativeLayout>
@@ -189,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
                         android:text="Delivered"
                         android:textColor="@color/black"
@@ -202,6 +203,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/futuramediumbt"
                         android:maxLines="1"
                         android:text="Monday 24 Aug 2020"
                         android:textColor="@color/black"
@@ -220,6 +222,9 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="Order date"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -228,6 +233,9 @@
                     android:id="@+id/txt_order_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="19-Aug-2020"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -244,6 +252,9 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="Order #"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -252,6 +263,9 @@
                     android:id="@+id/txt_booking_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="1234ABCD12344321"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -268,6 +282,9 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="@string/payment_method"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -276,6 +293,9 @@
                     android:id="@+id/txt_payment_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="Online"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -292,6 +312,9 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="Order total"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -300,9 +323,12 @@
                     android:id="@+id/txt_total_order_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
+                    android:text="\u20B9  800"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:text="\u20B9  800"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -316,6 +342,9 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
                     android:text="Quantity"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -324,9 +353,12 @@
                     android:id="@+id/txt_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/futuramediumbt"
+                    android:maxLines="1"
+                    android:text="2"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:text="2"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -335,7 +367,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/vertical_dotted_line"
+                android:background="@drawable/horizontal_dotted_line"
                 android:layerType="software" />
 
             <TextView
@@ -344,6 +376,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/futuramediumbt"
                 android:text="Shipping Address"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -355,6 +389,7 @@
                 android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/futuramediumbt"
                 android:maxLines="3"
                 android:text="@string/desc_dummy"
                 android:textColor="@color/black"
@@ -366,6 +401,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/futuramediumbt"
                 android:text="Billing Address"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -377,6 +414,7 @@
                 android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/futuramediumbt"
                 android:maxLines="3"
                 android:text="@string/desc_dummy"
                 android:textColor="@color/black"

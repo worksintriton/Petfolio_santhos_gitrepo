@@ -66,6 +66,7 @@ import com.petfolio.infinitus.requestpojo.SignupRequest;
 import com.petfolio.infinitus.requestpojo.TodayDealMoreRequest;
 import com.petfolio.infinitus.requestpojo.UserStatusUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ServiceProviderRegisterFormCreateRequest;
+import com.petfolio.infinitus.requestpojo.VendorConfirmsOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderBookingCreateRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
@@ -140,6 +141,7 @@ import com.petfolio.infinitus.responsepojo.TodayDealMoreResponse;
 import com.petfolio.infinitus.responsepojo.UserStatusUpdateResponse;
 import com.petfolio.infinitus.responsepojo.UserTypeListResponse;
 import com.petfolio.infinitus.responsepojo.ServiceProviderRegisterFormCreateResponse;
+import com.petfolio.infinitus.responsepojo.VendorOrderAcceptResponse;
 import com.petfolio.infinitus.responsepojo.VendorOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 
@@ -579,6 +581,9 @@ public interface RestApiInterface {
     @POST("vendor_order_booking/create")
     Call<SuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body VendorOrderBookingCreateRequest vendorOrderBookingCreateRequest);
 
+    /*Vendor updates confirm / reject Order*/
+    @POST("vendor_order_booking/update_status_accept")
+    Call<VendorOrderAcceptResponse> vendor_order_booking_accept_ResponseCall(@Header("Content-Type") String type, @Body VendorConfirmsOrderRequest vendorConfirmsOrderRequest);
 
 
 
