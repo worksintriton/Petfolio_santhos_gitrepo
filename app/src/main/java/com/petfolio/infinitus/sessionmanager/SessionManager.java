@@ -46,12 +46,6 @@ public class SessionManager {
     }
 
 
-
-
-
-
-
-
     public void createLoginSession(String id, String firstname, String lastname, String useremail,String userphone,String usertype,
                                  String userstatus,String profileimage, String verifyemailstatus) {
 
@@ -74,10 +68,6 @@ public class SessionManager {
 
 
 
-
-
-
-
     public HashMap<String, String> getProfileDetails() {
         HashMap<String, String> user = new HashMap<>();
         user.put(KEY_ID, pref.getString(KEY_ID, ""));
@@ -93,7 +83,22 @@ public class SessionManager {
     }
 
 
+    public void StoreVendorID(String id) {
 
+        editor.putString("vendor_order", id);
+        Log.e(TAG, "................................>> session Login Details " + "KEY_ID" + id);
+
+        editor.commit();
+
+    }
+
+
+
+    public HashMap<String, String> getVendorID() {
+        HashMap<String, String> user = new HashMap<>();
+        user.put("vendor_order", pref.getString("vendor_order", ""));
+        return user;
+    }
 
 
     public void logoutUser() {

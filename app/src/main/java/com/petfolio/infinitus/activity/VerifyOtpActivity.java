@@ -32,8 +32,11 @@ import com.petfolio.infinitus.petlover.PetLoverDashboardActivity;
 import com.petfolio.infinitus.receiver.SmsBroadcastListener;
 import com.petfolio.infinitus.requestpojo.FBTokenUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ResendOTPRequest;
+import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
 import com.petfolio.infinitus.responsepojo.FBTokenUpdateResponse;
 import com.petfolio.infinitus.responsepojo.ResendOTPResponse;
+import com.petfolio.infinitus.responsepojo.VendorGetsOrderIDResponse;
+import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 import com.petfolio.infinitus.serviceprovider.ServiceProviderDashboardActivity;
 import com.petfolio.infinitus.serviceprovider.ServiceProviderRegisterFormActivity;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
@@ -408,7 +411,8 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
                                     startActivity(new Intent(VerifyOtpActivity.this, ServiceProviderDashboardActivity.class));
 
                                 }else if(usertype == 3 ){
-                                    startActivity(new Intent(VerifyOtpActivity.this, VendorDashboardActivity.class));
+
+                                    getVendorOrderID(usertype,"Dashboard");
 
                                 }else if(usertype == 4 ){
                                     startActivity(new Intent(VerifyOtpActivity.this, DoctorDashboardActivity.class));
@@ -425,6 +429,9 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
                                     startActivity(new Intent(VerifyOtpActivity.this, ServiceProviderRegisterFormActivity.class));
 
                                 }else if(usertype == 3 ){
+
+                                    getVendorOrderID(3,"Register");
+
                                     startActivity(new Intent(VerifyOtpActivity.this, VendorRegisterFormActivity.class));
 
                                 }else if(usertype == 4 ){
@@ -454,6 +461,8 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
         });
 
     }
+
+
     private FBTokenUpdateRequest fbTokenUpdateRequest() {
         FBTokenUpdateRequest fbTokenUpdateRequest = new FBTokenUpdateRequest();
         fbTokenUpdateRequest.setUser_id(userid);
@@ -463,6 +472,61 @@ public class VerifyOtpActivity extends AppCompatActivity implements View.OnClick
 
         return fbTokenUpdateRequest;
     }
+
+
+    @SuppressLint("LongLogTag")
+    private void getVendorOrderID(int usertype, String vendor_dashboard) {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<VendorGetsOrderIDResponse> call = apiInterface.vendor_gets_orderbyId_ResponseCall(RestUtils.getContentType(), vendorGetsOrderIdRequest());
+        Log.w(TAG,"vendorRegisterFormCreateResponseCall url  :%s"+" "+ call.request().url().toString());
+
+        call.enqueue(new Callback<VendorGetsOrderIDResponse>() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onResponse(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Response<VendorGetsOrderIDResponse> response) {
+
+                Log.w(TAG,"vendorRegisterFormCreateResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+                avi_indicator.smoothToHide();
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+
+                        startActivity(new Intent(VerifyOtpActivity.this, VendorDashboardActivity.class));
+                        finish();
+                    }
+                    else{
+                        showErrorLoading(response.body().getMessage());
+                    }
+                }
+
+
+            }
+
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onFailure(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Throwable t) {
+
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"VendorRegisterFormCreateResponse flr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+
+    private VendorGetsOrderIdRequest vendorGetsOrderIdRequest() {
+
+        VendorGetsOrderIdRequest vendorGetsOrderIdRequest = new VendorGetsOrderIdRequest();
+        vendorGetsOrderIdRequest.setUser_id(userid);
+
+        Log.w(TAG,"vendorGetsOrderIdRequest"+ "--->" + new Gson().toJson(vendorGetsOrderIdRequest));
+        //  Toasty.success(getApplicationContext(),"fbTokenUpdateRequest : "+new Gson().toJson(fbTokenUpdateRequest), Toast.LENGTH_SHORT, true).show();
+
+        return vendorGetsOrderIdRequest();
+    }
+
 
 
 }

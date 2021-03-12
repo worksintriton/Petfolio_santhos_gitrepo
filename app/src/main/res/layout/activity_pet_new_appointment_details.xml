@@ -510,7 +510,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/horizontal_dotted_line"
+                android:background="@drawable/vertical_dotted_line"
                 android:layerType="software" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -548,7 +548,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/horizontal_dotted_line"
+                android:background="@drawable/vertical_dotted_line"
                 android:layerType="software" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -646,7 +646,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/horizontal_dotted_line"
+                android:background="@drawable/vertical_dotted_line"
                 android:layerType="software" />
 
             <TextView

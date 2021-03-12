@@ -1,6 +1,6 @@
 package com.petfolio.infinitus.responsepojo;
 
-public class VendorOrderAcceptResponse {
+public class VendorConfirmsOrderResponse {
 
 
     /**
