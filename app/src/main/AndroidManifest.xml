@@ -46,7 +46,10 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:allowBackup,icon,theme,label,name">
-        <activity android:name=".vendor.VendorUpdateOrderStatusActivity"></activity>
+        <activity android:name=".vendor.VendorUpdateOrderStatusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

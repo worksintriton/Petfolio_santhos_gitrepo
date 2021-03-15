@@ -72,6 +72,7 @@ import com.petfolio.infinitus.requestpojo.VendorConfirmsOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorDispatchesOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorFetchOrderDetailsIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
+import com.petfolio.infinitus.requestpojo.VendorNewOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
 import com.petfolio.infinitus.responsepojo.AddReviewResponse;
@@ -148,6 +149,7 @@ import com.petfolio.infinitus.responsepojo.VendorConfirmsOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorDispatchesOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorFetchOrderDetailsResponse;
 import com.petfolio.infinitus.responsepojo.VendorGetsOrderIDResponse;
+import com.petfolio.infinitus.responsepojo.VendorNewOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 
@@ -593,6 +595,10 @@ public interface RestApiInterface {
     Call<PetVendorOrderResponse> get_order_details_user_id_ResponseCall(@Header("Content-Type") String type, @Body PetVendorOrderRequest petVendorOrderRequest);
 
 
+    /*Vendor views orders*/
+    @POST("vendor_order_booking/get_order_details_vendor_id")
+    Call<VendorNewOrderResponse> get_order_details_vendordid_ResponseCall(@Header("Content-Type") String type, @Body VendorNewOrderRequest vendorNewOrderRequest);
+
     /*Vendor accepts order*/
     @POST("vendor_order_booking/update_status_accept")
     Call<VendorConfirmsOrderResponse> vendor_order_booking_accept_ResponseCall(@Header("Content-Type") String type, @Body VendorConfirmsOrderRequest vendorConfirmsOrderRequest);
@@ -614,7 +620,7 @@ public interface RestApiInterface {
 
 
     /*Vendor gets order ID*/
-    @POST("vendor_order_booking/fetch_order_details_id")
+    @POST("product_vendor/getlist_id")
     Call<VendorGetsOrderIDResponse> vendor_gets_orderbyId_ResponseCall(@Header("Content-Type") String type, @Body VendorGetsOrderIdRequest vendorGetsOrderIdRequest);
 
 

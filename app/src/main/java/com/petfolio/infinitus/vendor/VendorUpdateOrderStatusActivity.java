@@ -157,78 +157,14 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
         if (extras != null) {
 
-            product_title = extras.getString("product_title");
-
-            order_date = extras.getString("order_date");
-
             order_id = extras.getString("order_id");
 
-            payment_mode = extras.getString("payment_mode");
-
-            product_image = extras.getString("product_image");
-
-            product_pr = extras.getInt("product_pr");
-
-            order_total = extras.getInt("order_total");
-
-            quantity = extras.getInt("quantity");
 
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
 
         String currentDateandTime = sdf.format(new Date());
-
-        if(product_image != null&&!product_image.isEmpty()){
-
-            Glide.with(this)
-                    .load(product_image)
-                    .into(img_products_image);
-
-        }
-        else{
-            Glide.with(this)
-                    .load(R.drawable.image_thumbnail)
-                    .into(img_products_image);
-
-        }
-
-        if(product_title != null&&!product_title.isEmpty()){
-
-            txt_product_title.setText(product_title);
-        }
-
-        if(product_pr!=0){
-
-            txt_products_price.setText(" \u20B9 "+ product_pr);
-        }
-
-        if(order_date != null&&!order_date.isEmpty()){
-
-            txt_order_date.setText(order_date);
-
-            txt_booked_date.setText(order_date);
-        }
-
-        if(order_id != null&&!order_id.isEmpty()){
-
-            txt_booking_id.setText(product_title);
-        }
-
-        if(payment_mode != null&&!payment_mode.isEmpty()){
-
-            txt_payment_method.setText(payment_mode);
-        }
-
-        if(order_total != 0){
-
-            txt_total_order_cost.setText(order_total);
-        }
-
-        if(quantity != 0){
-
-            txt_quantity.setText(quantity);
-        }
 
 
         ArrayList<String> orderTypeArrayList = new ArrayList<>();
@@ -338,6 +274,18 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
 
+                        if(response.body().getData()!=null){
+
+                            product_image = response.body().getData().getProdcut_image();
+
+                            product_title = response.body().getData().getProduct_name();
+
+                            product_pr = response.body().getData().getProduct_price();
+
+                            order_date = response.body().getData().getDate_of_booking_display();
+
+                            product_pr = response.body().getData().getProduct_price();
+                        }
 
                     }
                     else{
