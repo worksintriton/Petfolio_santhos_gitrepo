@@ -87,7 +87,7 @@
                     <TextView
                         android:id="@+id/txt_orderid"
                         android:layout_width="wrap_content"
-                        android:layout_height="19dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -126,7 +126,7 @@
                     <TextView
                         android:id="@+id/txt_producttitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="16dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/futuramediumbt"
@@ -135,6 +135,7 @@
                         android:textColor="@color/new_sec_txt_color"
                         android:textSize="12sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -174,13 +175,11 @@
 
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/txt_order_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/futuramediumbt"
                     android:maxLines="1"
@@ -192,20 +191,19 @@
             </LinearLayout>
 
 
-
             <TextView
-                android:layout_below="@+id/ly_petname"
-                android:id="@+id/txt_bookedon"
+                android:id="@+id/txt_cancelledon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/ly_petname"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/futuramediumbt"
                 android:maxLines="1"
-                android:text="@string/orderon"
-                android:textColor="@color/new_green_btn"
+                android:text="@string/cancelledon"
+                android:textColor="@color/missed_red_color"
                 android:textSize="12sp" />
 
         </RelativeLayout>

@@ -412,6 +412,7 @@
     <string name="cancel_order">Cancel order</string>
     <string name="track_order">Track order</string>
     <string name="return_order">Return order</string>
+    <string name="update_status">Update Status</string>
 
 
 </resources>

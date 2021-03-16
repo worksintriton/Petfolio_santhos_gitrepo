@@ -1,6 +1,7 @@
 package com.petfolio.infinitus.fragmentvendor;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,13 +23,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
-import com.petfolio.infinitus.adapter.SPMissedAppointmentAdapter;
-import com.petfolio.infinitus.adapter.VendorMissedOrdersAdapter;
+import com.petfolio.infinitus.adapter.VendorCancelledOrdersAdapter;
+import com.petfolio.infinitus.adapter.VendorCompletedOrdersAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
-import com.petfolio.infinitus.requestpojo.SPAppointmentRequest;
+import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
+import com.petfolio.infinitus.requestpojo.VendorNewOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
-import com.petfolio.infinitus.responsepojo.SPAppointmentResponse;
+import com.petfolio.infinitus.responsepojo.VendorGetsOrderIDResponse;
+import com.petfolio.infinitus.responsepojo.VendorNewOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorOrderResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
@@ -46,8 +50,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class FragmentVendorMissedOrders extends Fragment implements View.OnClickListener {
-    private String TAG = "FragmentVendorMissedAppointment";
+public class FragmentVendorCancelledOrders extends Fragment implements View.OnClickListener {
+    private String TAG = "FragmentVendorCancelledAppointment";
 
 
 
@@ -71,16 +75,17 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
     @BindView(R.id.btn_filter)
     Button btn_filter;
 
+    Dialog alertDialog;
 
 
     SessionManager session;
     String type = "",username = "",userid = "";
     private SharedPreferences preferences;
     private Context mContext;
-    private List<VendorOrderResponse.DataBean> newOrderResponseList;
+    private List<VendorNewOrderResponse.DataBean> newOrderResponseList;
 
 
-    public FragmentVendorMissedOrders() {
+    public FragmentVendorCancelledOrders() {
 
     }
 
@@ -111,7 +116,7 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
       
 
         if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
-            vendorOrderResponseCall();
+            getVendorOrderIDResponseCall(userid);
         }
 
         final Handler handler = new Handler();
@@ -124,7 +129,7 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
                         try {
                             //your method here
                             if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
-                                vendorOrderResponseCall();
+                                getVendorOrderIDResponseCall(userid);
                             }
 
                         } catch (Exception e) {
@@ -140,19 +145,105 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
     }
 
 
+    @SuppressLint("LongLogTag")
+    private void getVendorOrderIDResponseCall(String userid) {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<VendorGetsOrderIDResponse> call = apiInterface.vendor_gets_orderbyId_ResponseCall(RestUtils.getContentType(), vendorGetsOrderIdRequest(userid));
+        Log.w(TAG,"getVendorOrderIDResponseCall url  :%s"+" "+ call.request().url().toString());
 
-    private void vendorOrderResponseCall() {
+        call.enqueue(new Callback<VendorGetsOrderIDResponse>() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onResponse(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Response<VendorGetsOrderIDResponse> response) {
+
+                Log.w(TAG,"getVendorOrderIDResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+                avi_indicator.smoothToHide();
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+
+                        if(response.body().getData()!=null){
+
+                            if(response.body().getData().get_id()!=null&&!(response.body().getData().get_id().isEmpty())){
+
+                                vendorNewOrderResponseCall(response.body().getData().get_id());
+
+                            }
+
+
+                        }
+
+
+                    }
+                    else{
+                        showErrorLoading(response.body().getMessage());
+                    }
+                }
+
+
+            }
+
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onFailure(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Throwable t) {
+
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"getVendorOrderIDResponseCall flr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+
+    private VendorGetsOrderIdRequest vendorGetsOrderIdRequest(String userid) {
+
+        VendorGetsOrderIdRequest vendorGetsOrderIdRequest = new VendorGetsOrderIdRequest();
+
+        vendorGetsOrderIdRequest.setUser_id(userid);
+
+        Log.w(TAG,"vendorGetsOrderIdRequest"+ "--->" + new Gson().toJson(vendorGetsOrderIdRequest));
+        //  Toasty.success(getApplicationContext(),"fbTokenUpdateRequest : "+new Gson().toJson(fbTokenUpdateRequest), Toast.LENGTH_SHORT, true).show();
+
+        return vendorGetsOrderIdRequest;
+    }
+
+    public void showErrorLoading(String errormesage){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage(errormesage);
+        alertDialogBuilder.setPositiveButton("ok",
+                (arg0, arg1) -> hideLoading());
+
+
+
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void hideLoading(){
+        try {
+            alertDialog.dismiss();
+        }catch (Exception ignored){
+
+        }
+    }
+
+
+
+    private void vendorNewOrderResponseCall(String id) {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
         RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
-        Call<VendorOrderResponse> call = ApiService.vendorOrderResponseCall(RestUtils.getContentType(),vendorOrderRequest());
+        Call<VendorNewOrderResponse> call = ApiService.get_order_details_vendordid_ResponseCall(RestUtils.getContentType(),vendorNewOrderRequest(id));
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
-        call.enqueue(new Callback<VendorOrderResponse>() {
+        call.enqueue(new Callback<VendorNewOrderResponse>() {
             @Override
-            public void onResponse(@NonNull Call<VendorOrderResponse> call, @NonNull Response<VendorOrderResponse> response) {
+            public void onResponse(@NonNull Call<VendorNewOrderResponse> call, @NonNull Response<VendorNewOrderResponse> response) {
                 avi_indicator.smoothToHide();
-                Log.w(TAG,"VendorOrderResponse"+ "--->" + new Gson().toJson(response.body()));
+                Log.w(TAG,"VendorMissedOrderResponse"+ "--->" + new Gson().toJson(response.body()));
 
 
                 if (response.body() != null) {
@@ -163,7 +254,7 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
                         Log.w(TAG,"newOrderResponseList : "+new Gson().toJson(newOrderResponseList));
                         if(response.body().getData().isEmpty()){
                             txt_no_records.setVisibility(View.VISIBLE);
-                            txt_no_records.setText("No missed orders");
+                            txt_no_records.setText("No new orders");
                             rv_missedappointment.setVisibility(View.GONE);
                             btn_load_more.setVisibility(View.GONE);
                         }
@@ -186,41 +277,46 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
             }
 
             @Override
-            public void onFailure(@NonNull Call<VendorOrderResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<VendorNewOrderResponse> call, @NonNull Throwable t) {
                 avi_indicator.smoothToHide();
 
-                Log.w(TAG,"VendorOrderResponse flr"+"--->" + t.getMessage());
+                Log.w(TAG,"VendorMissedOrderResponse flr"+"--->" + t.getMessage());
             }
         });
 
     }
-    private VendorOrderRequest vendorOrderRequest() {
+    @SuppressLint("LogNotTimber")
+    private VendorNewOrderRequest vendorNewOrderRequest(String id) {
         /**
-         * user_id : 6025040ee15519672cd0dc02
-         * order_deliver_status : missed
+         * vendor_id : 604866a50b3a487571a1c568
+         * order_status : New
          */
-        VendorOrderRequest vendorOrderRequest = new VendorOrderRequest();
-        vendorOrderRequest.setUser_id("6025040ee15519672cd0dc02");
-        vendorOrderRequest.setOrder_deliver_status("Booked");
-        Log.w(TAG,"vendorOrderRequest"+ "--->" + new Gson().toJson(vendorOrderRequest));
-        return vendorOrderRequest;
+
+        VendorNewOrderRequest vendorNewOrderRequest = new VendorNewOrderRequest();
+        vendorNewOrderRequest.setVendor_id(id);
+        vendorNewOrderRequest.setOrder_status("cancelled");
+        Log.w(TAG,"vendorNewOrderRequest"+ "--->" + new Gson().toJson(vendorNewOrderRequest));
+        return vendorNewOrderRequest;
     }
+
     private void setView() {
         rv_missedappointment.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_missedappointment.setItemAnimator(new DefaultItemAnimator());
         int size = 3;
-        VendorMissedOrdersAdapter vendorMissedOrdersAdapter = new VendorMissedOrdersAdapter(getContext(), newOrderResponseList,size);
-        rv_missedappointment.setAdapter(vendorMissedOrdersAdapter);
+        VendorCancelledOrdersAdapter vendorCancelledOrdersAdapter = new VendorCancelledOrdersAdapter(getContext(), newOrderResponseList,size);
+        rv_missedappointment.setAdapter(vendorCancelledOrdersAdapter);
 
     }
     private void setViewLoadMore() {
         rv_missedappointment.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_missedappointment.setItemAnimator(new DefaultItemAnimator());
         int size = newOrderResponseList.size();
-        VendorMissedOrdersAdapter vendorMissedOrdersAdapter = new VendorMissedOrdersAdapter(getContext(), newOrderResponseList,size);
-        rv_missedappointment.setAdapter(vendorMissedOrdersAdapter);
+        VendorCancelledOrdersAdapter vendorCancelledOrdersAdapter = new VendorCancelledOrdersAdapter(getContext(), newOrderResponseList,size);
+        rv_missedappointment.setAdapter(vendorCancelledOrdersAdapter);
 
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -230,4 +326,5 @@ public class FragmentVendorMissedOrders extends Fragment implements View.OnClick
                 break;
         }
     }
+
 }
