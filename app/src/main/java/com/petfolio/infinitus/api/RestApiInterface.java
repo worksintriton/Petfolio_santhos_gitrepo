@@ -65,6 +65,8 @@ import com.petfolio.infinitus.requestpojo.ServiceCatRequest;
 import com.petfolio.infinitus.requestpojo.ShopDashboardRequest;
 import com.petfolio.infinitus.requestpojo.SignupRequest;
 import com.petfolio.infinitus.requestpojo.TodayDealMoreRequest;
+import com.petfolio.infinitus.requestpojo.UpdateStatusCancelRequest;
+import com.petfolio.infinitus.requestpojo.UpdateStatusReturnRequest;
 import com.petfolio.infinitus.requestpojo.UserStatusUpdateRequest;
 import com.petfolio.infinitus.requestpojo.ServiceProviderRegisterFormCreateRequest;
 import com.petfolio.infinitus.requestpojo.VendorCancelsOrderRequest;
@@ -73,6 +75,7 @@ import com.petfolio.infinitus.requestpojo.VendorDispatchesOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorFetchOrderDetailsIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorNewOrderRequest;
+import com.petfolio.infinitus.requestpojo.VendorOrderDetailsRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
 import com.petfolio.infinitus.responsepojo.AddReviewResponse;
@@ -150,7 +153,9 @@ import com.petfolio.infinitus.responsepojo.VendorDispatchesOrderResponse;
 import com.petfolio.infinitus.responsepojo.VendorFetchOrderDetailsResponse;
 import com.petfolio.infinitus.responsepojo.VendorGetsOrderIDResponse;
 import com.petfolio.infinitus.responsepojo.VendorNewOrderResponse;
+import com.petfolio.infinitus.responsepojo.VendorOrderDetailsResponse;
 import com.petfolio.infinitus.responsepojo.VendorOrderResponse;
+import com.petfolio.infinitus.responsepojo.VendorReasonListResponse;
 import com.petfolio.infinitus.responsepojo.VendorRegisterFormCreateResponse;
 
 import okhttp3.MultipartBody;
@@ -622,6 +627,25 @@ public interface RestApiInterface {
     /*Vendor gets order ID*/
     @POST("product_vendor/getlist_id")
     Call<VendorGetsOrderIDResponse> vendor_gets_orderbyId_ResponseCall(@Header("Content-Type") String type, @Body VendorGetsOrderIdRequest vendorGetsOrderIdRequest);
+
+    /*Vendor gets order ID*/
+    @GET("vendor_order_booking/cancel_status")
+    Call<VendorReasonListResponse> vendorReasonListResponseCall(@Header("Content-Type") String type);
+
+    /*Order Details*/
+    @POST("vendor_order_booking/fetch_order_details_id")
+    Call<VendorOrderDetailsResponse> vendorOrderDetailsResponseCall(@Header("Content-Type") String type, @Body VendorOrderDetailsRequest vendorOrderDetailsRequest);
+
+    /*Cancel the order*/
+    @POST("vendor_order_booking/update_status_cancel")
+    Call<SuccessResponse> update_status_cancelResponseCall(@Header("Content-Type") String type, @Body UpdateStatusCancelRequest updateStatusCancelRequest);
+
+    /*Return the order*/
+    @POST("vendor_order_booking/update_status_return")
+    Call<SuccessResponse> update_status_returnResponseCall(@Header("Content-Type") String type, @Body UpdateStatusReturnRequest updateStatusReturnRequest);
+
+
+
 
 
 }
