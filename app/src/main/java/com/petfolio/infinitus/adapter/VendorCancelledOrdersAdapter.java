@@ -289,9 +289,4 @@ public class VendorCancelledOrdersAdapter extends  RecyclerView.Adapter<Recycler
 
     }
 
-
-
-
-
-
 }

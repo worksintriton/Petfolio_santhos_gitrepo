@@ -255,7 +255,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
     int order_total, quantity;
 
-    Double product_pr;
+    int product_pr;
 
     List<VendorFetchOrderDetailsResponse.DataBean.ProdcutTrackDetailsBean> prodcutTrackDetailsBeanList;
 
@@ -896,6 +896,8 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         img_vendor_confirmed.setImageResource(R.drawable.button_grey_circle);
 
+                        txt_edit_order_confirm.setVisibility(View.GONE);
+
                     }
 
                 }
@@ -920,12 +922,14 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         view_dispatch_to_transit.setBackground(ContextCompat.getDrawable(VendorUpdateOrderStatusActivity.this, R.drawable.vertical_lines_green));
 
-                        if(dataBeanList.getVendor_complete_info()!=null&&dataBeanList.getVendor_complete_info().isEmpty()){
+                        if(dataBeanList.getVendor_complete_info()!=null&&!dataBeanList.getVendor_complete_info().isEmpty()){
 
                             txt_order_dispatch_packdetails.setText(""+dataBeanList.getVendor_complete_info());
 
                             txt_order_dispatch_packdetails.setTextColor(ContextCompat.getColor(VendorUpdateOrderStatusActivity.this, R.color.black));
                         }
+
+                        txt_edit_order_confirm.setVisibility(View.GONE);
 
 
                     } else {
@@ -961,7 +965,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         txt_order_status_reject.setTextColor(ContextCompat.getColor(VendorUpdateOrderStatusActivity.this, R.color.black));
 
-                        if(dataBeanList.getUser_cancell_info()!=null&&dataBeanList.getUser_cancell_info().isEmpty()){
+                        if(dataBeanList.getUser_cancell_info()!=null&&!dataBeanList.getUser_cancell_info().isEmpty()){
 
                             txt_order_reject_date_reason.setText(""+dataBeanList.getUser_cancell_info());
 
@@ -978,6 +982,8 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                        // view_cancel_to_dispatch.setBackground(ContextCompat.getDrawable(VendorUpdateOrderStatusActivity.this, R.drawable.vertical_lines_green));
 
                        img_vendor_order_rejected_bypetlover.setImageResource(R.drawable.ic_baseline_check_circle_24);
+
+                       txt_edit_order_reject_petlover.setVisibility(View.GONE);
 
 
                     } else {
@@ -1002,7 +1008,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         txt_order_status_reject_petlover.setTextColor(ContextCompat.getColor(VendorUpdateOrderStatusActivity.this, R.color.black));
 
-                        if(dataBeanList.getVendor_cancell_info()!=null&&dataBeanList.getVendor_cancell_info().isEmpty()){
+                        if(dataBeanList.getVendor_cancell_info()!=null&&!dataBeanList.getVendor_cancell_info().isEmpty()){
 
                             txt_order_vendor_reject_date_reason.setText(""+dataBeanList.getVendor_cancell_info());
 
@@ -1020,6 +1026,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         img_vendor_order_rejected.setImageResource(R.drawable.ic_baseline_check_circle_24);
 
+                        txt_edit_order_reject.setVisibility(View.GONE);
 
                     } else {
 

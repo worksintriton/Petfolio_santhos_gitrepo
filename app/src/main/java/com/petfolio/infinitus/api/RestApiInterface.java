@@ -88,6 +88,7 @@ import com.petfolio.infinitus.responsepojo.AppointmentCheckResponse;
 import com.petfolio.infinitus.responsepojo.AppointmentsUpdateResponse;
 import com.petfolio.infinitus.responsepojo.BreedTypeResponse;
 import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
+import com.petfolio.infinitus.responsepojo.CartSuccessResponse;
 import com.petfolio.infinitus.responsepojo.CreateHolidayResponse;
 import com.petfolio.infinitus.responsepojo.DocBusInfoUploadResponse;
 import com.petfolio.infinitus.responsepojo.DoctorAppointmentsResponse;
@@ -596,7 +597,7 @@ public interface RestApiInterface {
 
     /*Vendor booking create*/
     @POST("vendor_order_booking/create")
-    Call<SuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body CartDetailsResponse cartDetailsResponse);
+    Call<CartSuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body CartDetailsResponse cartDetailsResponse);
 
 
     /*Vendor booked view orders*/
