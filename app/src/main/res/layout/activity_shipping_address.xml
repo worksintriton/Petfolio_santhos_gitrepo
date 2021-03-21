@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/txt_no_records"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/norecordsfound"
+        android:textColor="@color/color"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/headerView"
         android:layout_width="match_parent"
@@ -125,6 +136,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_addresslist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -150,11 +162,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_address_list"
+                android:id="@+id/ll_address_list_show"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -282,7 +295,7 @@
                             android:textStyle="normal" />
 
                         <TextView
-                            android:id="@+id/txt_state_state_pincode"
+                            android:id="@+id/txt_dist_pincode_state"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"

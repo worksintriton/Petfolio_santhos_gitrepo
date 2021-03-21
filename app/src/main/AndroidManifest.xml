@@ -46,7 +46,28 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:allowBackup,icon,theme,label,name">
+        <activity android:name=".petlover.ShippingAddressEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".petlover.ShippingAddressCreateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".petlover.ShippingAddressAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".petlover.ShippingAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".vendor.VendorUpdateOrderStatusActivity"
             android:screenOrientation="portrait"
@@ -62,11 +83,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".petlover.PetOtherInformationsActivity"
@@ -102,9 +123,7 @@
             android:name=".activity.VerifyEmailOtpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
-
-        <!-- Pet Lover -->
+            android:windowSoftInputMode="adjustPan" /> <!-- Pet Lover -->
         <activity
             android:name=".petlover.AddYourPetActivity"
             android:screenOrientation="portrait"
@@ -546,8 +565,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".vendor.ManageProductsActivity"
+        <activity
+            android:name=".vendor.ManageProductsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
