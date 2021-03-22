@@ -1,6 +1,6 @@
 package com.petfolio.infinitus.requestpojo;
 
-public class ShippingAddressFetchUserRequest {
+public class ShippingAddressListingByUserIDRequest {
 
 
     /**

@@ -1,5 +1,6 @@
 package com.petfolio.infinitus.responsepojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CartDetailsResponse {
@@ -27,7 +28,15 @@ public class CartDetailsResponse {
 
 
     private String user_id;
+    private String shipping_details_id;
 
+    public String getShipping_details_id() {
+        return shipping_details_id;
+    }
+
+    public void setShipping_details_id(String shipping_details_id) {
+        this.shipping_details_id = shipping_details_id;
+    }
 
     private String Status;
     private String Message;
@@ -216,7 +225,7 @@ public class CartDetailsResponse {
 
     }
 
-    public static class DataBean  {
+    public static class DataBean implements Serializable {
         /**
          * _id : 6046fa59cb48ca0b68cda50c
          * user_id : 603e27792c2b43125f8cb802
@@ -484,7 +493,7 @@ public class CartDetailsResponse {
 
             }
 
-              public String getMobile_type() {
+            public String getMobile_type() {
                 return mobile_type;
             }
 

@@ -2,13 +2,13 @@ package com.petfolio.infinitus.responsepojo;
 
 import java.util.List;
 
-public class ShippingAddressFetchUserResponse {
+public class ShippingAddressListingByUserIDResponse {
 
 
     /**
      * Status : Success
      * Message : Shipping address details
-     * Data : [{"_id":"6057129e2e3b894a69767d40","user_id":"6048589d0b3a487571a1c567","user_first_name":"Mohammed","user_last_name":"imthiyas","user_flat_no":"no 23","user_stree":"203rd Street,Muthamil nage, chennai - 600119","user_landmark":"Near Temple","user_picocode":"600119","user_state":"Tamil Nadu","user_mobile":"+919181823011","user_alter_mobile":"+919181823011","user_address_stauts":"Last Used","updatedAt":"2021-03-21T09:32:14.923Z","createdAt":"2021-03-21T09:32:14.923Z","__v":0}]
+     * Data : [{"_id":"60587225344d9b55ceeec259","user_id":"6048589d0b3a487571a1c567","user_first_name":"Mohammed","user_last_name":"imthiyas","user_flat_no":"no 23","user_stree":"203rd Street,Muthamil nage, chennai - 600119","user_landmark":"Near Temple","user_picocode":"600119","user_state":"Tamil Nadu","user_mobile":"+919181823011","user_alter_mobile":"+919181823011","user_address_stauts":"Last Used","user_address_type":"Home","user_display_date":"22-03-2021","updatedAt":"2021-03-22T10:32:05.368Z","createdAt":"2021-03-22T10:32:05.368Z","__v":0}]
      * Code : 200
      */
 
@@ -16,7 +16,7 @@ public class ShippingAddressFetchUserResponse {
     private String Message;
     private int Code;
     /**
-     * _id : 6057129e2e3b894a69767d40
+     * _id : 60587225344d9b55ceeec259
      * user_id : 6048589d0b3a487571a1c567
      * user_first_name : Mohammed
      * user_last_name : imthiyas
@@ -28,8 +28,10 @@ public class ShippingAddressFetchUserResponse {
      * user_mobile : +919181823011
      * user_alter_mobile : +919181823011
      * user_address_stauts : Last Used
-     * updatedAt : 2021-03-21T09:32:14.923Z
-     * createdAt : 2021-03-21T09:32:14.923Z
+     * user_address_type : Home
+     * user_display_date : 22-03-2021
+     * updatedAt : 2021-03-22T10:32:05.368Z
+     * createdAt : 2021-03-22T10:32:05.368Z
      * __v : 0
      */
 
@@ -80,6 +82,8 @@ public class ShippingAddressFetchUserResponse {
         private String user_mobile;
         private String user_alter_mobile;
         private String user_address_stauts;
+        private String user_address_type;
+        private String user_display_date;
         private String updatedAt;
         private String createdAt;
         private int __v;
@@ -178,6 +182,22 @@ public class ShippingAddressFetchUserResponse {
 
         public void setUser_address_stauts(String user_address_stauts) {
             this.user_address_stauts = user_address_stauts;
+        }
+
+        public String getUser_address_type() {
+            return user_address_type;
+        }
+
+        public void setUser_address_type(String user_address_type) {
+            this.user_address_type = user_address_type;
+        }
+
+        public String getUser_display_date() {
+            return user_display_date;
+        }
+
+        public void setUser_display_date(String user_display_date) {
+            this.user_display_date = user_display_date;
         }
 
         public String getUpdatedAt() {

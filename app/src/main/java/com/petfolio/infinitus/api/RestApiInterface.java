@@ -63,8 +63,13 @@ import com.petfolio.infinitus.requestpojo.SPMyCalendarAvlDaysRequest;
 import com.petfolio.infinitus.requestpojo.SPNotificationSendRequest;
 import com.petfolio.infinitus.requestpojo.SPSpecificServiceDetailsRequest;
 import com.petfolio.infinitus.requestpojo.ServiceCatRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddrMarkAsLastUsedRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddrMarkAsLastUsedResponse;
+import com.petfolio.infinitus.requestpojo.ShippingAddressCreateRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
-import com.petfolio.infinitus.requestpojo.ShippingAddressFetchUserRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddressEditRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddressFetchByUserIDRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddressListingByUserIDRequest;
 import com.petfolio.infinitus.requestpojo.ShopDashboardRequest;
 import com.petfolio.infinitus.requestpojo.SignupRequest;
 import com.petfolio.infinitus.requestpojo.TodayDealMoreRequest;
@@ -79,6 +84,7 @@ import com.petfolio.infinitus.requestpojo.VendorDispatchesOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorFetchOrderDetailsIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorNewOrderRequest;
+import com.petfolio.infinitus.requestpojo.VendorOrderBookingCreateRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderDetailsRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
@@ -145,8 +151,11 @@ import com.petfolio.infinitus.responsepojo.SPFilterPriceListResponse;
 import com.petfolio.infinitus.responsepojo.SPServiceListResponse;
 import com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse;
 import com.petfolio.infinitus.responsepojo.ServiceCatResponse;
+import com.petfolio.infinitus.responsepojo.ShippingAddressCreateResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressDeleteResponse;
-import com.petfolio.infinitus.responsepojo.ShippingAddressFetchUserResponse;
+import com.petfolio.infinitus.responsepojo.ShippingAddressEditResponse;
+import com.petfolio.infinitus.responsepojo.ShippingAddressFetchByUserIDResponse;
+import com.petfolio.infinitus.responsepojo.ShippingAddressListingByUserIDResponse;
 import com.petfolio.infinitus.responsepojo.ShopDashboardResponse;
 import com.petfolio.infinitus.responsepojo.SignupResponse;
 import com.petfolio.infinitus.responsepojo.SplashScreenResponse;
@@ -601,7 +610,7 @@ public interface RestApiInterface {
 
     /*Vendor booking create*/
     @POST("vendor_order_booking/create")
-    Call<CartSuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body CartDetailsResponse cartDetailsResponse);
+    Call<CartSuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body VendorOrderBookingCreateRequest vendorOrderBookingCreateRequest);
 
 
     /*Vendor booked view orders*/
@@ -661,17 +670,29 @@ public interface RestApiInterface {
     @POST("vendor_order_booking/update_status_return")
     Call<VendorAcceptsReturnOrderResponse> update_status_vendor_accept_returnResponseCall(@Header("Content-Type") String type, @Body VendorAcceptReturnOrderRequest vendorAcceptReturnOrderRequest);
 
-  /* User Fetches Last Used Shipping Address */
+  /* User Fetches Shipping Address By ID */
     @POST("shipping_address/fetch_by_userid")
-    Call<ShippingAddressFetchUserResponse> fetch_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressFetchUserRequest shippingAddressFetchUserRequest);
+    Call<ShippingAddressFetchByUserIDResponse> fetch_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressFetchByUserIDRequest shippingAddressFetchByUserIDRequest);
+
+    /* User lists Shipping Address By ID */
+    @POST("shipping_address/listing_address_by_userid")
+    Call<ShippingAddressListingByUserIDResponse> list_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressListingByUserIDRequest shippingAddressListingByUserIDRequest);
+
+    /* User Creates Shipping Address */
+    @POST("shipping_address/create")
+    Call<ShippingAddressCreateResponse> creates_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressCreateRequest shippingAddressCreateRequest);
 
     /* User Deletes Shipping Address */
-    @POST("shipping_address/fetch_by_userid")
+    @POST("shipping_address/delete")
     Call<ShippingAddressDeleteResponse> delete_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressDeleteRequest shippingAddressDeleteRequest);
 
-//    /* User Fetches Last Used Shipping Address */
-//    @POST("shipping_address/fetch_by_userid")
-//    Call<ShippingAddressFetchUserResponse> fetch_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressFetchUserRequest shippingAddressFetchUserRequest);
+  /* User Edits Shipping Address */
+  @POST("shipping_address/edit")
+   Call<ShippingAddressEditResponse> edit_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressEditRequest shippingAddressEditRequest);
+
+   /* User Marks Chossen Shipping Address as Last Used*/
+    @POST("shipping_address/edit")
+    Call<ShippingAddrMarkAsLastUsedResponse> mark_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddrMarkAsLastUsedRequest shippingAddrMarkAsLastUsedRequest);
 
 
 }
