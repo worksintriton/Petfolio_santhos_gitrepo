@@ -13,7 +13,7 @@
         android:text="@string/norecordsfound"
         android:textColor="@color/color"
         android:textSize="16sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/headerView"
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -434,6 +434,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         app:indicatorColor="@color/new_green_btn"
         app:indicatorName="LineSpinFadeLoaderIndicator" />
 

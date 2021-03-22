@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
@@ -24,6 +26,8 @@ import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressFetchUserRequest;
 import com.petfolio.infinitus.requestpojo.VendorFetchOrderDetailsIdRequest;
+import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
+import com.petfolio.infinitus.responsepojo.CartSuccessResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressDeleteResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressFetchUserResponse;
 import com.petfolio.infinitus.responsepojo.VendorFetchOrderDetailsResponse;
@@ -31,7 +35,11 @@ import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.petfolio.infinitus.vendor.VendorOrderDetailsActivity;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 import com.wang.avi.AVLoadingIndicatorView;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,7 +55,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShippingAddressActivity extends AppCompatActivity implements View.OnClickListener{
+public class ShippingAddressActivity extends AppCompatActivity implements View.OnClickListener, PaymentResultListener {
 
     private String TAG = "ShippingAddressActivity";
 
@@ -115,11 +123,17 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     @BindView(R.id.btn_continue)
     Button btn_continue;
 
-    String userid, name, phonum, state, street, landmark_pincode, address_type, date, shipid;
+    String userid, name, phonum, state, street, landmark_pincode, address_type, date, shipid, fromactivity;
+
+    String first_name,last_name,flat_no,landmark,pincode,alt_phonum,address_status;
 
     List<ShippingAddressFetchUserResponse.DataBean> dataBeanList;
 
     private Dialog dialog;
+
+    private String Payment_id = "";
+
+    int grand_total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -143,19 +157,60 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
         if (extras != null) {
 
+            fromactivity = extras.getString("fromactivity");
 
-        }
+            if(fromactivity.equals("PetCartActivity"))
+            {
 
-        else
-        {
+                grand_total = extras.getInt("grand_total");
 
-            if (new ConnectionDetector(ShippingAddressActivity.this).isNetworkAvailable(ShippingAddressActivity.this)) {
+                if (new ConnectionDetector(ShippingAddressActivity.this).isNetworkAvailable(ShippingAddressActivity.this)) {
 
-                shippingAddressresponseCall(userid);
+                    shippingAddressresponseCall(userid);
+
+                }
 
             }
 
+            else
+            {
+                shipid = extras.getString("shipid");
 
+                first_name = extras.getString("first_name");
+
+                last_name = extras.getString("last_name");
+
+                name = first_name + " " + last_name;
+
+                phonum = extras.getString("phonum");
+
+                alt_phonum = extras.getString("alt_phonum");
+
+                flat_no = extras.getString("flat_no");
+
+                state = extras.getString("state");
+
+                street = extras.getString("street");
+
+                landmark = extras.getString("landmark");
+
+                pincode  = extras.getString("pincode");
+
+                landmark_pincode = landmark +" , "+ pincode;
+
+                address_type = "Home";
+
+                //address_type = extras.getString("address_type");
+
+                date = "14/02/2021";
+
+                //date = extras.getString("date");
+
+                address_status = extras.getString("address_status");
+
+                setView();
+
+            }
 
         }
 
@@ -207,8 +262,11 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     private void shippingAddressresponseCall(String userid) {
 
         avi_indicator.setVisibility(View.VISIBLE);
+
         avi_indicator.smoothToShow();
+
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+
         Call<ShippingAddressFetchUserResponse> call = apiInterface.fetch_shipp_addr_ResponseCall(RestUtils.getContentType(), shippingAddressFetchUserRequest(userid));
 
         Log.w(TAG,"ShippingAddressFetchUserResponse url  :%s"+" "+ call.request().url().toString());
@@ -224,18 +282,12 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
 
-                        if(response.body().getMessage()!=null&&response.body().getMessage().equals("No Shipping address details")){
-
-                            showNoAddressAlert();
-
-                        }
-
-                        else if(response.body().getData()!=null)
-
+                        if(response.body().getData()!=null&&!(response.body().getData().isEmpty()))
                         {
                             dataBeanList = response.body().getData();
 
-                            if(dataBeanList.size()>0){
+                            if(dataBeanList.size()>0)
+                            {
 
                                 for(int i=0;i<dataBeanList.size();i++){
 
@@ -243,19 +295,33 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
                                         shipid = dataBeanList.get(i).get_id();
 
-                                        name = dataBeanList.get(i).getUser_first_name() + " " +dataBeanList.get(i).getUser_last_name();
+                                        first_name = dataBeanList.get(i).getUser_first_name();
+
+                                        last_name = dataBeanList.get(i).getUser_last_name();
+
+                                        name = first_name + " " + last_name;
 
                                         phonum = dataBeanList.get(i).getUser_mobile();
+
+                                        alt_phonum = dataBeanList.get(i).getUser_alter_mobile();
+
+                                        flat_no = dataBeanList.get(i).getUser_flat_no();
 
                                         state = dataBeanList.get(i).getUser_state();
 
                                         street = dataBeanList.get(i).getUser_stree();
 
-                                        landmark_pincode = dataBeanList.get(i).getUser_landmark() +" , "+ dataBeanList.get(i).getUser_picocode();
+                                        landmark = dataBeanList.get(i).getUser_landmark();
+
+                                        pincode  = dataBeanList.get(i).getUser_picocode();
+
+                                        landmark_pincode = landmark +" , "+ pincode;
 
                                         address_type = "Home";
 
                                         date = "14/02/2021";
+
+                                        address_status = dataBeanList.get(i).getUser_address_stauts();
 
                                         setView();
 
@@ -265,6 +331,8 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                             }
 
                             else {
+
+                                showNoAddressAlert();
 
                                 ll_address_list_show.setVisibility(View.GONE);
 
@@ -388,6 +456,91 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         return shippingAddressDeleteRequest;
     }
 
+
+    @SuppressLint("LogNotTimber")
+    public void vendor_order_booking_create_ResponseCall(){
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        //Creating an object of our api interface
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<CartSuccessResponse> call = ApiService.vendor_order_booking_create_ResponseCall(RestUtils.getContentType(),vendorOrderBookingCreateRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<CartSuccessResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
+            @Override
+            public void onResponse(@NonNull Call<CartSuccessResponse> call, @NonNull Response<CartSuccessResponse> response) {
+                avi_indicator.smoothToHide();
+                if (response.body() != null) {
+                    if(200 == response.body().getCode()){
+                        Log.w(TAG,"SuccessResponse "+new Gson().toJson(response.body().getData()));
+
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+                        callDirections("2");
+
+
+
+
+                    }
+                }
+            }
+
+
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onFailure(@NonNull Call<CartSuccessResponse> call, @NonNull  Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"SuccessResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+    @SuppressLint("LogNotTimber")
+    private CartDetailsResponse vendorOrderBookingCreateRequest() {
+        /*
+         * user_id : 603e27792c2b43125f8cb802
+         * Data : [{"_id":"6046fa59cb48ca0b68cda50c","user_id":"603e27792c2b43125f8cb802","product_id":{"breed_type":["602d1c20562e0916bc9b3218"],"pet_type":["602d1c6b562e0916bc9b321d"],"age":[3],"product_img":["http://54.212.108.156:3000/api/uploads/1614075552394.jpg"],"_id":"6034d6a5888af7628e7e17d4","user_id":"602a2061b3c2dd2c152d77d8","cat_id":"5fec14a5ea832e2e73c1fc79","cost":1000,"threshould":"100","product_name":"Cat Dinner","product_discription":"This cat  food","discount":10,"related":"","count":0,"status":"true","verification_status":"Not Verified","date_and_time":"Tue Feb 23 2021 15:49:15 GMT+0530 (India Standard Time)","mobile_type":"Admin","delete_status":true,"fav_status":false,"today_deal":true,"updatedAt":"2021-03-08T09:15:24.812Z","createdAt":"2021-02-23T10:19:17.691Z","__v":0},"product_count":7,"updatedAt":"2021-03-09T06:10:04.116Z","createdAt":"2021-03-09T04:32:25.151Z","__v":0},{"_id":"60471192760fff2968288bbd","user_id":"603e27792c2b43125f8cb802","product_id":{"breed_type":["602d1c17562e0916bc9b3217"],"pet_type":["602d1c6b562e0916bc9b321d"],"age":[3],"product_img":["http://54.212.108.156:3000/api/uploads/1614075490400.jpg"],"_id":"6034d66598fa826140f6a3a3","user_id":"602a2061b3c2dd2c152d77d8","cat_id":"5fec14a5ea832e2e73c1fc79","cost":40000,"threshould":"100","product_name":"CAT Lunch","product_discription":"This is cat lunch","discount":40,"related":"","count":0,"status":"true","verification_status":"Not Verified","date_and_time":"Tue Feb 23 2021 15:48:14 GMT+0530 (India Standard Time)","mobile_type":"Admin","delete_status":true,"fav_status":false,"today_deal":true,"updatedAt":"2021-03-08T09:15:22.710Z","createdAt":"2021-02-23T10:18:13.989Z","__v":0},"product_count":1,"updatedAt":"2021-03-09T06:11:30.904Z","createdAt":"2021-03-09T06:11:30.904Z","__v":0}]
+         * prodouct_total : 47000
+         * shipping_charge : 0
+         * discount_price : 0
+         * grand_total : 0
+         * prodcut_count : 0
+         * prodcut_item_count : 0
+         * "date_of_booking_display" : "23-Jan-2020",
+            "date_of_booking" : "23-10-2021  11 : 00 PM",
+            "coupon_code" : "",
+             "shipping_address_id" : "",
+            "billling_address_id" : "",
+            "shipping_address" : "",
+             "billing_address" : "",
+         */
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+        String currentDateandTime = simpleDateFormat.format(new Date());
+
+        CartDetailsResponse vendorOrderBookingCreateRequest = new CartDetailsResponse();
+        vendorOrderBookingCreateRequest.setUser_id(userid);
+     //   vendorOrderBookingCreateRequest.setData(Data);
+       // vendorOrderBookingCreateRequest.setProdouct_total(prodouct_total);
+        //vendorOrderBookingCreateRequest.setShipping_charge(shipping_charge);
+        //vendorOrderBookingCreateRequest.setDiscount_price(discount_price);
+        //vendorOrderBookingCreateRequest.setGrand_total(grand_total);
+        //vendorOrderBookingCreateRequest.setProdcut_count(prodcut_count);
+       // vendorOrderBookingCreateRequest.setProdcut_item_count(prodcut_item_count);
+        vendorOrderBookingCreateRequest.setDate_of_booking_display(currentDateandTime);
+        vendorOrderBookingCreateRequest.setDate_of_booking(currentDateandTime);
+        vendorOrderBookingCreateRequest.setCoupon_code("");
+        vendorOrderBookingCreateRequest.setShipping_address_id("");
+        vendorOrderBookingCreateRequest.setBillling_address_id("");
+        vendorOrderBookingCreateRequest.setShipping_address("");
+        vendorOrderBookingCreateRequest.setBilling_address("");
+        vendorOrderBookingCreateRequest.setPayment_id(Payment_id);
+        Log.w(TAG,"vendorOrderBookingCreateRequest"+ "--->" + new Gson().toJson(vendorOrderBookingCreateRequest));
+        return vendorOrderBookingCreateRequest;
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -410,7 +563,9 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.btn_continue:
-                gotoPaymentGateway();
+                if(grand_total!=0){
+                    startPayment();
+                }
                 break;
         }
 
@@ -427,6 +582,32 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     private void gotoShippingaddressEdit() {
 
         Intent intent = new Intent(ShippingAddressActivity.this, ShippingAddressEditActivity.class);
+
+        intent.putExtra(shipid,"shipid");
+
+        intent.putExtra(first_name,"first_name");
+
+        intent.putExtra(last_name,"last_name");
+
+        intent.putExtra(phonum,"phonum");
+
+        intent.putExtra(alt_phonum,"alt_phonum");
+
+        intent.putExtra(flat_no,"flat_no");
+
+        intent.putExtra(state,"state");
+
+        intent.putExtra(street,"street");
+
+        intent.putExtra(landmark,"landmark");
+
+        intent.putExtra(pincode,"pincode");
+
+        intent.putExtra(address_type,"address_type");
+
+        intent.putExtra(date,"date");
+
+        intent.putExtra(address_status,"address_status");
 
         startActivity(intent);
 
@@ -483,6 +664,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
             e.printStackTrace();
         }
     }
+
     private void showNoAddressAlert() {
 
         try{
@@ -527,13 +709,86 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     }
 
 
-    private void gotoPaymentGateway() {
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
+    public void startPayment() {
+        /*
+          You need to pass current activity in order to let Razorpay create CheckoutActivity
+         */
+        final Activity activity = this;
+
+        final Checkout co = new Checkout();
+
+        //totalamount = amount;
+
+      /*  Double d = new Double(amount);
+        int amout = d.intValue();*/
 
 
+        Integer totalamout = grand_total*100;
+
+        try {
+            JSONObject options = new JSONObject();
+            options.put("name", "PetFolio");
+            options.put("description", userid);
+            //You can omit the image option to fetch the image from dashboard
+            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
+            options.put("currency", "INR");
+            options.put("amount", totalamout);
+
+
+            co.open(activity, options);
+        } catch (Exception e) {
+            Log.w(TAG,"Error in payment: " + e.getMessage());
+
+            e.printStackTrace();
+        }
+    }
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
+    @Override
+    public void onPaymentSuccess(String razorpayPaymentID) {
+        try {
+            Payment_id = razorpayPaymentID;
+
+            Log.w(TAG, "Payment Successful: " + razorpayPaymentID);
+            Toasty.success(getApplicationContext(), "Payment Successful. View your booking details in upcoming appointments.", Toast.LENGTH_SHORT, true).show();
+
+
+            if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                vendor_order_booking_create_ResponseCall();
+
+            }
+
+
+
+
+        } catch (Exception e) {
+            Log.w(TAG, "Exception in onPaymentSuccess", e);
+        }
+    }
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
+    @Override
+    public void onPaymentError(int code, String response) {
+        try {
+            if(new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+
+            }
+            Log.w(TAG,  "Payment failed: " + code + " " + response);
+            Toasty.error(getApplicationContext(), "Payment failed. Please try again with another payment method..", Toast.LENGTH_SHORT, true).show();
+
+        } catch (Exception e) {
+            Log.w(TAG, "Exception in onPaymentError", e);
+        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void callDirections(String tag){
+        Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
+        intent.putExtra("tag",tag);
+        startActivity(intent);
+        finish();
     }
 }
