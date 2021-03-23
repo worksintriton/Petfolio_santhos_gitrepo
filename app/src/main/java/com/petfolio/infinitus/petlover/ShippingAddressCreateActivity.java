@@ -471,6 +471,7 @@ public class ShippingAddressCreateActivity extends AppCompatActivity implements 
         shippingAddressCreateRequest.setUser_alter_mobile(altphoneno);
         shippingAddressCreateRequest.setUser_address_stauts("");
         shippingAddressCreateRequest.setUser_address_type(addr_type);
+        shippingAddressCreateRequest.setUser_city(city);
         shippingAddressCreateRequest.setUser_display_date(currentDateandTime);
 
 

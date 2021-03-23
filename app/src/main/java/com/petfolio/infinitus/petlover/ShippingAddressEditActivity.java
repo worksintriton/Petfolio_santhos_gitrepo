@@ -198,6 +198,8 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
 
                 pincodes  = extras.getString("pincode");
 
+                city  = extras.getString("city");
+
                 landmark_pincode = landmark +" , "+ pincode;
 
                 //address_type = "Home";
@@ -569,6 +571,7 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
         shippingAddressEditRequest.setUser_alter_mobile(altphoneno);
         shippingAddressEditRequest.setUser_address_stauts(address_status);
         shippingAddressEditRequest.setUser_address_type(addr_type);
+        shippingAddressEditRequest.setUser_city(city);
 
 
         Log.w(TAG,"shippingAddressEditRequest"+ "--->" + new Gson().toJson(shippingAddressEditRequest));

@@ -175,7 +175,7 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
 
                 Intent i = new Intent(getApplicationContext(), ShippingAddressActivity.class);
                 i.putExtra("fromactivity",TAG);
-             //   i.putExtra("data", (Serializable) Data);
+                i.putExtra("data", (Serializable) Data);
                 i.putExtra("product_total",prodouct_total);
                 i.putExtra("shipping_charge",shipping_charge);
                 i.putExtra("discount_price",discount_price);
@@ -437,41 +437,41 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
 
     @SuppressLint("LogNotTimber")
     public void vendor_order_booking_create_ResponseCall(){
-//        avi_indicator.setVisibility(View.VISIBLE);
-//        avi_indicator.smoothToShow();
-//        //Creating an object of our api interface
-//        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
-//        Call<CartSuccessResponse> call = ApiService.vendor_order_booking_create_ResponseCall(RestUtils.getContentType(),vendorOrderBookingCreateRequest());
-//
-//        Log.w(TAG,"url  :%s"+ call.request().url().toString());
-//
-//        call.enqueue(new Callback<CartSuccessResponse>() {
-//            @SuppressLint({"LogNotTimber", "SetTextI18n"})
-//            @Override
-//            public void onResponse(@NonNull Call<CartSuccessResponse> call, @NonNull Response<CartSuccessResponse> response) {
-//                avi_indicator.smoothToHide();
-//                if (response.body() != null) {
-//                    if(200 == response.body().getCode()){
-//                        Log.w(TAG,"SuccessResponse "+new Gson().toJson(response.body().getData()));
-//
-//                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
-//                        callDirections("2");
-//
-//
-//
-//
-//                    }
-//                }
-//            }
-//
-//
-//            @SuppressLint("LogNotTimber")
-//            @Override
-//            public void onFailure(@NonNull Call<CartSuccessResponse> call, @NonNull  Throwable t) {
-//                avi_indicator.smoothToHide();
-//                Log.w(TAG,"SuccessResponse flr"+t.getMessage());
-//            }
-//        });
+       avi_indicator.setVisibility(View.VISIBLE);
+       avi_indicator.smoothToShow();
+        //Creating an object of our api interface
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<CartSuccessResponse> call = ApiService.vendor_order_booking_create_ResponseCall(RestUtils.getContentType(),vendorOrderBookingCreateRequest());
+
+       Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+       call.enqueue(new Callback<CartSuccessResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
+           @Override
+           public void onResponse(@NonNull Call<CartSuccessResponse> call, @NonNull Response<CartSuccessResponse> response) {
+                avi_indicator.smoothToHide();
+                if (response.body() != null) {
+                    if(200 == response.body().getCode()){
+                        Log.w(TAG,"SuccessResponse "+new Gson().toJson(response.body().getData()));
+
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+                        callDirections("2");
+
+
+
+
+                    }
+                }
+            }
+
+
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onFailure(@NonNull Call<CartSuccessResponse> call, @NonNull  Throwable t) {
+            avi_indicator.smoothToHide();
+               Log.w(TAG,"SuccessResponse flr"+t.getMessage());
+          }
+        });
 
     }
 

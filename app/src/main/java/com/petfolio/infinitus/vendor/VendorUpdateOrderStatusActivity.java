@@ -264,6 +264,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
     private Dialog alertDialog;
 
     String fromactivity,date_of_booking;
+    private boolean isOrderAccept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,19 +289,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         String currentDateandTime = sdf.format(new Date());
 
 
-        ArrayList<String> orderTypeArrayList = new ArrayList<>();
-
-        orderTypeArrayList.add("Select Order Status");
-
-        orderTypeArrayList.add("Order Confirmation");
-
-        orderTypeArrayList.add("Order Cancellation");
-
-        orderTypeArrayList.add("Order Dispatched");
-
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(VendorUpdateOrderStatusActivity.this, R.layout.spinner_item, orderTypeArrayList);
-
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item); // The drop down view
 
 
         if (new ConnectionDetector(VendorUpdateOrderStatusActivity.this).isNetworkAvailable(VendorUpdateOrderStatusActivity.this)) {
@@ -318,7 +306,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
             rl_spinner.setVisibility(View.VISIBLE);
 
-            spr_ordertype.setAdapter(spinnerArrayAdapter);
 
             spr_ordertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -877,6 +864,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                 else if(prodcutTrackDetailsBeanList.get(i).getTitle().equals("Order Accept")) {
 
                     if (prodcutTrackDetailsBeanList.get(i).isStatus()) {
+                        isOrderAccept = true;
 
                         txt_order_confirm_date.setText(" " + prodcutTrackDetailsBeanList.get(i).getDate());
 
@@ -886,17 +874,30 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                         img_vendor_confirmed.setImageResource(R.drawable.completed);
 
+                        ArrayList<String> orderTypeArrayList = new ArrayList<>();
+                        orderTypeArrayList.add("Select Order Status");
+                        orderTypeArrayList.add("Order Cancellation");
+                        orderTypeArrayList.add("Order Dispatched");
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(VendorUpdateOrderStatusActivity.this, R.layout.spinner_item, orderTypeArrayList);
+                        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item); // The drop down view
+                        spr_ordertype.setAdapter(spinnerArrayAdapter);
 
                     } else {
                         txt_order_confirm_date.setText(" ");
-
                         txt_order_status_confirm.setTextColor(ContextCompat.getColor(VendorUpdateOrderStatusActivity.this, R.color.coolGrey));
-
                         view_book_to_confirm.setBackground(ContextCompat.getDrawable(VendorUpdateOrderStatusActivity.this, R.drawable.vertical_dotted_lines_grey));
-
                         img_vendor_confirmed.setImageResource(R.drawable.button_grey_circle);
-
                         txt_edit_order_confirm.setVisibility(View.GONE);
+
+                        ArrayList<String> orderTypeArrayList = new ArrayList<>();
+                        orderTypeArrayList.add("Select Order Status");
+                        orderTypeArrayList.add("Order Confirmation");
+                        orderTypeArrayList.add("Order Cancellation");
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(VendorUpdateOrderStatusActivity.this, R.layout.spinner_item, orderTypeArrayList);
+                        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item); // The drop down view
+                        spr_ordertype.setAdapter(spinnerArrayAdapter);
+
+
 
                     }
 
@@ -932,7 +933,8 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                         txt_edit_order_confirm.setVisibility(View.GONE);
 
 
-                    } else {
+                    }
+                    else {
                         txt_order_dispatch_date.setText(" ");
 
                         txt_order_transit_date.setText(" ");

@@ -312,7 +312,7 @@ public class CartDetailsResponse {
 
 
 
-        public static class ProductIdBean {
+        public static class ProductIdBean implements Serializable{
             /**
              * breed_type : ["602d1c20562e0916bc9b3218"]
              * pet_type : ["602d1c6b562e0916bc9b321d"]
@@ -493,7 +493,7 @@ public class CartDetailsResponse {
 
             }
 
-            public String getMobile_type() {
+              public String getMobile_type() {
                 return mobile_type;
             }
 

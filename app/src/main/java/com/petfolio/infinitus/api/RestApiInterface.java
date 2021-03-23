@@ -2,6 +2,8 @@ package com.petfolio.infinitus.api;
 
 import com.petfolio.infinitus.requestpojo.AddReviewRequest;
 import com.petfolio.infinitus.requestpojo.AddYourPetRequest;
+import com.petfolio.infinitus.requestpojo.ApplyMultiProdDiscountRequest;
+import com.petfolio.infinitus.requestpojo.ApplySingleDiscountRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCancelledRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCloseRequest;
 import com.petfolio.infinitus.requestpojo.AppoinmentCompleteRequest;
@@ -69,6 +71,7 @@ import com.petfolio.infinitus.requestpojo.ShippingAddressCreateRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressEditRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressFetchByUserIDRequest;
+import com.petfolio.infinitus.requestpojo.ShippingAddressFetchUserRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressListingByUserIDRequest;
 import com.petfolio.infinitus.requestpojo.ShopDashboardRequest;
 import com.petfolio.infinitus.requestpojo.SignupRequest;
@@ -84,12 +87,13 @@ import com.petfolio.infinitus.requestpojo.VendorDispatchesOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorFetchOrderDetailsIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorGetsOrderIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorNewOrderRequest;
-import com.petfolio.infinitus.requestpojo.VendorOrderBookingCreateRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderDetailsRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderRequest;
 import com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest;
 import com.petfolio.infinitus.responsepojo.AddReviewResponse;
 import com.petfolio.infinitus.responsepojo.AddYourPetResponse;
+import com.petfolio.infinitus.responsepojo.ApplyMultiProdDiscountResponse;
+import com.petfolio.infinitus.responsepojo.ApplySingleDiscountResponse;
 import com.petfolio.infinitus.responsepojo.AppoinmentCancelledResponse;
 import com.petfolio.infinitus.responsepojo.AppoinmentCompleteResponse;
 import com.petfolio.infinitus.responsepojo.AppointmentCheckResponse;
@@ -155,6 +159,7 @@ import com.petfolio.infinitus.responsepojo.ShippingAddressCreateResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressDeleteResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressEditResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressFetchByUserIDResponse;
+import com.petfolio.infinitus.responsepojo.ShippingAddressFetchUserResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressListingByUserIDResponse;
 import com.petfolio.infinitus.responsepojo.ShopDashboardResponse;
 import com.petfolio.infinitus.responsepojo.SignupResponse;
@@ -610,7 +615,7 @@ public interface RestApiInterface {
 
     /*Vendor booking create*/
     @POST("vendor_order_booking/create")
-    Call<CartSuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body VendorOrderBookingCreateRequest vendorOrderBookingCreateRequest);
+    Call<CartSuccessResponse> vendor_order_booking_create_ResponseCall(@Header("Content-Type") String type, @Body CartDetailsResponse cartDetailsResponse);
 
 
     /*Vendor booked view orders*/
@@ -670,7 +675,12 @@ public interface RestApiInterface {
     @POST("vendor_order_booking/update_status_return")
     Call<VendorAcceptsReturnOrderResponse> update_status_vendor_accept_returnResponseCall(@Header("Content-Type") String type, @Body VendorAcceptReturnOrderRequest vendorAcceptReturnOrderRequest);
 
-  /* User Fetches Shipping Address By ID */
+  /* User Fetches Last Used Shipping Address */
+    @POST("shipping_address/fetch_by_userid")
+    Call<ShippingAddressFetchUserResponse> fetch_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressFetchUserRequest shippingAddressFetchUserRequest);
+
+
+    /* User Fetches Shipping Address By ID */
     @POST("shipping_address/fetch_by_userid")
     Call<ShippingAddressFetchByUserIDResponse> fetch_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressFetchByUserIDRequest shippingAddressFetchByUserIDRequest);
 
@@ -686,13 +696,21 @@ public interface RestApiInterface {
     @POST("shipping_address/delete")
     Call<ShippingAddressDeleteResponse> delete_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressDeleteRequest shippingAddressDeleteRequest);
 
-  /* User Edits Shipping Address */
-  @POST("shipping_address/edit")
-   Call<ShippingAddressEditResponse> edit_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressEditRequest shippingAddressEditRequest);
-
-   /* User Marks Chossen Shipping Address as Last Used*/
+    /* User Edits Shipping Address */
     @POST("shipping_address/edit")
+    Call<ShippingAddressEditResponse> edit_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddressEditRequest shippingAddressEditRequest);
+
+    /* User Marks Chossen Shipping Address as Last Used*/
+    @POST("shipping_address/mark_used_address")
     Call<ShippingAddrMarkAsLastUsedResponse> mark_shipp_addr_ResponseCall(@Header("Content-Type") String type, @Body ShippingAddrMarkAsLastUsedRequest shippingAddrMarkAsLastUsedRequest);
+
+    /* Single Discount Apply*/
+    @POST("product_details/discount_single")
+    Call<ApplySingleDiscountResponse> apply_sing_dis_ResponseCall(@Header("Content-Type") String type, @Body ApplySingleDiscountRequest applySingleDiscountRequest);
+
+    /* Multi Discount Apply*/
+    @POST("product_details/discount_multi")
+    Call<ApplyMultiProdDiscountResponse> apply_multi_dis_ResponseCall(@Header("Content-Type") String type, @Body ApplyMultiProdDiscountRequest applyMultiProdDiscountRequest);
 
 
 }

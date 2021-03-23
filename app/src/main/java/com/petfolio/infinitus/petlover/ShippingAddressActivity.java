@@ -114,16 +114,16 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     LinearLayout ll_delete;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.btn_rupee)
-    Button btn_rupee;
+    @BindView(R.id.ll_create_addreess)
+    LinearLayout ll_create_addreess;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.btn_continue)
-    Button btn_continue;
+    @BindView(R.id.ll_price)
+    LinearLayout ll_price;
 
     String userid, name, phonum, state, street, landmark_pincode, address_type, date, shipid, fromactivity;
 
-    String first_name,last_name,flat_no,landmark,pincode,alt_phonum,address_status;
+    String first_name,last_name,flat_no,landmark,pincode,alt_phonum,address_status,city;
 
     ShippingAddressFetchByUserIDResponse.DataBean dataBeanList;
 
@@ -131,7 +131,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
     private String Payment_id = "";
 
-    List<VendorOrderBookingCreateRequest.DataBean> Data = new ArrayList<>();
+    List<CartDetailsResponse.DataBean> Data = new ArrayList<>();
 
     private int prodouct_total;
 
@@ -170,11 +170,11 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
             fromactivity = extras.getString("fromactivity");
 
-            if(!fromactivity.equals("ShippingAddressAddActivity"))
+            if(fromactivity.equals("PetCartActivity"))
             {
                 Log.w(TAG,"From "+ fromactivity +" : true-->");
 
-             //   Data = (List<VendorOrderBookingCreateRequest.DataBean>) extras.getSerializable("data");
+                Data = (List<CartDetailsResponse.DataBean>) extras.getSerializable("data");
 
                 prodouct_total = extras.getInt("product_total");
 
@@ -200,37 +200,43 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
             {
                 Log.w(TAG,"false-->");
 
-                shipid = extras.getString("shipid");
+                if (new ConnectionDetector(ShippingAddressActivity.this).isNetworkAvailable(ShippingAddressActivity.this)) {
 
-                first_name = extras.getString("first_name");
+                    shippingAddressresponseCall(userid);
 
-                last_name = extras.getString("last_name");
+                }
 
-                name = first_name + " " + last_name;
+//                shipid = extras.getString("shipid");
+//
+//                first_name = extras.getString("first_name");
+//
+//                last_name = extras.getString("last_name");
+//
+//                name = first_name + " " + last_name;
+//
+//                phonum = extras.getString("phonum");
+//
+//                alt_phonum = extras.getString("alt_phonum");
+//
+//                flat_no = extras.getString("flat_no");
+//
+//                state = extras.getString("state");
+//
+//                street = extras.getString("street");
+//
+//                landmark = extras.getString("landmark");
+//
+//                pincode  = extras.getString("pincode");
+//
+//                landmark_pincode = landmark +" , "+ pincode;
+//
+//                address_type = extras.getString("address_type");
+//
+//                date = extras.getString("date");
+//
+//                address_status = extras.getString("address_status");
 
-                phonum = extras.getString("phonum");
-
-                alt_phonum = extras.getString("alt_phonum");
-
-                flat_no = extras.getString("flat_no");
-
-                state = extras.getString("state");
-
-                street = extras.getString("street");
-
-                landmark = extras.getString("landmark");
-
-                pincode  = extras.getString("pincode");
-
-                landmark_pincode = landmark +" , "+ pincode;
-
-                address_type = extras.getString("address_type");
-
-                date = extras.getString("date");
-
-                address_status = extras.getString("address_status");
-
-                setView();
+                //setView();
 
             }
 
@@ -244,7 +250,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
         ll_delete.setOnClickListener(this);
 
-        btn_continue.setOnClickListener(this);
+        ll_create_addreess.setOnClickListener(this);
 
 
     }
@@ -261,9 +267,9 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
             txt_phnum.setText(phonum);
         }
 
-        if(state!=null&&!state.isEmpty()){
+        if(city!=null&&!city.isEmpty()){
 
-            txt_user_city.setText(state);
+            txt_user_city.setText(city);
         }
 
         if(landmark_pincode!=null&&!landmark_pincode.isEmpty()){
@@ -352,8 +358,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
                                     pincode  = dataBeanList.getUser_picocode();
 
-                                    landmark_pincode = landmark +" , "+ pincode;
-
                                     address_type = dataBeanList.getUser_address_type();
 
                                     Log.w(TAG, "address_type"+address_type);
@@ -361,6 +365,10 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                                     date = dataBeanList.getUser_display_date();
 
                                     address_status = dataBeanList.getUser_address_stauts();
+
+                                    city = dataBeanList.getUser_city();
+
+                                    landmark_pincode = landmark +" , "+state +" , "+ pincode;
 
                                     setView();
 
@@ -577,8 +585,10 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
     }
 
-    @SuppressLint("LogNotTimber")
-    private VendorOrderBookingCreateRequest vendorOrderBookingCreateRequest() {
+
+
+
+    private CartDetailsResponse vendorOrderBookingCreateRequest() {
         /*
          * user_id : 603e27792c2b43125f8cb802
          * Data : [{"_id":"6046fa59cb48ca0b68cda50c","user_id":"603e27792c2b43125f8cb802","product_id":{"breed_type":["602d1c20562e0916bc9b3218"],"pet_type":["602d1c6b562e0916bc9b321d"],"age":[3],"product_img":["http://54.212.108.156:3000/api/uploads/1614075552394.jpg"],"_id":"6034d6a5888af7628e7e17d4","user_id":"602a2061b3c2dd2c152d77d8","cat_id":"5fec14a5ea832e2e73c1fc79","cost":1000,"threshould":"100","product_name":"Cat Dinner","product_discription":"This cat  food","discount":10,"related":"","count":0,"status":"true","verification_status":"Not Verified","date_and_time":"Tue Feb 23 2021 15:49:15 GMT+0530 (India Standard Time)","mobile_type":"Admin","delete_status":true,"fav_status":false,"today_deal":true,"updatedAt":"2021-03-08T09:15:24.812Z","createdAt":"2021-02-23T10:19:17.691Z","__v":0},"product_count":7,"updatedAt":"2021-03-09T06:10:04.116Z","createdAt":"2021-03-09T04:32:25.151Z","__v":0},{"_id":"60471192760fff2968288bbd","user_id":"603e27792c2b43125f8cb802","product_id":{"breed_type":["602d1c17562e0916bc9b3217"],"pet_type":["602d1c6b562e0916bc9b321d"],"age":[3],"product_img":["http://54.212.108.156:3000/api/uploads/1614075490400.jpg"],"_id":"6034d66598fa826140f6a3a3","user_id":"602a2061b3c2dd2c152d77d8","cat_id":"5fec14a5ea832e2e73c1fc79","cost":40000,"threshould":"100","product_name":"CAT Lunch","product_discription":"This is cat lunch","discount":40,"related":"","count":0,"status":"true","verification_status":"Not Verified","date_and_time":"Tue Feb 23 2021 15:48:14 GMT+0530 (India Standard Time)","mobile_type":"Admin","delete_status":true,"fav_status":false,"today_deal":true,"updatedAt":"2021-03-08T09:15:22.710Z","createdAt":"2021-02-23T10:18:13.989Z","__v":0},"product_count":1,"updatedAt":"2021-03-09T06:11:30.904Z","createdAt":"2021-03-09T06:11:30.904Z","__v":0}]
@@ -595,12 +605,13 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
             "billling_address_id" : "",
             "shipping_address" : "",
              "billing_address" : "",
+             * shipping_details_id
          */
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
         String currentDateandTime = simpleDateFormat.format(new Date());
 
-        VendorOrderBookingCreateRequest vendorOrderBookingCreateRequest = new VendorOrderBookingCreateRequest();
+        CartDetailsResponse vendorOrderBookingCreateRequest = new CartDetailsResponse();
         vendorOrderBookingCreateRequest.setUser_id(userid);
         vendorOrderBookingCreateRequest.setData(Data);
         vendorOrderBookingCreateRequest.setProdouct_total(prodouct_total);
@@ -612,13 +623,17 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         vendorOrderBookingCreateRequest.setDate_of_booking_display(currentDateandTime);
         vendorOrderBookingCreateRequest.setDate_of_booking(currentDateandTime);
         vendorOrderBookingCreateRequest.setCoupon_code("");
-        vendorOrderBookingCreateRequest.setShipping_details_id(shipid);
+        vendorOrderBookingCreateRequest.setShipping_address_id("");
+        vendorOrderBookingCreateRequest.setBillling_address_id("");
+        vendorOrderBookingCreateRequest.setShipping_address("");
+        vendorOrderBookingCreateRequest.setBilling_address("");
         vendorOrderBookingCreateRequest.setPayment_id(Payment_id);
+        vendorOrderBookingCreateRequest.setShipping_details_id(shipid);
         Log.w(TAG,"vendorOrderBookingCreateRequest"+ "--->" + new Gson().toJson(vendorOrderBookingCreateRequest));
         return vendorOrderBookingCreateRequest;
     }
 
-    @Override
+    @SuppressLint("NonConstantResourceId")
     public void onClick(View v) {
 
         switch (v.getId()){
@@ -639,7 +654,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                 showWaring();
                 break;
 
-            case R.id.btn_continue:
+            case R.id.ll_create_addreess:
                 if(grand_total!=0){
                     startPayment();
                 }
@@ -685,6 +700,8 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         intent.putExtra("address_type",address_type);
 
         intent.putExtra("date",date);
+
+        intent.putExtra("city",city);
 
         intent.putExtra("address_status",address_status);
 

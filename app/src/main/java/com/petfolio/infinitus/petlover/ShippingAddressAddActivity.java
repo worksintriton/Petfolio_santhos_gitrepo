@@ -263,6 +263,8 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
 
                         Intent intent = new Intent(ShippingAddressAddActivity.this, ShippingAddressActivity.class);
 
+                        intent.putExtra("fromactivity",TAG);
+
                         startActivity(intent);
 
                         finish();
@@ -506,7 +508,7 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     }
 
     @Override
-    public void OnEditShipAddr(String shipid, String first_name, String last_name, String phonum, String alt_phonum, String flat_no, String state, String street, String landmark, String pincode, String address_type, String date, String address_status) {
+    public void OnEditShipAddr(String shipid, String first_name, String last_name, String phonum, String alt_phonum, String flat_no, String state, String street, String landmark, String pincode, String address_type, String date, String address_status, String city) {
 
         Intent intent = new Intent(getApplicationContext(), ShippingAddressEditActivity.class);
 
@@ -537,6 +539,8 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
         intent.putExtra("date",date);
 
         intent.putExtra("address_status",address_status);
+
+        intent.putExtra("city",city);
 
         startActivity(intent);
 

@@ -176,6 +176,10 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
 
                             Log.w(TAG, "Order Status " +updated_order_status);
 
+                            if(response.body().getData().getOrder_id()!=null){
+                                txt_booking_id.setText(response.body().getData().getOrder_id());
+                            }
+
                             if(updated_order_status.equals("New")){
 
                                 order_date = response.body().getData().getDate_of_booking_display();
@@ -261,6 +265,7 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
         return vendorFetchOrderDetailsIdRequest;
     }
 
+    @SuppressLint("SetTextI18n")
     private void setView() {
 
         if(product_image != null&&!product_image.isEmpty()){
@@ -295,11 +300,6 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
 
         }
 
-        if(order_id != null&&!order_id.isEmpty()){
-
-            txt_booking_id.setText(product_title);
-        }
-
         if(payment_mode != null&&!payment_mode.isEmpty()){
 
             txt_payment_method.setText(payment_mode);
@@ -307,7 +307,7 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
 
         if(order_total != 0){
 
-            txt_total_order_cost.setText(""+order_total);
+            txt_total_order_cost.setText("\u20B9 "+order_total);
         }
 
         if(quantity != 0){
@@ -316,12 +316,8 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
         }
 
         if(order_image){
-
-            img_order_status.setImageResource(R.drawable.red_circle_dot);
-
-        }
-
-        else {
+            img_order_status.setImageResource(R.drawable.ic_baseline_cancel_24);
+        } else {
 
             img_order_status.setImageResource(R.drawable.completed);
 
@@ -333,6 +329,7 @@ public class VendorOrderDetailsActivity extends AppCompatActivity implements Vie
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 

@@ -1,10 +1,10 @@
 package com.petfolio.infinitus.requestpojo;
 
-public class ShippingAddressFetchByUserIDRequest {
+public class ShippingAddressFetchUserRequest {
 
 
     /**
-     * user_id : 604081d12c2b43125f8cb840
+     * user_id : 6048589d0b3a487571a1c567
      */
 
     private String user_id;

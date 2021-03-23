@@ -1,40 +1,39 @@
 package com.petfolio.infinitus.responsepojo;
 
-public class ShippingAddressEditResponse {
+import java.util.List;
+
+public class ShippingAddressFetchUserResponse {
 
 
     /**
      * Status : Success
-     * Message : Shipping address Updated
-     * Data : {"_id":"605990a7bc985303d7f397c3","user_id":"604081d12c2b43125f8cb840","user_first_name":"Mohammeds","user_last_name":"imthiyas","user_flat_no":"no 23","user_stree":"203rd Street,Muthamil nage, chennai - 600119","user_landmark":"Near Temple","user_picocode":"600119","user_state":"Tamil Nadu","user_city":"Salem Steel","user_mobile":"+919181823011","user_alter_mobile":"+919181823011","user_address_stauts":"","user_address_type":"Office","user_display_date":"22-03-2021","updatedAt":"2021-03-23T07:23:02.506Z","createdAt":"2021-03-23T06:54:31.242Z","__v":0}
+     * Message : Shipping address details
+     * Data : [{"_id":"6057129e2e3b894a69767d40","user_id":"6048589d0b3a487571a1c567","user_first_name":"Mohammed","user_last_name":"imthiyas","user_flat_no":"no 23","user_stree":"203rd Street,Muthamil nage, chennai - 600119","user_landmark":"Near Temple","user_picocode":"600119","user_state":"Tamil Nadu","user_mobile":"+919181823011","user_alter_mobile":"+919181823011","user_address_stauts":"Last Used","updatedAt":"2021-03-21T09:32:14.923Z","createdAt":"2021-03-21T09:32:14.923Z","__v":0}]
      * Code : 200
      */
 
     private String Status;
     private String Message;
+    private int Code;
     /**
-     * _id : 605990a7bc985303d7f397c3
-     * user_id : 604081d12c2b43125f8cb840
-     * user_first_name : Mohammeds
+     * _id : 6057129e2e3b894a69767d40
+     * user_id : 6048589d0b3a487571a1c567
+     * user_first_name : Mohammed
      * user_last_name : imthiyas
      * user_flat_no : no 23
      * user_stree : 203rd Street,Muthamil nage, chennai - 600119
      * user_landmark : Near Temple
      * user_picocode : 600119
      * user_state : Tamil Nadu
-     * user_city : Salem Steel
      * user_mobile : +919181823011
      * user_alter_mobile : +919181823011
-     * user_address_stauts :
-     * user_address_type : Office
-     * user_display_date : 22-03-2021
-     * updatedAt : 2021-03-23T07:23:02.506Z
-     * createdAt : 2021-03-23T06:54:31.242Z
+     * user_address_stauts : Last Used
+     * updatedAt : 2021-03-21T09:32:14.923Z
+     * createdAt : 2021-03-21T09:32:14.923Z
      * __v : 0
      */
 
-    private DataBean Data;
-    private int Code;
+    private List<DataBean> Data;
 
     public String getStatus() {
         return Status;
@@ -52,20 +51,20 @@ public class ShippingAddressEditResponse {
         this.Message = Message;
     }
 
-    public DataBean getData() {
-        return Data;
-    }
-
-    public void setData(DataBean Data) {
-        this.Data = Data;
-    }
-
     public int getCode() {
         return Code;
     }
 
     public void setCode(int Code) {
         this.Code = Code;
+    }
+
+    public List<DataBean> getData() {
+        return Data;
+    }
+
+    public void setData(List<DataBean> Data) {
+        this.Data = Data;
     }
 
     public static class DataBean {
@@ -78,12 +77,9 @@ public class ShippingAddressEditResponse {
         private String user_landmark;
         private String user_picocode;
         private String user_state;
-        private String user_city;
         private String user_mobile;
         private String user_alter_mobile;
         private String user_address_stauts;
-        private String user_address_type;
-        private String user_display_date;
         private String updatedAt;
         private String createdAt;
         private int __v;
@@ -160,14 +156,6 @@ public class ShippingAddressEditResponse {
             this.user_state = user_state;
         }
 
-        public String getUser_city() {
-            return user_city;
-        }
-
-        public void setUser_city(String user_city) {
-            this.user_city = user_city;
-        }
-
         public String getUser_mobile() {
             return user_mobile;
         }
@@ -190,22 +178,6 @@ public class ShippingAddressEditResponse {
 
         public void setUser_address_stauts(String user_address_stauts) {
             this.user_address_stauts = user_address_stauts;
-        }
-
-        public String getUser_address_type() {
-            return user_address_type;
-        }
-
-        public void setUser_address_type(String user_address_type) {
-            this.user_address_type = user_address_type;
-        }
-
-        public String getUser_display_date() {
-            return user_display_date;
-        }
-
-        public void setUser_display_date(String user_display_date) {
-            this.user_display_date = user_display_date;
         }
 
         public String getUpdatedAt() {
