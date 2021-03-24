@@ -24,6 +24,7 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.requestpojo.ShippingAddressCreateRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressEditRequest;
+import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressCreateResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressEditResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
@@ -31,9 +32,12 @@ import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -126,6 +130,20 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
 
     String first_name,last_name,flat_no,landmarks,pincodes,alt_phonum,address_status;
 
+    List<CartDetailsResponse.DataBean> Data = new ArrayList<>();
+
+    private int prodouct_total;
+
+    private int shipping_charge;
+
+    private int discount_price;
+
+    private int grand_total;
+
+    private int prodcut_count;
+
+    private int prodcut_item_count;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -211,6 +229,20 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
                 //date = extras.getString("date");
 
                 address_status = extras.getString("address_status");
+
+                Data = (List<CartDetailsResponse.DataBean>) extras.getSerializable("data");
+
+                prodouct_total = extras.getInt("product_total");
+
+                shipping_charge = extras.getInt("shipping_charge");
+
+                discount_price = extras.getInt("discount_price");
+
+                grand_total = extras.getInt("grand_total");
+
+                prodcut_count = extras.getInt("prodcut_count");
+
+                prodcut_item_count = extras.getInt("prodcut_item_count");
 
                 setView();
 
@@ -324,6 +356,22 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
 
             intent.putExtra("fromactivity",TAG);
 
+            intent.putExtra("data", (Serializable) Data);
+
+            intent.putExtra("product_total",prodouct_total);
+
+            intent.putExtra("shipping_charge",shipping_charge);
+
+            intent.putExtra("discount_price",discount_price);
+
+            intent.putExtra("grand_total",grand_total);
+
+            intent.putExtra("prodcut_count",prodcut_count);
+
+            intent.putExtra("prodcut_item_count",prodcut_item_count);
+
+            intent.putExtra("fromactivity", TAG);
+
             startActivity(intent);
 
         }
@@ -331,6 +379,22 @@ public class ShippingAddressEditActivity extends AppCompatActivity implements Vi
         else {
 
             Intent intent = new Intent(ShippingAddressEditActivity.this,ShippingAddressAddActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("data", (Serializable) Data);
+
+            intent.putExtra("product_total",prodouct_total);
+
+            intent.putExtra("shipping_charge",shipping_charge);
+
+            intent.putExtra("discount_price",discount_price);
+
+            intent.putExtra("grand_total",grand_total);
+
+            intent.putExtra("prodcut_count",prodcut_count);
+
+            intent.putExtra("prodcut_item_count",prodcut_item_count);
 
             startActivity(intent);
 

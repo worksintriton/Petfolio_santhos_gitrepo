@@ -447,7 +447,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/futuramediumbt"
-                    android:text="Create Address"
+                    android:text="Goto Final Payment"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
