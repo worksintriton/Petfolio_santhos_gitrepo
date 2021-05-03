@@ -136,8 +136,8 @@
 
     <string name="doctor_name">Doctor name</string>
     <string name="place">place * 2 km away</string>
-    <string name="review_count">322</string>
-    <string name="rating_value">4.5</string>
+    <string name="review_count">0</string>
+    <string name="rating_value">0</string>
     <string name="specialization_dummy">Lorem ipsum ,dolor sit amet, consectetur , adipiscing</string>
     <string name="desc">Description</string>
     <string name="product_desc">Product Description</string>
@@ -151,6 +151,7 @@
     <string name="continues">Continue</string>
     <string name="next">Next</string>
     <string name="add_comment_here">Add Comment here..</string>
+    <string name="product_descriptions_here">Product descriptions here..</string>
     <string name="book_now">Book Now</string>
 
     <string name="filter">Filters</string>
@@ -158,7 +159,7 @@
     <string name="book_appointment">Book Appointment</string>
 
     <string name="service_name_pet_name">Service name * Pet Name</string>
-    <string name="price">₹ 800</string>
+    <string name="price">₹ 0</string>
     <string name="cancel_appointment">Cancel appointment</string>
     <string name="add_review">Add Review</string>
     <string name="all_categories">All categories</string>
@@ -192,12 +193,14 @@
     <string name="change_password">Change Password</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="manage_address">Manage Address</string>
+    <string name="set_locations">Set Locations</string>
+    <string name="my_addresses">My Addresses</string>
 
     <string name="upload_image">Upload Image</string>
 
     <string name="add_a_new_address">Add a new address</string>
     <string name="address_info">TESSDGD dgsdg dgasdg saddagdasg dsgasdg sadgdsgds SGADSGD</string>
-    <string name="saved_address">2 Saved Address</string>
+    <string name="saved_address">Saved Address</string>
 
     <string name="accept">Accept</string>
     <string name="pet_details">Pet Details</string>
@@ -221,7 +224,7 @@
     <string name="payment_method">Payment Method</string>
     <string name="order_cost">Order cost</string>
     <string name="address">Address</string>
-    <string name="order_details">Order Details </string>
+    <string name="order_details">Order details </string>
     <string name="allergies_pet_details">Allergies :</string>
     <string name="prescription">Prescription</string>
     <string name="before_given_prescription_details">Before given Prescription Details</string>
@@ -241,7 +244,8 @@
     <string name="home">Home</string>
     <string name="work">Work</string>
     <string name="others">Others</string>
-    <string name="pick_a_name_for_this_location">Pick a name for this location</string>
+    <string name="set_as_default">Set as default</string>
+    <string name="pick_a_name_for_this_location">Pick a nick name for this location</string>
     <string name="city_name">City Name</string>
     <string name="location">Location</string>
     <string name="pincode">Pincode</string>
@@ -291,7 +295,7 @@
     <string name="contact">Contact</string>
     <string name="phn_nu">9876543210</string>
     <string name="filters">Filters</string>
-    <string name="clear_all">Clear All</string>
+    <string name="clear_all">Clear all</string>
     <string name="apply">Apply</string>
 
     <string name="review">Review</string>
@@ -352,6 +356,7 @@
     <string name="businessemail">Business email</string>
     <string name="businessregistrationdetails">Business registration details</string>
     <string name="upload_gallery_images">Upload gallery images</string>
+    <string name="upload_service_images">Upload service images</string>
     <string name="subtotal">Subtotal</string>
     <string name="discountamount">Discount Amount</string>
     <string name="shippingamount">Shipping Amount</string>
@@ -359,7 +364,7 @@
     <string name="proceedtobuy">Proceed to Buy</string>
     <string name="coupon_applied">coupon applied</string>
     <string name="coupon">Coupon </string>
-    <string name="percentage_discount">20 % discount </string>
+    <string name="percentage_discount">0 % discount </string>
     <string name="product_quantity">Product Quantity :</string>
     <string name="related_products">Related Products</string>
     <string name="business_info">Business Info</string>
@@ -374,6 +379,8 @@
     <string name="view_prescription">View Prescription</string>
     <string name="consultation_fees">Consultation Fee</string>
     <string name="notification">Notification</string>
+
+    <string name="Discount">Discount</string>
 
 
     <string name="orderid">Order ID</string>
@@ -409,7 +416,7 @@
     <string name="text_with_bullet2"> \u2022 Dermatologist</string>
     <string name="text_with_bullet3"> \u2022 Medicine Physician</string>
 
-    <string name="your_cart_is_empty">Your cart is empty.</string>
+    <string name="your_cart_is_empty">Your cart is empty!</string>
     <string name="cancel_order">Cancel order</string>
     <string name="track_order">Track order</string>
     <string name="return_order">Return order</string>
@@ -435,7 +442,30 @@
     <string name="product_name">Product Name</string>
     <string name="pet_breed">Pet breed</string>
     <string name="threshold">Threshold</string>
-    <string name="deal_status">Deal Status</string>
+    <string name="deal_status">Today Deal</string>
+    <string name="discard">Discard</string>
+    <string name="apply_deal">Apply Deal</string>
+
+    <string name="recent_products">Recent products</string>
+    <string name="highest_discount">Highest discount</string>
+    <string name="best_sellers">Best sellers</string>
+    <string name="price_low_to_high">Price - Low to High</string>
+    <string name="price_high_to_low">Price - High to Low</string>
+
+
+    <string name="discount30">30% or more </string>
+    <string name="discount20">20% or more </string>
+    <string name="discount10">10% or more </string>
+    <string name="discount10below">10% and below </string>
+    <string name="category">Category</string>
+    <string name="view_more">VIEW MORE</string>
+
+    <string name="digitalsignature">Digital Signature</string>
+    <string name="quantity">Quantity</string>
+    <string name="date">Date</string>
+    <string name="confirm_all">Confirm All</string>
+    <string name="payment_successful">Payment successful</string>
+    <string name="back_to_shop">Back to shop</string>
 
 
 </resources>

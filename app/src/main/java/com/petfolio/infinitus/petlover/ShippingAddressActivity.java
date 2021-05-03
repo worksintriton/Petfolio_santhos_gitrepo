@@ -25,7 +25,6 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressFetchByUserIDRequest;
-import com.petfolio.infinitus.requestpojo.VendorOrderBookingCreateRequest;
 import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
 import com.petfolio.infinitus.responsepojo.CartSuccessResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressDeleteResponse;
@@ -46,6 +45,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -204,6 +204,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
 
         }
+        txt_date.setVisibility(View.GONE);
 
         img_back.setOnClickListener(this);
 
@@ -247,7 +248,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         }
 
         if(date!=null&&!date.isEmpty()){
-
             txt_date.setText(date);
 
         }
@@ -380,7 +380,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                             //showErrorLoading(response.body().getMessage());
                             avi_indicator.smoothToHide();
 
-                            Toasty.warning(ShippingAddressActivity.this,"Server Issue",Toasty.LENGTH_LONG).show();
                         }
 
 
@@ -390,7 +389,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                         //showErrorLoading(response.body().getMessage());
                         avi_indicator.smoothToHide();
 
-                        Toasty.warning(ShippingAddressActivity.this,"Server Issue",Toasty.LENGTH_LONG).show();
                     }
 
 
@@ -400,7 +398,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                     //showErrorLoading(response.body().getMessage());
                     avi_indicator.smoothToHide();
 
-                    Toasty.warning(ShippingAddressActivity.this,"Server Issue",Toasty.LENGTH_LONG).show();
                 }
 
 
@@ -468,7 +465,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                         //showErrorLoading(response.body().getMessage());
                         avi_indicator.smoothToHide();
 
-                        Toasty.warning(ShippingAddressActivity.this,"Server Issue",Toasty.LENGTH_LONG).show();
                     }
                 }
 
@@ -527,10 +523,10 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"SuccessResponse "+new Gson().toJson(response.body().getData()));
 
-                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
-                        callDirections("2");
+                       // Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+                        //callDirections("2");
 
-
+                        showPaymentSuccessalert();
 
 
                     }
@@ -886,6 +882,8 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),PetCartActivity.class));
+        finish();
     }
 
     public void callDirections(String tag){
@@ -894,4 +892,32 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         startActivity(intent);
         finish();
     }
+
+    private void showPaymentSuccessalert() {
+        try {
+
+            dialog = new Dialog(ShippingAddressActivity.this);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.alert_payment_success_layout);
+            Button btn_back_to_shop = dialog.findViewById(R.id.btn_back_to_shop);
+
+            btn_back_to_shop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    callDirections("2");
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 }

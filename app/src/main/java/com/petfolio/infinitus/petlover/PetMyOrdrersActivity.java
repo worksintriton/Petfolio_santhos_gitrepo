@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class PetMyOrdrersActivity extends AppCompatActivity {
+public class PetMyOrdrersActivity extends AppCompatActivity  {
     private final String TAG = "PetMyOrdrersActivity";
 
 
@@ -40,17 +41,7 @@ public class PetMyOrdrersActivity extends AppCompatActivity {
     BottomNavigationView bottom_navigation_view;
 
 
-
-
-    private final String active_tag = "1";
-
-
-    String tag;
-
-    String fromactivity;
-
-
-    @SuppressLint("LogNotTimber")
+    @SuppressLint({"LogNotTimber", "NonConstantResourceId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +53,10 @@ public class PetMyOrdrersActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         img_back.setOnClickListener(v -> onBackPressed());
+
+
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -77,6 +72,14 @@ public class PetMyOrdrersActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent i = new Intent(PetMyOrdrersActivity.this, PetLoverDashboardActivity.class);
         startActivity(i);
+        finish();
+    }
+
+
+    public void callDirections(String tag){
+        Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
+        intent.putExtra("tag",tag);
+        startActivity(intent);
         finish();
     }
 

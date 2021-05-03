@@ -25,21 +25,16 @@ import java.util.List;
 
 public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private  String TAG = "PetVendorNewOrdersAdapter";
-    private List<PetVendorOrderResponse.DataBean> newOrderResponseList;
-
-
-    private Context context;
-
+    private final String TAG = "PetVendorNewOrdersAdapter";
+    private final List<PetVendorOrderResponse.DataBean> newOrderResponseList;
+    private final Context context;
     PetVendorOrderResponse.DataBean currentItem;
-
-
     private int size;
 
 
     public PetVendorNewOrdersAdapter(Context context, List<PetVendorOrderResponse.DataBean> newOrderResponseList, int size) {
-        this.newOrderResponseList = newOrderResponseList;
         this.context = context;
+        this.newOrderResponseList = newOrderResponseList;
         this.size = size;
 
     }
@@ -61,18 +56,31 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
     @SuppressLint("SetTextI18n")
     private void initLayoutOne(ViewHolderOne holder, final int position) {
         currentItem = newOrderResponseList.get(position);
-        if(newOrderResponseList.get(position).getOrder_id() != null){
+        if (newOrderResponseList.get(position).getOrder_id() != null) {
             holder.txt_orderid.setText(newOrderResponseList.get(position).getOrder_id());
         }
-
-        if(newOrderResponseList.get(position).getProduct_name() != null) {
+        if (newOrderResponseList.get(position).getProduct_name() != null) {
             holder.txt_producttitle.setText(newOrderResponseList.get(position).getProduct_name());
         }
-        if(newOrderResponseList.get(position).getProduct_price() != 0 && newOrderResponseList.get(position).getProduct_quantity() != 0) {
-            holder.txt_products_price.setText("\u20B9 " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
+        if (newOrderResponseList.get(position).getProduct_price() != 0 && newOrderResponseList.get(position).getProduct_quantity() != 0) {
+            if (newOrderResponseList.get(position).getProduct_quantity() == 1) {
+                holder.txt_products_price.setText("\u20B9 " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
+            } else {
+                holder.txt_products_price.setText("\u20B9 " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
+
+            }
         }
-        if(newOrderResponseList.get(position).getDate_of_booking() != null){
-            holder.txt_bookedon.setText("Booked on:"+" "+newOrderResponseList.get(position).getDate_of_booking());
+        else { if (newOrderResponseList.get(position).getProduct_quantity() == 1) {
+                holder.txt_products_price.setText("\u20B9 " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
+            }
+            else {
+                holder.txt_products_price.setText("\u20B9 " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
+
+            }
+
+        }
+        if (newOrderResponseList.get(position).getDate_of_booking() != null) {
+            holder.txt_bookedon.setText("Booked on:" + " " + newOrderResponseList.get(position).getDate_of_booking());
 
         }
         if (newOrderResponseList.get(position).getProdcut_image() != null && !newOrderResponseList.get(position).getProdcut_image().isEmpty()) {
@@ -81,20 +89,19 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
                     .into(holder.img_products_image);
 
         }
-        else{
+        else {
             Glide.with(context)
                     .load(APIClient.PROFILE_IMAGE_URL)
                     .into(holder.img_products_image);
 
         }
-
         holder.txt_order_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent i = new Intent(context, PetVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("_id",newOrderResponseList.get(position).get_id());
-                    i.putExtra("fromactivity",TAG);
-                    context.startActivity(i);
+                Intent i = new Intent(context, PetVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("_id", newOrderResponseList.get(position).get_id());
+                i.putExtra("fromactivity", TAG);
+                context.startActivity(i);
 
             }
         });
@@ -102,8 +109,8 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, PetVendorTrackOrderActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("_id",newOrderResponseList.get(position).get_id());
-                i.putExtra("fromactivity",TAG);
+                i.putExtra("_id", newOrderResponseList.get(position).get_id());
+                i.putExtra("fromactivity", TAG);
                 context.startActivity(i);
 
 
@@ -113,8 +120,8 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, PetVendorCancelOrderActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("_id",newOrderResponseList.get(position).get_id());
-                i.putExtra("fromactivity",TAG);
+                i.putExtra("_id", newOrderResponseList.get(position).get_id());
+                i.putExtra("fromactivity", TAG);
                 context.startActivity(i);
 
             }
@@ -122,23 +129,19 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
 
     }
 
-
     @Override
     public int getItemCount() {
         return Math.min(newOrderResponseList.size(), size);
 
     }
-
-
     @Override
     public int getItemViewType(int position) {
         return position;
     }
 
     static class ViewHolderOne extends RecyclerView.ViewHolder {
-        public TextView txt_orderid,txt_producttitle,txt_products_price,txt_bookedon,txt_order_details,txt_track_order,txt_cancell_order;
+        public TextView txt_orderid, txt_producttitle, txt_products_price, txt_bookedon, txt_order_details, txt_track_order, txt_cancell_order;
         public ImageView img_products_image;
-
 
 
         public ViewHolderOne(View itemView) {
@@ -153,19 +156,9 @@ public class PetVendorNewOrdersAdapter extends  RecyclerView.Adapter<RecyclerVie
             txt_cancell_order = itemView.findViewById(R.id.txt_cancell_order);
 
 
-
-
-
         }
 
 
-
-
     }
-
-
-
-
-
 
 }

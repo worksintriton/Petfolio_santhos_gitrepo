@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.appUtils.NumericKeyBoardTransformationMethod;
 import com.petfolio.infinitus.requestpojo.ShippingAddressCreateRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
 import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
@@ -157,6 +158,10 @@ public class ShippingAddressCreateActivity extends AppCompatActivity implements 
 
         ButterKnife.bind(this);
 
+        edt_phoneno.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+        edt_altphoneno.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+
+
         SessionManager session = new SessionManager(getApplicationContext());
 
         HashMap<String, String> user = session.getProfileDetails();
@@ -225,6 +230,7 @@ public class ShippingAddressCreateActivity extends AppCompatActivity implements 
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -300,143 +306,111 @@ public class ShippingAddressCreateActivity extends AppCompatActivity implements 
 
     private void checkValidation() {
 
-            firstname = Objects.requireNonNull(edt_firstname.getText()).toString().trim();
+            firstname = edt_firstname.getText().toString().trim();
+            lastname = edt_lastname.getText().toString().trim();
+            flat_house_build_no = edt_flat_house_build_no.getText().toString().trim();
+            street_addr = edt_street_addr.getText().toString().trim();
+            landmark = edt_landmark.getText().toString().trim();
+            pincode = edt_pincode.getText().toString().trim();
+            city = edt_city.getText().toString().trim();
+            state = edt_state.getText().toString().trim();
+            phoneno = edt_phoneno.getText().toString().trim();
+            altphoneno = edt_altphoneno.getText().toString().trim();
 
-            lastname = Objects.requireNonNull(edt_lastname.getText()).toString().trim();
-
-            flat_house_build_no = Objects.requireNonNull(edt_flat_house_build_no.getText()).toString().trim();
-
-            street_addr = Objects.requireNonNull(edt_street_addr.getText()).toString().trim();
-
-            landmark = Objects.requireNonNull(edt_landmark.getText()).toString().trim();
-
-            pincode = Objects.requireNonNull(edt_pincode.getText()).toString().trim();
-
-            city = Objects.requireNonNull(edt_city.getText()).toString().trim();
-
-            state = Objects.requireNonNull(edt_state.getText()).toString().trim();
-
-            phoneno = Objects.requireNonNull(edt_phoneno.getText()).toString().trim();
-
-            altphoneno = Objects.requireNonNull(edt_altphoneno.getText()).toString().trim();
-
+        int moblength = edt_phoneno.getText().toString().trim().length();
+        int mobaltlength = edt_altphoneno.getText().toString().trim().length();
+        int pincodelength = edt_pincode.getText().toString().trim().length();
             boolean can_proceed = true;
-
-            if(firstname.isEmpty()){
-
+            if(firstname != null && firstname.isEmpty()){
                 edt_firstname.setError("Please fill the first name");
-
                 edt_firstname.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the First Name", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the First Name", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
             }
 
-            else if(lastname.isEmpty()){
-
+          /*  else if(lastname != null && lastname.isEmpty()){
                 edt_lastname.setError("Please fill the last name");
-
                 edt_lastname.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the Last Name", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the Last Name", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
-            }
+            }*/
 
 
-            else if(flat_house_build_no.isEmpty()){
-
+            else if(flat_house_build_no != null && flat_house_build_no.isEmpty()){
                 edt_flat_house_build_no.setError("Please fill the flat No");
-
                 edt_flat_house_build_no.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the flat No", Toast.LENGTH_SHORT).show();
-
+                // Toasty.warning(getApplicationContext(), "Please Enter the flat No", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
             }
 
-            else if(street_addr.isEmpty()){
-
+            else if(street_addr != null && street_addr.isEmpty()){
                 edt_street_addr.setError("Please fill the Street Address");
-
                 edt_street_addr.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the Street Address", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the Street Address", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
             }
 
-            else if(pincode.isEmpty()){
-
+            else if(pincode !=null && pincode.isEmpty()){
                 edt_pincode.setError("Please fill the Pincode");
-
                 edt_pincode.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the Pincode", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the Pincode", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
-
+            }else if (pincodelength <= 5) {
+                edt_pincode.setError("Please enter valid pin code");
+                edt_pincode.requestFocus();
+                can_proceed = false;
             }
 
-            else if(city.isEmpty()){
-
+            else if(city != null &&city.isEmpty()){
                 edt_city.setError("Please fill the city");
-
                 edt_city.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the City", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the City", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
             }
 
-            else if(state.isEmpty()){
-
+            else if(state != null && state.isEmpty()){
                 edt_state.setError("Please fill the state");
-
                 edt_state.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the State", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the State", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
             }
 
-            else if(phoneno.isEmpty()){
-
+            else if(phoneno != null && phoneno.isEmpty()){
                 edt_phoneno.setError("Please fill the Phone No");
-
                 edt_phoneno.requestFocus();
-
-                Toasty.warning(getApplicationContext(), "Please Enter the Phone No", Toast.LENGTH_SHORT).show();
-
+                //Toasty.warning(getApplicationContext(), "Please Enter the Phone No", Toast.LENGTH_SHORT).show();
                 can_proceed = false;
 
+            }else if (moblength <= 9) {
+                edt_phoneno.setError("Please enter valid mobile number");
+                edt_phoneno.requestFocus();
+                can_proceed = false;
+            }else if (altphoneno != null && !altphoneno.isEmpty() && mobaltlength <= 9) {
+                edt_altphoneno.setError("Please enter valid mobile number");
+                edt_altphoneno.requestFocus();
+                can_proceed = false;
             }
 
-        if(landmark.isEmpty()){
 
+        if(landmark !=  null && landmark.isEmpty()){
             landmark = "";
 
         }
 
-        if(altphoneno.isEmpty()){
-
+        if(altphoneno != null && altphoneno.isEmpty()){
             altphoneno = "";
 
         }
 
         if(can_proceed){
-
-
             if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-
-                        createAddressResponseCall();
+                createAddressResponseCall();
 
             }
 
@@ -555,5 +529,8 @@ public class ShippingAddressCreateActivity extends AppCompatActivity implements 
         return shippingAddressCreateRequest;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

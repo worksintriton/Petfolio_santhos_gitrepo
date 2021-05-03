@@ -5,9 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 
 
 import androidx.annotation.NonNull;
@@ -18,8 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.petfolio.infinitus.R;
 
-import com.petfolio.infinitus.fragmentvendor.FragmentVendorDashboard;
 
+import com.petfolio.infinitus.fragmentvendor.myorders.FragmentOrdersDashboard;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 
 
@@ -40,7 +45,7 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
 
     private String TAG = "VendorDashboardActivity";
 
-    final Fragment homeFragment = new FragmentVendorDashboard();
+    final Fragment homeFragment = new FragmentOrdersDashboard();
 
     private String active_tag = "1";
 
@@ -79,7 +84,7 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
             if(tag.equalsIgnoreCase("1")){
                 active = homeFragment;
                 bottom_navigation_view.setSelectedItemId(R.id.home);
-                loadFragment(new FragmentVendorDashboard());
+                loadFragment(new FragmentOrdersDashboard());
             }else if(tag.equalsIgnoreCase("2")){
                 //active = searchFragment;
                 bottom_navigation_view.setSelectedItemId(R.id.shop);
@@ -130,12 +135,13 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
     public void onBackPressed() {
         Log.w(TAG,"tag : "+tag);
         if (bottom_navigation_view.getSelectedItemId() == R.id.home) {
-            new android.app.AlertDialog.Builder(VendorDashboardActivity.this)
+            showExitAppAlert();
+            /*new android.app.AlertDialog.Builder(VendorDashboardActivity.this)
                     .setMessage("Are you sure you want to exit?")
                     .setCancelable(false)
                     .setPositiveButton("Yes", (dialog, id) -> VendorDashboardActivity.this.finishAffinity())
                     .setNegativeButton("No", null)
-                    .show();
+                    .show();*/
         }
         else if(tag != null ){
             Log.w(TAG,"Else IF--->"+"fromactivity : "+fromactivity);
@@ -145,7 +151,7 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
                 bottom_navigation_view.setSelectedItemId(R.id.home);
                 // load fragment
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_container,new FragmentVendorDashboard());
+                transaction.replace(R.id.main_container,new FragmentOrdersDashboard());
                 transaction.commit();
             }
 
@@ -154,7 +160,7 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
             bottom_navigation_view.setSelectedItemId(R.id.home);
             // load fragment
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.main_container,new FragmentVendorDashboard());
+            transaction.replace(R.id.main_container,new FragmentOrdersDashboard());
             transaction.commit();
         }
     }
@@ -171,7 +177,7 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
 
         switch (item.getItemId()) {
             case R.id.home:
-                replaceFragment(new FragmentVendorDashboard());
+                replaceFragment(new FragmentOrdersDashboard());
                 break;
             case R.id.shop:
                 break;
@@ -195,6 +201,40 @@ public class VendorDashboardActivity  extends VendorNavigationDrawer implements 
         Fragment fragment = Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.main_container));
         fragment.onActivityResult(requestCode,resultCode,data);
     }
+
+    private void showExitAppAlert() {
+        try {
+
+            dialog = new Dialog(VendorDashboardActivity.this);
+            dialog.setContentView(R.layout.alert_exit_layout);
+            Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
+            Button btn_exit = dialog.findViewById(R.id.btn_exit);
+
+            btn_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    VendorDashboardActivity.this.finishAffinity();
+                }
+            });
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 
 
 

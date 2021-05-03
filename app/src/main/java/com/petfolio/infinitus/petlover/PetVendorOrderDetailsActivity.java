@@ -3,6 +3,7 @@ package com.petfolio.infinitus.petlover;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
@@ -26,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetVendorOrderDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class PetVendorOrderDetailsActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "PetVendorOrderDetailsActivity" ;
 
@@ -102,9 +104,6 @@ public class PetVendorOrderDetailsActivity extends AppCompatActivity implements 
     @BindView(R.id.txt_shipping_address_landmark)
     TextView txt_shipping_address_landmark;
 
-
-
-
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_order_status)
     ImageView img_order_status;
@@ -113,7 +112,14 @@ public class PetVendorOrderDetailsActivity extends AppCompatActivity implements 
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
+    BottomNavigationView bottom_navigation_view;
+
     private String _id;
+    private String fromactivity;
 
 
     @SuppressLint({"LogNotTimber", "LongLogTag", "SetTextI18n"})
@@ -123,23 +129,19 @@ public class PetVendorOrderDetailsActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_pet_vendor_order_details);
         ButterKnife.bind(this);
         img_back.setOnClickListener(this);
+
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+        bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             _id = extras.getString("_id");
-            String fromactivity = extras.getString("fromactivity");
+             fromactivity = extras.getString("fromactivity");
             Log.w(TAG,"_id : "+_id+" fromactivity : "+ fromactivity);
 
-            if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorNewOrdersAdapter")){
-                txt_order_status.setText("Booked on");
-                img_order_status.setImageResource(R.drawable.completed);
-            }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorCompletedOrdersAdapter")){
-                txt_order_status.setText("Delivered on");
-                img_order_status.setImageResource(R.drawable.completed);
-            }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorCancelledOrdersAdapter")){
-                txt_order_status.setText("Cancelled on");
-                img_order_status.setImageResource(R.drawable.ic_baseline_cancel_24);
-
-            }
 
 
         }
@@ -235,9 +237,31 @@ public class PetVendorOrderDetailsActivity extends AppCompatActivity implements 
 
                             }
 
-                            if(response.body().getData().getDate_of_booking() != null){
-                                txt_delivered_date.setText(response.body().getData().getDate_of_booking());
+                            if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorNewOrdersAdapter")){
+                                txt_order_status.setText("Booked on");
+                                img_order_status.setImageResource(R.drawable.completed);
+                                if(response.body().getData().getDate_of_booking() != null){
+                                    txt_delivered_date.setText(response.body().getData().getDate_of_booking());
+                                }
+                            }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorCompletedOrdersAdapter")){
+                                txt_order_status.setText("Delivered on");
+                                img_order_status.setImageResource(R.drawable.completed);
+                                if(response.body().getData().getVendor_complete_date() != null){
+                                    txt_delivered_date.setText(response.body().getData().getVendor_complete_date());
+                                }
+                            }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetVendorCancelledOrdersAdapter")){
+                                txt_order_status.setText("Cancelled on");
+                                img_order_status.setImageResource(R.drawable.ic_baseline_cancel_24);
+                                if(response.body().getData().getVendor_cancell_date() != null && !response.body().getData().getVendor_cancell_date().isEmpty()){
+                                    txt_delivered_date.setText(response.body().getData().getVendor_cancell_date());
+                                }else if(response.body().getData().getUser_cancell_date() != null && !response.body().getData().getUser_cancell_date().isEmpty()){
+                                    txt_delivered_date.setText(response.body().getData().getUser_cancell_date());
+                                }
+
                             }
+
+
+
 
 
 
@@ -271,6 +295,8 @@ public class PetVendorOrderDetailsActivity extends AppCompatActivity implements 
     }
 
 
-
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
 }

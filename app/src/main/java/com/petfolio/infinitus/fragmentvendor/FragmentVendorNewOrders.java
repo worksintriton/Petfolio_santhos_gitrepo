@@ -24,7 +24,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.adapter.VendorNewOrdersAdapter;
@@ -84,6 +86,10 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
     @BindView(R.id.btn_load_more)
     Button btn_load_more;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout refresh_layout;
+
 
     SessionManager session;
     String type = "",username = "",userid = "";
@@ -93,10 +99,14 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
     private List<VendorNewOrderResponse.DataBean> newOrderResponseList;
     Dialog alertDialog;
 
+    private ShimmerFrameLayout mShimmerViewContainer;
+    private View includelayout;
+
     public FragmentVendorNewOrders() {
 
     }
 
+    @SuppressLint("LogNotTimber")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,6 +117,9 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
 
         ButterKnife.bind(this, view);
         mContext = getActivity();
+
+        includelayout = view.findViewById(R.id.includelayout);
+        mShimmerViewContainer = includelayout.findViewById(R.id.shimmer_layout);
 
         avi_indicator.setVisibility(View.GONE);
         btn_load_more.setVisibility(View.GONE);
@@ -135,43 +148,57 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
         TimerTask doAsynchronousTask = new TimerTask() {
             @Override
             public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        try {
-                            //your method here
-                            if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
-                                getVendorOrderIDResponseCall(userid);
-
-                            }
-
-                        } catch (Exception e) {
+                handler.post(() -> {
+                    try {
+                        //your method here
+                        if (APIClient.VENDOR_ID != null && !APIClient.VENDOR_ID.isEmpty()) {
+                            vendorNewOrderResponseCall(APIClient.VENDOR_ID);
                         }
+
+                    }catch (Exception ignored) {
                     }
                 });
             }
         };
         timer.schedule(doAsynchronousTask, 0, 30000);//you can put 30000(30 secs)
 
+        refresh_layout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        if (new ConnectionDetector(getActivity()).isNetworkAvailable(getActivity())) {
+                            if(APIClient.VENDOR_ID != null && !APIClient.VENDOR_ID.isEmpty()) {
+                                vendorNewOrderResponseCall(APIClient.VENDOR_ID);
+                            }
+
+                        }
+
+                    }
+                }
+        );
+
 
         return view;
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({"LongLogTag", "LogNotTimber"})
     private void getVendorOrderIDResponseCall(String userid) {
-        avi_indicator.setVisibility(View.VISIBLE);
-        avi_indicator.smoothToShow();
+     /*   avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();*/
+        mShimmerViewContainer.startShimmerAnimation();
+
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
         Call<VendorGetsOrderIDResponse> call = apiInterface.vendor_gets_orderbyId_ResponseCall(RestUtils.getContentType(), vendorGetsOrderIdRequest(userid));
         Log.w(TAG,"getVendorOrderIDResponseCall url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<VendorGetsOrderIDResponse>() {
-            @SuppressLint("LongLogTag")
+            @SuppressLint({"LongLogTag", "LogNotTimber"})
             @Override
             public void onResponse(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Response<VendorGetsOrderIDResponse> response) {
 
                 Log.w(TAG,"getVendorOrderIDResponseCall"+ "--->" + new Gson().toJson(response.body()));
 
-                avi_indicator.smoothToHide();
+               // avi_indicator.smoothToHide();
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
@@ -179,10 +206,8 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
                         if(response.body().getData()!=null){
 
                             if(response.body().getData().get_id()!=null&&!(response.body().getData().get_id().isEmpty())){
-
-                                vendorNewOrderResponseCall(response.body().getData().get_id());
                                 APIClient.VENDOR_ID = response.body().getData().get_id();
-
+                                vendorNewOrderResponseCall(response.body().getData().get_id());
                             }
 
 
@@ -198,26 +223,24 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
 
             }
 
-            @SuppressLint("LongLogTag")
+            @SuppressLint({"LongLogTag", "LogNotTimber"})
             @Override
             public void onFailure(@NonNull Call<VendorGetsOrderIDResponse> call, @NonNull Throwable t) {
 
-                avi_indicator.smoothToHide();
+             /*   avi_indicator.smoothToHide();*/
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
                 Log.w(TAG,"getVendorOrderIDResponseCall flr"+"--->" + t.getMessage());
             }
         });
 
     }
 
+   @SuppressLint("LogNotTimber")
    private VendorGetsOrderIdRequest vendorGetsOrderIdRequest(String userid) {
-
         VendorGetsOrderIdRequest vendorGetsOrderIdRequest = new VendorGetsOrderIdRequest();
-
         vendorGetsOrderIdRequest.setUser_id(userid);
-
         Log.w(TAG,"vendorGetsOrderIdRequest"+ "--->" + new Gson().toJson(vendorGetsOrderIdRequest));
-        //  Toasty.success(getApplicationContext(),"fbTokenUpdateRequest : "+new Gson().toJson(fbTokenUpdateRequest), Toast.LENGTH_SHORT, true).show();
-
         return vendorGetsOrderIdRequest;
     }
 
@@ -244,17 +267,23 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
 
 
 
+    @SuppressLint("LogNotTimber")
     private void vendorNewOrderResponseCall(String id) {
-        avi_indicator.setVisibility(View.VISIBLE);
-        avi_indicator.smoothToShow();
+       /* avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();*/
         RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
         Call<VendorNewOrderResponse> call = ApiService.get_order_details_vendordid_ResponseCall(RestUtils.getContentType(),vendorNewOrderRequest(id));
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<VendorNewOrderResponse>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<VendorNewOrderResponse> call, @NonNull Response<VendorNewOrderResponse> response) {
-               avi_indicator.smoothToHide();
+              // avi_indicator.smoothToHide();
+
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
+                refresh_layout.setRefreshing(false);
                 Log.w(TAG,"VendorNewOrderResponse"+ "--->" + new Gson().toJson(response.body()));
 
 
@@ -290,7 +319,10 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
 
             @Override
             public void onFailure(@NonNull Call<VendorNewOrderResponse> call, @NonNull Throwable t) {
-                avi_indicator.smoothToHide();
+               // avi_indicator.smoothToHide();
+
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
 
                 Log.w(TAG,"VendorOrderResponse flr"+"--->" + t.getMessage());
             }
@@ -299,7 +331,7 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
     }
     @SuppressLint("LogNotTimber")
     private VendorNewOrderRequest vendorNewOrderRequest(String id) {
-        /**
+        /*
          * vendor_id : 604866a50b3a487571a1c568
          * order_status : New
          */
@@ -329,12 +361,11 @@ public class FragmentVendorNewOrders extends Fragment implements View.OnClickLis
 
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_load_more:
-                setViewLoadMore();
-                break;
+        if (v.getId() == R.id.btn_load_more) {
+            setViewLoadMore();
         }
     }
 

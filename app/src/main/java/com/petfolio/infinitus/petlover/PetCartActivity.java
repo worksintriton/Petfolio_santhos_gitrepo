@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,10 @@ import com.petfolio.infinitus.adapter.Cart_Adapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment;
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetHomeNewFragment;
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetServicesFragment;
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.VendorShopFragment;
 import com.petfolio.infinitus.interfaces.AddandRemoveProductListener;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
 import com.petfolio.infinitus.requestpojo.VendorOrderBookingCreateRequest;
@@ -44,6 +49,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -59,7 +65,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetCartActivity extends AppCompatActivity implements AddandRemoveProductListener, PaymentResultListener {
+public class PetCartActivity extends AppCompatActivity implements AddandRemoveProductListener, PaymentResultListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private String TAG = "PetCartActivity";
 
@@ -67,9 +73,17 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
+/*
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.bottom_navigation_view)
+    BottomNavigationView bottom_navigation_view;
+*/
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
     BottomNavigationView bottom_navigation_view;
 
     @SuppressLint("NonConstantResourceId")
@@ -116,6 +130,29 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
     @BindView(R.id.scrollablContent)
     ScrollView scrollablContent;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.footerView)
+    LinearLayout footerView;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_content_amount)
+    LinearLayout ll_content_amount;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_removeall_products)
+    TextView txt_removeall_products;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count_badge)
+    TextView txt_cart_count_badge;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.btn_shopnow)
+    Button btn_shopnow;
+
+
+
+
     String tag;
     String fromactivity;
 
@@ -132,6 +169,12 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
     private int prodcut_item_count;
     private String Payment_id = "";
 
+    private int product_cart_counts = 0;
+    private String threshould;
+
+    private String active_tag;
+    private String cat_id;
+
     @SuppressLint("LogNotTimber")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +185,8 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
 
         scrollablContent.setVisibility(View.GONE);
         btn_procced_to_buy.setVisibility(View.GONE);
+        ll_content_amount.setVisibility(View.GONE);
+        footerView.setVisibility(View.GONE);
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         HashMap<String, String> user = sessionManager.getProfileDetails();
@@ -151,6 +196,8 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         if (extras != null) {
             productdetails_productid = extras.getString("productid");
             fromactivity = extras.getString("fromactivity");
+            active_tag = extras.getString("active_tag");
+            cat_id = extras.getString("cat_id");
         }
 
 
@@ -160,16 +207,17 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
                 fetch_cart_details_by_userid_Call();
             }
 
+        btn_shopnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callDirections("2");
+
+            }
+        });
 
 
         btn_procced_to_buy.setOnClickListener(v -> {
 
-//            if(grand_total != 0) {
-//                startPayment();
-//            }else if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-//                vendor_order_booking_create_ResponseCall();
-//
-//            }
 
             if(grand_total!=0){
 
@@ -186,6 +234,22 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
 
             }
         });
+
+            txt_removeall_products.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    remove_overall_products_ResponseCall();
+                }
+            });
+
+
+
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+        bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
+
+
 
 
     }
@@ -207,15 +271,24 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
             i.putExtra("productid",productdetails_productid);
             startActivity(i);
             finish();
-        }else{
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetShopTodayDealsSeeMoreActivity")){
+            Intent i = new Intent(PetCartActivity.this, PetShopTodayDealsSeeMoreActivity.class);
+            startActivity(i);
+            finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("ListOfProductsSeeMoreActivity")){
+            Intent i = new Intent(PetCartActivity.this, ListOfProductsSeeMoreActivity.class);
+            i.putExtra("cat_id",cat_id);
+            startActivity(i);
+            finish();
+        }else if(active_tag != null){
+            callDirections(active_tag);
+        } else{
             Intent i = new Intent(PetCartActivity.this, PetLoverDashboardActivity.class);
             startActivity(i);
             finish();
         }
 
     }
-
-
 
     @SuppressLint("LogNotTimber")
     public void fetch_cart_details_by_userid_ResponseCall(){
@@ -233,51 +306,63 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
                 if (response.body() != null) {
                     if(200 == response.body().getCode()){
                         Log.w(TAG,"CartDetailsResponse" + new Gson().toJson(response.body()));
+                        footerView.setVisibility(View.VISIBLE);
 
                         if(response.body().getData() != null && response.body().getData().size()>0){
+                            txt_cart_count_badge.setText(response.body().getData().size()+"");
                             scrollablContent.setVisibility(View.VISIBLE);
                             ll_content.setVisibility(View.VISIBLE);
                             ll_cart_is_empty.setVisibility(View.GONE);
                             btn_procced_to_buy.setVisibility(View.VISIBLE);
+                            ll_content_amount.setVisibility(View.VISIBLE);
 
                             Data = response.body().getData();
+                            for(int i=0;i<Data.size();i++){
+                                threshould = Data.get(i).getProduct_id().getThreshould();
+
+                            }
                             setView(response.body().getData());
 
                             if(response.body().getProdcut_item_count() != 0){
                                 txt_lbl_subtotal.setText("Subtotal ( "+response.body().getProdcut_item_count()+" items)" );
                             }
                             if(response.body().getProdouct_total() != 0){
-                                txt_sub_total.setText("\u20B9 "+response.body().getProdouct_total());
+                                txt_sub_total.setText(" \u20B9 "+response.body().getProdouct_total());
                             }else{
                                 txt_sub_total.setText("\u20B9 "+0);
 
                             }
                             if(response.body().getDiscount_price() != 0){
-                                txt_discount_amount.setText("\u20B9 "+response.body().getDiscount_price());
+                                txt_discount_amount.setText(" \u20B9 "+response.body().getDiscount_price());
                             }else{
-                                txt_discount_amount.setText("\u20B9 "+0);
+                                txt_discount_amount.setText(" \u20B9 "+0);
                             }
                             if(response.body().getShipping_charge() != 0){
-                                txt_shipping_amount.setText("\u20B9 "+response.body().getShipping_charge());
+                                txt_shipping_amount.setText(" \u20B9 "+response.body().getShipping_charge());
                             }else{
-                                txt_shipping_amount.setText("\u20B9 "+0);
+                                txt_shipping_amount.setText(" \u20B9 "+0);
 
                             }
                             if(response.body().getGrand_total() != 0){
-                                txt_total_amount.setText("\u20B9 "+response.body().getGrand_total());
+                                txt_total_amount.setText(" \u20B9 "+response.body().getGrand_total());
                             }else{
-                                txt_total_amount.setText("\u20B9 "+0);
+                                txt_total_amount.setText(" \u20B9 "+0);
 
                             }
+
+
+
 
 
 
                         }
                         else {
+                            txt_cart_count_badge.setText("0");
                             scrollablContent.setVisibility(View.VISIBLE);
                             ll_content.setVisibility(View.GONE);
                             ll_cart_is_empty.setVisibility(View.VISIBLE);
                             btn_procced_to_buy.setVisibility(View.GONE);
+                            ll_content_amount.setVisibility(View.GONE);
 
                         }
 
@@ -325,29 +410,47 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         return fetchByIdRequest;
     }
 
-
+    @SuppressLint("LogNotTimber")
     @Override
-    public void addandRemoveProductListener(String id, String name) {
+    public void addandRemoveProductListener(String id, String name,String threshould,int prodcutcount) {
         if(name != null){
             if(name.equalsIgnoreCase("add")){
-                productid = id;
-                if(productid != null){
-                    if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-                        add_product_ResponseCall();
+                if(threshould != null){
+                    productid = id;
+                    int productqty = Integer.parseInt(threshould);
+                    Log.w(TAG," productqty : "+productqty+" prodcutcount : "+prodcutcount);
+                    if(prodcutcount == productqty || prodcutcount >productqty){
+                        Toasty.warning(getApplicationContext(), "You can buy only up to "+productqty+" quantity of this product", Toast.LENGTH_SHORT, true).show();
+                    }else{
+                        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                            add_product_ResponseCall();
+                        }
                     }
                 }
 
-            }else if(name.equalsIgnoreCase("remove")){
+            }
+            else if(name.equalsIgnoreCase("remove")){
                 productid = id;
                 if(productid != null){
-                    if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-                        remove_product_ResponseCall();
+                    if(prodcutcount != 0) {
+                        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                            remove_product_ResponseCall();
+                        }
+                    }
+                }
+            }
+            else if(name.equalsIgnoreCase("singleproductremove")){
+                productid = id;
+                if(productid != null){
+                    if(prodcutcount != 0) {
+                        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                            remove_single_products_ResponseCall();
+                        }
                     }
                 }
             }
         }
     }
-
     @SuppressLint("LogNotTimber")
     public void remove_product_ResponseCall(){
         avi_indicator.setVisibility(View.VISIBLE);
@@ -355,6 +458,72 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         //Creating an object of our api interface
         RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
         Call<SuccessResponse> call = ApiService.remove_product_ResponseCall(RestUtils.getContentType(),addandRemoveCartRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<SuccessResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
+            @Override
+            public void onResponse(@NonNull Call<SuccessResponse> call, @NonNull Response<SuccessResponse> response) {
+                avi_indicator.smoothToHide();
+                if (response.body() != null) {
+                    if(200 == response.body().getCode()){
+                        Log.w(TAG,"Remove SuccessResponse" + new Gson().toJson(response.body()));
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+                        fetch_cart_details_by_userid_Call();
+                    }
+                }
+            }
+
+
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onFailure(@NonNull Call<SuccessResponse> call, @NonNull  Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"Remove SuccessResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+    public void remove_single_products_ResponseCall(){
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        //Creating an object of our api interface
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<SuccessResponse> call = ApiService.remove_single_products_ResponseCall(RestUtils.getContentType(),addandRemoveCartRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<SuccessResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
+            @Override
+            public void onResponse(@NonNull Call<SuccessResponse> call, @NonNull Response<SuccessResponse> response) {
+                avi_indicator.smoothToHide();
+                if (response.body() != null) {
+                    if(200 == response.body().getCode()){
+                        Log.w(TAG,"Remove SuccessResponse" + new Gson().toJson(response.body()));
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+                        fetch_cart_details_by_userid_Call();
+                    }
+                }
+            }
+
+
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onFailure(@NonNull Call<SuccessResponse> call, @NonNull  Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"Remove SuccessResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+    public void remove_overall_products_ResponseCall(){
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        //Creating an object of our api interface
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<SuccessResponse> call = ApiService.remove_overall_products_ResponseCall(RestUtils.getContentType(),removeAllProductsRequest());
 
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
@@ -420,7 +589,6 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         });
 
     }
-
     @SuppressLint("LogNotTimber")
     private FetchByIdRequest addandRemoveCartRequest() {
         /*
@@ -433,8 +601,15 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         Log.w(TAG,"fetchByIdRequest"+ "--->" + new Gson().toJson(fetchByIdRequest));
         return fetchByIdRequest;
     }
-
-
+    private FetchByIdRequest removeAllProductsRequest() {
+        /*
+         * user_id : 603e27792c2b43125f8cb802
+       */
+        FetchByIdRequest fetchByIdRequest = new FetchByIdRequest();
+        fetchByIdRequest.setUser_id(userid);
+        Log.w(TAG,"fetchByIdRequest"+ "--->" + new Gson().toJson(fetchByIdRequest));
+        return fetchByIdRequest;
+    }
     @SuppressLint("LogNotTimber")
     public void vendor_order_booking_create_ResponseCall(){
        avi_indicator.setVisibility(View.VISIBLE);
@@ -596,5 +771,31 @@ public class PetCartActivity extends AppCompatActivity implements AddandRemovePr
         intent.putExtra("tag",tag);
         startActivity(intent);
         finish();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+               callDirections("1");
+                break;
+            case R.id.shop:
+                callDirections("2");
+                break;
+            case R.id.services:
+                callDirections("3");
+                break;
+            case R.id.care:
+                callDirections("4");
+                break;
+            case R.id.community:
+                callDirections("5");
+                break;
+
+            default:
+                return  false;
+        }
+        return true;
     }
 }

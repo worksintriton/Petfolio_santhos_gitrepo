@@ -74,7 +74,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private List<ProductSearchResponse.DataBean> productSearchResponseCall;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
     BottomNavigationView bottom_navigation_view;
 
     final Fragment petHomeFragment = new PetHomeFragment();
@@ -99,6 +101,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         img_back.setOnClickListener(this);
         avi_indicator.setVisibility(View.GONE);
+
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+        bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
+
         if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
             productSearchResponseCall(searchString);
         }
@@ -119,6 +127,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
 
+            @SuppressLint("LogNotTimber")
             @Override
             public void afterTextChanged(Editable s) {
                 Log.w(TAG,"afterTextChanged-->"+s.toString());
@@ -140,36 +149,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        tag = getIntent().getStringExtra("tag");
-        Log.w(TAG," tag : "+tag);
-        if(tag != null){
-            if(tag.equalsIgnoreCase("1")){
-                active = petHomeFragment;
-                bottom_navigation_view.setSelectedItemId(R.id.home);
 
-                loadFragment(new PetHomeFragment());
-            }else if(tag.equalsIgnoreCase("2")){
-                active = vendorShopFragment;
-                bottom_navigation_view.setSelectedItemId(R.id.shop);
-                loadFragment(new VendorShopFragment());
-            }else if(tag.equalsIgnoreCase("3")){
-                active = petServicesFragment;
-                bottom_navigation_view.setSelectedItemId(R.id.services);
-                loadFragment(new PetServicesFragment());
-            }else if(tag.equalsIgnoreCase("4")){
-                active = petCareFragment;
-                bottom_navigation_view.setSelectedItemId(R.id.care);
-                loadFragment(new PetCareFragment());
-            } else if(tag.equalsIgnoreCase("5")){
-                bottom_navigation_view.setSelectedItemId(R.id.community);
-            }
-        }else{
-            bottom_navigation_view.setSelectedItemId(R.id.home);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_schedule, active, active_tag);
-            transaction.commitNowAllowingStateLoss();
-        }
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
 
     }
 
@@ -244,7 +224,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private void setViewProducts(List<ProductSearchResponse.DataBean> productSearchResponseCall) {
         rv_relatedproducts.setLayoutManager(new GridLayoutManager(this, 2));
         rv_relatedproducts.setItemAnimator(new DefaultItemAnimator());
-        ProductsSearchAdapter productsSearchAdapter = new ProductsSearchAdapter(getApplicationContext(), productSearchResponseCall);
+        ProductsSearchAdapter productsSearchAdapter = new ProductsSearchAdapter(getApplicationContext(), productSearchResponseCall,TAG,"");
         rv_relatedproducts.setAdapter(productsSearchAdapter);
     }
     private ProductSearchRequest productSearchRequest(String searchString) {
@@ -266,66 +246,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void loadFragment(Fragment fragment) {
-        Bundle bundle = new Bundle();
-        if(fromactivity != null){
-            Log.w(TAG,"fromactivity loadFragment : "+fromactivity);
-
-            if(fromactivity.equalsIgnoreCase("FiltersActivity")) {
-
-                // load fragment
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_schedule, fragment);
-                transaction.addToBackStack(null);
-                transaction.commitAllowingStateLoss();
-            }
-        }else {
-
-            // set Fragmentclass Arguments
-            fragment.setArguments(bundle);
-
-            // load fragment
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_schedule, fragment);
-            transaction.addToBackStack(null);
-            transaction.commitAllowingStateLoss();
-        }
-    }
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                active_tag = "1";
-                replaceFragment(new PetHomeFragment());
-                break;
-            case R.id.shop:
-                active_tag = "2";
-                replaceFragment(new VendorShopFragment());
-                break;
-            case R.id.services:
-                active_tag = "3";
-                replaceFragment(new PetServicesFragment());
-                break;
-            case R.id.care:
-                active_tag = "4";
-                replaceFragment(new PetCareFragment());
-                break;
-            case R.id.community:
-                active_tag = "5";
-                break;
-
-            default:
-                return  false;
-        }
-        return true;
-    }
-
-
-    private void replaceFragment(Fragment fragment){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_schedule,fragment);
-        transaction.commitNowAllowingStateLoss();
+        return false;
     }
 }

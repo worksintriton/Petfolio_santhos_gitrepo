@@ -2,91 +2,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="15dp"
+    android:background="@color/bg_white">
 
     <LinearLayout
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_header"
+        <include
+            android:id="@+id/include_petlover_header"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/whiteTwo"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextAppearance="@style/TitleBarTextAppearance">
-
-            <ImageView
-                android:id="@+id/img_back"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/back"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/txt_toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/futuramediumbt"
-                android:text="@string/shop"
-                android:textColor="@color/new_txt_color"
-                android:textSize="@dimen/big_txt_size"  />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginStart="10dp">
+            android:layout_height="50dp"
+            layout="@layout/toolbar_layout_petlover_header" />
 
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_sos"
-                    tools:ignore="ContentDescription" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_notifications"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_bag"
-                    tools:ignore="ContentDescription"
-                    android:layout_marginStart="20dp" />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_user"
-                    tools:ignore="ContentDescription"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp" />
-            </LinearLayout>
 
 
-        </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:orientation="vertical"
             android:layout_below="@+id/headerView"
-        android:layout_marginBottom="10dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -105,7 +50,9 @@
                     android:textColor="@color/green"
                     android:textColorHint="@color/dark_gray"
                     android:textSize="16sp"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+                    tools:ignore="Autofill,LabelFor,TextFields"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"/>
 
                 <ImageView
                     android:id="@+id/img_search"
@@ -141,7 +88,8 @@
                         android:fontFamily="@font/futuramediumbt"
                         android:text="@string/advancedsearch"
                         android:textColor="@color/new_txt_color"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:visibility="invisible"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -181,8 +129,9 @@
                                 android:layout_marginEnd="5dp"
                                 android:layout_centerVertical="true"
                                 android:contentDescription="@string/image"
-                                android:src="@drawable/ic_baseline_swap_vert_24"
-                                android:scaleType="center" />
+                                android:src="@drawable/ic_sort"
+                                android:scaleType="center"
+                                android:layout_marginStart="10dp"/>
 
                         </RelativeLayout>
 
@@ -190,7 +139,7 @@
                             android:id="@+id/rl_filters"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
+                            android:layout_marginStart="10dp"
                             android:background="@drawable/new_rounded_corner_btn_orange"
                             android:orientation="horizontal"
                             android:padding="5dp">
@@ -217,12 +166,13 @@
                                 android:layout_height="16dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="5dp"
-                                android:layout_marginStart="5dp"
+                                android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@+id/edt_filter"
                                 android:contentDescription="@string/image"
-                                android:src="@drawable/ic_baseline_filter_alt_24"
+                                android:src="@drawable/ic_filter"
                                 android:scaleType="center"
-                                android:layout_centerVertical="true" />
+                                android:layout_centerVertical="true"
+                                />
 
                         </RelativeLayout>
 
@@ -255,10 +205,21 @@
 
 
         </LinearLayout>
+    <LinearLayout
+        android:id="@+id/footerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/bg_white">
 
+        <include
+            android:id="@+id/include_petlover_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/toolbar_layout_petlover_footer" />
 
-
-
+    </LinearLayout>
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avi_indicator"
         android:layout_width="wrap_content"
@@ -266,6 +227,7 @@
         android:layout_centerInParent="true"
         app:indicatorColor="@color/new_light_green"
         app:indicatorName="LineSpinFadeLoaderIndicator" />
+
 
 
 

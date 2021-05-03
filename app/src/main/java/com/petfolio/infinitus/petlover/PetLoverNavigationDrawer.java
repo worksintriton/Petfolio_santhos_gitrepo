@@ -103,10 +103,10 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
     //SessionManager session;
     String name, image_url, phoneNo;
 
-     public TextView toolbar_title;
-     Button btnNotificationPatient;
+    public TextView toolbar_title;
+    Button btnNotificationPatient;
 
-     public Menu menu;
+    public Menu menu;
 
 
 
@@ -168,7 +168,7 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
         frameLayout = view.findViewById(R.id.base_container);
 
 
-         menu = navigationView.getMenu();
+        menu = navigationView.getMenu();
 
 
 
@@ -219,7 +219,8 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
                 case R.id.nav_item_six:
                     return true;
                 case R.id.nav_item_seven:
-                    confirmLogoutDialog();
+                  //  confirmLogoutDialog();
+                    showLogOutAppAlert();
                     return true;
 
 
@@ -258,18 +259,25 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
         img_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PetCartActivity.class));
+                if(PetLoverDashboardActivity.active_tag != null){
+                    Log.w(TAG,"active_tag : "+PetLoverDashboardActivity.active_tag);
+                    Intent i = new Intent(getApplicationContext(), PetCartActivity.class);
+                    i.putExtra("active_tag",PetLoverDashboardActivity.active_tag);
+                    startActivity(i);
+                }else {
+                    startActivity(new Intent(getApplicationContext(), PetCartActivity.class));
+                }
             }
         });
         img_profile.setOnClickListener(v -> {
 
-           Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
-           intent.putExtra("fromactivity",TAG);
+            Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
+            intent.putExtra("fromactivity",TAG);
             if(PetLoverDashboardActivity.active_tag != null){
                 intent.putExtra("active_tag",PetLoverDashboardActivity.active_tag);
 
             }
-           startActivity(intent);
+            startActivity(intent);
         });
 
 
@@ -447,6 +455,41 @@ public class PetLoverNavigationDrawer extends AppCompatActivity implements View.
             sosPhonenumber = String.valueOf(phonenumber);
         }
     }
+
+    private void showLogOutAppAlert() {
+        try {
+
+            dialog = new Dialog(PetLoverNavigationDrawer.this);
+            dialog.setContentView(R.layout.alert_logout_layout);
+            Button btn_no = dialog.findViewById(R.id.btn_no);
+            Button btn_yes = dialog.findViewById(R.id.btn_yes);
+
+            btn_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    gotoLogout();
+
+                }
+            });
+            btn_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 
 
 }

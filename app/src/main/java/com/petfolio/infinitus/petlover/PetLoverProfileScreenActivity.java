@@ -42,6 +42,7 @@ import com.petfolio.infinitus.api.RestApiInterface;
 
 import com.petfolio.infinitus.interfaces.PetDeleteListener;
 import com.petfolio.infinitus.interfaces.SoSCallListener;
+import com.petfolio.infinitus.petlover.myaddresses.MyAddressesListActivity;
 import com.petfolio.infinitus.requestpojo.PetDeleteRequest;
 import com.petfolio.infinitus.requestpojo.PetListRequest;
 import com.petfolio.infinitus.responsepojo.PetDeleteResponse;
@@ -88,6 +89,10 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
     TextView txt_manage_address;
 
     @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_my_addresses)
+    TextView txt_my_addresses;
+
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_change_password)
     TextView txt_change_password;
 
@@ -112,7 +117,9 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
     LinearLayout ll_add;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
     BottomNavigationView bottom_navigation_view;
 
     @SuppressLint("NonConstantResourceId")
@@ -211,6 +218,8 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
 
         img_back.setOnClickListener(this);
         txt_manage_address.setOnClickListener(this);
+        txt_my_addresses.setOnClickListener(this);
+
         txt_change_password.setOnClickListener(this);
         txt_logout.setOnClickListener(this);
         ll_add.setOnClickListener(this);
@@ -243,16 +252,20 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
             from = extras.getString("from");
         }
 
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+        bottom_navigation_view.getMenu().findItem(R.id.home).setChecked(true);
         if(active_tag != null){
             if(active_tag.equalsIgnoreCase("3")) {
-                bottom_navigation_view.setSelectedItemId(R.id.services);
+                bottom_navigation_view.getMenu().findItem(R.id.services).setChecked(true);
+
             }else if(active_tag.equalsIgnoreCase("4")) {
-                bottom_navigation_view.setSelectedItemId(R.id.care);
+                bottom_navigation_view.getMenu().findItem(R.id.care).setChecked(true);
+
             }
 
         }
-
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
 
 
 
@@ -267,7 +280,8 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
             intent.putExtra("doctorname",doctorname);
             intent.putExtra("distance",distance);
             startActivity(intent);
-        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("SelectedServiceActivity")){
+        }
+        else if(fromactivity != null && fromactivity.equalsIgnoreCase("SelectedServiceActivity")){
             Intent intent = new Intent(getApplicationContext(),SelectedServiceActivity.class);
             intent.putExtra("catid",catid);
             intent.putExtra("from",from);
@@ -307,6 +321,9 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                 case R.id.txt_manage_address:
                     gotoManageAddress();
                 break;
+                case R.id.txt_my_addresses:
+                    gotoMyAddresses();
+                break;
                 case R.id.txt_change_password:
                 break;
                 case R.id.txt_logout:
@@ -328,6 +345,11 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                     startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                 break;
         }
+    }
+
+    private void gotoMyAddresses() {
+        startActivity(new Intent(PetLoverProfileScreenActivity.this, MyAddressesListActivity.class));
+
     }
 
     private void gotoAddYourPet() {

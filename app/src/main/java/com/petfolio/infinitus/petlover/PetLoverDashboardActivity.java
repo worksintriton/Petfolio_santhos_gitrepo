@@ -4,10 +4,13 @@ package com.petfolio.infinitus.petlover;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -16,6 +19,9 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +49,7 @@ import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.API;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment;
-import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetHomeFragment;
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetHomeNewFragment;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetServicesFragment;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.VendorShopFragment;
 import com.petfolio.infinitus.responsepojo.GetAddressResultResponse;
@@ -64,21 +70,25 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer implements Serializable, BottomNavigationView.OnNavigationItemSelectedListener,
+public class PetLoverDashboardActivity  extends PetLoverNavigationDrawerNew implements Serializable, BottomNavigationView.OnNavigationItemSelectedListener,
         OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
+
+    private String TAG = "PetLoverDashboardActivity";
+
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
     AVLoadingIndicatorView avi_indicator;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
     BottomNavigationView bottom_navigation_view;
 
-    private String TAG = "PetLoverDashboardActivity";
 
-    final Fragment petHomeFragment = new PetHomeFragment();
+    final Fragment petHomeFragment = new PetHomeNewFragment();
     final Fragment petCareFragment = new PetCareFragment();
     final Fragment petServicesFragment = new PetServicesFragment();
     final Fragment vendorShopFragment = new VendorShopFragment();
@@ -100,8 +110,10 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
     private double latitude;
     private double longitude;
     public static String cityName;
+    private Dialog dialog;
 
 
+    @SuppressLint("LogNotTimber")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,12 +121,10 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
         ButterKnife.bind(this);
         Log.w(TAG,"onCreate-->");
 
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
         googleApiConnected();
-
-
-
         avi_indicator.setVisibility(View.GONE);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -131,8 +141,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
             if(tag.equalsIgnoreCase("1")){
                 active = petHomeFragment;
                 bottom_navigation_view.setSelectedItemId(R.id.home);
-
-                loadFragment(new PetHomeFragment());
+                loadFragment(new PetHomeNewFragment());
             }else if(tag.equalsIgnoreCase("2")){
                 active = vendorShopFragment;
                 bottom_navigation_view.setSelectedItemId(R.id.shop);
@@ -148,7 +157,8 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
             } else if(tag.equalsIgnoreCase("5")){
                 bottom_navigation_view.setSelectedItemId(R.id.community);
             }
-        }else{
+        }
+        else{
             bottom_navigation_view.setSelectedItemId(R.id.home);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame_schedule, active, active_tag);
@@ -194,12 +204,13 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
     public void onBackPressed() {
         Log.w(TAG,"tag : "+tag);
         if (bottom_navigation_view.getSelectedItemId() == R.id.home) {
-            new android.app.AlertDialog.Builder(PetLoverDashboardActivity.this)
+            showExitAppAlert();
+          /*  new android.app.AlertDialog.Builder(PetLoverDashboardActivity.this)
                     .setMessage("Are you sure you want to exit?")
                     .setCancelable(false)
                     .setPositiveButton("Yes", (dialog, id) -> PetLoverDashboardActivity.this.finishAffinity())
                     .setNegativeButton("No", null)
-                    .show();
+                    .show();*/
         }
         else if(tag != null ){
             Log.w(TAG,"Else IF--->"+"fromactivity : "+fromactivity);
@@ -210,7 +221,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
                 bottom_navigation_view.setSelectedItemId(R.id.home);
                 // load fragment
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_schedule,new PetHomeFragment());
+                transaction.replace(R.id.frame_schedule,new PetHomeNewFragment());
                 transaction.commitNowAllowingStateLoss();
             }
 
@@ -219,7 +230,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
             bottom_navigation_view.setSelectedItemId(R.id.home);
             // load fragment
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_schedule,new PetHomeFragment());
+            transaction.replace(R.id.frame_schedule,new PetHomeNewFragment());
             transaction.commitNowAllowingStateLoss();
         }
     }
@@ -237,7 +248,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
         switch (item.getItemId()) {
                 case R.id.home:
                     active_tag = "1";
-                replaceFragment(new PetHomeFragment());
+                replaceFragment(new PetHomeNewFragment());
                 break;
                 case R.id.shop:
                     active_tag = "2";
@@ -252,6 +263,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
                     replaceFragment(new PetCareFragment());
                     break;
             case R.id.community:
+                     showComingSoonAlert();
                     active_tag = "5";
                     break;
 
@@ -511,6 +523,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
 
         String key = API.MAP_KEY;
         service.getAddressResultResponseCall(latlngs, key).enqueue(new Callback<GetAddressResultResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NotNull Call<GetAddressResultResponse> call, @NotNull Response<GetAddressResultResponse> response) {
                 //avi_indicator.smoothToHide();
@@ -613,6 +626,70 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawer impleme
             }
         });
     }
+
+
+    private void showExitAppAlert() {
+        try {
+
+            dialog = new Dialog(PetLoverDashboardActivity.this);
+            dialog.setContentView(R.layout.alert_exit_layout);
+            Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
+            Button btn_exit = dialog.findViewById(R.id.btn_exit);
+
+            btn_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    PetLoverDashboardActivity.this.finishAffinity();
+                }
+            });
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+    private void showComingSoonAlert() {
+
+        try {
+
+            Dialog dialog = new Dialog(PetLoverDashboardActivity.this);
+            dialog.setContentView(R.layout.alert_comingsoon_layout);
+            dialog.setCanceledOnTouchOutside(false);
+
+            ImageView img_close = dialog.findViewById(R.id.img_close);
+            img_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+
 
 
 }

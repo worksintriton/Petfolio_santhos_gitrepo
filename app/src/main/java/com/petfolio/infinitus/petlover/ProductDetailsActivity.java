@@ -13,27 +13,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.adapter.RelatedProductsAdapter;
 import com.petfolio.infinitus.adapter.ViewPagerProductDetailsAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.requestpojo.CartAddProductRequest;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
 import com.petfolio.infinitus.responsepojo.FetchProductByIdResponse;
 import com.petfolio.infinitus.responsepojo.SuccessResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
-import com.petfolio.infinitus.vendor.VendorUpdateOrderStatusActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.HashMap;
@@ -48,7 +52,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDetailsActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private final String TAG = "ProductDetailsActivity";
 
@@ -126,6 +130,46 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @BindView(R.id.ll_discount)
     LinearLayout ll_discount;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.footerView)
+    LinearLayout footerView;
+
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_product_title)
+    LinearLayout ll_product_title;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.scrollablContent)
+    ScrollView scrollablContent;
+
+   /* @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.bottom_navigation_view)
+    BottomNavigationView bottom_navigation_view;*/
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
+    BottomNavigationView bottom_navigation_view;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_sos)
+    ImageView img_sos;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_notification)
+    ImageView img_notification;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_cart)
+    ImageView img_cart;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_profile)
+    ImageView img_profile;
+
+
 
     int currentPage = 0;
     Timer timer;
@@ -135,11 +179,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private String userid;
     private String productid;
-    private int product_cart_counts = 0;
+    private int product_cart_counts = 1;
     private String threshould;
     private String fromactivity;
+    private String cat_id;
+    private int productqty;
+    private String tag;
 
-    @SuppressLint("LogNotTimber")
+    @SuppressLint({"LogNotTimber", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +194,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Log.w(TAG,"onCreate -->");
         ButterKnife.bind(this);
         avi_indicator.setVisibility(View.GONE);
+        ll_product_title.setVisibility(View.GONE);
+        scrollablContent.setVisibility(View.GONE);
+        footerView.setVisibility(View.GONE);
 
         img_back.setOnClickListener(v -> onBackPressed());
         SessionManager sessionManager = new SessionManager(getApplicationContext());
@@ -155,35 +205,72 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             productid = extras.getString("productid");
+            cat_id = extras.getString("cat_id");
             fromactivity = extras.getString("fromactivity");
+            tag = extras.getString("tag");
         }
-
         if(userid != null && productid != null){
             if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
                 fetch_product_by_id_ResponseCall();
             }
         }
-
+        txt_cart_count.setText("1");
         img_remove_product.setOnClickListener(v -> {
+            Log.w(TAG,"img_remove_product setOnClickListener : product_cart_counts "+product_cart_counts);
             if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-                if(product_cart_counts != 0) {
-                    remove_product_ResponseCall();
+                if(product_cart_counts != 1) {
+                    //remove_product_ResponseCall();
+                    product_cart_counts--;
+                    txt_cart_count.setText(product_cart_counts+"");
+                    if(product_cart_counts == 1){
+                        btn_add_to_cart.setText("Add to cart");
+                    }else{
+                        btn_add_to_cart.setText("Go to cart");
+                    }
+
+                }else{
+                    btn_add_to_cart.setText("Add to cart");
                 }
             }
 
         });
-
         img_add_product.setOnClickListener(v -> {
             if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
 
                 if(threshould != null){
-                    int productqty = Integer.parseInt(threshould);
+                    productqty = Integer.parseInt(threshould);
                     int cartcount = Integer.parseInt(txt_cart_count.getText().toString());
                     Log.w(TAG," productqty : "+productqty+" cartcount : "+cartcount);
                     if(cartcount == productqty || cartcount >productqty){
                         Toasty.warning(getApplicationContext(), "You can buy only up to "+productqty+" quantity of this product", Toast.LENGTH_SHORT, true).show();
                     }else{
-                        add_product_ResponseCall();
+                       /* if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                            add_product_ResponseCall();
+                        }*/
+                        Log.w(TAG," productqty : "+productqty+" product_cart_counts : "+product_cart_counts);
+
+
+                        product_cart_counts++;
+                        if(threshould != null){
+                             productqty = Integer.parseInt(threshould);
+                            if(product_cart_counts > productqty){
+                                Toasty.warning(getApplicationContext(), "You can buy only up to "+productqty+" quantity of this product", Toast.LENGTH_SHORT, true).show();
+                            }else{
+                                if(product_cart_counts != 1){
+                                    txt_cart_count.setText(product_cart_counts+"");
+                                    btn_add_to_cart.setText("Go to cart");
+                                }else{
+                                    btn_add_to_cart.setText("Add to cart");
+                                }
+
+                            }
+                        }
+
+
+
+
+
+
                     }
                 }
 
@@ -192,16 +279,40 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
 
         });
-
         btn_add_to_cart.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
-            intent.putExtra("productid",productid);
-            intent.putExtra("fromactivity",TAG);
-            startActivity(intent);
-            finish();
+            if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+                cart_add_product_ResponseCall();
+            }
         });
 
 
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+
+        img_sos.setOnClickListener(this);
+        img_notification.setOnClickListener(this);
+        img_cart.setOnClickListener(this);
+        img_profile.setOnClickListener(this);
+
+        Log.w(TAG," tag test : "+tag);
+        if(tag != null){
+            if(tag.equalsIgnoreCase("1")){
+                bottom_navigation_view.setSelectedItemId(R.id.home);
+            }else if(tag.equalsIgnoreCase("2")){
+                bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
+                //bottom_navigation_view.setSelectedItemId(R.id.shop);
+            }else if(tag.equalsIgnoreCase("3")){
+                bottom_navigation_view.setSelectedItemId(R.id.services);
+            }else if(tag.equalsIgnoreCase("4")){
+                bottom_navigation_view.setSelectedItemId(R.id.care);
+            } else if(tag.equalsIgnoreCase("5")){
+                bottom_navigation_view.setSelectedItemId(R.id.community);
+            }
+        }else{
+            bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
+
+        }
 
 
     }
@@ -209,10 +320,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(fromactivity != null && fromactivity.equalsIgnoreCase("ProductsSearchAdapter")){
+        if(fromactivity != null && fromactivity.equalsIgnoreCase("SearchActivity")){
             Intent intent = new Intent(ProductDetailsActivity.this,SearchActivity.class);
             startActivity(intent);
             finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("ListOfProductsSeeMoreActivity")){
+            Intent intent = new Intent(ProductDetailsActivity.this,ListOfProductsSeeMoreActivity.class);
+            intent.putExtra("cat_id",cat_id);
+            startActivity(intent);
+            finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetShopTodayDealsSeeMoreActivity")){
+            Intent intent = new Intent(ProductDetailsActivity.this,PetShopTodayDealsSeeMoreActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("Cart_Adapter")){
+            Intent intent = new Intent(ProductDetailsActivity.this,PetCartActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PetLoverShopNewAdapter")){
+            callDirections("1");
         }else {
             callDirections("2");
         }
@@ -235,8 +361,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 avi_indicator.smoothToHide();
                 if (response.body() != null) {
                     if(200 == response.body().getCode()){
+                        ll_product_title.setVisibility(View.VISIBLE);
+                        scrollablContent.setVisibility(View.VISIBLE);
+                        footerView.setVisibility(View.VISIBLE);
                         Log.w(TAG,"FetchProductByIdResponse" + new Gson().toJson(response.body()));
-
                         if(response.body().getProduct_details() != null){
                             String product_title = response.body().getProduct_details().getProduct_title();
                             int product_review = response.body().getProduct_details().getProduct_review();
@@ -260,8 +388,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
                         }
-
-
                     }
                 }
             }
@@ -311,21 +437,26 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setUIData(String product_title,int product_review, double product_rating, int product_price, int product_discount, String product_discription, int product_cart_count, String threshould) {
 
-        product_cart_counts = product_cart_count;
+        //product_cart_counts = product_cart_count;
 
         if(product_title != null && !product_title.isEmpty()){
             txt_products_title.setText(product_title);
         }
         if(product_review != 0 ){
             txt_review_count.setText(product_review+"");
+        }else{
+            txt_review_count.setText("0");
         }
         if(product_rating != 0 ){
             txt_star_rating.setText(product_rating+"");
-
+        }else{
+            txt_star_rating.setText("0");
         }
         if(product_price != 0 ){
             txt_products_price.setText("\u20B9 "+product_price);
 
+        }else{
+            txt_products_price.setText("\u20B9 "+0);
         }
         if(product_discount != 0 ){
             ll_discount.setVisibility(View.VISIBLE);
@@ -356,9 +487,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if(product_discription != null && !product_discription.isEmpty()){
             txt_product_desc.setText(product_discription);
         }
-        if(product_cart_count != 0){
+       /* if(product_cart_count != 0){
             txt_cart_count.setText(product_cart_count+"");
-        }
+        }*/
     }
 
     @SuppressLint("LogNotTimber")
@@ -373,7 +504,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Log.w(TAG,"fetchByIdRequest"+ "--->" + new Gson().toJson(fetchByIdRequest));
         return fetchByIdRequest;
     }
-
+    private CartAddProductRequest cartAddProductRequest() {
+        /**
+         * user_id : 603e27792c2b43125f8cb802
+         * product_id : 602e4940f62e8d2089fba978
+         * count : 3
+         */
+        CartAddProductRequest cartAddProductRequest = new CartAddProductRequest();
+        cartAddProductRequest.setUser_id(userid);
+        cartAddProductRequest.setProduct_id(productid);
+        cartAddProductRequest.setCount(Integer.parseInt(txt_cart_count.getText().toString()));
+        Log.w(TAG,"cartAddProductRequest"+ "--->" + new Gson().toJson(cartAddProductRequest));
+        return cartAddProductRequest;
+    }
     public void callDirections(String tag){
         Intent intent = new Intent(ProductDetailsActivity.this,PetLoverDashboardActivity.class);
         intent.putExtra("tag",tag);
@@ -418,6 +561,44 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
 
     }
+    public void cart_add_product_ResponseCall(){
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        //Creating an object of our api interface
+        RestApiInterface ApiService = APIClient.getClient().create(RestApiInterface.class);
+        Call<SuccessResponse> call = ApiService.cart_add_product_ResponseCall(RestUtils.getContentType(),cartAddProductRequest());
+
+        Log.w(TAG,"url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<SuccessResponse>() {
+            @SuppressLint({"LogNotTimber", "SetTextI18n"})
+            @Override
+            public void onResponse(@NonNull Call<SuccessResponse> call, @NonNull Response<SuccessResponse> response) {
+                avi_indicator.smoothToHide();
+
+                if (response.body() != null) {
+                    if(200 == response.body().getCode()){
+                        Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
+                        intent.putExtra("productid",productid);
+                        intent.putExtra("fromactivity",TAG);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+
+
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onFailure(@NonNull Call<SuccessResponse> call, @NonNull  Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"Remove SuccessResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+
     @SuppressLint("LogNotTimber")
     public void add_product_ResponseCall(){
         avi_indicator.setVisibility(View.VISIBLE);
@@ -471,6 +652,58 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                callDirections("1");
+                break;
+            case R.id.shop:
+                callDirections("2");
+                break;
+            case R.id.services:
+                callDirections("3");
+                break;
+            case R.id.care:
+                callDirections("4");
+                break;
+            case R.id.community:
+                callDirections("5");
+                break;
 
+            default:
+                return  false;
+        }
+        return true;
+    }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_sos:
+                break;
+                case R.id.img_notification:
+                    startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+                break;
+                case R.id.img_cart:
+                    Intent i = new Intent(getApplicationContext(), PetCartActivity.class);
+                    i.putExtra("productid",productid);
+                    i.putExtra("cat_id",cat_id);
+                    i.putExtra("fromactivity",TAG);
+                    startActivity(i);
+                    break;
+                case R.id.img_profile:
+                    Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
+                    intent.putExtra("fromactivity",TAG);
+                    if(PetLoverDashboardActivity.active_tag != null){
+                        intent.putExtra("active_tag",PetLoverDashboardActivity.active_tag);
+
+                    }
+                    startActivity(intent);
+                break;
+        }
+
+    }
 }

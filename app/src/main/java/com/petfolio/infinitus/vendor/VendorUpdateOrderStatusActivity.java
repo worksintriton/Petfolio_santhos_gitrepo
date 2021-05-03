@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -251,6 +252,10 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
     @BindView(R.id.ll_transit)
     LinearLayout ll_transit;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.scrollablContent)
+    ScrollView scrollablContent;
+
     String product_title, product_image, order_date, order_id, payment_mode,updated_order_status,order_id_display,order_status;
 
     int order_total, quantity;
@@ -274,6 +279,9 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         ButterKnife.bind(this);
 
         Bundle extras = getIntent().getExtras();
+
+        scrollablContent.setVisibility(View.GONE);
+        btn_submit.setVisibility(View.GONE);
 
         if (extras != null) {
 
@@ -377,7 +385,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
         else {
 
-            Toasty.warning(VendorUpdateOrderStatusActivity.this, "Please Select Order Type", Toast.LENGTH_SHORT).show();
+            Toasty.warning(VendorUpdateOrderStatusActivity.this, "Please select order status type", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -390,18 +398,16 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
             dialog.setCancelable(true);
             EditText edt_addtrackid = dialog.findViewById(R.id.edt_addtrackid);
             Button btn_addtrackid = dialog.findViewById(R.id.btn_addtrackid);
-
-            edt_addtrackid.setHint("Plz Enter Reason");
+            edt_addtrackid.setHint("Please enter the reason...");
 
             btn_addtrackid.setOnClickListener(view -> {
-                if(edt_addtrackid.getText().toString() != null){
+                if(edt_addtrackid.getText().toString() != null &&  !edt_addtrackid.getText().toString().isEmpty()){
                     dialog.dismiss();
                     if (new ConnectionDetector(VendorUpdateOrderStatusActivity.this).isNetworkAvailable(VendorUpdateOrderStatusActivity.this)) {
-
                         vendorCancelsOrder(5, edt_addtrackid.getText().toString());
                     }
                 }else{
-                    showErrorLoading("Please Enter the Reason");
+                    showErrorLoading("Please enter the reason");
                 }
 
 
@@ -424,6 +430,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
             dialog.setCancelable(true);
             EditText edt_addtrackid = dialog.findViewById(R.id.edt_addtrackid);
             Button btn_addtrackid = dialog.findViewById(R.id.btn_addtrackid);
+            edt_addtrackid.setHint("Please enter the package details...");
 
             btn_addtrackid.setOnClickListener(view -> {
                 if(edt_addtrackid.getText().toString() != null){
@@ -433,7 +440,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                         vendorDispatches(2, edt_addtrackid.getText().toString());
                     }
                 }else{
-                    showErrorLoading("Please Enter the Package Details");
+                    showErrorLoading("Please enter the package details");
                 }
 
 
@@ -458,7 +465,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
     public void hideLoading(){
         try {
             alertDialog.dismiss();
@@ -487,6 +493,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
+                        scrollablContent.setVisibility(View.VISIBLE);
 
                         if(response.body().getData()!=null){
 
@@ -581,8 +588,10 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
+                        finish();
+                        startActivity(getIntent());
 
-                        startActivity(new Intent(VendorUpdateOrderStatusActivity.this, VendorDashboardActivity.class));
+                       // startActivity(new Intent(VendorUpdateOrderStatusActivity.this, VendorDashboardActivity.class));
 
                     }
                     else{
@@ -606,10 +615,10 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
     @SuppressLint("LogNotTimber")
     private VendorConfirmsOrderRequest vendorConfirmsOrderRequest(int id, String title) {
 
-        /**
+        /*
          * _id : 6049e4f564a9296f3d7c3327
          * activity_id : 1
-         * activity_title : Order Confirm
+         * activity_title : Order Accept
          * activity_date : 11-03-2021 03:07 PM
          */
 
@@ -648,6 +657,9 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
+                       /* finish();
+                        spr_ordertype.setVisibility(View.GONE);
+                        startActivity(getIntent());*/
 
                         startActivity(new Intent(VendorUpdateOrderStatusActivity.this, VendorDashboardActivity.class));
 
@@ -701,14 +713,11 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
     @SuppressLint("LogNotTimber")
     private void vendorCancelsOrder(int activity_id, String activity_title) {
-
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
         Call<VendorCancelsOrderResponse> call = apiInterface.vendor_order_booking_cancels_ResponseCall(RestUtils.getContentType(), vendorCancelsOrderRequest(activity_id,activity_title));
-
         Log.w(TAG,"vendorConfirmsOrderRequest url  :%s"+" "+ call.request().url().toString());
-
         call.enqueue(new Callback<VendorCancelsOrderResponse>() {
             @Override
             public void onResponse(@NonNull Call<VendorCancelsOrderResponse> call, @NonNull Response<VendorCancelsOrderResponse> response) {
@@ -719,8 +728,9 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
-
-                        startActivity(new Intent(VendorUpdateOrderStatusActivity.this, VendorDashboardActivity.class));
+                        finish();
+                        startActivity(getIntent());
+                       // startActivity(new Intent(VendorUpdateOrderStatusActivity.this, VendorDashboardActivity.class));
 
                     }
                     else{
@@ -743,8 +753,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
     @SuppressLint("LogNotTimber")
     private VendorCancelsOrderRequest vendorCancelsOrderRequest(int id, String title) {
-
-        /**
+        /*
          * _id : 604b387942cb073ec4dfef16
          * activity_id : 5
          * activity_title : Vendor cancelled
@@ -771,6 +780,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         return vendorCancelsOrderRequest;
     }
 
+    @SuppressLint("SetTextI18n")
     private void setView() {
 
         if (product_image != null && !product_image.isEmpty()) {
@@ -792,8 +802,9 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         }
 
         if (product_pr != 0) {
-
             txt_products_price.setText(" \u20B9 " + product_pr);
+        }else{
+            txt_products_price.setText(" \u20B9 " + 0);
         }
 
         if (date_of_booking != null && !date_of_booking.isEmpty()) {
@@ -803,22 +814,20 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
         }
 
         if (order_id_display != null && !order_id_display.isEmpty()) {
-
             txt_booking_id.setText(order_id_display);
         }
 
         if (payment_mode != null && !payment_mode.isEmpty()) {
-
             txt_payment_method.setText(payment_mode);
         }
 
         if (order_total != 0) {
-
-            txt_total_order_cost.setText(""+order_total);
+            txt_total_order_cost.setText(" \u20B9 "+order_total);
+        }else{
+            txt_total_order_cost.setText(" \u20B9 "+0);
         }
 
         if (quantity != 0) {
-
             txt_quantity.setText(""+quantity);
         }
 
@@ -828,7 +837,16 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
             if(prodcutTrackDetailsBeanList.get(i).getTitle()!=null&&!(prodcutTrackDetailsBeanList.get(i).getTitle().isEmpty())){
 
+               /* if(prodcutTrackDetailsBeanList.get(i).getTitle().equals("Order Dispatch")) {
+                    if (prodcutTrackDetailsBeanList.get(i).isStatus()) {
+                        spr_ordertype.setVisibility(View.GONE);
+                    }
+                }else{
+                    spr_ordertype.setVisibility(View.VISIBLE);
+                }*/
+
                 if(prodcutTrackDetailsBeanList.get(i).getTitle().equals("Order Booked")){
+
 
                     if(prodcutTrackDetailsBeanList.get(i).isStatus()){
 
@@ -864,6 +882,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                 else if(prodcutTrackDetailsBeanList.get(i).getTitle().equals("Order Accept")) {
 
                     if (prodcutTrackDetailsBeanList.get(i).isStatus()) {
+
                         isOrderAccept = true;
 
                         txt_order_confirm_date.setText(" " + prodcutTrackDetailsBeanList.get(i).getDate());
@@ -873,6 +892,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                         view_book_to_confirm.setBackground(ContextCompat.getDrawable(VendorUpdateOrderStatusActivity.this, R.drawable.vertical_lines_green));
 
                         img_vendor_confirmed.setImageResource(R.drawable.completed);
+
 
                         ArrayList<String> orderTypeArrayList = new ArrayList<>();
                         orderTypeArrayList.add("Select Order Status");
@@ -889,6 +909,7 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                         img_vendor_confirmed.setImageResource(R.drawable.button_grey_circle);
                         txt_edit_order_confirm.setVisibility(View.GONE);
 
+
                         ArrayList<String> orderTypeArrayList = new ArrayList<>();
                         orderTypeArrayList.add("Select Order Status");
                         orderTypeArrayList.add("Order Confirmation");
@@ -904,7 +925,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
                 }
 
                 else if(prodcutTrackDetailsBeanList.get(i).getTitle().equals("Order Dispatch")) {
-
                     if (prodcutTrackDetailsBeanList.get(i).isStatus()) {
 
                         txt_order_dispatch_date.setText(" " + prodcutTrackDetailsBeanList.get(i).getDate());
@@ -927,7 +947,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
                             txt_order_dispatch_packdetails.setText(""+dataBeanList.getVendor_complete_info());
 
-                            txt_order_dispatch_packdetails.setTextColor(ContextCompat.getColor(VendorUpdateOrderStatusActivity.this, R.color.black));
                         }
 
                         txt_edit_order_confirm.setVisibility(View.GONE);
@@ -989,7 +1008,6 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
 
                     } else {
-
                         ll_order_reject_bypetlover.setVisibility(View.GONE);
 
                         //txt_order_reject_date_petlover.setText(" " + prodcutTrackDetailsBeanList.get(0).getDate());
@@ -1050,9 +1068,9 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
 
             case R.id.btn_submit:
@@ -1068,6 +1086,8 @@ public class VendorUpdateOrderStatusActivity extends AppCompatActivity implement
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),VendorDashboardActivity.class));
+        finish();
     }
 
 

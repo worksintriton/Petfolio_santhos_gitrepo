@@ -2,17 +2,17 @@ package com.petfolio.infinitus.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,29 +20,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
-import com.petfolio.infinitus.activity.location.EditMyAddressActivity;
 import com.petfolio.infinitus.api.APIClient;
-import com.petfolio.infinitus.interfaces.LocationDefaultListener;
-import com.petfolio.infinitus.interfaces.LocationDeleteListener;
-import com.petfolio.infinitus.responsepojo.LocationListAddressResponse;
+import com.petfolio.infinitus.interfaces.ManageProductsDealsListener;
+import com.petfolio.infinitus.interfaces.OnItemCheckProduct;
 import com.petfolio.infinitus.responsepojo.ManageProductsListResponse;
+import com.petfolio.infinitus.vendor.EditManageProdcutsActivity;
 
 import java.util.List;
 
 
 public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private  String TAG = "ManageProductsListAdapter";
-    private Context context;
+    private final String TAG = "ManageProductsListAdapter";
+    private final Context context;
     ManageProductsListResponse.DataBean currentItem;
-    private List<ManageProductsListResponse.DataBean> manageProductsListResponseList;
+    private final List<ManageProductsListResponse.DataBean> manageProductsListResponseList;
     public static String id = "";
     private int currentSelectedPosition = RecyclerView.NO_POSITION;
     boolean showCheckbox;
-    public ManageProductsListAdapter(Context context, List<ManageProductsListResponse.DataBean> manageProductsListResponseList, boolean showCheckbox) {
+
+   private final OnItemCheckProduct onItemCheckProduct;
+    int count = 0;
+
+    ManageProductsDealsListener manageProductsDealsListener;
+
+    public ManageProductsListAdapter(Context context, List<ManageProductsListResponse.DataBean> manageProductsListResponseList, boolean showCheckbox,OnItemCheckProduct onItemCheckProduct,ManageProductsDealsListener manageProductsDealsListener) {
         this.context = context;
         this.manageProductsListResponseList = manageProductsListResponseList;
         this.showCheckbox = showCheckbox;
+        this.onItemCheckProduct = onItemCheckProduct;
+        this.manageProductsDealsListener = manageProductsDealsListener;
     }
 
     @NonNull
@@ -59,7 +66,7 @@ public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerVie
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "LogNotTimber", "LongLogTag"})
     private void initLayoutOne(ViewHolderOne holder, final int position) {
         currentItem = manageProductsListResponseList.get(position);
         if(manageProductsListResponseList.get(position).getProduct_name() != null) {
@@ -79,16 +86,12 @@ public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerVie
                     .into(holder.img_products_image);
 
         }
-        holder.img_expand_arrow.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("LogNotTimber")
-            @Override
-            public void onClick(View v) {
-                currentSelectedPosition = position;
-                notifyDataSetChanged();
+        holder.img_expand_arrow.setOnClickListener(v -> {
+            currentSelectedPosition = position;
+            notifyDataSetChanged();
 
 
 
-            }
         });
         if (currentSelectedPosition == position) {
             holder.include_vendor_productlist_childview.setVisibility(View.VISIBLE);
@@ -99,20 +102,98 @@ public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerVie
             holder.img_expand_arrow.setImageResource(R.drawable.ic_down);
         }
 
-        if(manageProductsListResponseList.get(position).getPet_type().get(position).getPet_type_title() != null){
-            holder.txt_pet_type.setText(" : "+manageProductsListResponseList.get(position).getPet_type().get(position).getPet_type_title());
+        if(manageProductsListResponseList.get(position).getPet_type().get(0).getPet_type_title() != null){
+            holder.txt_pet_type.setText(" : "+manageProductsListResponseList.get(position).getPet_type().get(0).getPet_type_title());
 
-        }if(manageProductsListResponseList.get(position).getPet_breed().get(position).getPet_breed() != null){
-            holder.txt_pet_breed.setText(" : "+manageProductsListResponseList.get(position).getPet_breed().get(position).getPet_breed());
+        }
+        if(manageProductsListResponseList.get(position).getPet_breed().get(0).getPet_breed() != null){
+            holder.txt_pet_breed.setText(" : "+manageProductsListResponseList.get(position).getPet_breed().get(0).getPet_breed());
 
-        }if(manageProductsListResponseList.get(position).getPet_age().get(position) != null){
-            holder.txt_age.setText(" : "+manageProductsListResponseList.get(position).getPet_age().get(position)+"");
+        }
+        if(manageProductsListResponseList.get(position).getPet_age().get(0) != null){
+            holder.txt_age.setText(" : "+manageProductsListResponseList.get(position).getPet_age().get(0)+"");
 
-        }if(manageProductsListResponseList.get(position).getPet_threshold()!= null){
+        }
+        if(manageProductsListResponseList.get(position).getPet_threshold()!= null){
             holder.txt_threshold.setText(" : "+manageProductsListResponseList.get(position).getPet_threshold());
 
         }
 
+        if(manageProductsListResponseList.get(position).isToday_deal()){
+            holder.txt_deal_status.setVisibility(View.VISIBLE);
+            holder.txt_deal_status.setText("Today Deal");
+        }else{
+            holder.txt_deal_status.setVisibility(View.GONE);
+        }
+
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if(isChecked){
+                if (holder.checkBox.isChecked()) {
+                    count++;
+                    Log.w(TAG,"ischecked count : "+count);
+                    onItemCheckProduct.onItemCheckProduct(count,manageProductsListResponseList.get(position).getProduct_id(),manageProductsListResponseList.get(position).getProduct_name(),manageProductsListResponseList.get(position).getProduct_price());
+                }
+
+            }else{
+                count--;
+                Log.w(TAG,"unchecked count : "+count);
+                onItemCheckProduct.onItemUnCheckProduct(count,manageProductsListResponseList.get(position).getProduct_id(),manageProductsListResponseList.get(position).getProduct_name(),manageProductsListResponseList.get(position).getProduct_price());
+
+            }
+
+        });
+
+
+        holder.img_prodsettings.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(context, v);
+
+
+                //Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.popup_manageproducts_menu, popup.getMenu());
+                if(!manageProductsListResponseList.get(position).isToday_deal()){
+                    final Menu menu = popup.getMenu();
+                    menu.removeItem(R.id.menu_delete);
+                }
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String titleName = String.valueOf(item.getTitle());
+                        if(titleName.equalsIgnoreCase("Edit")){
+                            Intent i = new Intent(context, EditManageProdcutsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            i.putExtra("productid",manageProductsListResponseList.get(position).getProduct_id());
+                            i.putExtra("producttitle",manageProductsListResponseList.get(position).getProduct_name());
+                            i.putExtra("productprice",manageProductsListResponseList.get(position).getProduct_price());
+                            i.putExtra("productthreshold",manageProductsListResponseList.get(position).getPet_threshold());
+                            i.putExtra("productdesc",manageProductsListResponseList.get(position).getProduct_desc());
+                            context.startActivity(i);
+
+                        } else if(titleName.equalsIgnoreCase("Clear Deals")){
+                            if(manageProductsListResponseList.get(position).isToday_deal()){
+                              manageProductsDealsListener.manageProductsDealsListener(manageProductsListResponseList.get(position).isToday_deal(),manageProductsListResponseList.get(position).getProduct_id());
+                            }
+                            else{
+                                final Menu menu = popup.getMenu();
+                                menu.removeItem(R.id.menu_delete);
+                                /*if(item.getItemId() == R.id.menu_delete){
+                                    item.setVisible(false);
+                                }*/
+
+                            }
+
+
+                        }
+                        return true;
+                    }
+                });
+
+                popup.show();//showing popup menu
+            }
+        });
 
 
     }
@@ -148,6 +229,8 @@ public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerVie
             txt_prod_name = itemView.findViewById(R.id.txt_prod_name);
             txt_prod_price = itemView.findViewById(R.id.txt_prod_price);
             img_expand_arrow = itemView.findViewById(R.id.img_expand_arrow);
+            txt_deal_status = itemView.findViewById(R.id.txt_deal_status);
+
             include_vendor_productlist_childview = itemView.findViewById(R.id.include_vendor_productlist_childview);
             include_vendor_productlist_childview.setVisibility(View.GONE);
 
@@ -155,15 +238,14 @@ public class ManageProductsListAdapter extends  RecyclerView.Adapter<RecyclerVie
             txt_age = include_vendor_productlist_childview.findViewById(R.id.txt_age);
             txt_pet_breed = include_vendor_productlist_childview.findViewById(R.id.txt_pet_breed);
             txt_threshold = include_vendor_productlist_childview.findViewById(R.id.txt_threshold);
-            txt_deal_status = include_vendor_productlist_childview.findViewById(R.id.txt_deal_status);
+            txt_deal_status.setVisibility(View.GONE);
             checkBox = itemView.findViewById(R.id.checkBox);
 
+            img_prodsettings.setVisibility(View.VISIBLE);
+
             if(showCheckbox){
-
                 checkBox.setVisibility(View.VISIBLE);
-            }
-
-            else {
+            } else {
 
                 checkBox.setVisibility(View.GONE);
 

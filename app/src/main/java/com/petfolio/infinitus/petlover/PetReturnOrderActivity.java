@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
@@ -26,6 +27,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
@@ -55,7 +57,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetReturnOrderActivity extends AppCompatActivity implements View.OnClickListener, DownloadFile.Listener {
+public class PetReturnOrderActivity extends AppCompatActivity implements View.OnClickListener, DownloadFile.Listener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     String TAG = "PetReturnOrderActivity";
 
@@ -96,6 +98,13 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
     @BindView(R.id.btn_continue)
     Button btn_continue;
 
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
+    BottomNavigationView bottom_navigation_view;
+
     private RemotePDFViewPager remotePDFViewPager;
     private PDFPagerAdapter pdfPagerAdapter;
     LinearLayout pdfLayout;
@@ -109,6 +118,7 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
     private String termsandconditions;
     private Dialog alertDialog;
     private String User_return_info;
+    private boolean isOtherReason = false;
 
 
     @SuppressLint({"LogNotTimber", "SetTextI18n"})
@@ -131,6 +141,11 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
             productquantity = extras.getInt("productquantity");
             completeddate = extras.getString("completeddate");
             Log.w(TAG,"_id : "+_id);
+
+            bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+            bottom_navigation_view.setItemIconTintList(null);
+            bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+            bottom_navigation_view.getMenu().findItem(R.id.shop).setChecked(true);
 
 
             if(productname != null) {
@@ -176,7 +191,9 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
 
                     if(returnreason != null && returnreason.equalsIgnoreCase("Other")){
                         edt_comment.setVisibility(View.VISIBLE);
+                        isOtherReason = true;
                     }else{
+                        isOtherReason = false;
                         edt_comment.setVisibility(View.GONE);
                     }
 
@@ -187,9 +204,14 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
 
         });
 
-        btn_continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btn_continue.setOnClickListener(v -> {
+            if(isOtherReason){
+                if(edt_comment.getText().toString() != null && !edt_comment.getText().toString().isEmpty()){
+                    showReturnAlert();
+                }else{
+                    showErrorLoading("Please enter the reason");
+                }
+            }else {
                 showReturnAlert();
             }
         });
@@ -462,5 +484,10 @@ public class PetReturnOrderActivity extends AppCompatActivity implements View.On
         if (pdfPagerAdapter != null) {
             pdfPagerAdapter.close();
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }

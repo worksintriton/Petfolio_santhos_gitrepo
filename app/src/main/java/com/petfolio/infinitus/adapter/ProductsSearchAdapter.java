@@ -29,10 +29,14 @@ public class ProductsSearchAdapter extends  RecyclerView.Adapter<RecyclerView.Vi
     private Context context;
     List<ProductSearchResponse.DataBean> productSearchResponseCall;
     ProductSearchResponse.DataBean currentItem;
+    private String activityname;
+    private String cat_id;
 
-    public ProductsSearchAdapter(Context context, List<ProductSearchResponse.DataBean> productSearchResponseCall) {
+    public ProductsSearchAdapter(Context context, List<ProductSearchResponse.DataBean> productSearchResponseCall,String activityname,String cat_id) {
         this.context = context;
         this.productSearchResponseCall = productSearchResponseCall;
+        this.activityname = activityname;
+        this.cat_id = cat_id;
     }
 
     @NonNull
@@ -99,12 +103,26 @@ public class ProductsSearchAdapter extends  RecyclerView.Adapter<RecyclerView.Vi
 
             }
 
-           holder.ll_root.setOnClickListener(new View.OnClickListener() {
+        if(currentItem.getProduct_rating() != 0){
+            holder.txt_star_rating.setText(currentItem.getProduct_rating()+"");
+        }else{
+            holder.txt_star_rating.setText("0");
+        }
+        if(currentItem.getProduct_review() != 0){
+            holder.txt_review_count.setText(currentItem.getProduct_review()+"");
+        }else{
+            holder.txt_review_count.setText("0");
+        }
+
+
+
+        holder.ll_root.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    Intent intent = new Intent(context, ProductDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                    intent.putExtra("productid",productSearchResponseCall.get(position).get_id());
-                   intent.putExtra("fromactivity",TAG);
+                   intent.putExtra("cat_id",cat_id);
+                   intent.putExtra("fromactivity",activityname);
                    context.startActivity(intent);
                }
            });
