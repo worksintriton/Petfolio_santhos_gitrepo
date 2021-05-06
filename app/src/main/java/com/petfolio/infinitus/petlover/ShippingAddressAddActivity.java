@@ -19,26 +19,37 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.activity.location.EditShippingAddresssActivity;
+import com.petfolio.infinitus.activity.location.PickUpLocationAddNewAddressActivity;
 import com.petfolio.infinitus.adapter.ShippingAddressListAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.interfaces.OnDeleteShipAddrListener;
 import com.petfolio.infinitus.interfaces.OnEditShipAddrListener;
 import com.petfolio.infinitus.interfaces.OnSelectingShipIdListener;
+import com.petfolio.infinitus.requestpojo.LocationDeleteRequest;
+import com.petfolio.infinitus.requestpojo.LocationListAddressRequest;
+import com.petfolio.infinitus.requestpojo.LocationStatusChangeRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddrMarkAsLastUsedRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddrMarkAsLastUsedResponse;
 import com.petfolio.infinitus.requestpojo.ShippingAddressDeleteRequest;
 import com.petfolio.infinitus.requestpojo.ShippingAddressListingByUserIDRequest;
 import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
+import com.petfolio.infinitus.responsepojo.LocationDeleteResponse;
+import com.petfolio.infinitus.responsepojo.LocationListAddressResponse;
+import com.petfolio.infinitus.responsepojo.LocationStatusChangeResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressDeleteResponse;
 import com.petfolio.infinitus.responsepojo.ShippingAddressListingByUserIDResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -68,8 +79,9 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     TextView txt_no_records;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_back)
-    ImageView img_back;
+    @BindView(R.id.txt_savedaddress)
+    TextView txt_savedaddress;
+
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rv_shipping_address)
@@ -87,9 +99,12 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     @BindView(R.id.btn_use_this_addreess)
     Button btn_use_this_addreess;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_header)
+    View include_petlover_header;
+
     String userid,fromactivity;
 
-    List<ShippingAddressListingByUserIDResponse.DataBean> dataBeanList;
 
     Dialog dialog;
 
@@ -108,6 +123,8 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     private int prodcut_count;
 
     private int prodcut_item_count;
+    private List<LocationListAddressResponse.DataBean> addressList;
+    private List<ShippingAddressListingByUserIDResponse.DataBean> dataBeanList;
 
 
     @SuppressLint("LogNotTimber")
@@ -119,6 +136,16 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
         Log.w(TAG,"onCreate ");
 
         ButterKnife.bind(this);
+
+
+        ImageView img_back = include_petlover_header.findViewById(R.id.img_back);
+        ImageView img_sos = include_petlover_header.findViewById(R.id.img_sos);
+        ImageView img_notification = include_petlover_header.findViewById(R.id.img_notification);
+        ImageView img_cart = include_petlover_header.findViewById(R.id.img_cart);
+        ImageView img_profile = include_petlover_header.findViewById(R.id.img_profile);
+        TextView toolbar_title = include_petlover_header.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.shipping_address));
+
 
         SessionManager session = new SessionManager(getApplicationContext());
 
@@ -161,12 +188,17 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
 
         }
 
+        if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
+            locationListAddressResponseCall();
+        }
 
-        if (new ConnectionDetector(ShippingAddressAddActivity.this).isNetworkAvailable(ShippingAddressAddActivity.this)) {
+
+
+       /* if (new ConnectionDetector(ShippingAddressAddActivity.this).isNetworkAvailable(ShippingAddressAddActivity.this)) {
 
             shippingAddressresponseCall(userid);
 
-        }
+        }*/
 
     }
 
@@ -197,7 +229,6 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
 
     @SuppressLint("LogNotTimber")
     private void shippingAddressresponseCall(String userid) {
-
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
@@ -370,6 +401,74 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     }
 
 
+
+
+    @SuppressLint("LogNotTimber")
+    private void locationStatusChangeResponseCall(String locationid) {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<LocationStatusChangeResponse> call = apiInterface.locationStatusChangeResponseCall(RestUtils.getContentType(),locationStatusChangeRequest(locationid));
+
+        Log.w(TAG,"url  :%s"+call.request().url().toString());
+
+        call.enqueue(new Callback<LocationStatusChangeResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NotNull Call<LocationStatusChangeResponse> call, @NotNull Response<LocationStatusChangeResponse> response) {
+                Log.w(TAG,"LocationStatusChangeResponse"+ "--->" + new Gson().toJson(response.body()));
+                avi_indicator.smoothToHide();
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+                        Toasty.success(getApplicationContext(), "Default Location Changed Successfully", Toast.LENGTH_SHORT, true).show();
+                        Intent intent = new Intent(ShippingAddressAddActivity.this, ShippingAddressActivity.class);
+                        intent.putExtra("fromactivity",TAG);
+                        intent.putExtra("data", (Serializable) Data);
+                        intent.putExtra("product_total",prodouct_total);
+                        intent.putExtra("shipping_charge",shipping_charge);
+                        intent.putExtra("discount_price",discount_price);
+                        intent.putExtra("grand_total",grand_total);
+                        intent.putExtra("prodcut_count",prodcut_count);
+                        intent.putExtra("prodcut_item_count",prodcut_item_count);
+                        startActivity(intent);
+                        finish();
+
+
+                    }
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<LocationStatusChangeResponse> call, @NotNull Throwable t) {
+                avi_indicator.smoothToHide();
+
+                Log.w(TAG,"LocationStatusChangeResponseflr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+    @SuppressLint("LogNotTimber")
+    private LocationStatusChangeRequest locationStatusChangeRequest(String locationid) {
+
+        /*
+         * _id : 5fcf2d2a57c8326d894e4d7e
+         * user_id : 5fc61b82b750da703e48da78
+         * default_status : true
+         */
+
+        LocationStatusChangeRequest locationStatusChangeRequest = new LocationStatusChangeRequest();
+        locationStatusChangeRequest.set_id(locationid);
+        locationStatusChangeRequest.setUser_id(userid);
+        locationStatusChangeRequest.setDefault_status(true);
+        Log.w(TAG,"locationStatusChangeRequest"+ "--->" + new Gson().toJson(locationStatusChangeRequest));
+        return locationStatusChangeRequest;
+    }
+
+
     private void deleteshipAddrresponseCall(String shippingid) {
 
         avi_indicator.setVisibility(View.VISIBLE);
@@ -436,6 +535,62 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     }
 
 
+
+
+    @SuppressLint("LogNotTimber")
+    private void locationDeleteResponseCall(String locationid) {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<LocationDeleteResponse> call = apiInterface.locationDeleteResponseCall(RestUtils.getContentType(),locationDeleteRequest(locationid));
+
+        Log.w(TAG,"url  :%s"+call.request().url().toString());
+
+        call.enqueue(new Callback<LocationDeleteResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NotNull Call<LocationDeleteResponse> call, @NotNull Response<LocationDeleteResponse> response) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"LocationDeleteResponse"+ "--->" + new Gson().toJson(response.body()));
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+                        Toasty.success(getApplicationContext(), "Address Removed Successfully", Toast.LENGTH_SHORT, true).show();
+                        finish();
+                        overridePendingTransition( 0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition( 0, 0);
+
+                    }
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<LocationDeleteResponse> call, @NotNull Throwable t) {
+                avi_indicator.smoothToHide();
+
+                Log.w(TAG,"LocationDeleteResponseflr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+    @SuppressLint("LogNotTimber")
+    private LocationDeleteRequest locationDeleteRequest(String locationid) {
+
+        /*
+          _id : 5f05d911f3090625a91f40c7
+         */
+        LocationDeleteRequest locationDeleteRequest = new LocationDeleteRequest();
+        locationDeleteRequest.set_id(locationid);
+        Log.w(TAG,"locationDeleteRequest"+ "--->" + new Gson().toJson(locationDeleteRequest));
+        return locationDeleteRequest;
+    }
+
+
     @SuppressLint("SetTextI18n")
     private void showNoAddressAlert() {
 
@@ -491,7 +646,7 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
             Button btn_ok = dialog.findViewById(R.id.btn_ok);
             Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
             TextView txt_msg = dialog.findViewById(R.id.txt_text_message);
-            txt_msg.setText("Are you sure want to delete");
+            txt_msg.setText(R.string.deletemsg);
             btn_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -499,6 +654,7 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
                     if (new ConnectionDetector(ShippingAddressAddActivity.this).isNetworkAvailable(ShippingAddressAddActivity.this)) {
 
                         deleteshipAddrresponseCall(shippingid);
+                        locationDeleteResponseCall(shippingid);
 
                     }
 
@@ -524,31 +680,21 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
     private void setView() {
         rv_shipping_address.setLayoutManager(new LinearLayoutManager(ShippingAddressAddActivity.this));
         rv_shipping_address.setItemAnimator(new DefaultItemAnimator());
-        ShippingAddressListAdapter shippingAddressListAdapter = new ShippingAddressListAdapter(ShippingAddressAddActivity.this,dataBeanList,this,this,this);
+        ShippingAddressListAdapter shippingAddressListAdapter = new ShippingAddressListAdapter(ShippingAddressAddActivity.this,addressList,this,this,this);
         rv_shipping_address.setAdapter(shippingAddressListAdapter);
 
 
     }
 
     private void gotoShippingaddressCreate() {
-
-        Intent intent = new Intent(ShippingAddressAddActivity.this, ShippingAddressCreateActivity.class);
-
+        Intent intent = new Intent(ShippingAddressAddActivity.this, PickUpLocationAddNewAddressActivity.class);
         intent.putExtra("data", (Serializable) Data);
-
         intent.putExtra("product_total",prodouct_total);
-
         intent.putExtra("shipping_charge",shipping_charge);
-
         intent.putExtra("discount_price",discount_price);
-
         intent.putExtra("grand_total",grand_total);
-
         intent.putExtra("prodcut_count",prodcut_count);
-
         intent.putExtra("prodcut_item_count",prodcut_item_count);
-
-
         startActivity(intent);
 
     }
@@ -557,91 +703,146 @@ public class ShippingAddressAddActivity extends AppCompatActivity implements Vie
 
         if(shippid!=null&&!shippid.isEmpty()){
 
-            markAsLastUsedResponseCall(shippid);
+            //markAsLastUsedResponseCall(shippid);
+            locationStatusChangeResponseCall(shippid);
 
-        }
+        } else {
+            Intent intent = new Intent(ShippingAddressAddActivity.this, ShippingAddressActivity.class);
+            intent.putExtra("fromactivity",TAG);
+            intent.putExtra("data", (Serializable) Data);
+            intent.putExtra("product_total",prodouct_total);
+            intent.putExtra("shipping_charge",shipping_charge);
+            intent.putExtra("discount_price",discount_price);
+            intent.putExtra("grand_total",grand_total);
+            intent.putExtra("prodcut_count",prodcut_count);
+            intent.putExtra("prodcut_item_count",prodcut_item_count);
+            startActivity(intent);
+            finish();
 
-        else
-        {
-
-            Toasty.warning(ShippingAddressAddActivity.this,"Plz choose shipping address ", Toasty.LENGTH_LONG).show();
+            //Toasty.warning(ShippingAddressAddActivity.this,"Plz choose shipping address ", Toasty.LENGTH_LONG).show();
         }
 
 
     }
 
     @Override
-    public void OnEditShipAddr(String shipid, String first_name, String last_name, String phonum, String alt_phonum, String flat_no, String state, String street, String landmark, String pincode, String address_type, String date, String address_status, String city) {
+    public void OnEditShipAddr(int position) {
 
-        Intent intent = new Intent(getApplicationContext(), ShippingAddressEditActivity.class);
+        Intent i = new Intent(getApplicationContext(), EditShippingAddresssActivity.class);
+        i.putExtra("id",addressList.get(position).get_id());
+        i.putExtra("userid",addressList.get(position).getUser_id());
+        i.putExtra("cityname",addressList.get(position).getLocation_city());
+        i.putExtra("state",addressList.get(position).getLocation_state());
+        i.putExtra("country",addressList.get(position).getLocation_country());
+        i.putExtra("address",addressList.get(position).getLocation_address());
+        i.putExtra("pincode",addressList.get(position).getLocation_pin());
+        i.putExtra("nickname",addressList.get(position).getLocation_nickname());
+        i.putExtra("locationtype",addressList.get(position).getLocation_title());
+        i.putExtra("defaultstatus",addressList.get(position).isDefault_status());
+        Bundle b = new Bundle();
+        b.putDouble("lat", addressList.get(position).getLocation_lat());
+        b.putDouble("lon", addressList.get(position).getLocation_long());
+        i.putExtras(b);
+        i.putExtra("data", (Serializable) Data);
+        i.putExtra("product_total",prodouct_total);
+        i.putExtra("shipping_charge",shipping_charge);
+        i.putExtra("discount_price",discount_price);
+        i.putExtra("grand_total",grand_total);
+        i.putExtra("prodcut_count",prodcut_count);
+        i.putExtra("prodcut_item_count",prodcut_item_count);
+        Log.w(TAG,"cityname-->"+addressList.get(position).getLocation_city());
+        startActivity(i);
 
-        intent.putExtra("fromactivity", TAG);
 
-        intent.putExtra("shipid",shipid);
 
-        intent.putExtra("first_name",first_name);
 
-        intent.putExtra("last_name",last_name);
 
-        intent.putExtra("phonum",phonum);
-
-        intent.putExtra("alt_phonum",alt_phonum);
-
-        intent.putExtra("flat_no",flat_no);
-
-        intent.putExtra("state",state);
-
-        intent.putExtra("street",street);
-
-        intent.putExtra("landmark",landmark);
-
-        intent.putExtra("pincode",pincode);
-
-        intent.putExtra("address_type",address_type);
-
-        intent.putExtra("date",date);
-
-        intent.putExtra("address_status",address_status);
-
-        intent.putExtra("city",city);
-
-        intent.putExtra("data", (Serializable) Data);
-
-        intent.putExtra("product_total",prodouct_total);
-
-        intent.putExtra("shipping_charge",shipping_charge);
-
-        intent.putExtra("discount_price",discount_price);
-
-        intent.putExtra("grand_total",grand_total);
-
-        intent.putExtra("prodcut_count",prodcut_count);
-
-        intent.putExtra("prodcut_item_count",prodcut_item_count);
-
-        startActivity(intent);
-
-        finish();
 
     }
 
     @Override
-    public void onSelectShipID(String shipid, String first_name, String last_name, String phonum, String alt_phonum, String flat_no, String state, String street, String landmark, String pincode, String address_type, String date, String address_status) {
+    public void onSelectShipID(String shipid) {
 
         shippid = shipid;
     }
 
     @Override
-    public void OnDeleteShipAddr(String shipid, String first_name, String last_name, String phonum, String alt_phonum, String flat_no, String state, String street, String landmark, String pincode, String address_type, String date, String address_status) {
+    public void OnDeleteShipAddr(String shipid) {
         showWaring(shipid);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(),ShippingAddressActivity.class);
-        intent.putExtra("grand_total",grand_total);
-        startActivity(intent);
+        Intent i = new Intent(getApplicationContext(),ShippingAddressActivity.class);
+        i.putExtra("data", (Serializable) Data);
+        i.putExtra("product_total",prodouct_total);
+        i.putExtra("shipping_charge",shipping_charge);
+        i.putExtra("discount_price",discount_price);
+        i.putExtra("grand_total",grand_total);
+        i.putExtra("prodcut_count",prodcut_count);
+        i.putExtra("prodcut_item_count",prodcut_item_count);
+        startActivity(i);
         finish();
+    }
+
+    private void locationListAddressResponseCall() {
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<LocationListAddressResponse> call = apiInterface.locationListAddressResponseCall(RestUtils.getContentType(), locationListAddressRequest());
+        Log.w(TAG,"locationListAddressResponseCall url  :%s"+" "+ call.request().url().toString());
+
+        call.enqueue(new Callback<LocationListAddressResponse>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(@NonNull Call<LocationListAddressResponse> call, @NonNull Response<LocationListAddressResponse> response) {
+
+                Log.w(TAG,"locationListAddressResponseCall"+ "--->" + new Gson().toJson(response.body()));
+
+                avi_indicator.smoothToHide();
+
+                if (response.body() != null) {
+                    if(response.body().getCode() == 200){
+                        if(response.body().getData() != null && response.body().getData().isEmpty()){
+                            txt_no_records.setVisibility(View.VISIBLE);
+                            txt_no_records.setText("No new address");
+                            rv_shipping_address.setVisibility(View.GONE);
+                            txt_savedaddress.setVisibility(View.GONE);
+                        }
+                        else{
+                            txt_no_records.setVisibility(View.GONE);
+                            rv_shipping_address.setVisibility(View.VISIBLE);
+                            txt_savedaddress.setVisibility(View.VISIBLE);
+                            if(response.body().getData() != null) {
+                                addressList = response.body().getData();
+                            }
+                            txt_savedaddress.setText(addressList.size()+" Saved Address");
+                            setView();
+                        }
+
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LocationListAddressResponse> call, @NonNull Throwable t) {
+
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"locationListAddressResponseCall flr"+"--->" + t.getMessage());
+            }
+        });
+
+    }
+    private LocationListAddressRequest locationListAddressRequest() {
+        LocationListAddressRequest locationListAddressRequest = new LocationListAddressRequest();
+        locationListAddressRequest.setUser_id(userid);
+        Log.w(TAG,"locationListAddressRequest"+ "--->" + new Gson().toJson(locationListAddressRequest));
+        return locationListAddressRequest;
     }
 }

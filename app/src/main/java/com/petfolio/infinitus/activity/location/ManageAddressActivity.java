@@ -61,10 +61,9 @@ import retrofit2.Response;
 
 public class ManageAddressActivity extends AppCompatActivity implements View.OnClickListener, LocationDeleteListener, LocationDefaultListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "ManageAddressActivity" ;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_back)
-    ImageView img_back;
+    private static final String TAG = "ManageAddressActivity";
+
+
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
@@ -89,7 +88,13 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
 
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_header)
+    View include_petlover_header;
+
     BottomNavigationView bottom_navigation_view;
 
 
@@ -97,18 +102,33 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
     private List<LocationListAddressResponse.DataBean> addressList;
     private Dialog dialog;
     Dialog alertDialog;
+    private String fromactivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_address);
         ButterKnife.bind(this);
+
+
+        ImageView img_back = include_petlover_header.findViewById(R.id.img_back);
+        ImageView img_sos = include_petlover_header.findViewById(R.id.img_sos);
+        ImageView img_notification = include_petlover_header.findViewById(R.id.img_notification);
+        ImageView img_cart = include_petlover_header.findViewById(R.id.img_cart);
+        ImageView img_profile = include_petlover_header.findViewById(R.id.img_profile);
+        TextView toolbar_title = include_petlover_header.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.manage_address));
+
         avi_indicator.setVisibility(View.GONE);
 
         Log.w(TAG,"onCreate : ");
         img_back.setOnClickListener(this);
         ll_add_newaddress.setOnClickListener(this);
 
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.getMenu().findItem(R.id.home).setChecked(true);
+
+        bottom_navigation_view.setItemIconTintList(null);
         bottom_navigation_view.setOnNavigationItemSelectedListener(this);
 
 
@@ -118,6 +138,11 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
 
         if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
            locationListAddressResponseCall();
+        }
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            fromactivity = extras.getString("fromactivity");
         }
 
 
@@ -146,8 +171,13 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), PetLoverProfileScreenActivity.class));
-        finish();
+        if(fromactivity != null && fromactivity.equalsIgnoreCase("PetLoverNavigationDrawerNew")){
+            startActivity(new Intent(getApplicationContext(), PetLoverDashboardActivity.class));
+            finish();
+        }else {
+            startActivity(new Intent(getApplicationContext(), PetLoverProfileScreenActivity.class));
+            finish();
+        }
     }
 
 

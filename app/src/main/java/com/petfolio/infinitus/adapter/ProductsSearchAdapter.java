@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.petlover.ProductDetailsActivity;
-import com.petfolio.infinitus.responsepojo.FetctProductByCatResponse;
 import com.petfolio.infinitus.responsepojo.ProductSearchResponse;
 
 import java.util.List;

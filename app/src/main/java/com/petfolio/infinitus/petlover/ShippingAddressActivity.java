@@ -66,9 +66,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     @BindView(R.id.txt_no_records)
     TextView txt_no_records;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_back)
-    ImageView img_back;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.ll_addresslist)
@@ -126,6 +123,11 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
     @BindView(R.id.ll_price)
     LinearLayout ll_price;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.include_petlover_header)
+    View include_petlover_header;
+
+
     String userid, name, phonum, state, street, landmark_pincode, address_type, date, shipid, fromactivity;
 
     String first_name,last_name,flat_no,landmark,pincode,alt_phonum,address_status,city;
@@ -160,6 +162,14 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
         Log.w(TAG,"onCreate ");
 
         ButterKnife.bind(this);
+
+        ImageView img_back = include_petlover_header.findViewById(R.id.img_back);
+        ImageView img_sos = include_petlover_header.findViewById(R.id.img_sos);
+        ImageView img_notification = include_petlover_header.findViewById(R.id.img_notification);
+        ImageView img_cart = include_petlover_header.findViewById(R.id.img_cart);
+        ImageView img_profile = include_petlover_header.findViewById(R.id.img_profile);
+        TextView toolbar_title = include_petlover_header.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getResources().getString(R.string.shipping_address));
 
         SessionManager session = new SessionManager(getApplicationContext());
 
@@ -197,7 +207,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
             prodcut_item_count = extras.getInt("prodcut_item_count");
 
             if (new ConnectionDetector(ShippingAddressActivity.this).isNetworkAvailable(ShippingAddressActivity.this)) {
-
                 shippingAddressresponseCall(userid);
 
             }
@@ -290,48 +299,46 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
                         {
                             dataBeanList = response.body().getData();
 
-                            if(dataBeanList.getUser_address_stauts()!=null&&!dataBeanList.getUser_address_stauts().isEmpty())
-                            {
-
-                                Log.w(TAG, "Status" + dataBeanList.getUser_address_stauts());
-
-                                if(dataBeanList.getUser_address_stauts().equals("Last Used")){
+                            if(dataBeanList!=null) {
+                                if(dataBeanList.isDefault_status()){
 
                                     Log.w(TAG,"true-->");
 
                                     shipid = dataBeanList.get_id();
 
-                                    first_name = dataBeanList.getUser_first_name();
+                                    first_name =  dataBeanList.getUser_id().getFirst_name();
 
-                                    last_name = dataBeanList.getUser_last_name();
+                                    last_name = dataBeanList.getUser_id().getLast_name();
+                                    if(last_name!= null){
+                                        name = first_name + " " + last_name;
+                                    }else{
+                                        name = first_name;
+                                    }
 
-                                    name = first_name + " " + last_name;
 
-                                    phonum = dataBeanList.getUser_mobile();
 
-                                    alt_phonum = dataBeanList.getUser_alter_mobile();
+                                    phonum = dataBeanList.getUser_id().getUser_phone();
 
-                                    flat_no = dataBeanList.getUser_flat_no();
 
-                                    state = dataBeanList.getUser_state();
 
-                                    street = dataBeanList.getUser_stree();
+                                    state = dataBeanList.getLocation_state();
 
-                                    landmark = dataBeanList.getUser_landmark();
+                                    street = dataBeanList.getLocation_address();
 
-                                    pincode  = dataBeanList.getUser_picocode();
+                                    landmark = dataBeanList.getLocation_nickname();
 
-                                    address_type = dataBeanList.getUser_address_type();
+                                    pincode  = dataBeanList.getLocation_pin();
+                                    address_type = dataBeanList.getLocation_title();
+
 
                                     Log.w(TAG, "address_type"+address_type);
 
-                                    date = dataBeanList.getUser_display_date();
 
-                                    address_status = dataBeanList.getUser_address_stauts();
 
-                                    city = dataBeanList.getUser_city();
+                                    city = dataBeanList.getLocation_city();
 
-                                    landmark_pincode = landmark +" , "+state +" , "+ pincode;
+                                  //  landmark_pincode = landmark +" , "+state +" , "+ pincode;
+                                    landmark_pincode = landmark;
 
                                     setView();
 
@@ -343,8 +350,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
 
                                 }
-
-
                                 else {
 
                                     showNoAddressAlert();
@@ -414,19 +419,13 @@ public class ShippingAddressActivity extends AppCompatActivity implements View.O
 
 
     }
-
     @SuppressLint("LogNotTimber")
     private ShippingAddressFetchByUserIDRequest shippingAddressFetchByUserIDRequest(String userid) {
-
-
-        /**
+        /*
          * user_id : 6048589d0b3a487571a1c567
          */
-
-
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-
         ShippingAddressFetchByUserIDRequest shippingAddressFetchByUserIDRequest = new ShippingAddressFetchByUserIDRequest();
         shippingAddressFetchByUserIDRequest.setUser_id(userid);
 
