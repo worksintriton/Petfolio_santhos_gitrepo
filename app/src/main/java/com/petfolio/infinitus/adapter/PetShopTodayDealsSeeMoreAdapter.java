@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.doctor.shop.DoctorProductDetailsActivity;
 import com.petfolio.infinitus.petlover.ProductDetailsActivity;
 import com.petfolio.infinitus.responsepojo.TodayDealMoreResponse;
 
@@ -93,17 +94,17 @@ public class PetShopTodayDealsSeeMoreAdapter extends  RecyclerView.Adapter<Recyc
         }
 
         if (data.get(position).getProduct_img() != null && !data.get(position).getProduct_img().isEmpty()) {
-               Glide.with(context)
-                        .load(data.get(position).getProduct_img())
-                        .into(holder.img_products_image);
+            Glide.with(context)
+                    .load(data.get(position).getProduct_img())
+                    .into(holder.img_products_image);
 
-            }
+        }
         else{
-                Glide.with(context)
-                        .load(R.drawable.app_logo)
-                        .into(holder.img_products_image);
+            Glide.with(context)
+                    .load(R.drawable.app_logo)
+                    .into(holder.img_products_image);
 
-            }
+        }
 
         if(currentItem.getProduct_rating() != 0){
             holder.txt_star_rating.setText(currentItem.getProduct_rating()+"");
@@ -118,12 +119,21 @@ public class PetShopTodayDealsSeeMoreAdapter extends  RecyclerView.Adapter<Recyc
             holder.txt_review_count.setText("0");
         }
         holder.ll_root.setOnClickListener(v -> {
-               Intent intent = new Intent(context, ProductDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-               intent.putExtra("productid",data.get(position).get_id());
-               intent.putExtra("fromactivity",fromactivity);
-               intent.putExtra("tag",tag);
-               context.startActivity(intent);
-           });
+            if(fromactivity != null && fromactivity.equalsIgnoreCase("DoctorShopTodayDealsSeeMoreActivity")){
+                Intent intent = new Intent(context, DoctorProductDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("productid",data.get(position).get_id());
+                intent.putExtra("fromactivity",fromactivity);
+                intent.putExtra("tag",tag);
+                context.startActivity(intent);
+            }else{
+                Intent intent = new Intent(context, ProductDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("productid",data.get(position).get_id());
+                intent.putExtra("fromactivity",fromactivity);
+                intent.putExtra("tag",tag);
+                context.startActivity(intent);
+            }
+
+        });
     }
 
     @Override

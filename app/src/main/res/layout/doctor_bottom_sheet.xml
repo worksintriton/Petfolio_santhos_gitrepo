@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
+    android:visibility="visible"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <LinearLayout
@@ -93,8 +94,9 @@
                     android:id="@+id/txt_clinicname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
                     android:alpha="0.5"
                     android:ellipsize="end"
                     android:fontFamily="@font/futuralightbt"
@@ -132,7 +134,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:ellipsize="end"
-                                android:fontFamily="@font/futuralightfont"
+                                android:fontFamily="@font/lato_regular"
                                 android:gravity="center"
                                 android:maxLines="1"
                                 android:text="@string/fee"
@@ -183,7 +185,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:ellipsize="end"
-                                android:fontFamily="@font/futuralightfont"
+                                android:fontFamily="@font/lato_regular"
                                 android:gravity="center"
                                 android:maxLines="1"
                                 android:text="@string/experience"
@@ -255,7 +257,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:ellipsize="end"
-                                android:fontFamily="@font/futuralightfont"
+                                android:fontFamily="@font/lato_regular"
                                 android:gravity="center"
                                 android:maxLines="1"
                                 android:text="@string/location"
@@ -324,10 +326,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/futuramediumbt"
+                    android:fontFamily="@font/lato_regular"
                     android:maxLines="3"
                     android:text="@string/desc_content"
-                    android:textColor="@color/new_light_black"
+                    android:textColor="@color/new_txt_colors"
                     android:textSize="14sp" />
 
                 <TextView

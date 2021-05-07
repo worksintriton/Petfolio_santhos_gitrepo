@@ -8,18 +8,21 @@ import android.location.Location;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +56,6 @@ import com.petfolio.infinitus.responsepojo.DoctorDetailsResponse;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.GridSpacingItemDecoration;
 import com.petfolio.infinitus.utils.RestUtils;
-import com.petfolio.infinitus.utils.ScreenUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -143,6 +145,15 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     @BindView(R.id.rv_pet_hanldle)
     RecyclerView rv_pet_hanldle;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.cl_root)
+    CoordinatorLayout cl_root;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.footerView)
+    LinearLayout footerView;
+
+
 
     int currentPage = 0;
     Timer timer;
@@ -190,6 +201,11 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     @BindView(R.id.hand_img5)
     ImageView hand_img5;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.toolbar_header)
+    Toolbar toolbar_header;
+
+
     @SuppressLint({"LongLogTag", "LogNotTimber"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,7 +226,15 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
         }
 
         ll_book_now.setOnClickListener(this);
+
         rl_back.setOnClickListener(this);
+
+        avi_indicator.setVisibility(View.VISIBLE);
+
+       // toolbar_header.setVisibility(View.GONE);
+
+
+        //footerView.setVisibility(View.GONE);
 
         setBottomSheet();
 
@@ -324,6 +348,15 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                             if(response.body().getData().getAmount() != 0){
                                 txt_dr_consultationfees.setText("INR "+response.body().getData().getAmount());
                             }
+
+
+                            avi_indicator.setVisibility(View.GONE);
+
+//                            toolbar_header.setVisibility(View.VISIBLE);
+
+                          /////////  scrollView.setVisibility(View.VISIBLE);
+
+                          //  footerView.setVisibility(View.GONE);
                         }
 
                         if(Doctor_exp != 0) {
@@ -395,6 +428,7 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
                             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                                     .findFragmentById(R.id.map);
+                            assert mapFragment != null;
                             mapFragment.getMapAsync(DoctorClinicDetailsActivity.this);
 
 
@@ -603,10 +637,17 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
 
         if(latitude!=0&&longitude!=0){
 
-            LatLng TutorialsPoint = new LatLng(latitude, longitude);
+            LatLng currentLocation = new LatLng(latitude, longitude);
+
             mMap.addMarker(new
-                    MarkerOptions().position(TutorialsPoint));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(TutorialsPoint));
+                    MarkerOptions().position(currentLocation));
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,15));
+            // Zoom in, animating the camera.
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+
         }
 
     }

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PetMyOrdrersActivity extends AppCompatActivity  {
+public class PetMyOrdrersActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private final String TAG = "PetMyOrdrersActivity";
 
 
@@ -40,7 +42,9 @@ public class PetMyOrdrersActivity extends AppCompatActivity  {
     AVLoadingIndicatorView avi_indicator;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(R.id.include_petlover_footer)
+    View include_petlover_footer;
+
     BottomNavigationView bottom_navigation_view;
 
     @SuppressLint("NonConstantResourceId")
@@ -75,6 +79,11 @@ public class PetMyOrdrersActivity extends AppCompatActivity  {
         img_back.setOnClickListener(v -> onBackPressed());
 
 
+        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
+        bottom_navigation_view.setItemIconTintList(null);
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
+
+
 
 
     }
@@ -101,6 +110,31 @@ public class PetMyOrdrersActivity extends AppCompatActivity  {
         intent.putExtra("tag",tag);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                callDirections("1");
+                break;
+            case R.id.shop:
+                callDirections("2");
+                break;
+            case R.id.services:
+                callDirections("3");
+                break;
+            case R.id.care:
+                callDirections("4");
+                break;
+            case R.id.community:
+                callDirections("5");
+                break;
+
+            default:
+                return  false;
+        }
+        return true;
     }
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.api.APIClient;
+import com.petfolio.infinitus.doctor.DoctorOrderDetailsActivity;
 import com.petfolio.infinitus.interfaces.AddReviewListener;
 import com.petfolio.infinitus.interfaces.AddandReviewListener;
 import com.petfolio.infinitus.petlover.PetLoverVendorOrderDetailsActivity;
@@ -82,13 +83,13 @@ public class PetLoverVendorOrdersAdapter extends  RecyclerView.Adapter<RecyclerV
             } else { holder.txt_products_price.setText("\u20B9 " + 0 + " (" + orderResponseListAll.get(position).getP_order_product_count() + " items )"); } }
 
 
-        if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentPetLoverNewOrders")){
+        if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentDoctorNewOrders")){
             if (orderResponseListAll.get(position).getP_order_booked_on() != null) {
                 holder.txt_bookedon.setText("Booked on:" + " " + orderResponseListAll.get(position).getP_order_booked_on());
 
             }
         }
-        else if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentPetLoverCompletedOrders")){
+        else if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentDoctorCompletedOrders")){
             if (orderResponseListAll.get(position).getP_completed_date() != null) {
                 holder.txt_bookedon.setText("Delivered on:" + " " + orderResponseListAll.get(position).getP_completed_date());
 
@@ -102,7 +103,7 @@ public class PetLoverVendorOrdersAdapter extends  RecyclerView.Adapter<RecyclerV
             holder.btn_add_review.setOnClickListener(v -> addReviewListener.addReviewListener(orderResponseListAll.get(position).getP_order_id(),orderResponseListAll.get(position).getP_user_rate(),orderResponseListAll.get(position).getP_user_feedback()));
 
         }
-        else if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentPetLoverCancelledOrders")){
+        else if(fromactivity != null && fromactivity.equalsIgnoreCase("FragmentDoctorCancelledOrders")){
             if (orderResponseListAll.get(position).getP_cancelled_date() != null) {
                 holder.txt_bookedon.setText("Cancelled on:" + " " + orderResponseListAll.get(position).getP_cancelled_date());
 
@@ -124,20 +125,49 @@ public class PetLoverVendorOrdersAdapter extends  RecyclerView.Adapter<RecyclerV
         holder.txt_order_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
-                i.putExtra("fromactivity", fromactivity);
-                context.startActivity(i);
+                if(fromactivity != null) {
+                    if (fromactivity.equalsIgnoreCase("FragmentDoctorNewOrders") || fromactivity.equalsIgnoreCase("FragmentDoctorCompletedOrders") || fromactivity.equalsIgnoreCase("FragmentDoctorCancelledOrders")) {
+                        Intent i = new Intent(context, DoctorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                        i.putExtra("fromactivity", fromactivity);
+                        context.startActivity(i);
+                    } else{
+                        Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                        i.putExtra("fromactivity", fromactivity);
+                        context.startActivity(i);
+                    }
+                }else{
+                    Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                    i.putExtra("fromactivity", fromactivity);
+                    context.startActivity(i);
+                }
+
 
             }
         });
         holder.ll_root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
-                i.putExtra("fromactivity", fromactivity);
-                context.startActivity(i);
+                if(fromactivity != null) {
+                    if (fromactivity.equalsIgnoreCase("FragmentDoctorNewOrders") || fromactivity.equalsIgnoreCase("FragmentDoctorCompletedOrders") || fromactivity.equalsIgnoreCase("FragmentDoctorCancelledOrders")) {
+                        Intent i = new Intent(context, DoctorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                        i.putExtra("fromactivity", fromactivity);
+                        context.startActivity(i);
+                    } else{
+                        Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                        i.putExtra("fromactivity", fromactivity);
+                        context.startActivity(i);
+                    }
+                }else{
+                    Intent i = new Intent(context, PetLoverVendorOrderDetailsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("_id", orderResponseListAll.get(position).getP_order_id());
+                    i.putExtra("fromactivity", fromactivity);
+                    context.startActivity(i);
+                }
 
 
             }

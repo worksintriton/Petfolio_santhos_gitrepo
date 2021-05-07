@@ -326,7 +326,7 @@ public class VendorShopFragment extends Fragment implements Serializable,View.On
     private void setViewProductDetails(List<ShopDashboardResponse.DataBean.ProductDetailsBean> product_details, List<ShopDashboardResponse.DataBean.ProductDetailsBean.ProductListBean> productList) {
         rv_productdetails.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         rv_productdetails.setItemAnimator(new DefaultItemAnimator());
-        PetShopProductDetailsAdapter petShopProductDetailsAdapter = new PetShopProductDetailsAdapter(mContext, product_details,productList);
+        PetShopProductDetailsAdapter petShopProductDetailsAdapter = new PetShopProductDetailsAdapter(mContext, product_details,productList,TAG);
         rv_productdetails.setAdapter(petShopProductDetailsAdapter);
     }
 
@@ -362,7 +362,7 @@ public class VendorShopFragment extends Fragment implements Serializable,View.On
     private void setView(List<ShopDashboardResponse.DataBean.TodaySpecialBean> today_special) {
         rv_today_deal.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         rv_today_deal.setItemAnimator(new DefaultItemAnimator());
-        PetShopTodayDealsAdapter petShopTodayDealsAdapter = new PetShopTodayDealsAdapter(mContext, today_special);
+        PetShopTodayDealsAdapter petShopTodayDealsAdapter = new PetShopTodayDealsAdapter(mContext,today_special,TAG);
         rv_today_deal.setAdapter(petShopTodayDealsAdapter);
 
     }
