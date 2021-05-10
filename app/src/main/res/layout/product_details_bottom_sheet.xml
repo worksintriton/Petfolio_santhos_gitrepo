@@ -193,12 +193,23 @@
                         android:textColor="@color/new_light_black"
                         android:textSize="14sp" />
 
+                    <TextView
+                        android:id="@+id/txt_view_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/futuramediumbt"
+                        android:text="@string/view_vendor_details"
+                        android:textColor="@color/new_footer_change_blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/new_solid_bgm">
 

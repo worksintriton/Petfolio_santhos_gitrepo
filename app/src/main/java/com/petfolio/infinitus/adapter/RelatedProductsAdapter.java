@@ -101,17 +101,11 @@ public class RelatedProductsAdapter extends  RecyclerView.Adapter<RecyclerView.V
             holder.txt_products_title.setText(currentItem.getProduct_title());
         }
 
-        if(check){
 
-
+        if(prod_type != null&&!prod_type.isEmpty()){
+            holder.txt_category_title.setText(prod_type);
         }
 
-        else {
-
-            if(prod_type != null&&!prod_type.isEmpty()){
-                holder.txt_category_title.setText(prod_type);
-            }
-        }
 
         if(currentItem.getProduct_price() != 0){
             holder.txt_products_price.setText("INR "+currentItem.getProduct_price());
