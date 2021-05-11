@@ -494,9 +494,6 @@
     <string name="product_description">Product Description</string>
     <string name="about_service_provider">About Service Provider</string>
 
-
-    <!--> Sandy 10/05/2021-->
-
     <string name="view_vendor_details"><u>View Vendor Details</u></string>
     <string name="view_vendor_detail">View Vendor Details</string>
     <string name="grooming">Grooming</string>
@@ -510,6 +507,7 @@
     <string name="doctor">Doctor</string>
     <string name="service">Service</string>
     <string name="recent_transactions">Recent Transactions</string>
+    <string name="my_favourites">My Favourites</string>
 
 
 </resources>

@@ -37,7 +37,11 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.requestpojo.CartAddProductRequest;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
+import com.petfolio.infinitus.requestpojo.ProductFavCreateRequest;
+import com.petfolio.infinitus.requestpojo.SPFavCreateRequest;
+import com.petfolio.infinitus.requestpojo.SPFavCreateResponse;
 import com.petfolio.infinitus.responsepojo.FetchProductByIdResponse;
+import com.petfolio.infinitus.responsepojo.ProductFavCreateResponse;
 import com.petfolio.infinitus.responsepojo.SuccessResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
@@ -174,6 +178,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
     @BindView(R.id.hand_img5)
     ImageView hand_img5;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_fav)
+    ImageView img_fav;
+
     String prod_type;
 
     Dialog dialog;
@@ -290,12 +298,70 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 
 
 
-
-
         setBottomSheet();
 
+        img_fav.setOnClickListener(this);
 
     }
+
+    private void favResponseCall() {
+
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<ProductFavCreateResponse> call = apiInterface.createshopfavlistResponseCall(RestUtils.getContentType(), productFavCreateRequest());
+        Log.w(TAG,"ProductFavCreateResponse url  :%s"+" "+ call.request().url().toString());
+
+        call.enqueue(new Callback<ProductFavCreateResponse>() {
+            @SuppressLint({"SetTextI18n", "LogNotTimber"})
+            @Override
+            public void onResponse(@NonNull Call<ProductFavCreateResponse> call, @NonNull Response<ProductFavCreateResponse> response) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"SPFavCreateResponse" + new Gson().toJson(response.body()));
+                if (response.body() != null) {
+
+                    if (200 == response.body().getCode()) {
+                        if (response.body().getStatus() != null&&!response.body().getStatus().isEmpty()) {
+
+                            Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ProductFavCreateResponse> call,@NonNull Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"ProductFavCreateResponse flr"+ t.getMessage());
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @SuppressLint("LogNotTimber")
+    private ProductFavCreateRequest productFavCreateRequest() {
+
+        /**
+         * product_id : 602e11404775fa0735d7bf40
+         * user_id : 604081d12c2b43125f8cb840
+         */
+
+
+        ProductFavCreateRequest productFavCreateRequest = new ProductFavCreateRequest();
+        productFavCreateRequest.setUser_id(userid);
+        productFavCreateRequest.setProduct_id(productid);
+
+        Log.w(TAG,"productFavCreateRequest "+ new Gson().toJson(productFavCreateRequest));
+        return productFavCreateRequest;
+    }
+
+
+
 
     private void showVendorDetails() {
 
@@ -801,6 +867,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
+            case R.id.img_fav:
+                favResponseCall();
+                break;
 
         }
 

@@ -222,14 +222,14 @@ public class PetLoverNavigationDrawerNew extends AppCompatActivity implements Vi
 
     }
 
-    private void gotoMyFavourites() {
-
-        Intent intent = new Intent(getApplicationContext(),PetloverFavListActivity.class);
+    private void gotoMedicalHistory() {
+        Intent intent = new Intent(getApplicationContext(),MedicalHistoryActivity.class);
         startActivity(intent);
     }
 
-    private void gotoMedicalHistory() {
-        Intent intent = new Intent(getApplicationContext(),MedicalHistoryActivity.class);
+    private void gotoMyFavourites() {
+
+        Intent intent = new Intent(getApplicationContext(),PetloverFavListActivity.class);
         startActivity(intent);
     }
 
@@ -444,7 +444,6 @@ public class PetLoverNavigationDrawerNew extends AppCompatActivity implements Vi
 
     }
     private void gotoMyOrders() {
-      //  startActivity(new Intent(getApplicationContext(),PetMyOrdrersActivity.class));
         startActivity(new Intent(getApplicationContext(),PetMyOrdrersNewActivity.class));
 
     }

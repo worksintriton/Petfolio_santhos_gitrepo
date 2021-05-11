@@ -46,7 +46,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:allowBackup,icon,theme,label,name">
-        <activity android:name=".petlover.PetloverFavListActivity"></activity>
+        <activity android:name=".petlover.PetloverPaymentDetailsActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -478,6 +478,11 @@
             android:name=".doctor.DoctorOrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".doctor.ManageAddressDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" /> <!-- Service Provider -->
         <activity
             android:name=".serviceprovider.ServiceProviderRegisterFormActivity"
@@ -713,6 +718,11 @@
             android:name=".doctor.DoctorMyOrdrersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".petlover.PetloverFavListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver

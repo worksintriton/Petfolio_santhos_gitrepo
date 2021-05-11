@@ -12,40 +12,63 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a85425f7-e9d1-41d0-a742-38281f0abf36" name="Default Changelist" comment="" />
+    <list default="true" id="e8a0723a-ba04-4463-baac-7245baea9a38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/RestApiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/RestApiInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/DoctorFavFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/DoctorFavFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/SPFavFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/SPFavFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/ShopFavFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/favourites/ShopFavFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverNavigationDrawerNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverNavigationDrawerNew.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverFavListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverFavListActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_reports.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_reports.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor_fav.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_doctor_fav.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_s_p_fav.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_s_p_fav.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_shop_fav.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_shop_fav.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\santh\.android\avd\5.1_WVGA_API_29.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="ProjectId" id="1sD5pN8PeLOk1FUs0CdU4vzdQA9" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1sNVRWunGp6lulfv7CGY4vPXRD4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-05-10T11:10:27.917061500Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-05-11T11:58:48.625561900Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.-1288979791">
+    <key name="android.template.-1530095188">
       <recent name="com.petfolio.infinitus.petlover" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.petfolio.infinitus.responsepojo" />
+      <recent name="com.petfolio.infinitus.requestpojo" />
       <recent name="com.petfolio.infinitus.adapter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev-master\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev-master\app\src\main\res\drawable" />
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunManager">
@@ -116,51 +139,60 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a85425f7-e9d1-41d0-a742-38281f0abf36" name="Default Changelist" comment="" />
-      <created>1620394501349</created>
+      <changelist id="e8a0723a-ba04-4463-baac-7245baea9a38" name="Default Changelist" comment="" />
+      <created>1620713026891</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1620394501349</updated>
+      <updated>1620713026891</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1620649298541">
+    <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser" timestamp="1620719089279">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1620649298541" />
-    <state x="93" y="93" width="1095" height="535" key="AVDManager" timestamp="1620648205331">
+    <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1620719089279" />
+    <state x="386" y="229" width="510" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1620731834149">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="93" y="93" width="1095" height="535" key="AVDManager/0.0.1280.720@0.0.1280.720" timestamp="1620648205331" />
-    <state x="487" y="146" key="AndroidCreateXmlResourceDialog" timestamp="1620653055833">
+    <state x="386" y="229" width="510" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1620731834149" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1620745337014">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="487" y="146" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1620653055833" />
-    <state width="1237" height="519" key="GridCell.Tab.0.bottom" timestamp="1620652145642">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.720@0.0.1280.720" timestamp="1620745337014" />
+    <state x="487" y="146" key="AndroidCreateXmlResourceDialog" timestamp="1620733318814">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="519" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1620652145642" />
-    <state width="1237" height="519" key="GridCell.Tab.0.center" timestamp="1620652145642">
+    <state x="487" y="146" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1620733318814" />
+    <state width="1237" height="480" key="GridCell.Tab.0.bottom" timestamp="1620746378769">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="519" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1620652145642" />
-    <state width="1237" height="519" key="GridCell.Tab.0.left" timestamp="1620652145642">
+    <state width="1237" height="480" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1620746378769" />
+    <state width="1237" height="480" key="GridCell.Tab.0.center" timestamp="1620746378769">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="519" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1620652145642" />
-    <state width="1237" height="519" key="GridCell.Tab.0.right" timestamp="1620652145642">
+    <state width="1237" height="480" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1620746378769" />
+    <state width="1237" height="480" key="GridCell.Tab.0.left" timestamp="1620746378769">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="519" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1620652145642" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1620655239560">
+    <state width="1237" height="480" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1620746378769" />
+    <state width="1237" height="480" key="GridCell.Tab.0.right" timestamp="1620746378769">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1620655239560" />
+    <state width="1237" height="480" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1620746378769" />
+    <state x="347" y="93" width="781" height="534" key="find.popup" timestamp="1620734756493">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="347" y="93" width="781" height="534" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1620734756493" />
+    <state x="297" y="161" key="run.anything.popup" timestamp="1620737852353">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="297" y="161" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1620737852353" />
+    <state x="303" y="41" key="search.everywhere.popup" timestamp="1620720423674">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="41" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1620720423674" />
   </component>
 </project>

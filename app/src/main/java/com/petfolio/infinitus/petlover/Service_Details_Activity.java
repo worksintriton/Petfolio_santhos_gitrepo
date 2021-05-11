@@ -53,9 +53,12 @@ import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.interfaces.SoSCallListener;
 import com.petfolio.infinitus.requestpojo.SPDetailsRequest;
+import com.petfolio.infinitus.requestpojo.SPFavCreateRequest;
+import com.petfolio.infinitus.requestpojo.SPFavCreateResponse;
 import com.petfolio.infinitus.requestpojo.SPSpecificServiceDetailsRequest;
 import com.petfolio.infinitus.responsepojo.DoctorDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PetLoverDashboardResponse;
+import com.petfolio.infinitus.responsepojo.SPCreateAppointmentResponse;
 import com.petfolio.infinitus.responsepojo.SPDetailsRepsonse;
 import com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
@@ -71,6 +74,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -171,7 +175,6 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
     private String spprovidername = "";
     private int ratingcount;
 
-    private int distance;
     private String location;
 
     private SupportMapFragment mapFragment;
@@ -199,9 +202,20 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
     @BindView(R.id.hand_img5)
     ImageView hand_img5;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_fav)
+    ImageView img_fav;
+
     List<SPDetailsRepsonse.DataBean.BusSpecListBean> specializationBeanList;
 
     String serv_name,selectedServiceImagepath;
+
+
+    private int distance;
+    private int reviewcount;
+    private int Count_value_start;
+    private int Count_value_end;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,9 +241,15 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
             spid = extras.getString("spid");
             catid = extras.getString("catid");
             from = extras.getString("from");
+
+            distance = extras.getInt("distance");
+            reviewcount = extras.getInt("reviewcount");
+            Count_value_start = extras.getInt("Count_value_start");
+            Count_value_end = extras.getInt("Count_value_end");
+
         }
 
-        Log.w(TAG," userid : "+userid+ " spid : "+spid+" catid : "+catid+" from : "+from);
+        Log.w(TAG," userid : "+userid+ " spid : "+spid+" catid : "+catid+" from : "+from+" distance : "+distance);
 
         if(spid != null && userid != null) {
             if (new ConnectionDetector(Service_Details_Activity.this).isNetworkAvailable(Service_Details_Activity.this)) {
@@ -245,7 +265,7 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
             mapFragment.getMapAsync(this);
         }
 
-
+        img_fav.setOnClickListener(this);
     }
 
 
@@ -316,9 +336,70 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
                 case R.id.ll_book_now:
                 gotoSPAvailableTimeActivity();
                 break;
+                case R.id.img_fav:
+                favResponseCall();
+                break;
 
         }
     }
+
+    private void favResponseCall() {
+
+        avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<SPFavCreateResponse> call = apiInterface.createspfavlistResponseCall(RestUtils.getContentType(), spFavCreateRequest());
+        Log.w(TAG,"SPFavCreateResponse url  :%s"+" "+ call.request().url().toString());
+
+        call.enqueue(new Callback<SPFavCreateResponse>() {
+            @SuppressLint({"SetTextI18n", "LogNotTimber"})
+            @Override
+            public void onResponse(@NonNull Call<SPFavCreateResponse> call, @NonNull Response<SPFavCreateResponse> response) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"SPFavCreateResponse" + new Gson().toJson(response.body()));
+                if (response.body() != null) {
+
+                    if (200 == response.body().getCode()) {
+                        if (response.body().getStatus() != null&&!response.body().getStatus().isEmpty()) {
+
+                            Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SPFavCreateResponse> call,@NonNull Throwable t) {
+                avi_indicator.smoothToHide();
+                Log.w(TAG,"SPFavCreateResponse flr"+ t.getMessage());
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @SuppressLint("LogNotTimber")
+    private SPFavCreateRequest spFavCreateRequest() {
+        /*
+         * user_id : 5fd778437aa4cc1c6a1e5632
+         * sp_id : 5fe1e675094d0471dabf9295
+         * cata_id : 5fe185d61996f651f5133693
+         */
+
+
+        SPFavCreateRequest spFavCreateRequest = new SPFavCreateRequest();
+        spFavCreateRequest.setUser_id(userid);
+        spFavCreateRequest.setSp_id(spid);
+        spFavCreateRequest.setCata_id(catid);
+        Log.w(TAG,"spFavCreateRequest "+ new Gson().toJson(spFavCreateRequest));
+        return spFavCreateRequest;
+    }
+
+
     public void callDirections(String tag){
         Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
         intent.putExtra("tag",tag);
@@ -334,17 +415,24 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
         intent.putExtra("selectedServiceTitle",selectedServiceTitle);
         intent.putExtra("serviceamount",serviceamount);
         intent.putExtra("servicetime",servicetime);
+        intent.putExtra("distance",distance);
         startActivity(intent);
     }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Log.w(TAG,"distance : "+distance);
         Intent intent = new Intent(getApplicationContext(),SelectedServiceActivity.class);
         intent.putExtra("spid",spid);
         intent.putExtra("catid",catid);
         intent.putExtra("from",from);
+        intent.putExtra("distance",distance);
+        intent.putExtra("reviewcount",reviewcount);
+        intent.putExtra("Count_value_start",Count_value_start);
+        intent.putExtra("Count_value_end",Count_value_end);
         startActivity(intent);
         finish();
+
     }
     @SuppressLint("LogNotTimber")
     private void SPDetailsRepsonseCall() {

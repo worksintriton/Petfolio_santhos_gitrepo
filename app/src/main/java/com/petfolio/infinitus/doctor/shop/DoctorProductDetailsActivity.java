@@ -27,12 +27,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
-import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.adapter.RelatedProductsAdapter;
 import com.petfolio.infinitus.adapter.VendorBusinessGalleryListAdapter;
 import com.petfolio.infinitus.adapter.ViewPagerProductDetailsAdapter;
@@ -41,7 +39,6 @@ import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.doctor.DoctorDashboardActivity;
 
 import com.petfolio.infinitus.doctor.DoctorProfileScreenActivity;
-import com.petfolio.infinitus.petlover.ProductDetailsActivity;
 import com.petfolio.infinitus.requestpojo.CartAddProductRequest;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
 import com.petfolio.infinitus.responsepojo.FetchProductByIdResponse;

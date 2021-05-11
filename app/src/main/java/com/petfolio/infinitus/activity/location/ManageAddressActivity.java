@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
+import com.petfolio.infinitus.activity.NotificationActivity;
 import com.petfolio.infinitus.adapter.ManageAddressListAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
@@ -119,7 +120,14 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
         TextView toolbar_title = include_petlover_header.findViewById(R.id.toolbar_title);
         toolbar_title.setText(getResources().getString(R.string.manage_address));
 
+        img_sos.setVisibility(View.GONE);
+        img_cart.setVisibility(View.GONE);
+
         avi_indicator.setVisibility(View.GONE);
+
+
+        img_notification.setOnClickListener(this);
+        img_profile.setOnClickListener(this);
 
         Log.w(TAG,"onCreate : ");
         img_back.setOnClickListener(this);
@@ -159,6 +167,16 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
                 break;
                 case R.id.ll_add_newaddress:
                 gotoAddNewAddress();
+                break;
+                case R.id.img_profile:
+                    Intent  intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
+                    intent.putExtra("fromactivity",TAG);
+                    startActivity(intent);
+                break;
+                case R.id.img_notification:
+                    Intent  intent1 = new Intent(getApplicationContext(), NotificationActivity.class);
+                    intent1.putExtra("fromactivity",TAG);
+                    startActivity(intent1);
                 break;
         }
     }
@@ -245,7 +263,7 @@ public class ManageAddressActivity extends AppCompatActivity implements View.OnC
     private void setView() {
         rv_adddress_list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rv_adddress_list.setItemAnimator(new DefaultItemAnimator());
-        ManageAddressListAdapter manageAddressListAdapter = new ManageAddressListAdapter(getApplicationContext(), addressList, rv_adddress_list,this,this);
+        ManageAddressListAdapter manageAddressListAdapter = new ManageAddressListAdapter(getApplicationContext(), addressList,this,this,TAG);
         rv_adddress_list.setAdapter(manageAddressListAdapter);
 
     }
