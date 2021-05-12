@@ -1,8 +1,14 @@
-package com.petfolio.infinitus.activity.location;
+package com.petfolio.infinitus.serviceprovider;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +20,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,10 +35,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.NotificationActivity;
+import com.petfolio.infinitus.activity.location.EditMyAddressDoctorActivity;
+import com.petfolio.infinitus.activity.location.PickUpLocationEditDoctorActivity;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
-
-import com.petfolio.infinitus.petlover.PetLoverProfileScreenActivity;
+import com.petfolio.infinitus.doctor.DoctorProfileScreenActivity;
+import com.petfolio.infinitus.doctor.ManageAddressDoctorActivity;
 import com.petfolio.infinitus.requestpojo.LocationUpdateRequest;
 import com.petfolio.infinitus.responsepojo.LocationUpdateResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
@@ -48,11 +50,9 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
 import java.util.Locale;
 import java.util.Objects;
 
@@ -62,13 +62,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class EditMyAddressActivity extends FragmentActivity implements OnMapReadyCallback,
+public class EditMyAddressSPActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, View.OnClickListener {
 
-    String TAG = "EditMyAddressActivity";
+    String TAG = "EditMyAddressSPActivity";
 
 
 
@@ -159,24 +158,23 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
     private String fromactivity;
 
 
-    @SuppressLint("LogNotTimber")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.w(TAG,"onCreate-->");
         setContentView(R.layout.activity_edit_my_address);
 
-        Log.w(TAG,"onCreate-->");
 
         ButterKnife.bind(this);
 
 
 
-        SessionManager sessionManager = new SessionManager(EditMyAddressActivity.this);
+        SessionManager sessionManager = new SessionManager(EditMyAddressSPActivity.this);
         HashMap<String, String> user = sessionManager.getProfileDetails();
         userid = user.get(SessionManager.KEY_ID);
         Log.w(TAG,"userid--->"+userid);
         avi_indicator.setVisibility(View.GONE);
-      
+
         btn_change.setOnClickListener(this);
         btn_savethislocation.setOnClickListener(this);
 
@@ -286,21 +284,20 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
         img_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
-                    intent.putExtra("id",id);
-                    intent.putExtra("userid",userid);
-                    intent.putExtra("nickname",nickname);
-                    intent.putExtra("locationtype",locationtype);
-                    intent.putExtra("defaultstatus",defaultstatus);
-                    intent.putExtra("lat",latitude);
-                    intent.putExtra("lon",longtitude);
-                    intent.putExtra("pincode",pincode);
-                    intent.putExtra("cityname",cityname);
-                    intent.putExtra("address",address);
-                    intent.putExtra("fromactivity",TAG);
-                    startActivity(intent);
-                    finish();
-
+                Intent intent = new Intent(getApplicationContext(), SPProfileScreenActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("userid",userid);
+                intent.putExtra("nickname",nickname);
+                intent.putExtra("locationtype",locationtype);
+                intent.putExtra("defaultstatus",defaultstatus);
+                intent.putExtra("lat",latitude);
+                intent.putExtra("lon",longtitude);
+                intent.putExtra("pincode",pincode);
+                intent.putExtra("cityname",cityname);
+                intent.putExtra("address",address);
+                intent.putExtra("fromactivity",TAG);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -326,14 +323,11 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
 
 
 
-
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -384,7 +378,7 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
                 onBackPressed();
                 break;
             case R.id.btn_change:
-               Intent intent = new Intent(getApplicationContext(),PickUpLocationEditActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PickUpLocationEditSPActivity.class);
                 intent.putExtra("id",id);
                 intent.putExtra("userid",userid);
                 intent.putExtra("nickname",nickname);
@@ -393,7 +387,7 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
                 intent.putExtra("lat",latitude);
                 intent.putExtra("lon",longtitude);
                 intent.putExtra("fromactivity",TAG);
-               startActivity(intent);
+                startActivity(intent);
                 break;
             case  R.id.btn_savethislocation:
                 saveLocationValidator();
@@ -410,20 +404,20 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
     public void saveLocationValidator() {
         boolean can_proceed = true;
         if (edt_pickname.getText().toString().trim().equals("")) {
-             edt_pickname.setError("Please enter pick a nick Name for this location");
-             edt_pickname.requestFocus();
+            edt_pickname.setError("Please enter pick a nick Name for this location");
+            edt_pickname.requestFocus();
             can_proceed = false;
         }
 
         if (can_proceed) {
-            if (new ConnectionDetector(EditMyAddressActivity.this).isNetworkAvailable(EditMyAddressActivity.this)) {
+            if (new ConnectionDetector(EditMyAddressSPActivity.this).isNetworkAvailable(EditMyAddressSPActivity.this)) {
                 locationUpdateResponseCall();
-                }
-
-
             }
 
+
         }
+
+    }
 
     public void locationUpdateResponseCall(){
         avi_indicator.setVisibility(View.VISIBLE);
@@ -444,7 +438,7 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
                 if (response.body() != null) {
 
                     if(response.body().getCode() == 200){
-                        Intent i = new Intent(EditMyAddressActivity.this, ManageAddressActivity.class);
+                        Intent i = new Intent(EditMyAddressSPActivity.this, ManageAddressDoctorActivity.class);
                         startActivity(i);
 
                     }
@@ -453,7 +447,7 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
                             showErrorLoading(response.body().getMessage());
 
                         }
-                }
+                    }
                 }
 
             }
@@ -533,7 +527,4 @@ public class EditMyAddressActivity extends FragmentActivity implements OnMapRead
 
         }
     }
-
-
 }
-

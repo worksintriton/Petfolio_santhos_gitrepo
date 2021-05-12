@@ -28,6 +28,7 @@ import com.petfolio.infinitus.interfaces.PlacesNameListener;
 import com.petfolio.infinitus.responsepojo.AddressResultsResponse;
 import com.petfolio.infinitus.responsepojo.CartDetailsResponse;
 import com.petfolio.infinitus.responsepojo.PlacesResultsResponse;
+import com.petfolio.infinitus.serviceprovider.PickUpLocationSPActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 
@@ -316,7 +317,31 @@ public class PlacesSearchActivity extends AppCompatActivity implements PlacesNam
                         b.putDouble("lon", lon);
                         i.putExtras(b);
                         startActivity(i);
+                    }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PickUpLocationDoctorActivity")){
+                        Log.w(TAG,"else if-->"+fromactivity);
+                        Intent i = new Intent(PlacesSearchActivity.this, PickUpLocationDoctorActivity.class);
+                        i.putExtra("cityname",selectedPlaceName);
+                        i.putExtra("placesearchactivity","placesearchactivity");
+                        Bundle b = new Bundle();
+                        b.putDouble("lat", lat);
+                        b.putDouble("lon", lon);
+                        i.putExtras(b);
+                        startActivity(i);
                     }
+
+                    else if(fromactivity != null && fromactivity.equalsIgnoreCase("PickUpLocationSPActivity")){
+                        Log.w(TAG,"else if-->"+fromactivity);
+                        Intent i = new Intent(PlacesSearchActivity.this, PickUpLocationSPActivity.class);
+                        i.putExtra("cityname",selectedPlaceName);
+                        i.putExtra("placesearchactivity","placesearchactivity");
+                        Bundle b = new Bundle();
+                        b.putDouble("lat", lat);
+                        b.putDouble("lon", lon);
+                        i.putExtras(b);
+                        startActivity(i);
+                    }
+
+
                     else if(fromactivity != null && fromactivity.equalsIgnoreCase("PickUpLocationAddNewAddressActivity")){
                         Log.w(TAG,"else if-->"+fromactivity);
 

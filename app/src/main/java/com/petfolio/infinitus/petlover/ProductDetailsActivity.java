@@ -38,8 +38,7 @@ import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.requestpojo.CartAddProductRequest;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
 import com.petfolio.infinitus.requestpojo.ProductFavCreateRequest;
-import com.petfolio.infinitus.requestpojo.SPFavCreateRequest;
-import com.petfolio.infinitus.requestpojo.SPFavCreateResponse;
+
 import com.petfolio.infinitus.responsepojo.FetchProductByIdResponse;
 import com.petfolio.infinitus.responsepojo.ProductFavCreateResponse;
 import com.petfolio.infinitus.responsepojo.SuccessResponse;
@@ -190,6 +189,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 
     List<FetchProductByIdResponse.VendorDetailsBean.BussinessGalleryBean> bussinessGalleryBeans;
 
+    @SuppressLint("LogNotTimber")
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -788,11 +788,13 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 
                 if (response.body() != null) {
                     if(200 == response.body().getCode()){
-                        Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+
+                       /* Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
                         intent.putExtra("productid",productid);
                         intent.putExtra("fromactivity",TAG);
                         startActivity(intent);
-                        finish();
+                        finish();*/
                     }
                 }
             }
@@ -869,7 +871,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
         switch (v.getId()){
 
             case R.id.img_fav:
-                favResponseCall();
+                if (new ConnectionDetector(ProductDetailsActivity.this).isNetworkAvailable(ProductDetailsActivity.this)) {
+                    favResponseCall();
+                }
                 break;
 
         }

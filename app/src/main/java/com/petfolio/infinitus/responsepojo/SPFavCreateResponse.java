@@ -1,4 +1,4 @@
-package com.petfolio.infinitus.requestpojo;
+package com.petfolio.infinitus.responsepojo;
 
 public class SPFavCreateResponse {
 

@@ -18,8 +18,8 @@
         tools:ignore="UseCompoundDrawables">
 
         <include
-            android:id="@+id/include_petlover_header"
-            layout="@layout/toolbar_layout_petlover_header"
+            android:id="@+id/include_doctor_header"
+            layout="@layout/toolbar_layout_doctor_shop_header"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
@@ -254,6 +254,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tv_norecords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                android:text="@string/no_data_found"
+                android:textColor="@color/color"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/refresh_layout"
                 android:layout_width="match_parent"
@@ -261,7 +272,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:visibility="visible"
                 tools:ignore="MissingClass">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -269,19 +279,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-            <TextView
-                android:id="@+id/tv_norecords"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/no_data_found"
-                android:textColor="@color/color"
-                android:textSize="16sp"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
-
         </RelativeLayout>
 
 
@@ -295,8 +292,8 @@
         android:orientation="vertical">
 
         <include
-            android:id="@+id/include_petlover_footer"
-            layout="@layout/toolbar_layout_petlover_footer"
+            android:id="@+id/include_doctor_footer"
+            layout="@layout/toolbar_layout_doctor_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

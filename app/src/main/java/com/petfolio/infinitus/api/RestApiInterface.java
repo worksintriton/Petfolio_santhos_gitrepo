@@ -637,7 +637,17 @@ public interface RestApiInterface {
     @POST("appointments/medical_history")
     Call<MedicalHistoryResponse>medicalHistoryResponseCall(@Header("Content-Type") String type, @Body MedicalHistoryRequest medicalHistoryRequest);
 
-    //Sandy
+
+    /*Doctor Products Fav List*/
+    @POST("product_fav/getlist_id")
+    Call<DoctorProductFavListResponse>doctorProductFavListResponseCall(@Header("Content-Type") String type, @Body DoctorProductFavListRequest doctorProductFavListRequest);
+
+
+    /*Doctor Products Fav list create*/
+    @POST("product_fav/create")
+    Call<SuccessResponse>doctorProductFavListCreateResponseCall(@Header("Content-Type") String type, @Body DoctorProductFavListCreateRequest doctorProductFavListCreateRequest);
+
+
 
     /*Petlover Doctor Fav list*/
     @POST("doctor_fav/getlist_id")
@@ -659,12 +669,16 @@ public interface RestApiInterface {
     @POST("product_fav/create")
     Call<ProductFavCreateResponse>createshopfavlistResponseCall(@Header("Content-Type") String type, @Body ProductFavCreateRequest productFavCreateRequest);
 
-    /*Fetch Petlover Product Details*/
+    /*Fetch Petlover Payment Details*/
     @POST("appointments/doctor/petlover_payment")
-    Call<FetchPetloverPaymDetaResponse>fetchpetlvrprodetaillistResponseCall(@Header("Content-Type") String type, @Body FetchPetloverPaymDetaRequest fetchPetloverPaymDetaRequest);
+    Call<FetchPetloverPaymDetaResponse>fetchpetlvrpaymdetaillistResponseCall(@Header("Content-Type") String type, @Body FetchPetloverPaymDetaRequest fetchPetloverPaymDetaRequest);
 
-    /*Fetch Doctor Product Details*/
+    /*Fetch Doctor Payment Details*/
     @POST("appointments/doctor_payment")
-    Call<FetchDoctorPaymDetaResponse>fetchdrprodetaillistResponseCall(@Header("Content-Type") String type, @Body FetchDoctorPaymDetaRequest fetchDoctorPaymDetaRequest);
+    Call<FetchDoctorPaymDetaResponse>fetchdrpaymetaillistResponseCall(@Header("Content-Type") String type, @Body FetchDoctorPaymDetaRequest fetchDoctorPaymDetaRequest);
+
+
+
+
 
 }

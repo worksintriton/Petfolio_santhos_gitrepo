@@ -38,6 +38,7 @@ import com.petfolio.infinitus.activity.location.AddMyAddressOldUserActivity;
 import com.petfolio.infinitus.activity.location.EditMyAddressActivity;
 import com.petfolio.infinitus.activity.location.ManageAddressActivity;
 import com.petfolio.infinitus.activity.location.PickUpLocationActivity;
+import com.petfolio.infinitus.activity.location.PickUpLocationEditActivity;
 import com.petfolio.infinitus.adapter.ManagePetListAdapter;
 import com.petfolio.infinitus.adapter.PetLoverSOSAdapter;
 import com.petfolio.infinitus.api.APIClient;
@@ -54,6 +55,7 @@ import com.petfolio.infinitus.responsepojo.PetLoverDashboardResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
+import com.petfolio.infinitus.vendor.VendorNavigationDrawer;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jetbrains.annotations.NotNull;
@@ -61,6 +63,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -314,6 +317,9 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
 
 
 
+
+
+
         }
 
         bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
@@ -443,6 +449,17 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
             intent.putExtra("address",address);
             startActivity(intent);
             finish();
+        }else if(fromactivity != null && fromactivity.equalsIgnoreCase("PickUpLocationEditActivity")){
+            Intent intent = new Intent(getApplicationContext(), PickUpLocationEditActivity.class);
+            intent.putExtra("id",id);
+            intent.putExtra("userid",userid);
+            intent.putExtra("nickname",nickname);
+            intent.putExtra("locationtype",locationtype);
+            intent.putExtra("defaultstatus",defaultstatus);
+            intent.putExtra("lat",latitude);
+            intent.putExtra("lon",longtitude);
+            startActivity(intent);
+            finish();
         } else if(active_tag != null){
             callDirections(active_tag);
         }else{
@@ -471,7 +488,8 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                 case R.id.txt_change_password:
                 break;
                 case R.id.txt_logout:
-                    confirmLogoutDialog();
+                    showLogOutAppAlert();
+                  //  confirmLogoutDialog();
                 break; 
                 case R.id.ll_add:
                     gotoAddYourPet();
@@ -490,6 +508,41 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                 break;
         }
     }
+
+    private void showLogOutAppAlert() {
+        try {
+
+            dialog = new Dialog(PetLoverProfileScreenActivity.this);
+            dialog.setContentView(R.layout.alert_logout_layout);
+            Button btn_no = dialog.findViewById(R.id.btn_no);
+            Button btn_yes = dialog.findViewById(R.id.btn_yes);
+
+            btn_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    gotoLogout();
+
+                }
+            });
+            btn_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        } catch (WindowManager.BadTokenException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 
     private void gotoMyAddresses() {
         startActivity(new Intent(PetLoverProfileScreenActivity.this, MyAddressesListActivity.class));

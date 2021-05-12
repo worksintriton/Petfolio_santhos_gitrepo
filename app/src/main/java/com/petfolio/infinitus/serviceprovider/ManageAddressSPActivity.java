@@ -1,4 +1,11 @@
-package com.petfolio.infinitus.doctor;
+package com.petfolio.infinitus.serviceprovider;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -16,22 +23,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.NotificationActivity;
-import com.petfolio.infinitus.activity.location.PickUpLocationActivity;
 import com.petfolio.infinitus.activity.location.PickUpLocationDoctorActivity;
 import com.petfolio.infinitus.adapter.ManageAddressListAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.doctor.DoctorDashboardActivity;
+import com.petfolio.infinitus.doctor.DoctorProfileScreenActivity;
+import com.petfolio.infinitus.doctor.ManageAddressDoctorActivity;
 import com.petfolio.infinitus.interfaces.LocationDefaultListener;
 import com.petfolio.infinitus.interfaces.LocationDeleteListener;
 import com.petfolio.infinitus.requestpojo.LocationDeleteRequest;
@@ -58,11 +60,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ManageAddressDoctorActivity extends AppCompatActivity implements View.OnClickListener, LocationDeleteListener, LocationDefaultListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class ManageAddressSPActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener, LocationDeleteListener, LocationDefaultListener {
 
-    private String TAG = "ManageAddressDoctorActivity";
-
-
+    private String TAG = "ManageAddressSPActivity";
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.avi_indicator)
@@ -103,11 +103,11 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
     Dialog alertDialog;
     private String fromactivity;
 
-    @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_address_doctor);
+        setContentView(R.layout.activity_manage_address_sp);
+
         ButterKnife.bind(this);
 
 
@@ -139,21 +139,18 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
         bottom_navigation_view.setOnNavigationItemSelectedListener(this);
 
 
-        SessionManager  session = new SessionManager(getApplicationContext());
+        SessionManager session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getProfileDetails();
         userid = user.get(SessionManager.KEY_ID);
 
         if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
-           locationListAddressResponseCall();
+            locationListAddressResponseCall();
         }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             fromactivity = extras.getString("fromactivity");
         }
-
-
-
 
     }
 
@@ -164,24 +161,24 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
             case R.id.img_back:
                 onBackPressed();
                 break;
-                case R.id.ll_add_newaddress:
+            case R.id.ll_add_newaddress:
                 gotoAddNewAddress();
                 break;
-                case R.id.img_profile:
-                    Intent  intent = new Intent(getApplicationContext(),DoctorProfileScreenActivity.class);
-                    intent.putExtra("fromactivity",TAG);
-                    startActivity(intent);
+            case R.id.img_profile:
+                Intent intent = new Intent(getApplicationContext(), SPProfileScreenActivity.class);
+                intent.putExtra("fromactivity",TAG);
+                startActivity(intent);
                 break;
-                case R.id.img_notification:
-                    Intent  intent1 = new Intent(getApplicationContext(), NotificationActivity.class);
-                    intent1.putExtra("fromactivity",TAG);
-                    startActivity(intent1);
+            case R.id.img_notification:
+                Intent  intent1 = new Intent(getApplicationContext(), NotificationActivity.class);
+                intent1.putExtra("fromactivity",TAG);
+                startActivity(intent1);
                 break;
         }
     }
 
     private void gotoAddNewAddress() {
-        Intent intent = new Intent(getApplicationContext(), PickUpLocationDoctorActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PickUpLocationSPActivity.class);
         intent.putExtra("fromactivity",TAG);
         startActivity(intent);
     }
@@ -189,11 +186,11 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(fromactivity != null && fromactivity.equalsIgnoreCase("DoctorNavigationDrawer")){
-            startActivity(new Intent(getApplicationContext(), DoctorDashboardActivity.class));
+        if(fromactivity != null && fromactivity.equalsIgnoreCase("ServiceProviderNavigationDrawer")){
+            startActivity(new Intent(getApplicationContext(), ServiceProviderDashboardActivity.class));
             finish();
         }else {
-            startActivity(new Intent(getApplicationContext(), DoctorDashboardActivity.class));
+            startActivity(new Intent(getApplicationContext(), ServiceProviderDashboardActivity.class));
             finish();
         }
     }
@@ -288,7 +285,7 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
 
         try {
 
-            dialog = new Dialog(ManageAddressDoctorActivity.this);
+            dialog = new Dialog(ManageAddressSPActivity.this);
             dialog.setContentView(R.layout.alert_approve_reject_layout);
             TextView tvheader = dialog.findViewById(R.id.tvInternetNotConnected);
             tvheader.setText(R.string.deletemsg);
@@ -379,7 +376,7 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
 
         try {
 
-            dialog = new Dialog(ManageAddressDoctorActivity.this);
+            dialog = new Dialog(ManageAddressSPActivity.this);
             dialog.setContentView(R.layout.alert_approve_reject_layout);
             TextView tvheader = dialog.findViewById(R.id.tvInternetNotConnected);
             tvheader.setText(R.string.locationstatuschange);
@@ -515,7 +512,7 @@ public class ManageAddressDoctorActivity extends AppCompatActivity implements Vi
         return true;
     }
     public void callDirections(String tag){
-        Intent intent = new Intent(getApplicationContext(), DoctorDashboardActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ServiceProviderDashboardActivity.class);
         intent.putExtra("tag",tag);
         startActivity(intent);
         finish();
