@@ -16,6 +16,7 @@
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PlacesSearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PlacesSearchActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/ManageAddressListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/ManageAddressListAdapter.java" afterDir="false" />
@@ -23,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/RestApiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/RestApiInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorNavigationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorNavigationDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorPaymentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorPaymentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverNavigationDrawerNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverNavigationDrawerNew.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPaymentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPaymentDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" afterDir="false" />
@@ -155,30 +157,34 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1620806134339" />
-    <state x="251" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1620805599935">
+    <state x="251" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1620821447419">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="251" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1620805599935" />
+    <state x="251" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1620821447419" />
     <state x="404" y="229" width="473" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1620821057096">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="404" y="229" width="473" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1620821057096" />
-    <state width="1237" height="512" key="GridCell.Tab.0.bottom" timestamp="1620820932599">
+    <state width="1237" height="512" key="GridCell.Tab.0.bottom" timestamp="1620827904731">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="512" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1620820932599" />
-    <state width="1237" height="512" key="GridCell.Tab.0.center" timestamp="1620820932599">
+    <state width="1237" height="512" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1620827904731" />
+    <state width="1237" height="512" key="GridCell.Tab.0.center" timestamp="1620827904731">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="512" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1620820932599" />
-    <state width="1237" height="512" key="GridCell.Tab.0.left" timestamp="1620820932598">
+    <state width="1237" height="512" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1620827904731" />
+    <state width="1237" height="512" key="GridCell.Tab.0.left" timestamp="1620827904730">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="512" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1620820932598" />
-    <state width="1237" height="512" key="GridCell.Tab.0.right" timestamp="1620820932599">
+    <state width="1237" height="512" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1620827904730" />
+    <state width="1237" height="512" key="GridCell.Tab.0.right" timestamp="1620827904731">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="512" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1620820932599" />
+    <state width="1237" height="512" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1620827904731" />
+    <state x="244" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1620821976579">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="244" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1620821976579" />
     <state x="297" y="161" key="run.anything.popup" timestamp="1620805260035">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

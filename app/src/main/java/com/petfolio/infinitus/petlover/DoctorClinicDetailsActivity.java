@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -146,8 +147,15 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     RecyclerView rv_pet_hanldle;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.cl_root)
-    CoordinatorLayout cl_root;
+    @BindView(R.id.toolbar_header)
+    Toolbar toolbar_header;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.bottomSheetLayouts)
+    NestedScrollView bottomSheetLayouts;
+
+
+
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.footerView)
@@ -201,9 +209,6 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
     @BindView(R.id.hand_img5)
     ImageView hand_img5;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.toolbar_header)
-    Toolbar toolbar_header;
 
 
     @SuppressLint({"LongLogTag", "LogNotTimber"})
@@ -230,12 +235,10 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
 
         avi_indicator.setVisibility(View.VISIBLE);
 
-       // toolbar_header.setVisibility(View.GONE);
 
+//
+//        bottomSheetLayouts.setVisibility(View.GONE);
 
-        //footerView.setVisibility(View.GONE);
-
-        setBottomSheet();
 
         if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
             if(doctorid != null){
@@ -244,11 +247,16 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
 
         }
 
-        if (mapFragment == null) {
-            mapFragment = SupportMapFragment.newInstance();
-            mapFragment.getMapAsync(this);
-        }
 
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        assert mapFragment != null;
+        mapFragment.getMapAsync(DoctorClinicDetailsActivity.this);
+
+
+
+        setBottomSheet();
 
 
     }
@@ -344,6 +352,12 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                             communicationtype = response.body().getData().getCommunication_type();
                             ClinicLocationname = response.body().getData().getClinic_loc();
                             Doctor_exp = response.body().getData().getDoctor_exp();
+
+//                            bottomSheetLayouts.setVisibility(View.VISIBLE);
+
+                         //   setBottomSheet();
+
+
                             if(response.body().getData().getAmount() != 0){
                                 txt_dr_consultationfees.setText("INR "+response.body().getData().getAmount());
                             }
@@ -424,11 +438,6 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
 
                             Log.w(TAG,"longitude"+ longitude );
 
-                            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-                            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                                    .findFragmentById(R.id.map);
-                            assert mapFragment != null;
-                            mapFragment.getMapAsync(DoctorClinicDetailsActivity.this);
 
 
                         }
@@ -443,6 +452,8 @@ public class DoctorClinicDetailsActivity extends AppCompatActivity implements Vi
                         Log.w(TAG,"doctorclinicdetailsResponseList : "+new Gson().toJson(doctorclinicdetailsResponseList));
 
                         if(doctorclinicdetailsResponseList != null && doctorclinicdetailsResponseList.size()>0){
+
+                           // cl_banner.setVisibility(View.VISIBLE);
 
                             for (int i = 0; i < doctorclinicdetailsResponseList.size(); i++) {
                                 doctorclinicdetailsResponseList.get(i).getClinic_pic();

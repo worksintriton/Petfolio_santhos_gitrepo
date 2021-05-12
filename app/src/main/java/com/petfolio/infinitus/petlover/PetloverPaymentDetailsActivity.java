@@ -24,6 +24,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.print.PrintAttributes;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +55,18 @@ import com.petfolio.infinitus.sessionmanager.SessionManager;
 import com.petfolio.infinitus.utils.ConnectionDetector;
 import com.petfolio.infinitus.utils.RestUtils;
 import com.wang.avi.AVLoadingIndicatorView;
+import com.wwdablu.soumya.simplypdf.DocumentInfo;
+import com.wwdablu.soumya.simplypdf.SimplyPdf;
+import com.wwdablu.soumya.simplypdf.SimplyPdfDocument;
+import com.wwdablu.soumya.simplypdf.composers.TableComposer;
+import com.wwdablu.soumya.simplypdf.composers.TextComposer;
+import com.wwdablu.soumya.simplypdf.composers.models.TableProperties;
+import com.wwdablu.soumya.simplypdf.composers.models.TextProperties;
+import com.wwdablu.soumya.simplypdf.composers.models.cell.Cell;
+import com.wwdablu.soumya.simplypdf.composers.models.cell.TextCell;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,6 +109,10 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
     @BindView(R.id.include_petlover_footer)
     View include_petlover_footer;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_download)
+    ImageView img_download;
+
     BottomNavigationView bottom_navigation_view;
 
     private String active_tag = "1";
@@ -111,6 +129,10 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.include_petlover_header)
     View include_petlover_header;
+
+    private TextComposer textComposer;
+    private TableComposer tableComposer;
+    private SimplyPdfDocument simplyPdfDocument;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -132,9 +154,30 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
 
 
 
+
+
         if (new ConnectionDetector(PetloverPaymentDetailsActivity.this).isNetworkAvailable(PetloverPaymentDetailsActivity.this)) {
             fetchpaymntdetailsResponseCall();
         }
+
+        img_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                simplyPdfDocument = SimplyPdf.with(PetloverPaymentDetailsActivity.this, new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/test.pdf"))
+                        .colorMode(DocumentInfo.ColorMode.COLOR)
+                        .paperSize(PrintAttributes.MediaSize.ISO_A4)
+                        .margin(DocumentInfo.Margins.DEFAULT)
+                        .paperOrientation(DocumentInfo.Orientation.PORTRAIT)
+                        .build();
+
+                textComposer = new TextComposer(simplyPdfDocument);
+
+                tableComposer = new TableComposer(simplyPdfDocument);
+
+                testTextComposed();
+            }
+        });
 
         refresh_layout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
@@ -171,6 +214,92 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
 
 
 
+    }
+
+
+    private void testTextComposed() {
+
+        TextProperties textProperties = new TextProperties();
+        textProperties.textSize = 24;
+        textProperties.alignment = Layout.Alignment.ALIGN_CENTER;
+
+        int w_50_cent = simplyPdfDocument.pageWidth() / 2;
+
+        TableProperties colProperties = new TableProperties();
+        colProperties.borderWidth = 1;
+        colProperties.borderColor = "#000000";
+        tableComposer.setProperties(colProperties);
+
+        List<List<Cell>> composedList = new ArrayList<>();
+        ArrayList<Cell> rowList = new ArrayList<>();
+
+        //1st row
+        rowList.add(new TextCell("Likes", textProperties, w_50_cent));
+        rowList.add(new TextCell("Dislikes", textProperties, w_50_cent));
+        composedList.add(rowList);
+
+        textProperties = new TextProperties();
+        textProperties.textSize = 24;
+        textProperties.alignment = Layout.Alignment.ALIGN_CENTER;
+        textProperties.alignment = Layout.Alignment.ALIGN_NORMAL;
+        textProperties.bulletSymbol = "•";
+        textProperties.isBullet = true;
+
+        //2nd row
+        rowList = new ArrayList<>();
+        Cell cell = new TextCell("Apple", textProperties, w_50_cent);
+        rowList.add(cell);
+        rowList.add(new TextCell("Guava", textProperties, w_50_cent));
+        composedList.add(rowList);
+
+        //3rd row
+        rowList = new ArrayList<>();
+        rowList.add(new TextCell("Banana", textProperties, w_50_cent));
+        rowList.add(new TextCell("Coconut", textProperties, w_50_cent));
+        composedList.add(rowList);
+
+        //4th row
+        rowList = new ArrayList<>();
+        rowList.add(new TextCell("Mango", textProperties, w_50_cent));
+        composedList.add(rowList);
+        tableComposer.draw(composedList);
+
+        simplyPdfDocument.insertEmptySpace(25);
+        textProperties.isBullet = false;
+
+        //new table
+        composedList.clear();
+        rowList = new ArrayList<>();
+        rowList.add(new TextCell("Small Left Text", textProperties, w_50_cent));
+        rowList.add(new TextCell("This is a big text on the right column which will be multiple lines.",
+                textProperties, w_50_cent));
+        composedList.add(rowList);
+        tableComposer.draw(composedList);
+
+        simplyPdfDocument.insertEmptySpace(25);
+
+        //new table
+        composedList.clear();
+        rowList = new ArrayList<>();
+
+        cell = new TextCell(
+                "This is a big text a a the right column which will be multiple lines.", textProperties, w_50_cent);
+        cell.setHorizontalPadding(25);
+        cell.setVerticalPadding(50);
+        rowList.add(cell);
+
+        cell = new TextCell("Small right text", textProperties, w_50_cent);
+        cell.setHorizontalPadding(25);
+        cell.setVerticalPadding(50);
+        rowList.add(cell);
+        composedList.add(rowList);
+        tableComposer.draw(composedList);
+
+        try {
+            simplyPdfDocument.finish();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("LongLogTag")

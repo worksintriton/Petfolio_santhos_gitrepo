@@ -121,26 +121,8 @@ dependencies {
     /*Digital signature*/
     implementation 'com.github.gcacace:signature-pad:1.2.1'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /* Pdf Library*/
+    implementation 'com.github.wwdablu:SimplyPDF:1.1.2'
 }
 // Add the following line:
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
