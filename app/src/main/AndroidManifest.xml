@@ -27,6 +27,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -38,35 +40,15 @@
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/app_logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute"
-        tools:replace="android:allowBackup,icon,theme,label,name">
-        <activity android:name=".serviceprovider.PickUpLocationEditSPActivity"></activity>
-        <activity
-            android:name=".serviceprovider.EditMyAddressSPActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".serviceprovider.AddMyAddressSPActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".serviceprovider.PickUpLocationSPActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".serviceprovider.ManageAddressSPActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
-            android:windowSoftInputMode="adjustPan" />
+        tools:replace="android:allowBackup,icon,theme,label,name"
+        android:requestLegacyExternalStorage="true">
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -123,6 +105,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".petlover.ProductDetailActivity"
             android:screenOrientation="portrait"
@@ -138,11 +121,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".vendor.EditManageProdcutsActivity"
+
+        <activity android:name=".vendor.EditManageProdcutsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".petlover.PetOtherInformationsActivity"
             android:screenOrientation="portrait"
@@ -177,11 +161,12 @@
             android:name=".activity.VerifyEmailOtpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" /> <!-- Pet Lover -->
+            android:windowSoftInputMode="adjustPan" />
+        <!-- Pet Lover -->
         <activity
             android:name=".petlover.AddYourPetActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".petlover.RegisterYourPetActivity"
@@ -196,8 +181,9 @@
         <activity
             android:name=".petlover.BookAppointmentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".petlover.PetAppointment_Doctor_Date_Time_Activity"
             android:screenOrientation="portrait"
@@ -231,7 +217,7 @@
         <activity
             android:name=".petlover.AddYourPetOldUserActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".petlover.AddYourPetImageOlduserActivity"
@@ -248,6 +234,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".petlover.PetMyOrdrersActivity"
             android:screenOrientation="portrait"
@@ -494,16 +481,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.DoctorOrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.ManageAddressDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan" /> <!-- Service Provider -->
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- Service Provider -->
         <activity
             android:name=".serviceprovider.ServiceProviderRegisterFormActivity"
             android:screenOrientation="portrait"
@@ -699,6 +690,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.shop.DoctorShopTodayDealsSeeMoreActivity"
             android:screenOrientation="portrait"
@@ -714,16 +706,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.shop.SearchDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.shop.DoctorCartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.shop.DoctorTrackOrderActivity"
             android:screenOrientation="portrait"
@@ -734,43 +729,44 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".doctor.DoctorMyOrdrersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".petlover.PetloverFavListActivity"
+
+        <activity android:name=".petlover.PetloverFavListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.location.PickUpLocationDoctorActivity"
+
+        <activity android:name=".activity.location.PickUpLocationDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.location.AddMyAddressDoctorActivity"
+
+        <activity android:name=".activity.location.AddMyAddressDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.location.EditMyAddressDoctorActivity"
+
+        <activity android:name=".activity.location.EditMyAddressDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.location.PickUpLocationEditDoctorActivity"
+
+        <activity android:name=".activity.location.PickUpLocationEditDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".doctor.DoctorProductsFavActivity"
+
+        <activity android:name=".doctor.DoctorProductsFavActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".doctor.DoctorPaymentDetailsActivity"
+
+        <activity android:name=".doctor.DoctorPaymentDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
@@ -778,6 +774,31 @@
             android:name=".petlover.PetloverPaymentDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".serviceprovider.PickUpLocationEditSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".serviceprovider.EditMyAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".serviceprovider.AddMyAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".serviceprovider.PickUpLocationSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".serviceprovider.ManageAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver

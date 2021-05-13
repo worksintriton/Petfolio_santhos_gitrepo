@@ -167,6 +167,9 @@ public class AddMyAddressActivity extends FragmentActivity implements OnMapReady
         TextView toolbar_title = include_petlover_header.findViewById(R.id.toolbar_title);
         toolbar_title.setText(getResources().getString(R.string.pickup_location));
 
+        img_sos.setVisibility(View.GONE);
+        img_cart.setVisibility(View.GONE);
+
         avi_indicator.setVisibility(View.GONE);
         img_back.setOnClickListener(this);
         btn_change.setOnClickListener(this);

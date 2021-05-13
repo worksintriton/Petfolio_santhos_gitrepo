@@ -669,6 +669,18 @@ public interface RestApiInterface {
     @POST("product_fav/create")
     Call<ProductFavCreateResponse>createshopfavlistResponseCall(@Header("Content-Type") String type, @Body ProductFavCreateRequest productFavCreateRequest);
 
+    /*Create Doctor Fav list*/
+    @POST("doctor_fav/create")
+    Call<SuccessResponse>createDoctorFavListResponseCall(@Header("Content-Type") String type, @Body DoctorFavCreateRequest doctorFavCreateRequest);
+
+    /*Fetch Petlover Product Details*/
+    @POST("appointments/doctor/petlover_payment")
+    Call<FetchPetloverPaymDetaResponse>fetchpetlvrprodetaillistResponseCall(@Header("Content-Type") String type, @Body FetchPetloverPaymDetaRequest fetchPetloverPaymDetaRequest);
+
+    /*Fetch Doctor Product Details*/
+    @POST("appointments/doctor_payment")
+    Call<FetchDoctorPaymDetaResponse>fetchdrprodetaillistResponseCall(@Header("Content-Type") String type, @Body FetchDoctorPaymDetaRequest fetchDoctorPaymDetaRequest);
+
     /*Fetch Petlover Payment Details*/
     @POST("appointments/doctor/petlover_payment")
     Call<FetchPetloverPaymDetaResponse>fetchpetlvrpaymdetaillistResponseCall(@Header("Content-Type") String type, @Body FetchPetloverPaymDetaRequest fetchPetloverPaymDetaRequest);
@@ -676,7 +688,6 @@ public interface RestApiInterface {
     /*Fetch Doctor Payment Details*/
     @POST("appointments/doctor_payment")
     Call<FetchDoctorPaymDetaResponse>fetchdrpaymetaillistResponseCall(@Header("Content-Type") String type, @Body FetchDoctorPaymDetaRequest fetchDoctorPaymDetaRequest);
-
 
 
 

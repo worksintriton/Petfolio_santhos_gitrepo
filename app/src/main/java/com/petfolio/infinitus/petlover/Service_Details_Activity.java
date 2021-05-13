@@ -188,6 +188,46 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
     @BindView(R.id.img_fav)
     ImageView img_fav;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_root1)
+    LinearLayout ll_root1;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_root2)
+    LinearLayout ll_root2;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_root3)
+    LinearLayout ll_root3;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_aboutsp_label)
+    TextView txt_aboutsp_label;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_spec_label)
+    TextView txt_spec_label;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_pet_hanldle)
+    TextView txt_pet_hanldle;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_popular_serv)
+    LinearLayout ll_popular_serv;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_map)
+    LinearLayout ll_map;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_location_label)
+    TextView txt_location_label;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_dr_desc)
+    TextView txt_dr_desc;
+
     List<SPDetailsRepsonse.DataBean.BusSpecListBean> specializationBeanList;
 
     String serv_name,selectedServiceImagepath;
@@ -239,15 +279,55 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
             }
         }
 
-        setBottomSheet();
+        viewPager.setVisibility(View.GONE);
 
+        tabLayout.setVisibility(View.GONE);
 
-        if (mapFragment == null) {
-            mapFragment = SupportMapFragment.newInstance();
-            mapFragment.getMapAsync(this);
-        }
+        hand_img1.setVisibility(View.GONE);
 
-        img_fav.setOnClickListener(this);
+        hand_img2.setVisibility(View.GONE);
+
+        hand_img3.setVisibility(View.GONE);
+
+        hand_img4.setVisibility(View.GONE);
+
+        hand_img5.setVisibility(View.GONE);
+
+        txt_sp_companyname.setVisibility(View.GONE);
+
+        txt_sp_name.setVisibility(View.GONE);
+
+        ll_root1.setVisibility(View.GONE);
+
+        ll_root3.setVisibility(View.GONE);
+
+        txt_aboutsp_label.setVisibility(View.GONE);
+
+        txt_dr_desc.setVisibility(View.GONE);
+
+        txt_spec_label.setVisibility(View.GONE);
+
+        rv_speclist.setVisibility(View.GONE);
+
+        txt_pet_hanldle.setVisibility(View.GONE);
+
+        ll_popular_serv.setVisibility(View.GONE);
+
+        txt_location_label.setVisibility(View.GONE);
+
+        txt_place.setVisibility(View.GONE);
+
+        ll_map.setVisibility(View.GONE);
+
+//        setBottomSheet();
+//
+//
+//        if (mapFragment == null) {
+//            mapFragment = SupportMapFragment.newInstance();
+//            mapFragment.getMapAsync(this);
+//        }
+//
+//        img_fav.setOnClickListener(this);
     }
 
 
@@ -344,11 +424,13 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
                 if (response.body() != null) {
 
                     if (200 == response.body().getCode()) {
-                        if (response.body().getStatus() != null&&!response.body().getStatus().isEmpty()) {
-
-                            Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_SHORT).show();
-
+                        Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_SHORT).show();
+                        if(spid != null && userid != null) {
+                            if (new ConnectionDetector(Service_Details_Activity.this).isNetworkAvailable(Service_Details_Activity.this)) {
+                                SPDetailsRepsonseCall();
+                            }
                         }
+
                     }
 
                 }
@@ -378,7 +460,7 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
         SPFavCreateRequest spFavCreateRequest = new SPFavCreateRequest();
         spFavCreateRequest.setUser_id(userid);
         spFavCreateRequest.setSp_id(spid);
-        spFavCreateRequest.setCata_id(catid);
+        spFavCreateRequest.setCat_id(catid);
         Log.w(TAG,"spFavCreateRequest "+ new Gson().toJson(spFavCreateRequest));
         return spFavCreateRequest;
     }
@@ -405,17 +487,23 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Log.w(TAG,"distance : "+distance);
-        Intent intent = new Intent(getApplicationContext(),SelectedServiceActivity.class);
-        intent.putExtra("spid",spid);
-        intent.putExtra("catid",catid);
-        intent.putExtra("from",from);
-        intent.putExtra("distance",distance);
-        intent.putExtra("reviewcount",reviewcount);
-        intent.putExtra("Count_value_start",Count_value_start);
-        intent.putExtra("Count_value_end",Count_value_end);
-        startActivity(intent);
-        finish();
+        if(from != null && from.equalsIgnoreCase("PetLoverSPNewFavAdapter")){
+            Intent intent = new Intent(getApplicationContext(),PetloverFavListActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),SelectedServiceActivity.class);
+            intent.putExtra("spid",spid);
+            intent.putExtra("catid",catid);
+            intent.putExtra("from",from);
+            intent.putExtra("distance",distance);
+            intent.putExtra("reviewcount",reviewcount);
+            intent.putExtra("Count_value_start",Count_value_start);
+            intent.putExtra("Count_value_end",Count_value_end);
+            startActivity(intent);
+            finish();
+        }
+
 
     }
     @SuppressLint("LogNotTimber")
@@ -435,6 +523,57 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
                 if (response.body() != null) {
 
                     if (200 == response.body().getCode()) {
+
+                        viewPager.setVisibility(View.VISIBLE);
+
+                        tabLayout.setVisibility(View.VISIBLE);
+
+                        hand_img1.setVisibility(View.VISIBLE);
+
+                        hand_img2.setVisibility(View.VISIBLE);
+
+                        hand_img3.setVisibility(View.VISIBLE);
+
+                        hand_img4.setVisibility(View.VISIBLE);
+
+                        hand_img5.setVisibility(View.VISIBLE);
+
+                        txt_sp_companyname.setVisibility(View.VISIBLE);
+
+                        txt_sp_name.setVisibility(View.VISIBLE);
+
+                        ll_root1.setVisibility(View.VISIBLE);
+
+                        ll_root3.setVisibility(View.VISIBLE);
+
+                        txt_aboutsp_label.setVisibility(View.VISIBLE);
+
+                        txt_dr_desc.setVisibility(View.VISIBLE);
+
+                        txt_spec_label.setVisibility(View.VISIBLE);
+
+                        rv_speclist.setVisibility(View.VISIBLE);
+
+                        txt_pet_hanldle.setVisibility(View.VISIBLE);
+
+                        ll_popular_serv.setVisibility(View.VISIBLE);
+
+                        txt_location_label.setVisibility(View.VISIBLE);
+
+                        txt_place.setVisibility(View.VISIBLE);
+
+                        ll_map.setVisibility(View.VISIBLE);
+
+                        setBottomSheet();
+
+                        img_fav.setOnClickListener(Service_Details_Activity.this);
+
+                        if(response.body().getData().isFav()){
+                            img_fav.setBackgroundResource(R.drawable.ic_fav);
+                        }else{
+                            img_fav.setBackgroundResource(R.drawable.heart_gray);
+                        }
+
                         if(response.body().getData().getBus_service_gall() != null) {
                             spServiceGalleryResponseList = response.body().getData().getBus_service_gall();
                         }
@@ -464,11 +603,16 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
 
                             Log.w(TAG,"longitude"+ longitude );
 
+
                             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-                            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                            mapFragment = (SupportMapFragment) getSupportFragmentManager()
                                     .findFragmentById(R.id.map);
-                            assert mapFragment != null;
-                            mapFragment.getMapAsync(Service_Details_Activity.this);
+
+                            if (mapFragment == null) {
+                                mapFragment = SupportMapFragment.newInstance();
+                                mapFragment.getMapAsync(Service_Details_Activity.this);
+                            }
+                           // mapFragment.getMapAsync(Service_Details_Activity.this);
 
                         }
                         if(response.body().getDetails().getImage_path() != null) {
@@ -680,6 +824,8 @@ public class Service_Details_Activity extends AppCompatActivity implements View.
         Log.w(TAG,"Map longitude"+ longitude );
 
         if(latitude!=0&&longitude!=0){
+
+            ll_map.setVisibility(View.VISIBLE);
 
             LatLng currentLocation = new LatLng(latitude, longitude);
 
