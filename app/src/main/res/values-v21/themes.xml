@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Customtheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/yellow</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="tabBackground">@drawable/tab_background</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+</resources>

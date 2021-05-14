@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlEmail"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common"
+        android:background="@drawable/rectangle_corner_white_background"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:minHeight="60dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvMailError"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/txt_error"
+                android:paddingBottom="2dp"
+                android:visibility="gone"
+                style="@style/TextViewRegular"
+                android:textColor="@color/hint_color"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="true"
+                style="@style/TextViewRegular"
+                android:inputType="textEmailAddress"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:gravity="center_vertical"
+                android:background="@color/transparent"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/hint_color"
+                android:textSize="@dimen/_16sp"
+                tools:ignore="Autofill,LabelFor" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imvEmailError"
+            android:layout_width="30dp"
+            android:src="@drawable/ic_warning"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:paddingLeft="6dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_centerVertical="true"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:paddingStart="6dp"
+            tools:ignore="RtlSymmetry"
+            android:contentDescription="@string/image_description" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvMailErrorDetail"
+        android:layout_width="wrap_content"
+        style="@style/TextViewRegular"
+        android:textSize="@dimen/txt_error"
+        android:paddingBottom="2dp"
+        android:visibility="gone"
+        android:text="@string/afasdfasf"
+        android:layout_marginTop="@dimen/margin_common_half"
+        android:textColor="@color/red"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:layout_marginRight="@dimen/margin_common"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

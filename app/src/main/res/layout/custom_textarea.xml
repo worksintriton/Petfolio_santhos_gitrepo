@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt_white"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common">
+
+        <LinearLayout
+            android:paddingTop="@dimen/_10dp"
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMailError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:textSize="@dimen/txt_error"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText"
+                style="@style/TextViewRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:cursorVisible="true"
+                android:gravity="top|left"
+                android:lines="5"
+                android:textColor="@color/txt_common"
+                android:textSize="@dimen/_14sp"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvMailErrorDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:layout_marginTop="@dimen/margin_common_half"
+        android:layout_marginRight="@dimen/margin_common"
+        android:paddingBottom="2dp"
+        android:text="@string/afasdfasf"
+        android:textColor="@color/red"
+        android:textSize="@dimen/txt_error"
+        android:visibility="gone" />
+
+</LinearLayout>
