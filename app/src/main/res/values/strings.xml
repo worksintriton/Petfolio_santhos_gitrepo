@@ -1,291 +1,535 @@
 <resources>
-    <string name="app_name">Bert\'s Auto</string>
-    <string name="image_description">Image Description</string>
-    <string name="toolbar_title">Toolbar Title</string>
+    <string name="app_name">PetFolio</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="emailorphonenumber">Phone Number</string>
+    <string name="new_here">New here ?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="change_user_type">Change user type</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="ref_code">Referral Code</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="forget_password">I forgot password</string>
-    <string name="sigin">Sign In</string>
-    <string name="or">OR</string>
-    <string name="login_with_facebook">Login with Facebook</string>
-    <string name="sigin_with_facebook">Register with Facebook</string>
-    <string name="Retailer">RETAILER</string>
-    <string name="wholesaler">WHOLESALER</string>
+    <string name="phone">Phone</string>
+    <string name="characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <string name="usertypes">usertypes</string>
+    <string name="verification">Verification</string>
+    <string name="dontreceiveotp">Don\'t receive OTP ?</string>
+    <string name="resend">Resend</string>
+    <string name="you_will_get_a_otp_via_sms">You will get a OTP via SMS</string>
+    <string name="enter_your_otp">Enter your OTP</string>
+    <string name="ind">IND</string>
+    <string name="choose_user_type">Choose user type</string>
+    <string name="no_data_found">No data found</string>
+    <string name="onbackpressedmsg">The operation is disabled in the screen. </string>
+
+
+    <string name="mobile_number_error">Enter mobile number</string>
+    <string name="mobile_length_error">Enter valid mobile number</string>
+
+    <string name="verify_otp_title">Verify Mobile number</string>
+    <string name="invalid_otp">Invalid OTP.</string>
+    <string name="re_enter_otp">Please re-enter the correct OTP</string>
+
+    <string name="wehavesenta4digitotp">We have sent a "4 digit OTP" on</string>
+    <string name="resendotp">Resend OTP in</string>
+    <string name="addyourpet">Add your Pet</string>
+    <string name="skip">Skip</string>
+    <string name="pet_name">Pet name</string>
+    <string name="pet_gender">Pet Gender</string>
+    <string name="pet_color">Pet color</string>
+    <string name="pet_weight">Pet weight (kg)</string>
+    <string name="pet_age">Pet age</string>
+    <string name="pet_dob">Pet Date of Birth</string>
+    <string name="vaccinated">Vaccinated</string>
+    <string name="select_date">Select date</string>
+    <string name="select_vaccinated">Select vaccinated date</string>
+    <string name="select_petdob">Select pet date of birth</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="err_msg_type_of_pettype">Select the pet type</string>
+    <string name="err_msg_type_of_petbreedtype">Select the pet breed type</string>
+    <string name="err_msg_type_of_communicationtype">Select the communication type</string>
+    <string name="err_msg_type_of_petgendertype">Select the pet gender type</string>
+    <string name="err_msg_type_of_petcolortype">Select the pet color type</string>
+
+    <string name="err_msg_type_of_diagnosis">Select the diagnosis type</string>
+    <string name="err_msg_type_of_sub_diagnosis">Select the sub diagnosis type</string>
+    <string name="upload_pet_image">Upload Pet image</string>
+    <string name="change_pet_image">Change Pet image</string>
+    <string name="pet_last_vaccinated_age">Pet Last Vaccinated Date</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="log_in">Log in</string>
+    <string name="see_more"><u>See more</u></string>
+    <string name="services">Services</string>
+    <string name="products">Products</string>
+    <string name="puppy_love">Puppy Love</string>
+    <string name="specialization">Specialization</string>
+    <string name="addyourservices">Add your services</string>
+    <string name="turn_on_your_location_services">Turn on your location services</string>
+    <string name="search_location_address">Search Location Address</string>
+    <string name="noplacesfound">No Places Found</string>
+    <string name="save_this_location_and_procced">Save this location &amp; Proceed</string>
+
+
+    <string name="doctor_business_info_title">Doctor Business Info</string>
+    <string name="edit_doctor_business_info_title">Edit Doctor Business info</string>
+    <string name="serviceproviderbusiness">Service Provider Business</string>
+    <string name="editserviceproviderbusiness">Edit Service Provider Business</string>
+    <string name="image">Image</string>
+    <string name="clinic_name">Clinic name</string>
+    <string name="charge_amount">Service charge amount</string>
+    <string name="business_name">Business name</string>
+    <string name="education">Education</string>
+    <string name="year_of_completion">Year of Completion</string>
+    <string name="add">Add</string>
+    <string name="education1">Education :</string>
+    <string name="year_of_completion1">Year of Completion : </string>
+    <string name="experience">Experience</string>
+    <string name="company_name">Company</string>
+    <string name="company_name1">Company :</string>
+    <string name="total_experience">Total Experience :</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="add_more">Add More</string>
+    <string name="pets_handled">Pets Handled</string>
+    <string name="pet_type">Pet Type</string>
+    <string name="clinic_address">Clinic Address</string>
+    <string name="write_here">Write Here....</string>
+    <string name="clinic_pict">Clinic pictures</string>
+    <string name="service_gallery_images">Service gallery images</string>
+    <string name="certificate">Certificate</string>
+    <string name="certificates_if_any">Certificates if any</string>
+    <string name="govt_proof">Govt ID Proof</string>
+    <string name="photoid_proof">Photo ID Proof</string>
+    <string name="choose">Choose</string>
+    <string name="specialization_ifany">Specialization if any</string>
+    <string name="submit">Submit</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="alert">Sorry you cannot add more than 3</string>
+
+    <string name="deleteholidaymsg">"Are you sure you want to delete this holiday? "</string>
+
+
+    <string name="my_orders">My orders</string>
+    <string name="my_appointments">My Appointments</string>
+    <string name="manage_services">Manage Services</string>
+    <string name="favourites">Favourites</string>
+    <string name="my_coupons">My Coupons</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="shop">Shop</string>
+    <string name="feeds">Feeds</string>
+    <string name="market">Marketplace</string>
+    <string name="Market">Market</string>
+    <string name="payment_details">Payment Details</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="confirm_password">Confirm password</string>
-    <string name="firstname">First Name</string>
-    <string name="lastname">Last Name</string>
-    <string name="email_coupons">Send me email for discount &amp; Coupon from \n Bert\'s Auto</string>
-    <string name="reg_retailer">Register as a Retailer</string>
-    <string name="terms_conditions">By press the Register button, you have also agreed</string>
-    <string name="terms_conditions1"> with Bert\'s Auto Term &amp; Conditions</string>
-    <string name="revenue">Revenue</string>
-    <string name="zipcode">Zipcode</string>
-    <string name="country">Country</string>
-    <string name="state">State</string>
-    <string name="reg_wholesaler">Register as Wholesaler</string>
-    <string name="forget_password_withouI">Forgot your password</string>
-    <string name="forget_password_reason">Enter your email below receive your \n password reset instructions.</string>
-    <string name="reset_link">Send Reset Email</string>
-    <string name="login">"Login "</string>
-    <string name="register">Register</string>
-    <string name="forget_password_withouI_simple">Forget Password</string>
-    <string name="home">Home</string>
-    <string name="my_garage">My Garage</string>
-    <string name="shop">Shop</string>
-    <string name="live_chat">Live Chat</string>
-    <string name="profile">Profile</string>
-    <string name="hello">Hello,</string>
-    <string name="guest">Guest</string>
-    <string name="count">6</string>
-    <string name="add_veh_desc">Add A Vehicle To Find Exact Fit Parts</string>
-    <string name="add_veh_btn_txt">Add a Vehicle</string>
-    <string name="search">Search VIN, Parts or Products</string>
-    <string name="add_user_desc">Sign in to get special offers, deals \n and many more…</string>
-    <string name="create_account">Create an Account</string>
-    <string name="shopby">SHOP BY</string>
-    <string name="gurantee_fit">Guaranteed Fit</string>
-    <string name="fast_shipping">Fast shipping</string>
-    <string name="local_returns">local returns</string>
-    <string name="shopbyname">ShopByName</string>
-    <string name="search_key_info">Search Keywords Information</string>
-    <string name="search_key_info_desc">You can narrow your search results to specific parts, Products or VIN/Chassis Number. See example search keywords below</string>
-    <string name="vin_info">VIN/Chassis Number Search</string>
-    <string name="vin_info_desc">VIN: 1XXXXXXX234XX</string>
-    <string name="partsnosearch_info">Parts Number Search</string>
-    <string name="partsnosearch_info_desc">GXXA1</string>
-    <string name="prod_search_info_desc">rear brake pads</string>
-    <string name="viewall">VIEW ALL</string>
-    <string name="top_categories">Top Categories</string>
-    <string name="brands">top brands</string>
-    <string name="makes">top makes</string>
-    <string name="headlight"><![CDATA[Headlights & Lighitings]]></string>
-    <string name="total_results">5000 Results</string>
-    <string name="sort_filter"><![CDATA[Sort & Filter]]></string>
-    <string name="audi_a8_premium">2018 A3 Audi Premium</string>
-    <string name="product_name">Power Stop K5975 Front and Rear Z23 Evolution…</string>
-    <string name="parts_no">Part No: K5975</string>
-    <string name="total_reviews">(120 Reviews)</string>
-    <string name="fit_desc">Exact Fit with your vehicle</string>
-    <string name="price">$130.49</string>
-    <string name="btn_add">Add to Cart</string>
-    <string name="side_view_mirrors">Side View Mirrors</string>
-    <string name="search_products">Search Products</string>
-    <string name="sort">Sort</string>
-    <string name="k_metal">K-Metal</string>
-    <string name="parts_name">Jeep CJ-Style Replacement Mirrors</string>
-    <string name="total_reviews_count">(123)</string>
-    <string name="out_of_stock">Out of stock</string>
-    <string name="hifein">-</string>
-    <string name="str_new">New</string>
-    <string name="model_name">Model Name</string>
-    <string name="brand_name">Brand Name</string>
-    <string name="vin_xasd">VIN:XASD</string>
-    <string name="_2_0l_xxxxcs_fl_turbo">2.0L XXXXCS Fl Turbo</string>
-    <string name="_2016">2016</string>
-    <string name="vin">VIN</string>
-    <string name="engine">Engine</string>
-    <string name="add_vehicle">Add Vehicle</string>
-    <string name="year">Year</string>
-    <string name="minus">-</string>
-    <string name="_1">1</string>
-    <string name="plus">+</string>
-    <string name="cart">Cart</string>
-    <string name="proceed">Proceed</string>
-    <string name="order_status">Completed</string>
-    <string name="txt_order_ID_label">Order ID</string>
-    <string name="feb_28_2021_10_19">Feb 28,2021 – 10.19</string>
-    <string name="txt_orders_label">Orders</string>
-    <string name="txt_total_label">Total</string>
-    <string name="_58_00">$58.00</string>
-    <string name="confirmed_your_order">Confirmed Your Order</string>
-    <string name="shipped_from_the_seller">Shipped from the seller</string>
-    <string name="waiting">Waiting</string>
-    <string name="shipping">Shipping</string>
-    <string name="your_address">Your Address</string>
-    <string name="delivery_in_progress">Delivery in progress</string>
-    <string name="track_order_status">Track order status</string>
+    <string name="tabnew">New</string>
+    <string name="tabcompleted">Completed</string>
+    <string name="tabmissed">Missed</string>
+    <string name="tabcancelled">Cancelled</string>
+    <string name="load_more">Load More</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="norecordsfound">No Records Found</string>
+
+    <string name="serv_name">Service name</string>
     <string name="cancel">Cancel</string>
-    <string name="estimated_delivery_date_mar_17">Estimated delivery date : Mar 17</string>
-    <string name="my_wishlist">Wishlist</string>
-    <string name="afasdfasf">afasdfasf</string>
-    <string name="now_available_n_stock_izuzu_and_mazda_parts">Now available \nstock IZUZU AND MAZDA Parts</string>
-    <string name="shop_now">shop now</string>
-    <string name="categories">Categories</string>
-    <string name="brandss">Brands</string>
-    <string name="triton_it">Triton IT</string>
-    <string name="my_wishlistt">Wishlist</string>
-    <string name="order_history">Order History</string>
-    <string name="order_tracking">Order Tracking</string>
-    <string name="receipts">Receipts</string>
-    <string name="download_quotation">Download Quotation</string>
-    <string name="about_us">About Us</string>
-    <string name="log_out">Log out</string>
-    <string name="setting">Setting</string>
-    <string name="update_changes">Update Changes</string>
-    <string name="delete">DELETE</string>
-    <string name="edit">EDIT</string>
-    <string name="salem_636009_tamilnadu">Salem, 636009, TamilNadu</string>
-    <string name="_225_1_sample_abcd_nagar_main_road">225/1, Sample ABCD Nagar Main Road</string>
-    <string name="chennai">chennai</string>
-    <string name="_91_9003237255">+91 – 9003237255</string>
-    <string name="_14_02_1994">14/02/1994</string>
-    <string name="mohammad_ashfaq">Mohammad Ashfaq</string>
-    <string name="add_new_address">Add New Address</string>
-    <string name="default_val">Default</string>
-    <string name="detail_address">Detail Address</string>
-    <string name="save_address">Save Address</string>
-    <string name="set_as_default">Set as Default</string>
-    <string name="list_of_vehicles">list of vehicles</string>
-    <string name="select_vehicle">Select Vehicle</string>
-    <string name="_2016_bmw_a228i">2016 BMW A228i</string>
-    <string name="_2_0l_xxxxcs_fl_turbo_vin_xasd">2.0L XXXXCS Fl Turbo VIN:XASD</string>
-    <string name="selected_vehicle1">Selected Vehicle</string>
-    <string name="select_a_year">Select a year</string>
-    <string name="make">Make</string>
-    <string name="select_a_vendor">Select a vendor</string>
-    <string name="select_brand">Select brand</string>
-    <string name="brandsss">Brand</string>
-    <string name="category1">Category</string>
-    <string name="select_category">Select category</string>
-    <string name="price_range">Price range</string>
-    <string name="select_a_range">Select a range</string>
-    <string name="rate">Rate</string>
-    <string name="color">Color</string>
-    <string name="select_color">Select color</string>
-    <string name="apply">Apply</string>
-    <string name="reset">Reset</string>
-    <string name="filter">Filter</string>
-    <string name="new_addr">New Address</string>
-    <string name="ship_addr">Shipping Address</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="change_password">Change Password</string>
-    <string name="ft1236784678">FT1236784678</string>
-    <string name="download_invoice">DOWNLOAD INVOICE</string>
-    <string name="add_review">ADD REVIEW</string>
-    <string name="delivered_address">Delivered Address</string>
-    <string name="delivered_via_bert_s_on_apr_12_2021">Delivered via Bert\'s on Apr 12, 2021</string>
-    <string name="_56_hagley_park_road">56 Hagley Park Road</string>
-    <string name="_1_874_586_4951">+1 874 586 4951</string>
-    <string name="_876_kingston_jamaica">876 Kingston, Jamaica</string>
-    <string name="payment_method">Payment Method</string>
-    <string name="_6476_7687">6476 **** **** 7687</string>
-    <string name="parts_names">Parts Name</string>
-    <string name="product_detail">Product Detail</string>
-    <string name="prod_name">Power Stop K5975 Front and Rear Z23 Evolution Sport Geomet Coated Performance 2-Wheel Set</string>
-    <string name="part_no_k5975">Part No: K5975</string>
-    <string name="_120_reviews"><u>(120 Reviews)</u></string>
-    <string name="_130_49">$130.49</string>
-    <string name="product_description">Product Description</string>
-    <string name="prod_desc_text">The Power Stop Z36 Truck and Tow Performance brake kit provides the superior stopping power demanded by those who tow boats, haul loads, tackle mountains, lift trucks, and play in the harshest conditions. The brake rotors are drilled to keep temperatures down during extreme braking and slotted to sweep away any debris for constant pad contact. Combined with our Z36 Carbon-Fiber Ceramic performance friction formulation, you can confidently push your rig to the limit.</string>
-    <string name="product_information">Product Information</string>
-    <string name="manufacturer">Manufacturer</string>
-    <string name="power_stop">Power Stop</string>
-    <string name="model_valu"><![CDATA[Power Stop K2073–36 Z36 Truck & Tow Front and Rear Brake Kit]]></string>
-    <string name="model">Model</string>
-    <string name="weight">Item Weight</string>
-    <string name="_119_pounds">119 pounds</string>
-    <string name="product_dimensions">Product Dimensions</string>
-    <string name="_14_x_14_x_10_inches">14 x 14 x 10 inches</string>
-    <string name="vehicle_fitment">Vehicle Fitment</string>
-    <string name="_4_cyl_1_8l">4 Cyl 1.8L</string>
-    <string name="premium">Premium</string>
-    <string name="question_answers_5"><![CDATA[Question & Answers (5)]]></string>
-    <string name="q">Q:</string>
-    <string name="do_i_need_to_change_my_calipers_too"><u>Do I need to change my calipers too?</u></string>
-    <string name="by_ken_royer_on_october_25_2020">By Ken Royer on October 25, 2020</string>
-    <string name="only_if_needed_their_calipers_are_good_too">Only if needed…their calipers are good too…</string>
-    <string name="a">A:</string>
-    <string name="by_kevin_peter_on_november_25_2020">By Kevin Peter on November 25, 2020</string>
-    <string name="customer_reviews">Customer Reviews</string>
-    <string name="_4_5_out_of_5">4.5 out of 5</string>
-    <string name="_120_ratings1">120 Ratings</string>
-    <string name="_5_star">5 star</string>
-    <string name="_80">80%</string>
-    <string name="_4_star">4 Star</string>
-    <string name="_60">60%</string>
-    <string name="_3_star">3 Star</string>
-    <string name="_40">40%</string>
-    <string name="_20">20%</string>
-    <string name="_2_star">2 Star</string>
-    <string name="_5">5%</string>
-    <string name="_1_star">1 Star</string>
-    <string name="write_a_review">Write a Review</string>
-    <string name="fits_great_stops_great_will_definitely_recommend_family_and_friends">Fits great, stops great. Will definitely recommend family and friends.</string>
-    <string name="related_products">related products</string>
-    <string name="jeep_cj_style_replacement_mirrors">Jeep CJ-Style Replacement Mirrors</string>
-    <string name="jhon_nelson">Jhon Nelson</string>
-    <string name="languages">Languages</string>
-    <string name="currency">Currency</string>
-    <string name="date_format">Date format</string>
-    <string name="time">Time</string>
-    <string name="push_notification">Push notification</string>
+    <string name="complete">Complete</string>
+    <string name="completed_on_date">Completed on 01-Sep-2020</string>
+    <string name="missed_on_date">Missed on 01-Sep-2020</string>
+
+    <string name="doctor_name">Doctor name</string>
+    <string name="place">place * 2 km away</string>
+    <string name="review_count">0</string>
+    <string name="rating_value">0</string>
+    <string name="specialization_dummy">Lorem ipsum ,dolor sit amet, consectetur , adipiscing</string>
+    <string name="desc">Description</string>
+    <string name="product_desc">Product Description</string>
+    <string name="desc_dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="appointment">Appointment</string>
+    <string name="or">Or</string>
+    <string name="normal">Normal</string>
+    <string name="emergency">Emergency</string>
+    <string name="allergies">Allergies</string>
+    <string name="upload_pet_current_images">Upload pet current images</string>
+    <string name="continues">Continue</string>
+    <string name="next">Next</string>
+    <string name="add_comment_here">Add Comment here..</string>
+    <string name="product_descriptions_here">Product descriptions here..</string>
+    <string name="book_now">Book Now</string>
+
+    <string name="filter">Filters</string>
+    <string name="curent_location">Curent Location</string>
+    <string name="book_appointment">Book Appointment</string>
+
+    <string name="service_name_pet_name">Service name * Pet Name</string>
+    <string name="price">₹ 0</string>
+    <string name="cancel_appointment">Cancel appointment</string>
+    <string name="add_review">Add Review</string>
     <string name="all_categories">All categories</string>
-    <string name="_0">0</string>
-    <string name="cod">COD</string>
-    <string name="_24_hours">24 Hours</string>
-    <string name="choose">Choose</string>
+    <string name="cancel_appointment_date">Cancelled on 01-Sep 2020</string>
+    <string name="pickup_location">PickUp Location</string>
+    <string name="current_location">Current Location</string>
+    <string name="my_appointment">My appointment</string>
+    <string name="pet_care">Pet Care</string>
+    <string name="current">Current</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="service_cost">Cost</string>
+    <string name="cart">Cart</string>
+    <string name="product_details">Product Details</string>
+
+
+    <string name="petlovers">Petlovers</string>
+    <string name="prescriptiondetails">Prescription Details</string>
+    <string name="prescriptionmsg">Note: Pls use the + button to submit the entered details.</string>
+
+    <string name="cancelappointment">Are you sure you want to cancel this appoinment?</string>
+    <string name="completeappointment">Are you sure you want to complete this appoinment?</string>
+
+
+    <string name="profile">Profile</string>
+    <string name="edit_no_underline">Edit</string>
+    <string name="user_name">User Name</string>
+    <string name="dummy_gmail_com">dummy@gmail.com</string>
+    <string name="phn_num">9876543210</string>
+    <string name="pets">Pets</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="change_password">Change Password</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="manage_address">Manage Address</string>
+    <string name="set_locations">Set Locations</string>
+    <string name="my_addresses">My Addresses</string>
+
+    <string name="upload_image">Upload Image</string>
+
+    <string name="add_a_new_address">Add a new address</string>
+    <string name="address_info">TESSDGD dgsdg dgasdg saddagdasg dsgasdg sadgdsgds SGADSGD</string>
+    <string name="saved_address">Saved Address</string>
+
+    <string name="accept">Accept</string>
+    <string name="pet_details">Pet Details</string>
+    <string name="pet_name_details">Pet Name</string>
+    <string name="pet_type_details">Pet Type</string>
+    <string name="breed">Breed</string>
+    <string name="gender">Gender</string>
+    <string name="colour">Color</string>
+    <string name="weight">Weight</string>
+    <string name="age">Age</string>
+    <string name="vaccinated_details">Vaccinated</string>
+    <string name="petlastvaccinated">Pet Last Vaccinated Date</string>
+    <string name="lastvaccinateddate">Last Vaccinated Date</string>
+
+    <string name="medical_history">Medical History</string>
+    <string name="appointmentdateandtime">Appointment Date and Time</string>
+    <string name="order_date">Order date</string>
+    <string name="bookingdate">Booked At</string>
+    <string name="order">Order #</string>
+    <string name="bookingid">Booking ID</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="order_cost">Order cost</string>
+    <string name="address">Address</string>
+    <string name="order_details">Order details </string>
+    <string name="allergies_pet_details">Allergies :</string>
+    <string name="prescription">Prescription</string>
+    <string name="before_given_prescription_details">Before given Prescription Details</string>
+    <string name="vaccination">Vaccination</string>
+    <string name="before_given_vaccination_details">Before given Vaccination Details</string>
+    <string name="add_prescription">Add Prescription</string>
+    <string name="add_vaccination">Add Vaccination</string>
+    <string name="service_name">Service Name</string>
+    <string name="locationnickname">Location Nick name</string>
+
+
+    <string name="edit_pet_info">Edit pet info</string>
+    <string name="save_address">Save Address</string>
+    <string name="add_address">Add Address</string>
     <string name="change">Change</string>
-    <string name="sample">Sample</string>
-    <string name="sample_adrar_algeria">sample, Adrar, Algeria</string>
-    <string name="proceed_to_checkout">Proceed to Checkout</string>
-    <string name="shipping_method">Choose Shipping Method</string>
-    <string name="price1">$13.49</string>
-    <string name="shipping_by_quantity">Shipping By Quantity</string>
-    <string name="_1_3_business_days">1–3 Business Days</string>
-    <string name="express_delivery">Express Delivery</string>
-    <string name="shipping_by_weight">Shipping by Weight</string>
-    <string name="_4_6_business_days">4–6 Business Days</string>
-    <string name="checkout_screen">Checkout Screen</string>
-    <string name="order_total_1">Order Total #1</string>
-    <string name="x_1">x 1</string>
-    <string name="proceed_to_buy">Proceed to Buy</string>
-    <string name="order_total">Order Total</string>
-    <string name="select_code">Select Code</string>
-    <string name="coupons">Coupons</string>
-    <string name="merchandise_subtotal">Merchandise Subtotal</string>
-    <string name="discount_subtotal">Discount Subtotal</string>
-    <string name="total_amount">Total Amount</string>
-    <string name="payment">Payment</string>
-    <string name="select_coupons">Select Coupons</string>
-    <string name="coupon_description">Coupon Description</string>
-    <string name="coupon_date">Coupon Date</string>
-    <string name="_15">15%</string>
-    <string name="coupon_name">Coupon Name</string>
-    <string name="paypal">Paypal</string>
-    <string name="offline_payment">Offline</string>
-    <string name="select_payment_method">Select Payment Method</string>
-    <string name="_4_94_1_054_00">$4.94 - $1,054.00</string>
-    <string name="tap_to_toggle_expansion">Tap to toggle expansion</string>
-    <string name="fill_height">Fill height</string>
-    <string name="_5_stars">5 Stars</string>
-    <string name="_2_stars">2 Stars</string>
-    <string name="no_data_found">No Data Found</string>
-    <string name="cat_dis_msg">No Categories Found</string>
-    <string name="brnd_dis_msg">No Brands Found</string>
+    <string name="save_as">Save as</string>
+    <string name="home">Home</string>
+    <string name="work">Work</string>
+    <string name="others">Others</string>
+    <string name="set_as_default">Set as default</string>
+    <string name="pick_a_name_for_this_location">Pick a nick name for this location</string>
+    <string name="city_name">City Name</string>
+    <string name="location">Location</string>
+    <string name="pincode">Pincode</string>
+    <string name="set_location">Set Location</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="add_your_pet">Add your Pet</string>
+    <string name="edit_profile_image">Edit Profile image</string>
+    <string name="registeryourpet">Register your Pet</string>
+
+    <string name="deletemsg">Are you sure you want to delete this location details?</string>
+    <string name="deletepetmsg">Are you sure you want to delete this pet details?</string>
+    <string name="removeproductfavmsg">Are you sure you want to remove this product from your favorites?</string>
+    <string name="locationstatuschange">Are you sure you want to change this location as default address?</string>
+
+    <string name="turn_on_your">Turn on your</string>
+    <string name="location_services">location services</string>
+    <string name="deny">Deny</string>
+    <string name="allow">Allow</string>
+    <string name="colon1">.</string>
+    <string name="colon">:</string>
+    <string name="sub_services">Sub Services</string>
+    <string name="producttitle">producttitle</string>
+    <string name="product_price">Product price</string>
+    <string name="productsoffer">productsoffer</string>
 
 
-    <string-array name="array_name">
-        <item>Price : Low to High</item>
-        <item>Price : High to Low</item>
-        <item>Popularity</item>
-    </string-array>
+    <string name="doctor_comments">Doctor comments</string>
+    <string name="enter_comments">Enter comments..</string>
+    <string name="prescription_medicines">Prescription medicines</string>
+    <string name="no_of_days">No of days</string>
+    <string name="medicine">Medicine</string>
+    <string name="consumption_per_day">Consumption per day</string>
 
-    <string-array name="array_filter">
-        <item>Most Revalent</item>
-    </string-array>
+    <string name="search">Search</string>
+    <string name="near_by_doctors">Near by Doctors</string>
+    <string name="doctors">Doctors</string>
+    <string name="place_alone">place</string>
+    <string name="bullet">•</string>
+    <string name="_2_km_away">2 km away</string>
+    <string name="book">Book</string>
+    <string name="search_history">Search History</string>
+    <string name="offline">Offline</string>
+    <string name="online">Online</string>
 
-    <string-array name="year">
-        <item>2021</item>
-    </string-array>
+    <string name="visithome">Home</string>
+    <string name="visitclinic">Clinic</string>
 
-    <string-array name="brand">
-        <item>Audi</item>
-    </string-array>
+    <string name="emergency_new">Emergency ?</string>
+    <string name="call">Call</string>
+    <string name="contact">Contact</string>
+    <string name="phn_nu">9876543210</string>
+    <string name="filters">Filters</string>
+    <string name="clear_all">Clear all</string>
+    <string name="apply">Apply</string>
 
-    <string-array name="make">
-        <item>A8</item>
-    </string-array>
+    <string name="review">Review</string>
+    <string name="near_by">Near by</string>
+    <string name="up"><![CDATA[& Up]]></string>
+
+    <string name="excellent">Excellent</string>
+    <string name="average">Average</string>
+    <string name="below_average">Below Average</string>
+    <string name="poor">Poor</string>
+    <string name="communication_type">Offline Doctors</string>
+    <string name="communicationtype">Communication Type</string>
+    <string name="visittype">Visit Type</string>
+
+    <string name="review_added">Review Added</string>
+    <string name="back">Back</string>
+    <string name="type">Appointment Type</string>
+
+    <string name="business">Business</string>
+
+    <string name="recent_search">Recent search</string>
+    <string name="today_deal">Today\'s deal</string>
+    <string name="most_searched_products">most searched products</string>
+    <string name="community">Community</string>
+
+
+    <string name="review_msg">Our team is reviewing your profile and will get in touch with you to close the formalities</string>
+    <string name="back_to_login">Back to login</string>
+
+    <string name="near_by_services">Near by Services</string>
+    <string name="popular_services">Popular services</string>
+    <string name="sort">Sort</string>
+    <string name="providers">Providers</string>
+    <string name="service_providers">Service providers</string>
+    <string name="serviceoffer">20 % off</string>
+    <string name="service_price">Service price</string>
+    <string name="addr_dummy">225/1,Duraiswamy Nagar main road</string>
+    <string name="dummy_km">2250.56 KM</string>
+    <string name="sort_by">Sort by</string>
+    <string name="add_service">Add Service</string>
+    <string name="add_pet_care_service">Add pet care Service</string>
+    <string name="age_alone">Age</string>
+    <string name="cost_aloned">Cost</string>
+    <string name="service_description">Service description</string>
+    <string name="upload_photos">Upload photos</string>
+    <string name="chooose_upload"><![CDATA[Chooose & upload]]></string>
+
+    <string name="food_type">Food type</string>
+    <string name="appointment_booked">Appointment Booked</string>
+    <string name="my_dogs">My Dog</string>
+    <string name="trainer">Trainer!</string>
+    <string name="supporting_sub_text_here">Supporting Sub Text Here</string>
+
+    <string name="profile_name">profile name</string>
+
+    <string name="edit"><u>Edit</u></string>
+
+    <string name="businessname">Business Name</string>
+    <string name="businessemail">Business email</string>
+    <string name="businessregistrationdetails">Business registration details</string>
+    <string name="upload_gallery_images">Upload gallery images</string>
+    <string name="upload_service_images">Upload service images</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="discountamount">Discount Amount</string>
+    <string name="shippingamount">Shipping Amount</string>
+    <string name="totalamount">Total Amount</string>
+    <string name="proceedtobuy">Proceed to Buy</string>
+    <string name="coupon_applied">coupon applied</string>
+    <string name="coupon">Coupon </string>
+    <string name="percentage_discount">0 % discount </string>
+    <string name="product_quantity">Product Quantity :</string>
+    <string name="related_products">Related Products</string>
+    <string name="business_info">Business Info</string>
+    <string name="my_services">My services</string>
+    <string name="selected_service_category">Selected Service Category</string>
+    <string name="select_available_date_and_time">Select available date and time</string>
+    <string name="service_providing_company_name">Service providing company name</string>
+    <string name="service_provider_name">Service provider name</string>
+    <string name="selected_service">Selected service</string>
+    <string name="notification_settings">Notification settings</string>
+    <string name="status">Status</string>
+    <string name="view_prescription">View Prescription</string>
+    <string name="consultation_fees">Consultation Fee</string>
+    <string name="notification">Notification</string>
+
+    <string name="service_details">Service Details</string>
+
+    <string name="Discount">Discount</string>
+
+
+    <string name="orderid">Order ID</string>
+    <string name="product_title">Product title</string>
+    <string name="orderon">Order on</string>
+    <string name="deliveredon">Delivered on</string>
+    <string name="cancelledon">Cancelled on</string>
+
+    <string name="see_more_underline"><u>See more</u></string>
+    <string name="advancedsearch"><u>Advanced Search</u></string>
+    <string name="_6">0</string>
+    <string name="edit_business">Edit Business</string>
+    <string name="verify_email">Verify email</string>
+    <string name="amount">Amount</string>
+    <string name="service_amount">Service Amount</string>
+    <string name="visit">Visit</string>
+    <string name="time">Time</string>
+    <string name="appointment_type">Appointment Type</string>
+    <string name="chat">Chat</string>
+    <string name="video">Video</string>
+    <string name="selected_dates">Selected dates</string>
+    <string name="add_holiday">Add Holiday</string>
+    <string name="my_calendar">My Calendar</string>
+    <string name="available_days">Available days</string>
+    <string name="available_times">Available Times</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="friendly_with_kids_10_year"><![CDATA[Friendly with kids < 10 year]]></string>
+    <string name="friendly_with_kids_greater_10_year"><![CDATA[Friendly with kids > 10 year]]></string>
+    <string name="spec1">Spec1</string>
+
+    <string name="text_with_bullet"> \u2022 Surgeon</string>
+    <string name="text_with_bullet1"> \u2022 Psychiatrist</string>
+    <string name="text_with_bullet2"> \u2022 Dermatologist</string>
+    <string name="text_with_bullet3"> \u2022 Medicine Physician</string>
+
+    <string name="your_cart_is_empty">Your cart is empty!</string>
+    <string name="cancel_order">Cancel order</string>
+    <string name="track_order">Track order</string>
+    <string name="return_order">Return order</string>
+    <string name="reason_for_cancellation">Reason for cancellation</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="ok">Ok</string>
+
+    <string name="update_status">Update Status</string>
+    <string name="why_are_you_returning_this">Why are you returning this?</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+
+    <string name="enter_discount_per_unit">Enter Discount per Unit</string>
+    <string name="enter_deal_price">Enter Deal Price</string>
+    <string name="enter_product_minimal_qty">Enter Product Minimal Qty</string>
+    <string name="select_deal_expiry_date">Select Deal Expiry Date</string>
+    <string name="discount_price">Discount Price</string>
+    <string name="discount">Discount %</string>
+    <string name="apply_discount">Apply Discount</string>
+
+    <string name="customer_orders">Customer Orders</string>
+
+    <string name="manage_products">Manage Products</string>
+    <string name="product_name">Product Name</string>
+    <string name="pet_breed">Pet breed</string>
+    <string name="threshold">Threshold</string>
+    <string name="deal_status">Today Deal</string>
+    <string name="discard">Discard</string>
+    <string name="apply_deal">Apply Deal</string>
+
+    <string name="recent_products">Recent products</string>
+    <string name="highest_discount">Highest discount</string>
+    <string name="best_sellers">Best sellers</string>
+    <string name="price_low_to_high">Price - Low to High</string>
+    <string name="price_high_to_low">Price - High to Low</string>
+
+
+    <string name="discount30">30% or more </string>
+    <string name="discount20">20% or more </string>
+    <string name="discount10">10% or more </string>
+    <string name="discount10below">10% and below </string>
+    <string name="category">Category</string>
+    <string name="view_more"><u>VIEW MORE</u></string>
+
+    <string name="digitalsignature">Digital Signature</string>
+    <string name="quantity">Quantity</string>
+    <string name="date">Date</string>
+    <string name="confirm_all">Confirm All</string>
+    <string name="payment_successful">Payment successful</string>
+    <string name="back_to_shop">Back to shop</string>
+    <string name="return_product">Return product</string>
+    <string name="shipping_address">Shipping Address</string>
+
+    <string name="_1">0</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="dr_nancy_david">Dr. Nancy David</string>
+    <string name="pet_vet_clinic">Pet Vet Clinic</string>
+    <string name="fee">Fee</string>
+    <string name="_10">10</string>
+    <string name="years">Years</string>
+    <string name="km">KM Away</string>
+    <string name="about_vet">About Vet</string>
+    <string name="make_an_appointment">Make an Appointment</string>
+    <string name="bathing">Bathing</string>
+    <string name="_1a_anna_nagar_main_road_chennai">1A, Anna Nagar Main Road, Chennai</string>
+
+    <string name="desc_content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam see more</string>
+    <string name="inr_300_00">INR 300.00</string>
+
+    <string name="_20_off">20% off</string>
+
+    <string name="pedigree_adult_dry_chicken_treat_500gms">Pedigree Adult Dry Chicken Treat 500gms</string>
+    <string name="sunshine_pet_food">Sunshine Pet Food</string>
+    <string name="product_description">Product Description</string>
+    <string name="about_service_provider">About Service Provider</string>
+
+    <string name="view_vendor_details"><u>View Vendor Details</u></string>
+    <string name="view_vendor_detail">View Vendor Details</string>
+    <string name="grooming">Grooming</string>
+    <string name="vendor_name">Vendor Name</string>
+    <string name="bussiness_reg">Business Region</string>
+    <string name="chennai">Chennai</string>
+    <string name="_1234abcd12344321">1234ABCD12344321</string>
+    <string name="business_location">Business Location</string>
+    <string name="chennai_2a_3rd_main_rd_ram_nagar_karnam_street_dhadeswaram_nagar_velachery_chennai_tamil_nadu_600042_india">Chennai 2a, 3rd Main Rd, Ram Nagar, Karnam Street, Dhadeswaram Nagar, Velachery, Chennai, Tamil Nadu 600042, India</string>
+    <string name="business_gallery_images">Business Gallery</string>
+    <string name="doctor">Doctor</string>
+    <string name="service">Service</string>
+    <string name="recent_transactions">Recent Transactions</string>
+
+
+    <string name="my_favourites">My Favourites</string>
+    <string name="pet_1620638904266">PET-1620638904266</string>
+    <string name="home_address">Home Address</string>
+    <string name="reports">Reports</string>
+    <string name="pet_service">Pet Service</string>
+    <string name="sos">Sos</string>
+    <string name="add_products">Add Products</string>
+
 
 </resources>

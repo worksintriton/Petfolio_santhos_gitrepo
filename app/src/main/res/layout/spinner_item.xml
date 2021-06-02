@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
     android:layout_marginLeft="5dp"
-    android:fontFamily="@font/lato_bold"
-    android:padding="@dimen/_10dp"
-    android:textColor="@color/dark_grey"
+    android:fontFamily="@font/futuramediumbt"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp"
+    android:textColor="@color/new_light_green"
     android:textSize="14sp" />
