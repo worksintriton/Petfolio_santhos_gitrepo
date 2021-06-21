@@ -4,7 +4,7 @@
     "type": "PROCESSED_RES",
     "kind": "Directory"
   },
-  "applicationId": "com.triton.bertsproject",
+  "applicationId": "com.petfolio.infinitus",
   "variantName": "processDebugResources",
   "elements": [
     {

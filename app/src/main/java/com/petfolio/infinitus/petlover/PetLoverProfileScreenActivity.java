@@ -594,7 +594,9 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
     }
 
     private void gotoAddYourPet() {
-        startActivity(new Intent(getApplicationContext(),AddYourPetOldUserActivity.class));
+        Intent i = new Intent(getApplicationContext(), BasicPetDetailsActivity.class);
+        startActivity(i);
+        //startActivity(new Intent(getApplicationContext(),AddYourPetOldUserActivity.class));
     }
 
     private void gotoManageAddress() {
@@ -665,7 +667,7 @@ public class PetLoverProfileScreenActivity extends AppCompatActivity implements 
                         }
                         else{
                             txt_no_records.setVisibility(View.VISIBLE);
-                            txt_no_records.setText("No new pets");
+                            txt_no_records.setText("No pets");
                             ll_add.setVisibility(View.VISIBLE);
                             rv_pet.setVisibility(View.GONE);
                         }

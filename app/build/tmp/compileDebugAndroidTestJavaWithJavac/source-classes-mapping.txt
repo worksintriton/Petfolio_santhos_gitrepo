@@ -1,4 +1,0 @@
-com/triton/bertsproject/ExampleInstrumentedTest.java
- com.triton.bertsproject.ExampleInstrumentedTest
-com/triton/bertsproject/test/BuildConfig.java
- com.triton.bertsproject.test.BuildConfig

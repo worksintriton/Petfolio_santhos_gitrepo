@@ -52,7 +52,7 @@ import retrofit2.Response;
 
 public class DoctorAppointmentDetailsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "DoctorAppointmentDetailsActivity";
+    private String TAG = "DoctorAppointmentDetailsActivity";
 
 
     @SuppressLint("NonConstantResourceId")
@@ -253,6 +253,7 @@ public class DoctorAppointmentDetailsActivity extends AppCompatActivity implemen
     @BindView(R.id.txt_doctor_comment)
     TextView txt_doctor_comment;
 
+    String breed,gender,colour,weight,pet_dob ;
 
 
     @SuppressLint("LongLogTag")
@@ -416,22 +417,27 @@ public class DoctorAppointmentDetailsActivity extends AppCompatActivity implemen
 
 
                             String usr_image = response.body().getData().getDoctor_id().getProfile_img();
+                            if(response.body().getData().getPet_id() != null){
+                                 pet_name = response.body().getData().getPet_id().getPet_name();
+                                pet_image = response.body().getData().getPet_id().getPet_img();
+                                 pet_type = response.body().getData().getPet_id().getPet_type();
 
-                            String pet_name = response.body().getData().getPet_id().getPet_name();
+                                 breed = response.body().getData().getPet_id().getPet_breed();
 
-                             pet_image = response.body().getData().getPet_id().getPet_img();
+                                 gender = response.body().getData().getPet_id().getPet_gender();
 
-                            String pet_type = response.body().getData().getPet_id().getPet_type();
+                                 colour = response.body().getData().getPet_id().getPet_color();
 
-                            String breed = response.body().getData().getPet_id().getPet_breed();
+                                 weight = String.valueOf(response.body().getData().getPet_id().getPet_weight());
 
-                            String gender = response.body().getData().getPet_id().getPet_gender();
+                                 pet_dob = response.body().getData().getPet_id().getPet_dob();
 
-                            String colour = response.body().getData().getPet_id().getPet_color();
+                            }
 
-                            String weight = String.valueOf(response.body().getData().getPet_id().getPet_weight());
 
-                            String pet_dob = response.body().getData().getPet_id().getPet_dob();
+
+
+
                             if(pet_dob != null){
                                 String[] separated = pet_dob.split("-");
                                 String day = separated[0];
@@ -888,29 +894,36 @@ public class DoctorAppointmentDetailsActivity extends AppCompatActivity implemen
         }
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint("LogNotTimber")
     private void getAge(int year, int month, int day){
-
-        Log.w(TAG,"day : "+day+" month: "+month+" year : "+year);
-
+        Log.w(TAG,"getAge : year "+year+" month : "+ month+" day : "+day);
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
 
         dob.set(year, month, day);
 
         int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-        int months = dob.get(Calendar.MONTH) - today.get(Calendar.MONTH);
+        Log.w(TAG,"age : "+age+" todayyear : "+today.get(Calendar.YEAR)+" dobyear : "+ dob.get(Calendar.YEAR));
 
-        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+
+        int months = dob.get(Calendar.MONTH) - today.get(Calendar.MONTH);
+        int currentmonths = (today.get(Calendar.MONTH))+1;
+        Log.w(TAG,"dob months: "+dob.get(Calendar.MONTH)+" currentmonths : "+ currentmonths);
+
+        Log.w(TAG," todayyear : "+today.get(Calendar.YEAR)+" dobyear : "+ dob.get(Calendar.YEAR));
+
+        Log.w(TAG,"Conditions : "+(today.get(Calendar.YEAR) < dob.get(Calendar.YEAR)));
+        if(today.get(Calendar.YEAR) < dob.get(Calendar.YEAR)){
             age--;
         }
 
-        Integer ageInt = new Integer(age);
-        Integer monthsInt = new Integer(months);
-        String ageS = ageInt.toString();
-        String monthsS = monthsInt.toString();
+        Log.w(TAG,"age: "+age+" monthsInt : "+ months);
+        String ageS = Integer.toString(age);
+        String monthsS = Integer.toString(months);
 
-        if(ageInt != 0){
+        Log.w(TAG,"ageS: "+ageS+" months : "+monthsS);
+
+        if(age != 0){
             petAgeandMonth = ageS+" years "+monthsS+" months";
         }else{
             petAgeandMonth = monthsS+" months";

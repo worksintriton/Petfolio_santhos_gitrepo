@@ -24,19 +24,22 @@ public class DoctorClinicPetsHandledListAdapter extends  RecyclerView.Adapter<Re
     private Context context;
     private List<DoctorDetailsResponse.DataBean.PetHandledBean> petHandledBeanList;
     DoctorDetailsResponse.DataBean.PetHandledBean currentItem;
+    private int size;
 
 
-    public DoctorClinicPetsHandledListAdapter(Context context, List<DoctorDetailsResponse.DataBean.PetHandledBean> pettypedataBeanList) {
-
-        this.petHandledBeanList = pettypedataBeanList;
+    public DoctorClinicPetsHandledListAdapter(Context context, List<DoctorDetailsResponse.DataBean.PetHandledBean> pettypedataBeanList,int size) {
         this.context = context;
+        this.petHandledBeanList = pettypedataBeanList;
+        this.size = size;
+
 
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_sp_petlist, parent, false);
+       // View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_sp_petlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_sp_speclist, parent, false);
         return new ViewHolderOne(view);
     }
 
@@ -62,8 +65,10 @@ public class DoctorClinicPetsHandledListAdapter extends  RecyclerView.Adapter<Re
 
     }
     @Override
-    public int getItemCount() {
-        return petHandledBeanList.size();
+    public int getItemCount()
+    {
+        //return petHandledBeanList.size();
+        return Math.min(petHandledBeanList.size(), size);
     }
 
 
@@ -81,7 +86,7 @@ public class DoctorClinicPetsHandledListAdapter extends  RecyclerView.Adapter<Re
         public ViewHolderOne(View itemView) {
             super(itemView);
 
-            txt_petname = itemView.findViewById(R.id.txt_petname);
+            txt_petname = itemView.findViewById(R.id.txt_specname);
 
 
 

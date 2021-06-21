@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,25 +32,33 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 
 import com.petfolio.infinitus.adapter.PetLoverDoctorFilterAdapter;
 import com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter;
 
+import com.petfolio.infinitus.adapter.ViewPagerClinicDetailsAdapter;
+import com.petfolio.infinitus.adapter.ViewPagerPetCareAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.petlover.FiltersActivity;
 import com.petfolio.infinitus.requestpojo.DoctorSearchRequest;
 import com.petfolio.infinitus.requestpojo.FilterDoctorRequest;
+import com.petfolio.infinitus.responsepojo.DoctorDetailsResponse;
 import com.petfolio.infinitus.responsepojo.DoctorSearchResponse;
 import com.petfolio.infinitus.responsepojo.FilterDoctorResponse;
 import com.petfolio.infinitus.sessionmanager.SessionManager;
@@ -60,9 +69,11 @@ import com.wang.avi.AVLoadingIndicatorView;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -133,13 +144,25 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     @BindView(R.id.edt_search)
     EditText edt_search;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.pager)
+    ViewPager viewPager;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.tabDots)
+    TabLayout tabLayout;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_search)
+    RelativeLayout rl_search;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.bottomSheetLayouts)
+    NestedScrollView bottomSheetLayouts;
 
 
-
-
-
-
-
+    private ShimmerFrameLayout mShimmerViewContainer;
+    private View includelayout;
 
     private String AddressLine;
     private SharedPreferences preferences;
@@ -156,9 +179,17 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     private int communication_type = 0;
     private int reviewcount;
     private String fromactivity,specialization;
+
     private List<FilterDoctorResponse.DataBean> doctorFilterDetailsResponseList;
     private String doctorid;
 
+    // BottomSheetBehavior variable
+    @SuppressWarnings("rawtypes")
+    public BottomSheetBehavior bottomSheetBehavior;
+
+    List<String> imagelist = new ArrayList();
+
+    View view;
 
     public PetCareFragment() {
         // Required empty public constructor
@@ -176,7 +207,8 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.w(TAG,"onCreateView-->");
-        View view = inflater.inflate(R.layout.fragment_pet_care, container, false);
+
+        view = inflater.inflate(R.layout.fragment_pet_care, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         ButterKnife.bind(this, view);
         mContext = getActivity();
@@ -185,6 +217,12 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
 
         avi_indicator.setVisibility(View.GONE);
         txt_totaldrs.setVisibility(View.GONE);
+
+        rl_search.setVisibility(View.GONE);
+
+        includelayout = view.findViewById(R.id.includelayout);
+        mShimmerViewContainer = includelayout.findViewById(R.id.shimmer_layout);
+
         if(getArguments() != null){
             fromactivity = getArguments().getString("fromactivity");
             reviewcount = getArguments().getInt("reviewcount");
@@ -200,9 +238,6 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
 
 
             }
-
-
-
 
 
         SessionManager sessionManager = new SessionManager(mContext);
@@ -294,7 +329,6 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
         });
 
 
-
         return view;
     }
 
@@ -302,14 +336,6 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     public void onResume() {
         super.onResume();
     }
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -323,10 +349,98 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
     }
 
 
+    /**
+     * method to setup the bottomsheet
+     */
+    private void setBottomSheet() {
+
+        bottomSheetBehavior = BottomSheetBehavior.from(view.findViewById(R.id.bottomSheetLayouts));
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+        bottomSheetBehavior.setHideable(false);
+
+        bottomSheetBehavior.setFitToContents(false);
+
+        bottomSheetBehavior.setHalfExpandedRatio(0.85f);
+
+
+        // Capturing the callbacks for bottom sheet
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_COLLAPSED");
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                        break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        Log.w("Bottom Sheet Behaviour", "STATE_DRAGGING");
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_EXPANDED");
+                        //  bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                        break;
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        Log.w("Bottom Sheet Behaviour", "STATE_HIDDEN");
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        Log.w("Bottom Sheet Behaviour", "STATE_SETTLING");
+                        break;
+                    case BottomSheetBehavior.STATE_HALF_EXPANDED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_HALF_EXPANDED");
+                        break;
+                }
+
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+
+            }
+
+
+        });
+    }
+
+    private void viewpageData(List<String> doctorclinicdetailsResponseList) {
+        tabLayout.setupWithViewPager(viewPager, true);
+
+        ViewPagerPetCareAdapter viewPagerClinicDetailsAdapter = new ViewPagerPetCareAdapter(getContext(), doctorclinicdetailsResponseList);
+        viewPager.setAdapter(viewPagerClinicDetailsAdapter);
+        /*After setting the adapter use the timer */
+        final Handler handler = new Handler();
+        final Runnable Update = () -> {
+            if (currentPage == doctorclinicdetailsResponseList.size()) {
+                currentPage = 0;
+            }
+            viewPager.setCurrentItem(currentPage++, false);
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, DELAY_MS, PERIOD_MS);
+
+    }
+
+
+
     @SuppressLint("LogNotTimber")
     private void doctorSearchResponseCall(String searchString, int communication_type) {
-        avi_indicator.setVisibility(View.VISIBLE);
-        avi_indicator.smoothToShow();
+      /*  avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();*/
+        rl_search.setVisibility(View.GONE);
+        bottomSheetLayouts.setVisibility(View.GONE);
+        includelayout.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmerAnimation();
+
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
         Call<DoctorSearchResponse> call = apiInterface.doctorSearchResponseCall(RestUtils.getContentType(), doctorSearchRequest(searchString,communication_type));
         Log.w(TAG,"DoctorSearchResponse url  :%s"+" "+ call.request().url().toString());
@@ -335,16 +449,23 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
             @SuppressLint({"LogNotTimber", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<DoctorSearchResponse> call, @NonNull Response<DoctorSearchResponse> response) {
-                avi_indicator.smoothToHide();
+                //avi_indicator.smoothToHide();
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
+                rl_search.setVisibility(View.VISIBLE);
+                bottomSheetLayouts.setVisibility(View.VISIBLE);
                 Log.w(TAG,"DoctorSearchResponse" + new Gson().toJson(response.body()));
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
 
+                        setBottomSheet();
 
                         if (response.body().getData() != null) {
                             doctorDetailsResponseList = response.body().getData();
                             Log.w(TAG, "doctorDetailsResponseList Size" + doctorDetailsResponseList.size());
                             if (doctorDetailsResponseList != null && doctorDetailsResponseList.size()>0) {
+
+                                rl_search.setVisibility(View.VISIBLE);
                                 rv_nearbydoctors.setVisibility(View.VISIBLE);
                                 txt_no_records.setVisibility(View.GONE);
                                 txt_totaldrs.setVisibility(View.VISIBLE);
@@ -375,13 +496,43 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
             @SuppressLint("LongLogTag")
             @Override
             public void onFailure(@NonNull Call<DoctorSearchResponse> call,@NonNull Throwable t) {
-                avi_indicator.smoothToHide();
+                //avi_indicator.smoothToHide();
+
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
                 Log.e("DoctorSearchResponse", "--->" + t.getMessage());
             }
         });
 
     }
     private void setViewDoctors(List<DoctorSearchResponse.DataBean> doctorDetailsResponseList) {
+
+        imagelist.clear();
+
+        if(doctorDetailsResponseList!=null&&doctorDetailsResponseList.size()>0){
+
+            for(int i=0; i<doctorDetailsResponseList.size(); i++){
+
+                if(doctorDetailsResponseList.get(i).getDoctor_img()!=null&&!doctorDetailsResponseList.get(i).getDoctor_img().isEmpty()){
+
+                    imagelist.add(doctorDetailsResponseList.get(i).getDoctor_img());
+                }
+                else {
+
+                    imagelist.add(APIClient.BANNER_IMAGE_URL);
+                }
+
+
+            }
+
+        }
+        else {
+
+            imagelist.add(APIClient.BANNER_IMAGE_URL);
+        }
+
+        viewpageData(imagelist);
+
         rv_nearbydoctors.setLayoutManager(new LinearLayoutManager(mContext));
         rv_nearbydoctors.setItemAnimator(new DefaultItemAnimator());
         PetLoverNearByDoctorAdapter petLoverNearByDoctorAdapter = new PetLoverNearByDoctorAdapter(mContext, doctorDetailsResponseList,communication_type,searchString);
@@ -469,8 +620,11 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
 
     @SuppressLint("LogNotTimber")
     private void filterDoctorResponseCall() {
-        avi_indicator.setVisibility(View.VISIBLE);
-        avi_indicator.smoothToShow();
+        /*avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();*/
+        includelayout.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmerAnimation();
+
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
         Call<FilterDoctorResponse> call = apiInterface.filterDoctorResponseCall(RestUtils.getContentType(), filterDoctorRequest());
         Log.w(TAG,"filterDoctorResponseCall url  :%s"+" "+ call.request().url().toString());
@@ -479,18 +633,22 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
             @SuppressLint({"LogNotTimber", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<FilterDoctorResponse> call, @NonNull Response<FilterDoctorResponse> response) {
-                avi_indicator.smoothToHide();
+                //avi_indicator.smoothToHide();
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
                 Log.w(TAG,"filterDoctorResponseCall" + new Gson().toJson(response.body()));
                 if (response.body() != null) {
                     if (200 == response.body().getCode()) {
 
+                        setBottomSheet();
 
                         if (response.body().getData() != null) {
                             doctorFilterDetailsResponseList = response.body().getData();
                             if (doctorFilterDetailsResponseList != null && doctorFilterDetailsResponseList.size()>0) {
                                 rv_nearbydoctors.setVisibility(View.VISIBLE);
+                                rl_search.setVisibility(View.VISIBLE);
                                 txt_no_records.setVisibility(View.GONE);
-                                txt_totaldrs.setVisibility(View.VISIBLE);
+                                txt_totaldrs.setVisibility(View.GONE);
                                 txt_totaldrs.setText(doctorFilterDetailsResponseList.size()+" "+"Doctors");
                                 setViewDoctorFilters(doctorFilterDetailsResponseList);
 
@@ -519,13 +677,41 @@ public class PetCareFragment extends Fragment implements Serializable, View.OnCl
             @SuppressLint({"LongLogTag", "LogNotTimber"})
             @Override
             public void onFailure(@NonNull Call<FilterDoctorResponse> call,@NonNull Throwable t) {
-                avi_indicator.smoothToHide();
+               // avi_indicator.smoothToHide();
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
                 Log.w(TAG,"FilterDoctorResponse flr"+ t.getMessage());
             }
         });
 
     }
     private void setViewDoctorFilters(List<FilterDoctorResponse.DataBean> doctorFilterDetailsResponseList) {
+
+        imagelist.clear();
+
+        if(doctorDetailsResponseList!=null&&doctorDetailsResponseList.size()>0){
+
+            for(int i=0; i<doctorDetailsResponseList.size(); i++){
+
+                if(doctorDetailsResponseList.get(i).getDoctor_img()!=null&&!doctorDetailsResponseList.get(i).getDoctor_img().isEmpty()){
+
+                    imagelist.add(doctorDetailsResponseList.get(i).getDoctor_img());
+                }
+                else {
+
+                    imagelist.add(APIClient.BANNER_IMAGE_URL);
+                }
+
+
+            }
+
+        }
+        else {
+
+            imagelist.add(APIClient.BANNER_IMAGE_URL);
+        }
+
+
         rv_nearbydoctors.setLayoutManager(new LinearLayoutManager(mContext));
         rv_nearbydoctors.setItemAnimator(new DefaultItemAnimator());
         PetLoverDoctorFilterAdapter petLoverDoctorFilterAdapter = new PetLoverDoctorFilterAdapter(mContext, doctorFilterDetailsResponseList);

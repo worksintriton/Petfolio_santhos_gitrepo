@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.triton.bertsproject",
+  "applicationId": "com.petfolio.infinitus",
   "variantName": "debug",
   "elements": [
     {

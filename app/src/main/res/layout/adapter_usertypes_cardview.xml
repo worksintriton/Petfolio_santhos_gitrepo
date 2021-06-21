@@ -58,7 +58,9 @@
         android:text="@string/petlovers"
         android:textAlignment="center"
         android:textColor="@color/new_txt_color"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
 
 </LinearLayout>

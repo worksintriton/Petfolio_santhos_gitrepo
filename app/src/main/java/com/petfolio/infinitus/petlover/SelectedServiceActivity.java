@@ -30,7 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.gson.Gson;
 import com.petfolio.infinitus.R;
 import com.petfolio.infinitus.activity.NotificationActivity;
@@ -109,6 +111,9 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
     @BindView(R.id.scrollablContent)
     ScrollView scrollablContent;
 
+    private ShimmerFrameLayout mShimmerViewContainer;
+    private View includelayout;
+
     private String active_tag;
 
     private List<SPSpecificServiceDetailsResponse.DataBean.ServiceProviderBean> serviceProviderList;
@@ -128,7 +133,9 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
     private int Count_value_end = 0;
     private String fromactivity;
 
-
+    // BottomSheetBehavior variable
+    @SuppressWarnings("rawtypes")
+    public BottomSheetBehavior bottomSheetBehavior;
 
 
     @SuppressLint("LogNotTimber")
@@ -140,9 +147,15 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         ButterKnife.bind(this);
         Log.w(TAG,"onCreate");
 
+
+
         scrollablContent.setVisibility(View.GONE);
         img_selectedserviceimage.setVisibility(View.GONE);
         txt_selected_service.setVisibility(View.GONE);
+
+        includelayout = findViewById(R.id.includelayout);
+        mShimmerViewContainer = includelayout.findViewById(R.id.shimmer_layout);
+
 
 
         ImageView img_back = include_petlover_header.findViewById(R.id.img_back);
@@ -245,11 +258,71 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         rl_filters.setOnClickListener(this);
     }
 
+    /**
+     * method to setup the bottomsheet
+     */
+    private void setBottomSheet() {
+
+        bottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomSheetLayouts));
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+        bottomSheetBehavior.setHideable(false);
+
+        bottomSheetBehavior.setFitToContents(false);
+
+        bottomSheetBehavior.setHalfExpandedRatio(0.85f);
+
+
+        // Capturing the callbacks for bottom sheet
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_COLLAPSED");
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                        break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        Log.w("Bottom Sheet Behaviour", "STATE_DRAGGING");
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_EXPANDED");
+                        //  bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                        break;
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        Log.w("Bottom Sheet Behaviour", "STATE_HIDDEN");
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        Log.w("Bottom Sheet Behaviour", "STATE_SETTLING");
+                        break;
+                    case BottomSheetBehavior.STATE_HALF_EXPANDED:
+                        Log.w("Bottom Sheet Behaviour", "STATE_HALF_EXPANDED");
+                        break;
+                }
+
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+
+            }
+
+
+        });
+    }
+
+
 
     @SuppressLint("LogNotTimber")
     private void SPSpecificServiceDetailsResponseCall(int distance, int reviewcount, int count_value_start, int count_value_end) {
-        avi_indicator.setVisibility(View.VISIBLE);
-        avi_indicator.smoothToShow();
+       /* avi_indicator.setVisibility(View.VISIBLE);
+        avi_indicator.smoothToShow();*/
+        includelayout.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmerAnimation();
         RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
         Call<SPSpecificServiceDetailsResponse> call = apiInterface.SPSpecificServiceDetailsResponseCall(RestUtils.getContentType(), spSpecificServiceDetailsRequest(distance,reviewcount,count_value_start,count_value_end));
         Log.w(TAG,"SPSpecificServiceDetailsResponseCall url  :%s"+" "+ call.request().url().toString());
@@ -258,7 +331,11 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
             @SuppressLint({"SetTextI18n", "LogNotTimber"})
             @Override
             public void onResponse(@NonNull Call<SPSpecificServiceDetailsResponse> call, @NonNull Response<SPSpecificServiceDetailsResponse> response) {
-                avi_indicator.smoothToHide();
+                //avi_indicator.smoothToHide();
+
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
+
                 Log.w(TAG,"SPSpecificServiceDetailsResponse" + new Gson().toJson(response.body()));
                 if (response.body() != null) {
                     scrollablContent.setVisibility(View.VISIBLE);
@@ -266,7 +343,7 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
                     txt_selected_service.setVisibility(View.VISIBLE);
                     if (200 == response.body().getCode()) {
                         txt_no_records.setVisibility(View.GONE);
-                        txt_totalproviders.setVisibility(View.VISIBLE);
+                        txt_totalproviders.setVisibility(View.GONE);
                         if (response.body().getData() != null) {
                             if (response.body().getData().getService_Details().getImage_path() != null && !response.body().getData().getService_Details().getImage_path().isEmpty()) {
 
@@ -295,7 +372,6 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
                                 setViewListedSP(serviceProviderList);
                             }else{
                                 showAlertSPNotAvlLoading(response.body().getAlert_msg());
-
 
                             }
 
@@ -330,7 +406,9 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onFailure(@NonNull Call<SPSpecificServiceDetailsResponse> call,@NonNull Throwable t) {
-                avi_indicator.smoothToHide();
+                //avi_indicator.smoothToHide();
+                mShimmerViewContainer.stopShimmerAnimation();
+                includelayout.setVisibility(View.GONE);
                 Log.w(TAG,"SPSpecificServiceDetailsResponse flr"+ t.getMessage());
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
