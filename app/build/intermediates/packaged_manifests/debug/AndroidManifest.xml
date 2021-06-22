@@ -496,11 +496,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.petfolio.infinitus.doctor.PrescriptionActivity"
+        <!--
+            <activity
+            android:name=".doctor.PrescriptionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+        -->
         <activity
             android:name="com.petfolio.infinitus.doctor.DoctorEditProfileActivity"
             android:screenOrientation="portrait"
@@ -924,6 +926,11 @@
             android:name="com.petfolio.infinitus.serviceprovider.ManageAddressSPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinitus.petlover.PetloverPetDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver

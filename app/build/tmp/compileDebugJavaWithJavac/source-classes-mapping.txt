@@ -694,6 +694,7 @@ com/petfolio/infinitus/responsepojo/DoctorMyCalendarAvlTimesResponse.java
  com.petfolio.infinitus.responsepojo.DoctorMyCalendarAvlTimesResponse$DataBean
 com/petfolio/infinitus/adapter/ManagePetListAdapter.java
  com.petfolio.infinitus.adapter.ManagePetListAdapter
+ com.petfolio.infinitus.adapter.ManagePetListAdapter$1
  com.petfolio.infinitus.adapter.ManagePetListAdapter$ViewHolderOne
 com/petfolio/infinitus/responsepojo/FetctProductByCatDetailsResponse.java
  com.petfolio.infinitus.responsepojo.FetctProductByCatDetailsResponse
@@ -2302,6 +2303,8 @@ com/petfolio/infinitus/fragmentvendor/myorders/FragementNewOrders.java
 com/petfolio/infinitus/doctor/shop/DoctorTrackOrderActivity.java
  com.petfolio.infinitus.doctor.shop.DoctorTrackOrderActivity
  com.petfolio.infinitus.doctor.shop.DoctorTrackOrderActivity$1
+com/petfolio/infinitus/adapter/ViewPagerPetloverDetailsAdapter.java
+ com.petfolio.infinitus.adapter.ViewPagerPetloverDetailsAdapter
 com/petfolio/infinitus/requestpojo/VendorRegisterFormCreateRequest.java
  com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest
  com.petfolio.infinitus.requestpojo.VendorRegisterFormCreateRequest$BussinessGalleryBean
@@ -2492,6 +2495,7 @@ com/petfolio/infinitus/petlover/PetLoverNavigationDrawerNew.java
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawerNew$5
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawerNew$6
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawerNew$7
+ com.petfolio.infinitus.petlover.PetLoverNavigationDrawerNew$8
 com/petfolio/infinitus/responsepojo/HolidayDeleteResponse.java
  com.petfolio.infinitus.responsepojo.HolidayDeleteResponse
  com.petfolio.infinitus.responsepojo.HolidayDeleteResponse$DataBean
@@ -2527,6 +2531,12 @@ com/petfolio/infinitus/appUtils/ConvertUtil.java
  com.petfolio.infinitus.appUtils.ConvertUtil
 com/petfolio/infinitus/interfaces/SoSCallListener.java
  com.petfolio.infinitus.interfaces.SoSCallListener
+com/petfolio/infinitus/petlover/PetloverPetDetailsActivity.java
+ com.petfolio.infinitus.petlover.PetloverPetDetailsActivity
+ com.petfolio.infinitus.petlover.PetloverPetDetailsActivity$1
+ com.petfolio.infinitus.petlover.PetloverPetDetailsActivity$2
+ com.petfolio.infinitus.petlover.PetloverPetDetailsActivity$3
+ com.petfolio.infinitus.petlover.PetloverPetDetailsActivity$4
 com/petfolio/infinitus/interfaces/OnItemCheckRejectStatus.java
  com.petfolio.infinitus.interfaces.OnItemCheckRejectStatus
 com/petfolio/infinitus/requestpojo/DoctorUpdateProfileImageRequest.java
