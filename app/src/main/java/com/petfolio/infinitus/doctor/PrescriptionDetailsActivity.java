@@ -124,9 +124,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Log.w(TAG,"Oncreate");
 
-
-
-
         session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getProfileDetails();
 
@@ -362,6 +359,8 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
 
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
+                        Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+
                         startActivity(new Intent(PrescriptionDetailsActivity.this, DoctorDashboardActivity.class));
                     }
 

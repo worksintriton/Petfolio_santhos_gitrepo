@@ -641,6 +641,7 @@ com/petfolio/infinitus/serviceprovider/SPProfileScreenActivity.java
 com/petfolio/infinitus/requestpojo/PrescriptionCreateRequest.java
  com.petfolio.infinitus.requestpojo.PrescriptionCreateRequest
  com.petfolio.infinitus.requestpojo.PrescriptionCreateRequest$PrescriptionDataBean
+ com.petfolio.infinitus.requestpojo.PrescriptionCreateRequest$PrescriptionDataBean$ConsumptionBean
 com/petfolio/infinitus/appUtils/ApplicationData.java
  com.petfolio.infinitus.appUtils.ApplicationData
 com/petfolio/infinitus/requestpojo/PetLoverDashboardRequest.java
@@ -722,6 +723,11 @@ com/petfolio/infinitus/responsepojo/PetNewAppointmentResponse.java
  com.petfolio.infinitus.responsepojo.PetNewAppointmentResponse$DataBean$DoctorIdBean
  com.petfolio.infinitus.responsepojo.PetNewAppointmentResponse$DataBean$PetIdBean
  com.petfolio.infinitus.responsepojo.PetNewAppointmentResponse$DataBean$UserIdBean
+com/petfolio/infinitus/responsepojo/PrescriptionFetchResponse.java
+ com.petfolio.infinitus.responsepojo.PrescriptionFetchResponse
+ com.petfolio.infinitus.responsepojo.PrescriptionFetchResponse$DataBean
+ com.petfolio.infinitus.responsepojo.PrescriptionFetchResponse$DataBean$DoctorSpeciBean
+ com.petfolio.infinitus.responsepojo.PrescriptionFetchResponse$DataBean$PrescriptionDataBean
 com/petfolio/infinitus/requestpojo/PetLoverAppointmentRequest.java
  com.petfolio.infinitus.requestpojo.PetLoverAppointmentRequest
 com/petfolio/infinitus/fragmentvendor/FragmentVendorNewOrders.java
@@ -1199,6 +1205,9 @@ com/petfolio/infinitus/petlover/PetLoverDashboardActivity.java
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$4
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$5
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$6
+ com.petfolio.infinitus.petlover.PetLoverDashboardActivity$7
+ com.petfolio.infinitus.petlover.PetLoverDashboardActivity$8
+ com.petfolio.infinitus.petlover.PetLoverDashboardActivity$9
 com/petfolio/infinitus/adapter/Cart_Adapter.java
  com.petfolio.infinitus.adapter.Cart_Adapter
  com.petfolio.infinitus.adapter.Cart_Adapter$1
@@ -1452,6 +1461,11 @@ com/petfolio/infinitus/adapter/PetMissedAppointmentAdapter.java
 com/petfolio/infinitus/serviceprovider/SPFiltersActivity.java
  com.petfolio.infinitus.serviceprovider.SPFiltersActivity
  com.petfolio.infinitus.serviceprovider.SPFiltersActivity$1
+com/petfolio/infinitus/doctor/DoctorPrescriptionDetailsActivityCopy.java
+ com.petfolio.infinitus.doctor.DoctorPrescriptionDetailsActivityCopy
+ com.petfolio.infinitus.doctor.DoctorPrescriptionDetailsActivityCopy$1
+ com.petfolio.infinitus.doctor.DoctorPrescriptionDetailsActivityCopy$2
+ com.petfolio.infinitus.doctor.DoctorPrescriptionDetailsActivityCopy$WebViewController
 com/petfolio/infinitus/requestpojo/LocationStatusChangeRequest.java
  com.petfolio.infinitus.requestpojo.LocationStatusChangeRequest
 com/petfolio/infinitus/responsepojo/PetLoverVendorOrderDetailsResponse.java
@@ -2109,13 +2123,13 @@ com/petfolio/infinitus/adapter/DoctorMissedAppointmentAdapter.java
  com.petfolio.infinitus.adapter.DoctorMissedAppointmentAdapter
  com.petfolio.infinitus.adapter.DoctorMissedAppointmentAdapter$1
  com.petfolio.infinitus.adapter.DoctorMissedAppointmentAdapter$ViewHolderOne
+com/petfolio/infinitus/responsepojo/ServiceCatResponse.java
+ com.petfolio.infinitus.responsepojo.ServiceCatResponse
+ com.petfolio.infinitus.responsepojo.ServiceCatResponse$DataBean
 com/petfolio/infinitus/responsepojo/PrescriptionCreateResponse.java
  com.petfolio.infinitus.responsepojo.PrescriptionCreateResponse
  com.petfolio.infinitus.responsepojo.PrescriptionCreateResponse$DataBean
  com.petfolio.infinitus.responsepojo.PrescriptionCreateResponse$DataBean$PrescriptionDataBean
-com/petfolio/infinitus/responsepojo/ServiceCatResponse.java
- com.petfolio.infinitus.responsepojo.ServiceCatResponse
- com.petfolio.infinitus.responsepojo.ServiceCatResponse$DataBean
 com/petfolio/infinitus/doctor/shop/DoctorListOfProductsSeeMoreActivity.java
  com.petfolio.infinitus.doctor.shop.DoctorListOfProductsSeeMoreActivity
  com.petfolio.infinitus.doctor.shop.DoctorListOfProductsSeeMoreActivity$1

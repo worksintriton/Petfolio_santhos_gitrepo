@@ -480,7 +480,7 @@
     <string name="discount10">10% or more </string>
     <string name="discount10below">10% and below </string>
     <string name="category">Category</string>
-    <string name="view_more"><u>VIEW MORE</u></string>
+    <string name="view_more">More</string>
 
     <string name="digitalsignature">Digital Signature</string>
     <string name="quantity">Quantity</string>
@@ -544,7 +544,9 @@
     <string name="consultation">Consultation</string>
     <string name="see_more_pets_handled" tools:ignore="TypographyEllipsis">See more...</string>
     <string name="see_more_pets_specialization" tools:ignore="TypographyEllipsis">See more...</string>
-    <string name="dob">Date of Birth</string>
+    <string name="dob">Date of birth</string>
+    <string name="powered_by">Powered By:</string>
+    <string name="owner_s_name">Owner\'s Name</string>
 
 
 </resources>

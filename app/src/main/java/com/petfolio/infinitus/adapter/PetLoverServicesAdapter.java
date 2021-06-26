@@ -4,23 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -91,7 +84,7 @@ public class PetLoverServicesAdapter extends  RecyclerView.Adapter<RecyclerView.
 
         }
 
-          if(currentItem.getBackground_color() != null) {
+         /* if(currentItem.getBackground_color() != null) {
               int color = Color.parseColor(currentItem.getBackground_color());
               Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.layout_bg_service);
               Drawable wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
@@ -99,7 +92,7 @@ public class PetLoverServicesAdapter extends  RecyclerView.Adapter<RecyclerView.
               holder.ll_root.setBackgroundResource(R.drawable.layout_bg_service);
 
 
-          }
+          }*/
 
 
         holder.ll_root.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +140,7 @@ public class PetLoverServicesAdapter extends  RecyclerView.Adapter<RecyclerView.
 
     class ViewHolderOne extends RecyclerView.ViewHolder {
         public TextView txt_petlover_servicesname;
-        public LinearLayout ll_root;
+        public RelativeLayout ll_root;
         public ImageView cv_serviceimage;
 
 

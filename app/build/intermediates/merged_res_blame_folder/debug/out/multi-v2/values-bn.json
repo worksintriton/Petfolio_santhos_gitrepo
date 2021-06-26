@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Workspace\\Petfolio_Andriod_Dev_Dinesh_Updated\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
+            "outputFile": "D:\\Workspace\\Petfolio_Andriod_Dev_BN\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
                     "source": "C:\\Users\\santh\\.gradle\\caches\\transforms-2\\files-2.1\\6647dd27aae320fa69576e0036aad9f7\\jetified-play-services-places-17.0.0\\res\\values-bn\\values.xml",

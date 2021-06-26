@@ -694,8 +694,26 @@ attr maxImageSize
 attr maxLines
 attr maxVelocity
 attr maxWidth
+attr mbn_backgroundBottomColor
+attr mbn_circleColor
+attr mbn_countBackgroundColor
+attr mbn_countTextColor
+attr mbn_countTypeface
+attr mbn_defaultIconColor
+attr mbn_rippleColor
+attr mbn_selectedIconColor
+attr mbn_shadowColor
 attr measureWithLargestChild
 attr menu
+attr meow_imageview_actionBackgroundAlpha
+attr meow_imageview_changeSize
+attr meow_imageview_color
+attr meow_imageview_fitImage
+attr meow_imageview_isAction
+attr meow_imageview_isBitmap
+attr meow_imageview_resource
+attr meow_imageview_size
+attr meow_imageview_useColor
 attr minHeight
 attr minHideDelay
 attr minSeparation
@@ -1373,7 +1391,6 @@ color new_view_more
 color normalColor
 color notification_action_color_filter
 color notification_icon_bg_color
-color notification_material_background_media_default_color
 color offWhiteTwo
 color orange
 color orange_bgm_color
@@ -2283,10 +2300,6 @@ dimen small_text_size
 dimen small_text_size_button
 dimen small_text_size_for_header
 dimen small_text_size_for_sub_header
-dimen subtitle_corner_radius
-dimen subtitle_outline_width
-dimen subtitle_shadow_offset
-dimen subtitle_shadow_radius
 dimen tab_spacing_half
 dimen test_mtrl_calendar_day_cornerSize
 dimen timestamp
@@ -2547,6 +2560,8 @@ drawable ic_checkbox
 drawable ic_clear_white_24dp
 drawable ic_clock_black_24dp
 drawable ic_close
+drawable ic_community
+drawable ic_community_with_text
 drawable ic_discount
 drawable ic_doctor_profile
 drawable ic_down
@@ -2556,7 +2571,11 @@ drawable ic_drop
 drawable ic_error_outline_white_24dp
 drawable ic_fav
 drawable ic_filter
+drawable ic_frame_21
+drawable ic_grooming_new
 drawable ic_home
+drawable ic_home_updated
+drawable ic_homess
 drawable ic_info_outline_white_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2572,17 +2591,33 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_notification_new
 drawable ic_notifications
 drawable ic_payment
 drawable ic_pdfviewpager
 drawable ic_pedigree
+drawable ic_pet_care
+drawable ic_pet_care_fill
+drawable ic_pet_care_fill_
+drawable ic_pet_care_with_title
+drawable ic_pet_service
+drawable ic_pet_service_with_title
 drawable ic_plus
 drawable ic_right
 drawable ic_services
 drawable ic_shop
 drawable ic_shop_color
+drawable ic_shop_updated
+drawable ic_shop_with_title
+drawable ic_shopss
 drawable ic_sort
 drawable ic_sos
+drawable ic_svg_community_filled
+drawable ic_svg_filled_home
+drawable ic_svg_home_filled
+drawable ic_svg_pet_care
+drawable ic_svg_pet_service
+drawable ic_svg_shop_filled
 drawable ic_up
 drawable ic_user
 drawable ic_user_image
@@ -2607,6 +2642,7 @@ drawable light_orange_background
 drawable like
 drawable location
 drawable location_black
+drawable location_new
 drawable locatn
 drawable logout
 drawable male
@@ -2659,6 +2695,7 @@ drawable new_shop_bag
 drawable new_solid_bgm
 drawable new_sp_bnr_img
 drawable new_topcorner_radius
+drawable new_topcorner_radius_new
 drawable new_yellow_bgm
 drawable next
 drawable next_icon_white
@@ -2859,7 +2896,6 @@ id accessibility_label
 id accessibility_role
 id accessibility_state
 id accessibility_states
-id action0
 id action_Appointment
 id action_bar
 id action_bar_activity_content
@@ -2922,6 +2958,7 @@ id bottomSheetLayouts
 id bottomSheetLayoutsp
 id bottom_navigation_view
 id bottom_navigation_view1
+id bottom_navigation_view2
 id bounce
 id browser_actions_header_text
 id browser_actions_menu_item_icon
@@ -2999,7 +3036,6 @@ id buttons_container
 id buttonsubmit
 id cache_measures
 id calender
-id cancel_action
 id cancel_button
 id card_view
 id cardview_clinic_pics
@@ -3193,7 +3229,6 @@ id educ_name
 id elastic
 id end
 id endToStart
-id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id error_frame
@@ -3221,6 +3256,7 @@ id fitStart
 id fitToContents
 id fitXY
 id fixed
+id fl
 id flip
 id floating
 id focusCrop
@@ -3254,6 +3290,7 @@ id hand_img2
 id hand_img3
 id hand_img4
 id hand_img5
+id header
 id headerView
 id header_title
 id heading
@@ -3278,6 +3315,7 @@ id imgBack
 id imgLocationPinUp
 id img_add_new_address
 id img_add_product
+id img_applogo
 id img_back
 id img_back2
 id img_background
@@ -3316,7 +3354,6 @@ id img_medical_image
 id img_menu
 id img_menu1
 id img_minus
-id img_next
 id img_notification
 id img_notify_imge
 id img_order_status
@@ -3343,6 +3380,7 @@ id img_service_pic
 id img_settings
 id img_share
 id img_shop
+id img_signature
 id img_sort
 id img_sos
 id img_success
@@ -3371,6 +3409,7 @@ id inward
 id italic
 id itemImage
 id item_touch_helper_previous_elevation
+id iv
 id iv_default_location
 id iv_locaitonimage
 id ivdigitalsignature
@@ -3503,7 +3542,6 @@ id material_timepicker_mode_button
 id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
-id media_actions
 id menu_delete
 id menu_edit
 id menu_remove
@@ -3903,7 +3941,6 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
-id status_bar_latest_event_content
 id stop
 id stretch
 id stroke
@@ -4011,6 +4048,7 @@ id tvInternetNotConnected
 id tvNoRecords
 id tv_breednorecords
 id tv_consumption
+id tv_count
 id tv_norecords
 id tv_quanity
 id tv_searchlocationaddress
@@ -4129,6 +4167,7 @@ id txt_edit_profile
 id txt_edu_yr
 id txt_emergency
 id txt_filter
+id txt_ftr_doctorname
 id txt_gender
 id txt_genderlabel
 id txt_getotp
@@ -4199,6 +4238,7 @@ id txt_order_vendor_reject_date_reason
 id txt_orderid
 id txt_original_amount
 id txt_outcometrans
+id txt_owners_name
 id txt_payment_method
 id txt_perc
 id txt_pet_age
@@ -4346,6 +4386,7 @@ id txt_vendor_name
 id txt_veterinarian_name
 id txt_view_details
 id txt_visit_type
+id txt_webname
 id txt_weight
 id txtlbl_orderid
 id txtlbl_producttitle
@@ -4354,6 +4395,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id v_circle
 id video
 id view
 id view1
@@ -4478,6 +4520,7 @@ layout activity_doctor_new_appointment_details
 layout activity_doctor_order_details
 layout activity_doctor_payment_details
 layout activity_doctor_prescription_details
+layout activity_doctor_prescription_details_copy
 layout activity_doctor_product_details
 layout activity_doctor_products_fav
 layout activity_doctor_profile_screen
@@ -4596,6 +4639,7 @@ layout adapter_medical_history_child_view
 layout adapter_medical_history_list_parent_view
 layout adapter_my_pets_list
 layout adapter_nearby_doctors
+layout adapter_nearby_doctors_copy
 layout adapter_nearby_service_providers
 layout adapter_nearby_service_providers_copy
 layout adapter_notifications_cardview
@@ -4612,6 +4656,7 @@ layout adapter_petlist_medical_history
 layout adapter_petlover_dashboardproducts
 layout adapter_petlover_new_orders
 layout adapter_petlover_services
+layout adapter_petlover_services_copy
 layout adapter_petloverdoctor
 layout adapter_petloverproducts
 layout adapter_petloversplist
@@ -4765,6 +4810,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout meow_navigation_cell
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -4799,17 +4845,8 @@ layout navigation_drawer_layout_new
 layout navigation_drawer_sp_layout
 layout notification_action
 layout notification_action_tombstone
-layout notification_media_action
-layout notification_media_cancel_action
-layout notification_template_big_media
-layout notification_template_big_media_custom
-layout notification_template_big_media_narrow
-layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
-layout notification_template_lines_media
-layout notification_template_media
-layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout petcare_bottom_sheet
@@ -4870,6 +4907,7 @@ layout toolbar_layout_doctor_shop_header
 layout toolbar_layout_old
 layout toolbar_layout_petlover
 layout toolbar_layout_petlover_footer
+layout toolbar_layout_petlover_footer_new
 layout toolbar_layout_petlover_header
 layout toolbar_layout_vendor_footer
 layout user_type_bgm
@@ -5424,6 +5462,7 @@ string order_details
 string orderid
 string orderon
 string others
+string owner_s_name
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -5479,6 +5518,7 @@ string places_try_again
 string please_wait
 string poor
 string popular_services
+string powered_by
 string prescription
 string prescription_medicines
 string prescriptiondetails
@@ -6046,14 +6086,9 @@ style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
-style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
-style TextAppearance_Compat_Notification_Line2_Media
-style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
-style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
-style TextAppearance_Compat_Notification_Title_Media
 style TextAppearance_Design_CollapsingToolbar_Expanded
 style TextAppearance_Design_Counter
 style TextAppearance_Design_Counter_Overflow
@@ -6458,6 +6493,7 @@ styleable BottomNavigationView backgroundTint elevation itemBackground itemHoriz
 styleable BottomSheetBehavior_Layout android_elevation backgroundTint behavior_draggable behavior_expandedOffset behavior_fitToContents behavior_halfExpandedRatio behavior_hideable behavior_peekHeight behavior_saveFlags behavior_skipCollapsed gestureInsetBottomIgnored shapeAppearance shapeAppearanceOverlay
 styleable ButtonBarLayout allowStacking
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
+styleable CellImageView meow_imageview_actionBackgroundAlpha meow_imageview_changeSize meow_imageview_color meow_imageview_fitImage meow_imageview_isAction meow_imageview_isBitmap meow_imageview_resource meow_imageview_size meow_imageview_useColor
 styleable Chip android_textAppearance android_textSize android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconTint checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical selectionRequired singleLine singleSelection
 styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
@@ -6525,6 +6561,7 @@ styleable MaterialToolbar navigationIconTint
 styleable MenuGroup android_enabled android_id android_visible android_menuCategory android_orderInCategory android_checkableBehavior
 styleable MenuItem android_icon android_enabled android_id android_checked android_visible android_menuCategory android_orderInCategory android_title android_titleCondensed android_alphabeticShortcut android_numericShortcut android_checkable android_onClick actionLayout actionProviderClass actionViewClass alphabeticModifiers contentDescription iconTint iconTintMode numericModifiers showAsAction tooltipText
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow
+styleable MeowBottomNavigation mbn_backgroundBottomColor mbn_circleColor mbn_countBackgroundColor mbn_countTextColor mbn_countTypeface mbn_defaultIconColor mbn_rippleColor mbn_selectedIconColor mbn_shadowColor
 styleable MockView mock_diagonalsColor mock_label mock_labelBackgroundColor mock_labelColor mock_showDiagonals mock_showLabel
 styleable Motion animate_relativeTo drawPath motionPathRotate motionStagger pathMotionArc transitionEasing
 styleable MotionHelper onHide onShow
