@@ -4648,6 +4648,7 @@ layout adapter_nearby_doctors
 layout adapter_nearby_doctors_copy
 layout adapter_nearby_service_providers
 layout adapter_nearby_service_providers_copy
+layout adapter_nearby_service_providers_copy2
 layout adapter_notifications_cardview
 layout adapter_pdf_upload
 layout adapter_pet_cancelled_orders

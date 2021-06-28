@@ -253,7 +253,7 @@ public class PetLoverDashboardActivity  extends PetLoverNavigationDrawerNew impl
             }
         });
 
-        bottom_navigation_view.show(ID_HOME,true);
+//        bottom_navigation_view.show(ID_HOME,true);
 
         bottom_navigation_view.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
