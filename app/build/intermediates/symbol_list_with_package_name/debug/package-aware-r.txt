@@ -2465,6 +2465,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable community_fill
 drawable community_selector
 drawable completed
 drawable custom_item_layout
@@ -2515,6 +2516,7 @@ drawable green_button_background
 drawable green_foot
 drawable heart_gray
 drawable home_blue
+drawable home_fill
 drawable home_gray
 drawable horizontal_dotted_line
 drawable horizontal_dotted_line_coolgrey
@@ -2572,6 +2574,7 @@ drawable ic_error_outline_white_24dp
 drawable ic_fav
 drawable ic_filter
 drawable ic_frame_21
+drawable ic_frame_home
 drawable ic_grooming_new
 drawable ic_home
 drawable ic_home_updated
@@ -2719,8 +2722,10 @@ drawable others_color
 drawable password
 drawable pdf_icon
 drawable petcare_blue
+drawable petcare_fill
 drawable petcare_gray
 drawable petcare_selector
+drawable petserv_fill
 drawable pic_empty
 drawable places_autocomplete_toolbar_shadow
 drawable places_ic_clear
@@ -2788,6 +2793,7 @@ drawable settings
 drawable shares
 drawable shop
 drawable shop_blue
+drawable shop_fill
 drawable shop_gray
 drawable shop_selector
 drawable sliderimg
