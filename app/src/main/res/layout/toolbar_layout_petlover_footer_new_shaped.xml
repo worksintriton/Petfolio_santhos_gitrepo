@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/img_cares"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whity_care"
                 tools:ignore="ContentDescription" />
@@ -39,8 +39,8 @@
 
             <ImageView
                 android:id="@+id/img_services"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whity_serv"
                 tools:ignore="ContentDescription" />
@@ -56,8 +56,8 @@
 
             <ImageView
                 android:id="@+id/img_homes"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whity_home"
                 tools:ignore="ContentDescription" />
@@ -73,8 +73,8 @@
 
             <ImageView
                 android:id="@+id/img_shops"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whity_shop"
                 tools:ignore="ContentDescription" />
@@ -90,8 +90,8 @@
 
             <ImageView
                 android:id="@+id/img_comns"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whity_comm"
                 tools:ignore="ContentDescription" />
@@ -131,8 +131,8 @@
 
             <ImageView
                 android:id="@+id/img_care"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/petcare_fill"
                 tools:ignore="ContentDescription" />
@@ -163,8 +163,8 @@
 
             <ImageView
                 android:id="@+id/img_serv"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/petserv_fill"
                 tools:ignore="ContentDescription" />
@@ -195,8 +195,8 @@
 
             <ImageView
                 android:id="@+id/img_home"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_pet_care_fill"
                 tools:ignore="ContentDescription" />
@@ -227,8 +227,8 @@
 
             <ImageView
                 android:id="@+id/img_shop"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/shop_fill"
                 tools:ignore="ContentDescription" />
@@ -259,8 +259,8 @@
 
             <ImageView
                 android:id="@+id/img_community"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/community_fill"
                 tools:ignore="ContentDescription" />

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
+            "outputFile": "D:\\Workspace\\Petfolio_Andriod_Dev_Final_Copy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
             "map": [
                 {
                     "source": "C:\\Users\\santh\\.gradle\\caches\\transforms-2\\files-2.1\\7116e6717327deda246310272d143b6e\\jetified-places-2.4.0\\res\\values-te\\values.xml",

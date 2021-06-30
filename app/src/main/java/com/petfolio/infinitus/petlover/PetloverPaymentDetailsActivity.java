@@ -33,6 +33,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,7 +80,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetloverPaymentDetailsActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener, SoSCallListener {
+public class PetloverPaymentDetailsActivity extends AppCompatActivity implements View.OnClickListener, SoSCallListener {
 
     private final String TAG = "PetloverPaymentDetailsActivity";
 
@@ -113,7 +115,6 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
     @BindView(R.id.img_download)
     ImageView img_download;
 
-    BottomNavigationView bottom_navigation_view;
 
     private String active_tag = "1";
 
@@ -133,6 +134,73 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
     private TextComposer textComposer;
     private TableComposer tableComposer;
     private SimplyPdfDocument simplyPdfDocument;
+
+
+     /* Petlover Bottom Navigation */
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_home)
+    RelativeLayout rl_home;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.title_home)
+    TextView title_home;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_home)
+    ImageView img_home;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_care)
+    RelativeLayout rl_care;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.title_care)
+    TextView title_care;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_care)
+    ImageView img_care;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_service)
+    RelativeLayout rl_service;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.title_serv)
+    TextView title_serv;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_serv)
+    ImageView img_serv;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_shop)
+    RelativeLayout rl_shop;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.title_shop)
+    TextView title_shop;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_shop)
+    ImageView img_shop;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_comn)
+    RelativeLayout rl_comn;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.title_community)
+    TextView title_community;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_community)
+    ImageView img_community;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_homes)
+    RelativeLayout rl_homes;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_services)
+    RelativeLayout rl_services;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_shops)
+    RelativeLayout rl_shops;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_cares)
+    RelativeLayout rl_cares;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_comns)
+    RelativeLayout rl_comns;
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.root_nav)
+    LinearLayout root_nav;
+
 
     @SuppressLint("LongLogTag")
     @Override
@@ -220,11 +288,52 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
             }
         });
 
-        bottom_navigation_view = include_petlover_footer.findViewById(R.id.bottom_navigation_view);
-        bottom_navigation_view.setItemIconTintList(null);
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
-        bottom_navigation_view.getMenu().findItem(R.id.home).setChecked(true);
 
+        root_nav.setBackgroundResource(R.drawable.nav_home);
+        rl_homes.setVisibility(View.VISIBLE);
+        rl_cares.setVisibility(View.INVISIBLE);
+        rl_services.setVisibility(View.INVISIBLE);
+        rl_shops.setVisibility(View.INVISIBLE);
+        rl_comns.setVisibility(View.INVISIBLE);
+        setMargins(rl_homes,0,0,0,0);
+        setMargins(rl_cares,0,0,0,0);
+        setMargins(rl_shops,0,0,0,0);
+        setMargins(rl_services,0,0,0,0);
+        setMargins(rl_comns,0,0,0,0);
+        rl_home.setVisibility(View.INVISIBLE);
+        rl_shop.setVisibility(View.VISIBLE);
+        rl_service.setVisibility(View.VISIBLE);
+        rl_care.setVisibility(View.VISIBLE);
+        rl_comn.setVisibility(View.VISIBLE);
+        title_home.setVisibility(View.INVISIBLE);
+        img_home.setVisibility(View.INVISIBLE);
+        title_care.setVisibility(View.VISIBLE);
+        img_care.setVisibility(View.VISIBLE);
+        title_serv.setVisibility(View.VISIBLE);
+        img_serv.setVisibility(View.VISIBLE);
+        title_shop.setVisibility(View.VISIBLE);
+        img_shop.setVisibility(View.VISIBLE);
+        title_community.setVisibility(View.VISIBLE);
+        img_community.setVisibility(View.VISIBLE);
+        title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
+        img_care.setImageResource(R.drawable.grey_care);
+        title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
+        img_serv.setImageResource(R.drawable.grey_servc);
+        title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
+        img_shop.setImageResource(R.drawable.grey_shop);
+        title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
+        img_community.setImageResource(R.drawable.grey_community);
+
+        rl_home.setOnClickListener(this);
+        rl_care.setOnClickListener(this);
+        rl_service.setOnClickListener(this);
+        rl_shop.setOnClickListener(this);
+        rl_comn.setOnClickListener(this);
+        rl_homes.setOnClickListener(this);
+        rl_cares.setOnClickListener(this);
+        rl_services.setOnClickListener(this);
+        rl_shops.setOnClickListener(this);
+        rl_comns.setOnClickListener(this);
 
 
     }
@@ -395,32 +504,7 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
         finish();
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.home:
-                callDirections("1");
-                break;
-            case R.id.shop:
-                callDirections("2");
-                break;
-            case R.id.services:
-                callDirections("3");
-                break;
-            case R.id.care:
-                callDirections("4");
-                break;
-            case R.id.community:
-                callDirections("5");
-                break;
-
-            default:
-                return  false;
-        }
-        return true;
-    }
     public void callDirections(String tag){
         Intent intent = new Intent(getApplicationContext(), PetLoverDashboardActivity.class);
         intent.putExtra("tag",tag);
@@ -444,6 +528,46 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
                 Intent intent = new Intent(getApplicationContext(),PetLoverProfileScreenActivity.class);
                 intent.putExtra("fromactivity",TAG);
                 startActivity(intent);
+                break;
+
+            case R.id.rl_homes:
+                callDirections("1");
+                break;
+
+            case R.id.rl_home:
+                callDirections("1");
+                break;
+
+            case R.id.rl_shops:
+                callDirections("2");
+                break;
+
+            case R.id.rl_shop:
+                callDirections("2");
+                break;
+
+            case R.id.rl_services:
+                callDirections("3");
+                break;
+
+            case R.id.rl_service:
+                callDirections("3");
+                break;
+
+            case R.id.rl_cares:
+                callDirections("4");
+                break;
+
+            case R.id.rl_care:
+                callDirections("4");
+                break;
+
+            case R.id.rl_comns:
+                callDirections("5");
+                break;
+
+            case R.id.rl_comn:
+                callDirections("5");
                 break;
 
         }
@@ -525,5 +649,9 @@ public class PetloverPaymentDetailsActivity extends AppCompatActivity implements
         }
         startActivity(intent);
     }
-
+    private void setMargins(RelativeLayout rl_layout, int i, int i1, int i2, int i3) {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)rl_layout.getLayoutParams();
+        params.setMargins(i, i1, i2, i3);
+        rl_layout.setLayoutParams(params);
+    }
 }
