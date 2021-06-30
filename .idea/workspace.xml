@@ -26,11 +26,20 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/DoctorSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/DoctorSearchResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderDashboardActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_list_of_products.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_list_of_products.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_products.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_products.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_notificaton.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_notificaton.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pet_lover_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pet_lover_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sp_my_calendar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sp_my_calendar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_add_products.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_add_products.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_create_products.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_create_products.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_order_details_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_order_details_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_track_order_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_track_order_status.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/vendor_toolbar_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/vendor_toolbar_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,15 +64,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewD:/sdk/sources/android-28/android/view/View.java_SELECTED" value="View" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\serviceprovider" />
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\layout" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\drawable" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\fragmentpetlover\bottommenu" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\adapter" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\responsepojo" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunManager">
