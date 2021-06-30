@@ -788,6 +788,7 @@ com/petfolio/infinitus/responsepojo/SPFavCreateResponse.java
  com.petfolio.infinitus.responsepojo.SPFavCreateResponse$DataBean
 com/petfolio/infinitus/responsepojo/DoctorSearchResponse.java
  com.petfolio.infinitus.responsepojo.DoctorSearchResponse
+ com.petfolio.infinitus.responsepojo.DoctorSearchResponse$BannerBean
  com.petfolio.infinitus.responsepojo.DoctorSearchResponse$DataBean
  com.petfolio.infinitus.responsepojo.DoctorSearchResponse$DataBean$SpecializationBean
 com/petfolio/infinitus/requestpojo/FetchPetloverFavListRequest.java
@@ -1205,9 +1206,6 @@ com/petfolio/infinitus/petlover/PetLoverDashboardActivity.java
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$4
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$5
  com.petfolio.infinitus.petlover.PetLoverDashboardActivity$6
- com.petfolio.infinitus.petlover.PetLoverDashboardActivity$7
- com.petfolio.infinitus.petlover.PetLoverDashboardActivity$8
- com.petfolio.infinitus.petlover.PetLoverDashboardActivity$9
 com/petfolio/infinitus/adapter/Cart_Adapter.java
  com.petfolio.infinitus.adapter.Cart_Adapter
  com.petfolio.infinitus.adapter.Cart_Adapter$1
@@ -1233,9 +1231,15 @@ com/petfolio/infinitus/activity/VerifyOtpActivity.java
  com.petfolio.infinitus.activity.VerifyOtpActivity$1
  com.petfolio.infinitus.activity.VerifyOtpActivity$2
  com.petfolio.infinitus.activity.VerifyOtpActivity$3
-com/petfolio/infinitus/responsepojo/FetchPetloverSPFavListResponse.java
- com.petfolio.infinitus.responsepojo.FetchPetloverSPFavListResponse
- com.petfolio.infinitus.responsepojo.FetchPetloverSPFavListResponse$DataBean
+com/petfolio/infinitus/fragmentpetlover/bottommenu/PetCareFragment.java
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$1
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$2
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$3
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$4
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$5
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$6
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$7
 com/petfolio/infinitus/petlover/PetVendorOrderDetailsActivity.java
  com.petfolio.infinitus.petlover.PetVendorOrderDetailsActivity
  com.petfolio.infinitus.petlover.PetVendorOrderDetailsActivity$1
@@ -1570,6 +1574,7 @@ com/petfolio/infinitus/adapter/EditPhotoIDPdfAdapter.java
  com.petfolio.infinitus.adapter.EditPhotoIDPdfAdapter$AddImageListHolder
 com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java
  com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse
+ com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse$BannerBean
  com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse$DataBean
  com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse$DataBean$ServiceDetailsBean
  com.petfolio.infinitus.responsepojo.SPSpecificServiceDetailsResponse$DataBean$ServiceProviderBean
@@ -2714,10 +2719,11 @@ com/petfolio/infinitus/adapter/PetLoverShopNewFavAdapter.java
  com.petfolio.infinitus.adapter.PetLoverShopNewFavAdapter
  com.petfolio.infinitus.adapter.PetLoverShopNewFavAdapter$1
  com.petfolio.infinitus.adapter.PetLoverShopNewFavAdapter$ViewHolderOne
-com/petfolio/infinitus/fragmentpetlover/favourites/DoctorFavFragment.java
- com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment
- com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment$1
- com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment$2
+com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java
+ com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter
+ com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$1
+ com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$2
+ com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$ViewHolderOne
 com/petfolio/infinitus/responsepojo/FetchPetloverPaymDetaResponse.java
  com.petfolio.infinitus.responsepojo.FetchPetloverPaymDetaResponse
  com.petfolio.infinitus.responsepojo.FetchPetloverPaymDetaResponse$DataBean
@@ -2854,17 +2860,10 @@ com/petfolio/infinitus/petlover/PetLoverNavigationDrawer.java
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawer$5
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawer$6
  com.petfolio.infinitus.petlover.PetLoverNavigationDrawer$7
-com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java
- com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter
- com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$1
- com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$2
- com.petfolio.infinitus.adapter.PetLoverNearByDoctorAdapter$ViewHolderOne
-com/petfolio/infinitus/fragmentpetlover/bottommenu/PetCareFragment.java
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$1
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$2
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$3
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$4
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$5
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$6
- com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment$7
+com/petfolio/infinitus/responsepojo/FetchPetloverSPFavListResponse.java
+ com.petfolio.infinitus.responsepojo.FetchPetloverSPFavListResponse
+ com.petfolio.infinitus.responsepojo.FetchPetloverSPFavListResponse$DataBean
+com/petfolio/infinitus/fragmentpetlover/favourites/DoctorFavFragment.java
+ com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment
+ com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment$1
+ com.petfolio.infinitus.fragmentpetlover.favourites.DoctorFavFragment$2

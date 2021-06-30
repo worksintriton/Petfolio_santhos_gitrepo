@@ -1,19 +1,19 @@
 [
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_like.png.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\like.png"
-    },
-    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\font_futuraextrablackfont.ttf.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\font\\futuraextrablackfont.ttf"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_minus.png.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_minus.png"
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_like.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\like.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_alert_profile_update_layout.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\alert_profile_update_layout.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_minus.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_minus.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_doctor_business_info.xml.flat",
@@ -64,12 +64,12 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\dislike.png"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rectangle_corner_withooutradious.xml.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\rectangle_corner_withooutradious.xml"
-    },
-    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_edittext_bg_rect_color.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\edittext_bg_rect_color.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rectangle_corner_withooutradious.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\rectangle_corner_withooutradious.xml"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_selected_service.xml.flat",
@@ -92,16 +92,16 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\content_petdetails.xml"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_nearby_service_providers_copy2.xml.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\adapter_nearby_service_providers_copy2.xml"
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_sp_servicelist.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\adapter_sp_servicelist.xml"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_login.xml"
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_nearby_service_providers_copy2.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\adapter_nearby_service_providers_copy2.xml"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_back_arrow_white.png.flat",
@@ -124,12 +124,12 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_doctor_payment_details.xml"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_notifications.png.flat",
-        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_notifications.png"
-    },
-    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rounded_corner_bg.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\rounded_corner_bg.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_notifications.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_notifications.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_vendor_productlist_child_view.xml.flat",
@@ -214,6 +214,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_petcare_fill.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\petcare_fill.png"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
@@ -708,6 +712,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\ic_care.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_community.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\grey_community.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_services.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\services.png"
     },
@@ -842,6 +850,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_image_thumbnail.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\image_thumbnail.png"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav_care.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav_care.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_new_calendar.png.flat",
@@ -1084,6 +1096,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\ic_user.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_comm.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\green_comm.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_add_circle_outline_24.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_baseline_add_circle_outline_24.xml"
     },
@@ -1208,8 +1224,16 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\selected_background.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_home.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\green_home.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_coming_soon_new.jpeg.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\coming_soon_new.jpeg"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_shop.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\grey_shop.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_set_location.xml.flat",
@@ -1294,6 +1318,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_petlover_payment_details.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_petlover_payment_details.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_care.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\grey_care.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\font_futuralightitalicfont.ttf.flat",
@@ -1468,6 +1496,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\new_loctn.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar_layout_petlover_footer_new_shaped.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\toolbar_layout_petlover_footer_new_shaped.xml"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_doctor_bottom_sheet.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\doctor_bottom_sheet.xml"
     },
@@ -1596,6 +1628,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\custom_alert.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_serv.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\green_serv.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_pdf_upload.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\adapter_pdf_upload.xml"
     },
@@ -1670,6 +1706,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rounded_curve.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\rounded_curve.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_care.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\green_care.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_capsule_bg_new.xml.flat",
@@ -1838,6 +1878,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_back_arrow.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\back_arrow.png"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_shop.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\green_shop.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rectangle_corner_bg_white.xml.flat",
@@ -2020,6 +2064,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_back_ios_24.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_img_circle.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\img_circle.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_manage_address.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_manage_address.xml"
     },
@@ -2136,6 +2184,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\gender.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_navbar.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\navbar.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_edit_manage_prodcuts.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_edit_manage_prodcuts.xml"
     },
@@ -2226,6 +2278,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_pet_myorders.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_pet_myorders.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav_home.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav_home.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_petappointment_sp_date_time.xml.flat",
@@ -2326,6 +2382,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_s_p_fav.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\fragment_s_p_fav.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_servc.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\grey_servc.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_home.png.flat",
@@ -2632,6 +2692,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\ic_cart_minus.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav_serv.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav_serv.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_radiobtn1.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\radiobtn1.png"
     },
@@ -2646,6 +2710,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edittext_bg_rect.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\edittext_bg_rect.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_grey_home.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\grey_home.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -2682,6 +2750,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav__shop.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav__shop.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_petlover_pet_details.xml.flat",
@@ -2818,6 +2890,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_button_gray_rounded_corner.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\button_gray_rounded_corner.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_nav_comm.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\nav_comm.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_pet_cancelled_orders.xml.flat",
