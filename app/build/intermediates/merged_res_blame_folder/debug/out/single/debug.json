@@ -1296,6 +1296,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_shipping_address_create.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_whity_care.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\whity_care.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_pet_appointment_details.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_pet_appointment_details.xml"
     },
@@ -1578,6 +1582,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_doctor_market_place.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\fragment_doctor_market_place.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_whity_shop.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\whity_shop.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_close_24.xml.flat",
@@ -2312,6 +2320,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\font\\futurabookitalicfont.ttf"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_whity_home.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\whity_home.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_shop_todaysdeal.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\adapter_shop_todaysdeal.xml"
     },
@@ -2636,6 +2648,10 @@
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable-v24\\pdf_icon.png"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_whity_serv.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\whity_serv.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_badge_background.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\badge_background.xml"
     },
@@ -2878,6 +2894,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_pet_vendor_track_order_status.xml.flat",
         "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\layout\\activity_pet_vendor_track_order_status.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\drawable_whity_comm.png.flat",
+        "source": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\src\\main\\res\\drawable\\whity_comm.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_Andriod_Dev_checking\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_doctor_my_calendar.xml.flat",

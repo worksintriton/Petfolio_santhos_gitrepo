@@ -2848,6 +2848,11 @@ int drawable vertical_lines_green 0x7f070214
 int drawable viewmore 0x7f070215
 int drawable warning_circle 0x7f070216
 int drawable warning_sigh 0x7f070217
+int drawable whity_care 0x7f070218
+int drawable whity_comm 0x7f070219
+int drawable whity_home 0x7f07021a
+int drawable whity_serv 0x7f07021b
+int drawable whity_shop 0x7f07021c
 int font futuraboldfont 0x7f080000
 int font futurabolditalicfont 0x7f080001
 int font futurabookfont 0x7f080002

@@ -2849,6 +2849,11 @@ drawable vertical_lines_green
 drawable viewmore
 drawable warning_circle
 drawable warning_sigh
+drawable whity_care
+drawable whity_comm
+drawable whity_home
+drawable whity_serv
+drawable whity_shop
 font futuraboldfont
 font futurabolditalicfont
 font futurabookfont

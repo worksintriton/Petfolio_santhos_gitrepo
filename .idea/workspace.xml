@@ -38,6 +38,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_track_order_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_track_order_status.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_petservice_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_petservice_details.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/vendor_toolbar_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/vendor_toolbar_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
@@ -47,6 +48,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -64,15 +66,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewD:/sdk/sources/android-28/android/view/View.java_SELECTED" value="View" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\adapter" />
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\petlover" />
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\drawable" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\serviceprovider" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\res\drawable" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\fragmentpetlover\bottommenu" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_checking\app\src\main\java\com\petfolio\infinitus\adapter" />
     </key>
   </component>
   <component name="RunManager">
