@@ -194,69 +194,66 @@ public class PetLoverVendorOrderDetailsActivity extends AppCompatActivity implem
 
 
     /* Petlover Bottom Navigation */
+    /* Petlover Bottom Navigation */
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_home)
     RelativeLayout rl_home;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.title_home)
-    TextView title_home;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_home)
-    ImageView img_home;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_care)
     RelativeLayout rl_care;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.title_care)
     TextView title_care;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_care)
     ImageView img_care;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_service)
     RelativeLayout rl_service;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.title_serv)
     TextView title_serv;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_serv)
     ImageView img_serv;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_shop)
     RelativeLayout rl_shop;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.title_shop)
     TextView title_shop;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_shop)
     ImageView img_shop;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_comn)
     RelativeLayout rl_comn;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.title_community)
     TextView title_community;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.img_community)
     ImageView img_community;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_homes)
     RelativeLayout rl_homes;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_services)
-    RelativeLayout rl_services;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_shops)
-    RelativeLayout rl_shops;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_cares)
-    RelativeLayout rl_cares;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_comns)
-    RelativeLayout rl_comns;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.root_nav)
-    LinearLayout root_nav;
+
+
+
 
 
     @SuppressLint({"LogNotTimber", "LongLogTag", "SetTextI18n"})
@@ -307,40 +304,15 @@ public class PetLoverVendorOrderDetailsActivity extends AppCompatActivity implem
 
 
 
-        root_nav.setBackgroundResource(R.drawable.nav__shop);
-        rl_homes.setVisibility(View.INVISIBLE);
-        rl_cares.setVisibility(View.INVISIBLE);
-        rl_services.setVisibility(View.INVISIBLE);
-        rl_shops.setVisibility(View.VISIBLE);
-        rl_comns.setVisibility(View.INVISIBLE);
-        setMargins(rl_homes,0,0,0,0);
-        setMargins(rl_cares,0,0,0,0);
-        setMargins(rl_shops,0,0,30,0);
-        setMargins(rl_services,0,0,0,0);
-        setMargins(rl_comns,0,0,0,0);
-        rl_home.setVisibility(View.VISIBLE);
-        rl_shop.setVisibility(View.INVISIBLE);
-        rl_service.setVisibility(View.VISIBLE);
-        rl_care.setVisibility(View.VISIBLE);
-        rl_comn.setVisibility(View.VISIBLE);
-        title_home.setVisibility(View.VISIBLE);
-        img_home.setVisibility(View.VISIBLE);
-        title_care.setVisibility(View.VISIBLE);
-        img_care.setVisibility(View.VISIBLE);
-        title_serv.setVisibility(View.VISIBLE);
-        img_serv.setVisibility(View.VISIBLE);
-        title_shop.setVisibility(View.INVISIBLE);
-        img_shop.setVisibility(View.INVISIBLE);
-        title_community.setVisibility(View.VISIBLE);
-        img_community.setVisibility(View.VISIBLE);
+        /*shop*/
         title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_care.setImageResource(R.drawable.grey_care);
         title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_serv.setImageResource(R.drawable.grey_servc);
-        title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-        img_home.setImageResource(R.drawable.grey_home);
         title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_community.setImageResource(R.drawable.grey_community);
+        title_shop.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+        img_shop.setImageResource(R.drawable.green_shop);
 
 
 
@@ -350,10 +322,6 @@ public class PetLoverVendorOrderDetailsActivity extends AppCompatActivity implem
         rl_shop.setOnClickListener(this);
         rl_comn.setOnClickListener(this);
         rl_homes.setOnClickListener(this);
-        rl_cares.setOnClickListener(this);
-        rl_services.setOnClickListener(this);
-        rl_shops.setOnClickListener(this);
-        rl_comns.setOnClickListener(this);
 
 
         scrollablContent.setVisibility(View.GONE);
@@ -468,32 +436,16 @@ public class PetLoverVendorOrderDetailsActivity extends AppCompatActivity implem
                 callDirections("1");
                 break;
 
-            case R.id.rl_shops:
-                callDirections("2");
-                break;
-
             case R.id.rl_shop:
                 callDirections("2");
-                break;
-
-            case R.id.rl_services:
-                callDirections("3");
                 break;
 
             case R.id.rl_service:
                 callDirections("3");
                 break;
 
-            case R.id.rl_cares:
-                callDirections("4");
-                break;
-
             case R.id.rl_care:
                 callDirections("4");
-                break;
-
-            case R.id.rl_comns:
-                callDirections("5");
                 break;
 
             case R.id.rl_comn:

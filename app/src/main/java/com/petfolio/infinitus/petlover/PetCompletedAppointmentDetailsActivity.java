@@ -45,17 +45,11 @@ public class PetCompletedAppointmentDetailsActivity extends AppCompatActivity im
 
     /* Petlover Bottom Navigation */
 
+    /* Petlover Bottom Navigation */
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_home)
     RelativeLayout rl_home;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.title_home)
-    TextView title_home;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_home)
-    ImageView img_home;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_care)
@@ -110,27 +104,6 @@ public class PetCompletedAppointmentDetailsActivity extends AppCompatActivity im
     RelativeLayout rl_homes;
 
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_services)
-    RelativeLayout rl_services;
-
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_shops)
-    RelativeLayout rl_shops;
-
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_cares)
-    RelativeLayout rl_cares;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_comns)
-    RelativeLayout rl_comns;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.root_nav)
-    LinearLayout root_nav;
 
 
 
@@ -301,40 +274,15 @@ public class PetCompletedAppointmentDetailsActivity extends AppCompatActivity im
 //        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
 //        bottom_navigation_view.getMenu().findItem(R.id.care).setChecked(true);
 
-        root_nav.setBackgroundResource(R.drawable.nav_care);
-        rl_homes.setVisibility(View.INVISIBLE);
-        rl_cares.setVisibility(View.VISIBLE);
-        rl_services.setVisibility(View.INVISIBLE);
-        rl_shops.setVisibility(View.INVISIBLE);
-        rl_comns.setVisibility(View.INVISIBLE);
-        setMargins(rl_homes,0,0,0,0);
-        setMargins(rl_cares,40,0,0,0);
-        setMargins(rl_shops,0,0,0,0);
-        setMargins(rl_services,0,0,0,0);
-        setMargins(rl_comns,0,0,0,0);
-        rl_home.setVisibility(View.VISIBLE);
-        rl_shop.setVisibility(View.VISIBLE);
-        rl_service.setVisibility(View.VISIBLE);
-        rl_care.setVisibility(View.INVISIBLE);
-        rl_comn.setVisibility(View.VISIBLE);
-        title_home.setVisibility(View.VISIBLE);
-        img_home.setVisibility(View.VISIBLE);
-        title_care.setVisibility(View.VISIBLE);
-        img_care.setVisibility(View.INVISIBLE);
-        title_serv.setVisibility(View.VISIBLE);
-        img_serv.setVisibility(View.VISIBLE);
-        title_shop.setVisibility(View.VISIBLE);
-        img_shop.setVisibility(View.VISIBLE);
-        title_community.setVisibility(View.VISIBLE);
-        img_community.setVisibility(View.VISIBLE);
-        title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-        img_home.setImageResource(R.drawable.grey_home);
+        /*shop*/
+        title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
+        img_care.setImageResource(R.drawable.grey_care);
         title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_serv.setImageResource(R.drawable.grey_servc);
-        title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-        img_shop.setImageResource(R.drawable.grey_shop);
         title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_community.setImageResource(R.drawable.grey_community);
+        title_shop.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+        img_shop.setImageResource(R.drawable.green_shop);
 
         rl_home.setOnClickListener(this);
 
@@ -348,14 +296,6 @@ public class PetCompletedAppointmentDetailsActivity extends AppCompatActivity im
 
 
         rl_homes.setOnClickListener(this);
-
-        rl_cares.setOnClickListener(this);
-
-        rl_services.setOnClickListener(this);
-
-        rl_shops.setOnClickListener(this);
-
-        rl_comns.setOnClickListener(this);
 
 
         if (new ConnectionDetector(PetCompletedAppointmentDetailsActivity.this).isNetworkAvailable(PetCompletedAppointmentDetailsActivity.this)) {
@@ -626,33 +566,21 @@ public class PetCompletedAppointmentDetailsActivity extends AppCompatActivity im
                 callDirections("1");
                 break;
 
-            case R.id.rl_shops:
-                callDirections("2");
-                break;
 
             case R.id.rl_shop:
                 callDirections("2");
                 break;
 
-            case R.id.rl_services:
-                callDirections("3");
-                break;
 
             case R.id.rl_service:
                 callDirections("3");
                 break;
 
-            case R.id.rl_cares:
-                callDirections("4");
-                break;
 
             case R.id.rl_care:
                 callDirections("4");
                 break;
 
-            case R.id.rl_comns:
-                callDirections("5");
-                break;
 
             case R.id.rl_comn:
                 callDirections("5");

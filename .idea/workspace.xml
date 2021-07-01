@@ -310,7 +310,34 @@
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output-metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/ManageAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/ManageAddressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PickUpLocationDenyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PickUpLocationDenyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ListOfProductsSeeMoreActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ListOfProductsSeeMoreActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/MedicalHistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/MedicalHistoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetAppointmentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetCartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetCompletedAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetCompletedAppointmentDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverDashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverProfileScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverProfileScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverVendorOrderDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetLoverVendorOrderDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMissedAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMissedAppointmentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyOrdrersActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyOrdrersActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyOrdrersNewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyOrdrersNewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyappointmentsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetMyappointmentsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetNewAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetNewAppointmentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetReturnOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetReturnOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetSPNewAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetSPNewAppointmentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetShopTodayDealsSeeMoreActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetShopTodayDealsSeeMoreActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorCancelOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorCancelOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorOrderDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorOrderDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorTrackOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetVendorTrackOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverFavListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverFavListActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPaymentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPaymentDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPetDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetloverPetDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SearchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/TrackOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/TrackOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/myaddresses/MyAddressesListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/myaddresses/MyAddressesListActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_petlover_footer_new_shaped.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_petlover_footer_new_shaped.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -337,7 +364,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-30T16:46:33.645077900Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -345,10 +372,11 @@
       <recent name="com.petfolio.infinitus.petlover" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\java\com\petfolio\infinitus\activity\location" />
+      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\java\com\petfolio\infinitus\petlover" />
       <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\res\layout" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_Final_Copy\app\src\main\java\com\petfolio\infinitus\petlover" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_Final_Copy\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Final_Copy\app\src\main\java\com\petfolio\infinitus\activity\location" />
     </key>
   </component>
   <component name="RunManager">
@@ -438,6 +466,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="234" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1625072261492" />
+    <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1625150392532">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1625150392532" />
     <state width="1237" height="520" key="GridCell.Tab.0.bottom" timestamp="1625072250400">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

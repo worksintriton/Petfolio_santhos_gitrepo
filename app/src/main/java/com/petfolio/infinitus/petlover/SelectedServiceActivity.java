@@ -166,16 +166,10 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
     int currentPage = 0;
 
 
-    /* Petlover Bottom Navigation */
+     /* Petlover Bottom Navigation */
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_home)
     RelativeLayout rl_home;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.title_home)
-    TextView title_home;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_home)
-    ImageView img_home;
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_care)
     RelativeLayout rl_care;
@@ -215,21 +209,6 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_homes)
     RelativeLayout rl_homes;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_services)
-    RelativeLayout rl_services;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_shops)
-    RelativeLayout rl_shops;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_cares)
-    RelativeLayout rl_cares;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_comns)
-    RelativeLayout rl_comns;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.root_nav)
-    LinearLayout root_nav;
 
 
 
@@ -269,47 +248,15 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         img_cart.setVisibility(View.GONE);
         toolbar_title.setText(getResources().getString(R.string.service_details));
 
-
-
-
-
-
-
-        root_nav.setBackgroundResource(R.drawable.nav_serv);
-        rl_homes.setVisibility(View.INVISIBLE);
-        rl_cares.setVisibility(View.INVISIBLE);
-        rl_services.setVisibility(View.VISIBLE);
-        rl_shops.setVisibility(View.INVISIBLE);
-        rl_comns.setVisibility(View.INVISIBLE);
-        setMargins(rl_homes,0,0,0,0);
-        setMargins(rl_cares,0,0,0,0);
-        setMargins(rl_shops,0,0,0,0);
-        setMargins(rl_services,30,0,0,0);
-        setMargins(rl_comns,0,0,0,0);
-        rl_home.setVisibility(View.VISIBLE);
-        rl_shop.setVisibility(View.VISIBLE);
-        rl_service.setVisibility(View.INVISIBLE);
-        rl_care.setVisibility(View.VISIBLE);
-        rl_comn.setVisibility(View.VISIBLE);
-        title_home.setVisibility(View.VISIBLE);
-        img_home.setVisibility(View.VISIBLE);
-        title_care.setVisibility(View.VISIBLE);
-        img_care.setVisibility(View.VISIBLE);
-        title_serv.setVisibility(View.INVISIBLE);
-        img_serv.setVisibility(View.INVISIBLE);
-        title_shop.setVisibility(View.VISIBLE);
-        img_shop.setVisibility(View.VISIBLE);
-        title_community.setVisibility(View.VISIBLE);
-        img_community.setVisibility(View.VISIBLE);
+        /*serv*/
         title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_care.setImageResource(R.drawable.grey_care);
-        title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-        img_home.setImageResource(R.drawable.grey_home);
         title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_shop.setImageResource(R.drawable.grey_shop);
         title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
         img_community.setImageResource(R.drawable.grey_community);
-
+        title_serv.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+        img_serv.setImageResource(R.drawable.green_serv);
 
         rl_home.setOnClickListener(this);
         rl_care.setOnClickListener(this);
@@ -317,10 +264,12 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
         rl_shop.setOnClickListener(this);
         rl_comn.setOnClickListener(this);
         rl_homes.setOnClickListener(this);
-        rl_cares.setOnClickListener(this);
-        rl_services.setOnClickListener(this);
-        rl_shops.setOnClickListener(this);
-        rl_comns.setOnClickListener(this);
+
+
+
+
+
+
 
 
 
@@ -644,42 +593,23 @@ public class SelectedServiceActivity extends AppCompatActivity implements View.O
             case R.id.rl_homes:
                 callDirections("1");
                 break;
-
             case R.id.rl_home:
                 callDirections("1");
                 break;
-
-            case R.id.rl_shops:
-                callDirections("2");
-                break;
-
             case R.id.rl_shop:
                 callDirections("2");
                 break;
-
-            case R.id.rl_services:
-                callDirections("3");
-                break;
-
             case R.id.rl_service:
                 callDirections("3");
                 break;
-
-            case R.id.rl_cares:
-                callDirections("4");
-                break;
-
             case R.id.rl_care:
                 callDirections("4");
                 break;
-
-            case R.id.rl_comns:
-                callDirections("5");
-                break;
-
             case R.id.rl_comn:
                 callDirections("5");
                 break;
+
+
         }
     }
 

@@ -8,12 +8,12 @@
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\rounded_corner_button_allow.xml"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_vertical_dotted_line.xml.flat",
-        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\vertical_dotted_line.xml"
-    },
-    {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_notifications.png.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\ic_notifications.png"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_vertical_dotted_line.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\vertical_dotted_line.xml"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_access_time_24.xml.flat",
