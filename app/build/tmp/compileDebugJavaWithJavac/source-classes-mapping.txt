@@ -1777,6 +1777,8 @@ com/petfolio/infinitus/serviceprovider/shop/SPOrderDetailsActivity.java
  com.petfolio.infinitus.serviceprovider.shop.SPOrderDetailsActivity$3
  com.petfolio.infinitus.serviceprovider.shop.SPOrderDetailsActivity$4
  com.petfolio.infinitus.serviceprovider.shop.SPOrderDetailsActivity$5
+com/petfolio/infinitus/fragmentpetlover/bottommenu/PetCommunityFragment.java
+ com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCommunityFragment
 com/petfolio/infinitus/requestpojo/ProductFiltersRequest.java
  com.petfolio.infinitus.requestpojo.ProductFiltersRequest
 com/petfolio/infinitus/adapter/VendorAddProductsAdapter.java

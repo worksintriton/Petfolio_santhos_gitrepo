@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Workspace\\Petfolio_Andriod_Dev_Final_Copy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kk\\values-kk.xml",
+            "outputFile": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kk\\values-kk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\santh\\.gradle\\caches\\transforms-2\\files-2.1\\6647dd27aae320fa69576e0036aad9f7\\jetified-play-services-places-17.0.0\\res\\values-kk\\values.xml",

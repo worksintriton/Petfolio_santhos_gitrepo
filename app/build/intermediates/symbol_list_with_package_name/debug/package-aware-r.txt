@@ -4829,6 +4829,7 @@ layout fragment_doctor_shop
 layout fragment_home_pet
 layout fragment_home_pet_new
 layout fragment_pet_care
+layout fragment_pet_community
 layout fragment_pet_completed_appointment
 layout fragment_pet_missed
 layout fragment_pet_new_appointment

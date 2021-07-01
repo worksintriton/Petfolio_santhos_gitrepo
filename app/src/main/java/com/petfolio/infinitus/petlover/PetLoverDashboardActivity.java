@@ -52,6 +52,7 @@ import com.petfolio.infinitus.api.API;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCareFragment;
+import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetCommunityFragment;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetHomeNewFragment;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.PetServicesFragment;
 import com.petfolio.infinitus.fragmentpetlover.bottommenu.VendorShopFragment;
@@ -105,14 +106,6 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
     RelativeLayout rl_home;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.title_home)
-    TextView title_home;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.img_home)
-    ImageView img_home;
-
-    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_care)
     RelativeLayout rl_care;
 
@@ -164,33 +157,11 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
     @BindView(R.id.rl_homes)
     RelativeLayout rl_homes;
 
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_services)
-    RelativeLayout rl_services;
-
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_shops)
-    RelativeLayout rl_shops;
-
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_cares)
-    RelativeLayout rl_cares;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_comns)
-    RelativeLayout rl_comns;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.root_nav)
-    LinearLayout root_nav;
-
     final Fragment petHomeFragment = new PetHomeNewFragment();
     final Fragment petCareFragment = new PetCareFragment();
     final Fragment petServicesFragment = new PetServicesFragment();
     final Fragment vendorShopFragment = new VendorShopFragment();
+    final Fragment petCommunityFragment = new PetCommunityFragment();
 
     public static String active_tag = "1";
 
@@ -269,13 +240,6 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
 
         rl_homes.setOnClickListener(this);
 
-        rl_cares.setOnClickListener(this);
-
-        rl_services.setOnClickListener(this);
-
-        rl_shops.setOnClickListener(this);
-
-        rl_comns.setOnClickListener(this);
 
 
         tag = getIntent().getStringExtra("tag");
@@ -283,32 +247,6 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
         if(tag != null){
             if(tag.equalsIgnoreCase("1")){
                 active = petHomeFragment;
-                root_nav.setBackgroundResource(R.drawable.nav_home);
-                rl_homes.setVisibility(View.VISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.INVISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.INVISIBLE);
-                img_home.setVisibility(View.INVISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
@@ -320,179 +258,51 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
                 loadFragment(new PetHomeNewFragment());
             }else if(tag.equalsIgnoreCase("2")){
                 active = vendorShopFragment;
-                root_nav.setBackgroundResource(R.drawable.nav__shop);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.VISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,30,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.INVISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.INVISIBLE);
-                img_shop.setVisibility(View.INVISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_shop.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_shop.setImageResource(R.drawable.green_shop);
                 loadFragment(new VendorShopFragment());
             }else if(tag.equalsIgnoreCase("3")){
                 active = petServicesFragment;
-                root_nav.setBackgroundResource(R.drawable.nav_serv);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.VISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,30,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.INVISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.INVISIBLE);
-                img_serv.setVisibility(View.INVISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_serv.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_serv.setImageResource(R.drawable.green_serv);
                 loadFragment(new PetServicesFragment());
             }else if(tag.equalsIgnoreCase("4")){
                 active = petCareFragment;
-                root_nav.setBackgroundResource(R.drawable.nav_care);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.VISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,40,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.INVISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.INVISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_care.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_care.setImageResource(R.drawable.green_care);
                 loadFragment(new PetCareFragment());
             } else if(tag.equalsIgnoreCase("5")){
-                root_nav.setBackgroundResource(R.drawable.nav_comm);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.VISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,30,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.INVISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.INVISIBLE);
-                img_community.setVisibility(View.INVISIBLE);
+                active = petCommunityFragment;
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
+                title_community.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_community.setImageResource(R.drawable.green_comm);
+                loadFragment(new PetCommunityFragment());
             }
         }
         else{
-            root_nav.setBackgroundResource(R.drawable.nav_home);
-            rl_homes.setVisibility(View.VISIBLE);
-            rl_cares.setVisibility(View.INVISIBLE);
-            rl_services.setVisibility(View.INVISIBLE);
-            rl_shops.setVisibility(View.INVISIBLE);
-            rl_comns.setVisibility(View.INVISIBLE);
-            setMargins(rl_homes,0,0,0,0);
-            setMargins(rl_cares,0,0,0,0);
-            setMargins(rl_shops,0,0,0,0);
-            setMargins(rl_services,0,0,0,0);
-            setMargins(rl_comns,0,0,0,0);
-            rl_home.setVisibility(View.INVISIBLE);
-            rl_shop.setVisibility(View.VISIBLE);
-            rl_service.setVisibility(View.VISIBLE);
-            rl_care.setVisibility(View.VISIBLE);
-            rl_comn.setVisibility(View.VISIBLE);
-            title_home.setVisibility(View.INVISIBLE);
-            img_home.setVisibility(View.INVISIBLE);
-            title_care.setVisibility(View.VISIBLE);
-            img_care.setVisibility(View.VISIBLE);
-            title_serv.setVisibility(View.VISIBLE);
-            img_serv.setVisibility(View.VISIBLE);
-            title_shop.setVisibility(View.VISIBLE);
-            img_shop.setVisibility(View.VISIBLE);
-            title_community.setVisibility(View.VISIBLE);
-            img_community.setVisibility(View.VISIBLE);
             title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
             img_care.setImageResource(R.drawable.grey_care);
             title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
@@ -1084,32 +894,6 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
 
             case R.id.rl_homes:
                 active_tag = "1";
-                root_nav.setBackgroundResource(R.drawable.nav_home);
-                rl_homes.setVisibility(View.VISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.INVISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.INVISIBLE);
-                img_home.setVisibility(View.INVISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
@@ -1123,32 +907,6 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
 
             case R.id.rl_home:
                 active_tag = "1";
-                root_nav.setBackgroundResource(R.drawable.nav_home);
-                rl_homes.setVisibility(View.VISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.INVISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.INVISIBLE);
-                img_home.setVisibility(View.INVISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
@@ -1160,319 +918,57 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
                 replaceFragment(new PetHomeNewFragment());
                 break;
 
-            case R.id.rl_shops:
-                active_tag = "2";
-                root_nav.setBackgroundResource(R.drawable.nav__shop);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.VISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,30,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.INVISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.INVISIBLE);
-                img_shop.setVisibility(View.INVISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
-                title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_care.setImageResource(R.drawable.grey_care);
-                title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_serv.setImageResource(R.drawable.grey_servc);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
-                title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_community.setImageResource(R.drawable.grey_community);
-                replaceFragment(new VendorShopFragment());
-                break;
-
             case R.id.rl_shop:
                 active_tag = "2";
-                root_nav.setBackgroundResource(R.drawable.nav__shop);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.VISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,30,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.INVISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.INVISIBLE);
-                img_shop.setVisibility(View.INVISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_shop.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_shop.setImageResource(R.drawable.green_shop);
                 replaceFragment(new VendorShopFragment());
-
-                break;
-
-            case R.id.rl_services:
-                active_tag = "3";
-                root_nav.setBackgroundResource(R.drawable.nav_serv);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.VISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,30,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.INVISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.INVISIBLE);
-                img_serv.setVisibility(View.INVISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
-                title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_care.setImageResource(R.drawable.grey_care);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
-                title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_shop.setImageResource(R.drawable.grey_shop);
-                title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_community.setImageResource(R.drawable.grey_community);
-                replaceFragment(new PetServicesFragment());
                 break;
 
             case R.id.rl_service:
                 active_tag = "3";
-                root_nav.setBackgroundResource(R.drawable.nav_serv);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.VISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,30,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.INVISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.INVISIBLE);
-                img_serv.setVisibility(View.INVISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_serv.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_serv.setImageResource(R.drawable.green_serv);
                 replaceFragment(new PetServicesFragment());
                 break;
 
-            case R.id.rl_cares:
-                active_tag = "4";
-                root_nav.setBackgroundResource(R.drawable.nav_care);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.VISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,40,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.INVISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.INVISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
-                title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_serv.setImageResource(R.drawable.grey_servc);
-                title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_shop.setImageResource(R.drawable.grey_shop);
-                title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_community.setImageResource(R.drawable.grey_community);
-                replaceFragment(new PetCareFragment());
-                break;
 
             case R.id.rl_care:
                 active_tag = "4";
-                root_nav.setBackgroundResource(R.drawable.nav_care);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.VISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.INVISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,40,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,0,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.INVISIBLE);
-                rl_comn.setVisibility(View.VISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.INVISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.VISIBLE);
-                img_community.setVisibility(View.VISIBLE);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
                 title_community.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_community.setImageResource(R.drawable.grey_community);
+                title_care.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_care.setImageResource(R.drawable.green_care);
                 replaceFragment(new PetCareFragment());
-                break;
-
-            case R.id.rl_comns:
-                active_tag = "5";
-                root_nav.setBackgroundResource(R.drawable.nav_comm);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.VISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,30,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.INVISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.INVISIBLE);
-                img_community.setVisibility(View.INVISIBLE);
-                title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_care.setImageResource(R.drawable.grey_care);
-                title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_serv.setImageResource(R.drawable.grey_servc);
-                title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_shop.setImageResource(R.drawable.grey_shop);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
-
-                showComingSoonAlert();
                 break;
 
             case R.id.rl_comn:
                 active_tag = "5";
-                root_nav.setBackgroundResource(R.drawable.nav_comm);
-                rl_homes.setVisibility(View.INVISIBLE);
-                rl_cares.setVisibility(View.INVISIBLE);
-                rl_services.setVisibility(View.INVISIBLE);
-                rl_shops.setVisibility(View.INVISIBLE);
-                rl_comns.setVisibility(View.VISIBLE);
-                setMargins(rl_homes,0,0,0,0);
-                setMargins(rl_cares,0,0,0,0);
-                setMargins(rl_shops,0,0,0,0);
-                setMargins(rl_services,0,0,0,0);
-                setMargins(rl_comns,0,0,30,0);
-                rl_home.setVisibility(View.VISIBLE);
-                rl_shop.setVisibility(View.VISIBLE);
-                rl_service.setVisibility(View.VISIBLE);
-                rl_care.setVisibility(View.VISIBLE);
-                rl_comn.setVisibility(View.INVISIBLE);
-                title_home.setVisibility(View.VISIBLE);
-                img_home.setVisibility(View.VISIBLE);
-                title_care.setVisibility(View.VISIBLE);
-                img_care.setVisibility(View.VISIBLE);
-                title_serv.setVisibility(View.VISIBLE);
-                img_serv.setVisibility(View.VISIBLE);
-                title_shop.setVisibility(View.VISIBLE);
-                img_shop.setVisibility(View.VISIBLE);
-                title_community.setVisibility(View.INVISIBLE);
-                img_community.setVisibility(View.INVISIBLE);
                 title_care.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_care.setImageResource(R.drawable.grey_care);
                 title_serv.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_serv.setImageResource(R.drawable.grey_servc);
                 title_shop.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
                 img_shop.setImageResource(R.drawable.grey_shop);
-                title_home.setTextColor(getResources().getColor(R.color.darker_grey_new,getTheme()));
-                img_home.setImageResource(R.drawable.grey_home);
-
-                showComingSoonAlert();
+                title_community.setTextColor(getResources().getColor(R.color.new_gree_color,getTheme()));
+                img_community.setImageResource(R.drawable.green_comm);
+                replaceFragment(new PetCommunityFragment());
                 break;
         }
 
