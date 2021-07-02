@@ -312,6 +312,7 @@
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/ManageAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/ManageAddressActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PickUpLocationDenyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location/PickUpLocationDenyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/DoctorDashboardActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ListOfProductsSeeMoreActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ListOfProductsSeeMoreActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/MedicalHistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/MedicalHistoryActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/PetAppointmentDetailsActivity.java" afterDir="false" />
@@ -338,6 +339,8 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/TrackOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/TrackOrderActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/myaddresses/MyAddressesListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/myaddresses/MyAddressesListActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderDashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_doctor_footer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_doctor_footer.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_petlover_footer_new_shaped.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_petlover_footer_new_shaped.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -345,7 +348,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\santh\.android\avd\5.1_WVGA_API_30_6.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -364,19 +367,21 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-30T16:46:33.645077900Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/activity/location" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.petfolio.infinitus.fragmentserviceprovider" />
+      <recent name="com.petfolio.infinitus.fragmentdoctor" />
       <recent name="com.petfolio.infinitus.fragmentpetlover.bottommenu" />
       <recent name="com.petfolio.infinitus.petlover" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\res\layout" />
+      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\res\drawable" />
       <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\java\com\petfolio\infinitus\activity\location" />
       <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\java\com\petfolio\infinitus\petlover" />
-      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_BNF\app\src\main\res\layout" />
       <recent name="D:\Workspace\Petfolio_Andriod_Dev_Final_Copy\app\src\main\java\com\petfolio\infinitus\petlover" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Final_Copy\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunManager">
@@ -462,14 +467,18 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1625063450251" />
-    <state x="234" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1625072261492">
+    <state x="234" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1625151734579">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="234" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1625072261492" />
+    <state x="234" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1625151734579" />
     <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1625150392532">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="393" y="229" width="495" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1625150392532" />
+    <state x="93" y="93" width="1095" height="535" key="AVDManager" timestamp="1625204857316">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="93" y="93" width="1095" height="535" key="AVDManager/0.0.1280.720@0.0.1280.720" timestamp="1625204857316" />
     <state width="1237" height="520" key="GridCell.Tab.0.bottom" timestamp="1625072250400">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

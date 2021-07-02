@@ -8,12 +8,12 @@
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\rounded_corner_button_allow.xml"
     },
     {
-        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_notifications.png.flat",
-        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\ic_notifications.png"
-    },
-    {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_vertical_dotted_line.xml.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\vertical_dotted_line.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_notifications.png.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\ic_notifications.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_access_time_24.xml.flat",
@@ -1100,6 +1100,10 @@
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\rounded_color_pr.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_doctor_community.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\layout\\fragment_doctor_community.xml"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_profile.png.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\profile.png"
     },
@@ -1856,6 +1860,10 @@
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\layout\\activity_doctor_prescription_details.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dr_nav_comm.png.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\dr_nav_comm.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_forward.png.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\forward.png"
     },
@@ -1870,6 +1878,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_pet_services.xml.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\layout\\fragment_pet_services.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dr_nav_shop.png.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\dr_nav_shop.png"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_petlist_medical_history.xml.flat",
@@ -2480,6 +2492,10 @@
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\rectangle_corner_withooutradious.xml"
     },
     {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dr_nav_home.png.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\dr_nav_home.png"
+    },
+    {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_home.png.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable-v24\\ic_home.png"
     },
@@ -2842,6 +2858,10 @@
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable_custom_item_layout.xml.flat",
         "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\drawable\\custom_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_sp_community.xml.flat",
+        "source": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\src\\main\\res\\layout\\fragment_sp_community.xml"
     },
     {
         "merged": "D:\\Workspace\\Petfolio_santhos_gitrepo_BNF\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rectangle_corner_bg_darkgray.xml.flat",

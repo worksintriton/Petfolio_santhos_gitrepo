@@ -2485,6 +2485,9 @@ drawable dietcian
 drawable digital_signature
 drawable discount
 drawable dislike
+drawable dr_nav_comm
+drawable dr_nav_home
+drawable dr_nav_shop
 drawable drawableleftchangeusertype
 drawable drawableright
 drawable drawer_icon
@@ -4818,6 +4821,7 @@ layout doctor_navigation_drawer_layout
 layout doctor_product_details_bottom_sheet
 layout doctor_toolbar_layout
 layout fps_view
+layout fragment_doctor_community
 layout fragment_doctor_completed_appointment
 layout fragment_doctor_dashboard
 layout fragment_doctor_fav
@@ -4838,6 +4842,7 @@ layout fragment_s_p_fav
 layout fragment_services
 layout fragment_shop_fav
 layout fragment_shop_vendor
+layout fragment_sp_community
 layout fragment_sp_completed_appointment
 layout fragment_sp_dashboard
 layout fragment_sp_missed

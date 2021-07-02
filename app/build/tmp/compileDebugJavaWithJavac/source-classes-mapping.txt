@@ -1441,6 +1441,8 @@ com/petfolio/infinitus/interfaces/OnItemCheckProduct.java
 com/petfolio/infinitus/adapter/VendorBusinessGalleryListAdapter.java
  com.petfolio.infinitus.adapter.VendorBusinessGalleryListAdapter
  com.petfolio.infinitus.adapter.VendorBusinessGalleryListAdapter$AddImageListHolder
+com/petfolio/infinitus/fragmentdoctor/DoctorCommunityFragment.java
+ com.petfolio.infinitus.fragmentdoctor.DoctorCommunityFragment
 com/petfolio/infinitus/adapter/SPServiceListAdapter.java
  com.petfolio.infinitus.adapter.SPServiceListAdapter
  com.petfolio.infinitus.adapter.SPServiceListAdapter$1
@@ -2823,6 +2825,8 @@ com/petfolio/infinitus/interfaces/DoctorPetHandledTypeCheckedListener.java
  com.petfolio.infinitus.interfaces.DoctorPetHandledTypeCheckedListener
 com/petfolio/infinitus/interfaces/OnItemClickSpecialization.java
  com.petfolio.infinitus.interfaces.OnItemClickSpecialization
+com/petfolio/infinitus/fragmentserviceprovider/SPCommunityFragment.java
+ com.petfolio.infinitus.fragmentserviceprovider.SPCommunityFragment
 com/petfolio/infinitus/interfaces/AddMoreSpecialzationRemoveListener.java
  com.petfolio.infinitus.interfaces.AddMoreSpecialzationRemoveListener
 com/petfolio/infinitus/appUtils/Constants.java
