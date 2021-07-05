@@ -1514,9 +1514,6 @@ public class ServiceBookAppointmentActivity extends AppCompatActivity implements
                 if (response.body() != null) {
                     if(response.body().getCode() == 200){
 
-
-
-
                     }
 
                 }
