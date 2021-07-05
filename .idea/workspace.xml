@@ -1,39 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLayouts">
-    <shared>
-      <config />
-    </shared>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24a258b6-c4b6-47bb-88b0-142e157e676a" name="Default Changelist" comment="">
+    <list default="true" id="286b6c81-6cf5-49c3-9eff-20f4605ae2fe" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/EditManageProdcutsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/EditManageProdcutsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/EditVendorRegisterFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/EditVendorRegisterFormActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/ManageProductsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/ManageProductsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorAddProductsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorAddProductsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorCreateProductsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorCreateProductsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorDashboardActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorEditProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorEditProfileActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorNavigationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorNavigationDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorOrderDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorOrderDetailsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorOrderDetailsNewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorOrderDetailsNewActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorProfileScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorProfileScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorRegisterFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorRegisterFormActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorTrackOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorTrackOrderActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorUpdateOrderStatusActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/vendor/VendorUpdateOrderStatusActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_vendor_footer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/toolbar_layout_vendor_footer.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -42,22 +23,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1ukwDmbd1S4TwQ7qYOCkFymLUqk" />
+  <component name="ProjectId" id="1uswUO1yKXHK5Ttdzd0sIqLfY69" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-05T07:09:38.628823800Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Finalised_BN\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Finalised_BN\app\src\main\res\drawable" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Finalised_BN\app\src\main\java\com\petfolio\infinitus\vendor" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -67,7 +42,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="PetFolio.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -129,12 +104,30 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="24a258b6-c4b6-47bb-88b0-142e157e676a" name="Default Changelist" comment="" />
-      <created>1625222778078</created>
+      <changelist id="286b6c81-6cf5-49c3-9eff-20f4605ae2fe" name="Default Changelist" comment="" />
+      <created>1625467621849</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1625222778078</updated>
+      <updated>1625467621849</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1237" height="360" key="GridCell.Tab.0.bottom" timestamp="1625470742695">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="360" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625470742695" />
+    <state width="1237" height="360" key="GridCell.Tab.0.center" timestamp="1625470742695">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="360" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1625470742695" />
+    <state width="1237" height="360" key="GridCell.Tab.0.left" timestamp="1625470742695">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="360" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1625470742695" />
+    <state width="1237" height="360" key="GridCell.Tab.0.right" timestamp="1625470742695">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="360" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1625470742695" />
   </component>
 </project>
