@@ -206,7 +206,7 @@ public class SelectedServiceProviderAdapter extends  RecyclerView.Adapter<Recycl
 
             }
 
-
+           String distances = String.valueOf(serviceProviderList.get(position).getDistance());
 
 
         holder.btn_book.setOnClickListener(new View.OnClickListener() {
@@ -216,7 +216,7 @@ public class SelectedServiceProviderAdapter extends  RecyclerView.Adapter<Recycl
                 i.putExtra("spid",serviceProviderList.get(position).get_id());
                 i.putExtra("catid",catid);
                 i.putExtra("from",from);
-                i.putExtra("distance",distance);
+                i.putExtra("distance",distances);
                 i.putExtra("reviewcount",reviewcount);
                 i.putExtra("Count_value_start",Count_value_start);
                 i.putExtra("Count_value_end",Count_value_end);
@@ -232,7 +232,7 @@ public class SelectedServiceProviderAdapter extends  RecyclerView.Adapter<Recycl
                 i.putExtra("spid",serviceProviderList.get(position).get_id());
                 i.putExtra("catid",catid);
                 i.putExtra("from",from);
-                i.putExtra("distance",distance);
+                i.putExtra("distance",distances);
                 i.putExtra("reviewcount",reviewcount);
                 i.putExtra("Count_value_start",Count_value_start);
                 i.putExtra("Count_value_end",Count_value_end);
