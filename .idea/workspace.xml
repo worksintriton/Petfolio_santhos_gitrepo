@@ -20,11 +20,13 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/SelectedServiceProviderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/SelectedServiceProviderAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/APIClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentserviceprovider/FragmentSPNewAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentserviceprovider/FragmentSPNewAppointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/requestpojo/ServiceProviderRegisterFormCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/requestpojo/ServiceProviderRegisterFormCreateRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/SPAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/SPAppointmentDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderRegisterFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderRegisterFormActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_care.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_care.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_community.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_community.png" afterDir="false" />
@@ -35,6 +37,8 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_provider_register_form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_provider_register_form.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_new_appointment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_new_appointment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
@@ -43,7 +47,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -174,22 +178,22 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1625582995282" />
-    <state width="1237" height="414" key="GridCell.Tab.0.bottom" timestamp="1625585528624">
+    <state width="1237" height="338" key="GridCell.Tab.0.bottom" timestamp="1625633283072">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="414" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625585528624" />
-    <state width="1237" height="414" key="GridCell.Tab.0.center" timestamp="1625585528624">
+    <state width="1237" height="338" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
+    <state width="1237" height="338" key="GridCell.Tab.0.center" timestamp="1625633283072">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="414" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1625585528624" />
-    <state width="1237" height="414" key="GridCell.Tab.0.left" timestamp="1625585528624">
+    <state width="1237" height="338" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
+    <state width="1237" height="338" key="GridCell.Tab.0.left" timestamp="1625633283072">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="414" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1625585528624" />
-    <state width="1237" height="414" key="GridCell.Tab.0.right" timestamp="1625585528624">
+    <state width="1237" height="338" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
+    <state width="1237" height="338" key="GridCell.Tab.0.right" timestamp="1625633283072">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="414" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1625585528624" />
+    <state width="1237" height="338" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
     <state width="1237" height="176" key="GridCell.Tab.1.bottom" timestamp="1625582400742">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -210,9 +214,9 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="297" y="161" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1625576881294" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1625629867458">
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1625630882745">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1625629867458" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1625630882745" />
   </component>
 </project>
