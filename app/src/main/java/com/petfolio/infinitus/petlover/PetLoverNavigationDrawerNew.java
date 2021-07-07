@@ -282,6 +282,13 @@ public class PetLoverNavigationDrawerNew extends AppCompatActivity implements Vi
         });
 
         ImageView img_cart = toolbar_layout.findViewById(R.id.img_cart);
+        ImageView img_notification = toolbar_layout.findViewById(R.id.img_notification);
+        img_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),NotificationActivity.class));
+            }
+        });
         img_cart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("LogNotTimber")
             @Override
@@ -360,7 +367,7 @@ public class PetLoverNavigationDrawerNew extends AppCompatActivity implements Vi
                 rv_sosnumbers.setVisibility(View.GONE);
                 btn_call.setVisibility(View.GONE);
                 txt_no_records.setVisibility(View.VISIBLE);
-                txt_no_records.setText("No phone numbers");
+                txt_no_records.setText(getResources().getString(R.string.no_phone_numbers));
 
             }
 

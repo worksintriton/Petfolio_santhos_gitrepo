@@ -12,35 +12,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35c1a2c5-c077-4a71-b0cd-4d8cb74908e6" name="Default Changelist" comment="">
+    <list default="true" id="79874eee-1a6c-4b09-8a57-9a3df0a20dc4" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverDoctorFilterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverDoctorFilterAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/PetLoverNearByDoctorAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/SelectedServiceProviderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/SelectedServiceProviderAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/api/APIClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentserviceprovider/FragmentSPNewAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentserviceprovider/FragmentSPNewAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/DoctorClinicDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/VendorBusinessGalleryListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/adapter/VendorBusinessGalleryListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/shop/DoctorProductDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/doctor/shop/DoctorProductDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/bottommenu/PetCareFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/fragmentpetlover/bottommenu/PetCareFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/ProductDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/SelectedServiceActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/petlover/Service_Details_Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/requestpojo/ServiceProviderRegisterFormCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/requestpojo/ServiceProviderRegisterFormCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/responsepojo/SPSpecificServiceDetailsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/SPAppointmentDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/SPAppointmentDetailsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderRegisterFormActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/ServiceProviderRegisterFormActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_care.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_care.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_community.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_community.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_servc.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_servc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_shop.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_shop.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/shop/SPProductDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/shop/SPProductDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_product_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_product_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_provider_register_form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_provider_register_form.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_doctors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_nearby_service_providers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_new_appointment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sp_new_appointment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/petservice_bottom_sheet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_petcare_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_petcare_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/doctor_product_details_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/doctor_product_details_bottom_sheet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pet_care.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pet_care.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/petcare_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/petcare_bottom_sheet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/product_details_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/product_details_bottom_sheet.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,31 +44,19 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="resourceFile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1utTpLCG157RXicSUcvfoPwN4tR" />
+  <component name="ProjectId" id="1uzt0lmxqDEiv7d2JT9EeTIeiyQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-07T18:23:27.250019500Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_FC\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_FC\app\src\main\res\drawable" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -149,74 +128,49 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="35c1a2c5-c077-4a71-b0cd-4d8cb74908e6" name="Default Changelist" comment="" />
-      <created>1625484066756</created>
+      <changelist id="79874eee-1a6c-4b09-8a57-9a3df0a20dc4" name="Default Changelist" comment="" />
+      <created>1625680027808</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1625484066756</updated>
+      <updated>1625680027808</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1625569011505">
+    <state width="1237" height="439" key="GridCell.Tab.0.bottom" timestamp="1625692923804">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1625569011505" />
-    <state x="259" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1625491433551">
+    <state width="1237" height="439" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625692923804" />
+    <state width="1237" height="439" key="GridCell.Tab.0.center" timestamp="1625692923804">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="259" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1625491433551" />
-    <state x="93" y="93" width="1095" height="535" key="AVDManager" timestamp="1625630303566">
+    <state width="1237" height="439" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1625692923804" />
+    <state width="1237" height="439" key="GridCell.Tab.0.left" timestamp="1625692923804">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="93" y="93" width="1095" height="535" key="AVDManager/0.0.1280.720@0.0.1280.720" timestamp="1625630303566" />
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog" timestamp="1625628493494">
+    <state width="1237" height="439" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1625692923804" />
+    <state width="1237" height="439" key="GridCell.Tab.0.right" timestamp="1625692923804">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1625628493494" />
-    <state x="421" y="115" key="FileChooserDialogImpl" timestamp="1625582995282">
+    <state width="1237" height="439" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1625692923804" />
+    <state x="252" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1625687863370">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1625582995282" />
-    <state width="1237" height="338" key="GridCell.Tab.0.bottom" timestamp="1625633283072">
+    <state x="252" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1625687863370" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1625686628545">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="338" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
-    <state width="1237" height="338" key="GridCell.Tab.0.center" timestamp="1625633283072">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="338" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
-    <state width="1237" height="338" key="GridCell.Tab.0.left" timestamp="1625633283072">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="338" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
-    <state width="1237" height="338" key="GridCell.Tab.0.right" timestamp="1625633283072">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="338" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1625633283072" />
-    <state width="1237" height="176" key="GridCell.Tab.1.bottom" timestamp="1625582400742">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1625582400742" />
-    <state width="1237" height="176" key="GridCell.Tab.1.center" timestamp="1625582400742">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1625582400742" />
-    <state width="1237" height="176" key="GridCell.Tab.1.left" timestamp="1625582400742">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1625582400742" />
-    <state width="1237" height="176" key="GridCell.Tab.1.right" timestamp="1625582400742">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1625582400742" />
-    <state x="297" y="161" key="run.anything.popup" timestamp="1625576881294">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="297" y="161" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1625576881294" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1625630882745">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1625630882745" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1625686628545" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/petfolio/infinitus/serviceprovider/shop/SPProductDetailsActivity.java</url>
+          <line>566</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
