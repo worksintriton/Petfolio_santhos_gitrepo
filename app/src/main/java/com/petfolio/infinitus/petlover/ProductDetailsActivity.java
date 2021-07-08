@@ -823,6 +823,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
        /* if(product_cart_count != 0){
             txt_cart_count.setText(product_cart_count+"");
         }*/
+
     }
 
     @SuppressLint("LogNotTimber")
@@ -913,11 +914,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
                     if(200 == response.body().getCode()){
                         Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                       /* Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
+                        Intent intent = new Intent(getApplicationContext(),PetCartActivity.class);
                         intent.putExtra("productid",productid);
                         intent.putExtra("fromactivity",TAG);
+                        intent.putExtra("tag",tag);
                         startActivity(intent);
-                        finish();*/
+                        finish();
                     }
                 }
             }

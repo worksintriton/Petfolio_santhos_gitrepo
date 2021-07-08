@@ -34,6 +34,7 @@ import com.petfolio.infinitus.adapter.VendorBusinessGalleryListAdapter;
 import com.petfolio.infinitus.adapter.ViewPagerProductDetailsAdapter;
 import com.petfolio.infinitus.api.APIClient;
 import com.petfolio.infinitus.api.RestApiInterface;
+import com.petfolio.infinitus.doctor.shop.DoctorCartActivity;
 import com.petfolio.infinitus.requestpojo.CartAddProductRequest;
 import com.petfolio.infinitus.requestpojo.DoctorProductFavListCreateRequest;
 import com.petfolio.infinitus.requestpojo.FetchByIdRequest;
@@ -832,7 +833,7 @@ public class SPProductDetailsActivity extends AppCompatActivity implements View.
                                 fetch_product_by_id_ResponseCall();
                             }
                         }
-                        /*Intent intent = new Intent(getApplicationContext(),DoctorCartActivity.class);
+                       /* Intent intent = new Intent(getApplicationContext(), DoctorCartActivity.class);
                         intent.putExtra("productid",productid);
                         intent.putExtra("fromactivity",TAG);
                         startActivity(intent);
