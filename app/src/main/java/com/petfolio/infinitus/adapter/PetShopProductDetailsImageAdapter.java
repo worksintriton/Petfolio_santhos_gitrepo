@@ -89,10 +89,10 @@ public class PetShopProductDetailsImageAdapter extends  RecyclerView.Adapter<Rec
             holder.txt_products_offer.setVisibility(View.GONE);
         }
 
-        if (productListBean.getProduct_img() != null && !productListBean.getProduct_img() .isEmpty()) {
+        if (productListBean.getThumbnail_image() != null && !productListBean.getThumbnail_image() .isEmpty()) {
 
                 Glide.with(context)
-                        .load(productListBean.getProduct_img())
+                        .load(productListBean.getThumbnail_image())
                         .into(holder.img_products_image);
 
             }

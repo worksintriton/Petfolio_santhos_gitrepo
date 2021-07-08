@@ -86,9 +86,9 @@ public class PetShopTodayDealsAdapter extends  RecyclerView.Adapter<RecyclerView
 
         }
 
-        if (today_special.get(position).getProduct_img() != null && !today_special.get(position).getProduct_img().isEmpty()) {
+        if (today_special.get(position).getThumbnail_image() != null && !today_special.get(position).getThumbnail_image().isEmpty()) {
             Glide.with(context)
-                        .load(today_special.get(position).getProduct_img())
+                        .load(today_special.get(position).getThumbnail_image())
                         .into(holder.img_products_image);
 
             }
