@@ -40,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -507,9 +508,13 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
                         etdoctorcomments.setError("Please enter the comments ");
                         etdoctorcomments.requestFocus();
                     }
-                    else if(prescriptionDataList.isEmpty()){
+                    else if(prescriptionDataList.isEmpty()&&selectedRadioButton.equalsIgnoreCase("Manual")){
                     showErrorLoading("Please fill the prescription fields");
                      }
+                            else if(govtIdPicBeans.isEmpty()&&selectedRadioButton.equalsIgnoreCase("Upload Image")){
+                                showErrorLoading("Please Upload Prescription Image");
+                            }
+
                     else{
                         if (new ConnectionDetector(PrescriptionActivity.this).isNetworkAvailable(PrescriptionActivity.this)) {
                             if(Treatment_Done_by.equalsIgnoreCase("Self")){
@@ -521,6 +526,13 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
                                 Family_ID = Family_ID;
                             }
 
+                            String image = "";
+
+                            if(govtIdPicBeans!=null&&govtIdPicBeans.size()>0){
+
+                                image = govtIdPicBeans.get(0).getGovt_id_pic();
+                            }
+
                             Log.w(TAG,"prescriptionDataList : "+new Gson().toJson(prescriptionDataList));
 
                             Intent intent = new Intent(getApplicationContext(),PrescriptionDetailsActivity.class);
@@ -529,6 +541,8 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
                             intent.putExtra("prescriptionDataList", (Serializable) prescriptionDataList);
                             intent.putExtra("Treatment_Done_by", Treatment_Done_by);
                             intent.putExtra("id", appoinmentid);
+                            intent.putExtra("image",image);
+                            intent.putExtra("selectedRadioButton",selectedRadioButton);
                             intent.putExtra("userid", userid);
                             intent.putExtra("DiagnosisType", DiagnosisType);
                             intent.putExtra("SubDiagnosisType", SubDiagnosisType);
@@ -1508,13 +1522,20 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
 
                     if (200 == response.body().getCode()) {
 
+
                         DocBusInfoUploadRequest.GovtIdPicBean govtIdPicBean = new DocBusInfoUploadRequest.GovtIdPicBean (response.body().getData());
 
                         govtIdPicBeans.add(govtIdPicBean);
 
-                        addGovtIdPdfAdapter = new AddGovtIdPdfAdapter(getApplicationContext(), govtIdPicBeans);
+                        if(govtIdPicBeans!=null&&govtIdPicBeans.size()>0){
 
-                        rcylr_uploadImage.setAdapter(addGovtIdPdfAdapter);
+                            addGovtIdPdfAdapter = new AddGovtIdPdfAdapter(getApplicationContext(), govtIdPicBeans);
+
+                            rcylr_uploadImage.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+                            rcylr_uploadImage.setAdapter(addGovtIdPdfAdapter);
+
+                        }
+
 
                     }
 
