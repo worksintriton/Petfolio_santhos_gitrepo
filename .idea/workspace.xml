@@ -6,31 +6,21 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Doctor" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0b079de-1493-4d28-96e0-883410046e48" name="Default Changelist" comment="">
+    <list default="true" id="87e7082f-e263-493f-a9b2-9e2d8009af0a" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorBusinessInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorBusinessInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/EditDoctorBusinessInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/EditDoctorBusinessInfoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorPrescriptionDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorPrescriptionDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionDetailsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/petlover/AddYourPetActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/petlover/AddYourPetActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/requestpojo/DocBusInfoUploadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/requestpojo/DocBusInfoUploadRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/requestpojo/DoctorBusinessInfoUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/requestpojo/DoctorBusinessInfoUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/DiagnosisListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/DiagnosisListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/DoctorDetailsByUserIdResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/DoctorDetailsByUserIdResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/SubDiagnosisListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/SubDiagnosisListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_business_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_business_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_doctor_business_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_doctor_business_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_prescription.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_prescription.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_prescription_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_prescription_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/PrescriptionFetchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/PrescriptionFetchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_prescription_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_prescription_details.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,47 +28,23 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\santh\.android\avd\5.1_WVGA_API_30_6.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="resourceFile" />
-        <option value="Interface" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1vCs79ntAcmM5Nd1ZTfiRo31QXj" />
+  <component name="ProjectId" id="1vIDFDuxeNA4Ok0Sll6QWPfKL6I" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-13T10:17:24.178401700Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="android-custom-viewD:/sdk/sources/android-30/android/view/ViewGroup.java_SELECTED" value="ViewGroup" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_SandySan\app\src\main\res\layout" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.petfolio.infinituss.interfaces" />
-      <recent name="com.petfolio.infinituss.adapter" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_SandySan\app\src\main\res\layout" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -150,89 +116,42 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f0b079de-1493-4d28-96e0-883410046e48" name="Default Changelist" comment="" />
-      <created>1626077234567</created>
+      <changelist id="87e7082f-e263-493f-a9b2-9e2d8009af0a" name="Default Changelist" comment="" />
+      <created>1626240604273</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1626077234567</updated>
+      <updated>1626240604273</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser" timestamp="1626178907428">
+    <state x="488" y="164" key="AndroidCreateXmlResourceDialog" timestamp="1626253172384">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="446" y="67" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1626178907428" />
-    <state x="213" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1626158122156">
+    <state x="488" y="164" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1626253172384" />
+    <state width="1237" height="458" key="GridCell.Tab.0.bottom" timestamp="1626264238743">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="213" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1626158122156" />
-    <state x="424" y="229" width="446" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1626193073787">
+    <state width="1237" height="458" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
+    <state width="1237" height="458" key="GridCell.Tab.0.center" timestamp="1626264238743">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="424" y="229" width="446" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1626193073787" />
-    <state x="93" y="93" width="1095" height="535" key="AVDManager" timestamp="1626153664295">
+    <state width="1237" height="458" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
+    <state width="1237" height="458" key="GridCell.Tab.0.left" timestamp="1626264238743">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="93" y="93" width="1095" height="535" key="AVDManager/0.0.1280.720@0.0.1280.720" timestamp="1626153664295" />
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog" timestamp="1626111448559">
+    <state width="1237" height="458" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
+    <state width="1237" height="458" key="GridCell.Tab.0.right" timestamp="1626264238743">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1626111448559" />
-    <state width="1237" height="403" key="GridCell.Tab.0.bottom" timestamp="1626192305964">
+    <state width="1237" height="458" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
+    <state x="247" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1626259774795">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="403" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626192305964" />
-    <state width="1237" height="403" key="GridCell.Tab.0.center" timestamp="1626192305964">
+    <state x="247" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1626259774795" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626253250463">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="403" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626192305964" />
-    <state width="1237" height="403" key="GridCell.Tab.0.left" timestamp="1626192305964">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="403" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626192305964" />
-    <state width="1237" height="403" key="GridCell.Tab.0.right" timestamp="1626192305964">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="403" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626192305964" />
-    <state width="1237" height="177" key="GridCell.Tab.1.bottom" timestamp="1626191319301">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="177" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626191319301" />
-    <state width="1237" height="177" key="GridCell.Tab.1.center" timestamp="1626191319301">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="177" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1626191319301" />
-    <state width="1237" height="177" key="GridCell.Tab.1.left" timestamp="1626191319301">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="177" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1626191319301" />
-    <state width="1237" height="177" key="GridCell.Tab.1.right" timestamp="1626191319301">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="177" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1626191319301" />
-    <state x="246" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1626094088101">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="246" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1626094088101" />
-    <state x="297" y="161" key="run.anything.popup" timestamp="1626159103217">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="297" y="161" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1626159103217" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626169161853">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626169161853" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionDetailsActivity.java</url>
-          <line>201</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626253250463" />
   </component>
 </project>

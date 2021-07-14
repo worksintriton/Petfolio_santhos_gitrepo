@@ -455,14 +455,7 @@
             android:name=".doctor.DoctorBusinessInfoActivity"
             android:screenOrientation="portrait"
              android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan">
-<!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".doctor.EditDoctorBusinessInfoActivity"
             android:screenOrientation="portrait"
@@ -720,6 +713,12 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.NotificationActivity"
+            android:screenOrientation="portrait"
+             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".activity.SoSActivity"
             android:screenOrientation="portrait"
              android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />

@@ -96,6 +96,8 @@ public class AddYourPetActivity extends AppCompatActivity {
     @BindView(R.id.edt_petweight)
     EditText edt_petweight;
 
+
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rgvaccinated)
     RadioGroup rgvaccinated;

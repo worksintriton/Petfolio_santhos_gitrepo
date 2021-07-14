@@ -1237,25 +1237,6 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
                     }
                 }
 
-                else if (items[item].equals("Select File")){
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M   && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                    {
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_GOVT_ID_PDF_PERMISSION);
-                    }
-
-                    else{
-
-                        Intent intent = new Intent();
-                        intent.setType("application/pdf");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select PDF"), SELECT_GOVTID_PDF);
-
-
-                    }
-
-
-                }
 
                 else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
