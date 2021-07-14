@@ -5,15 +5,11 @@
       <config />
     </shared>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Doctor" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87e7082f-e263-493f-a9b2-9e2d8009af0a" name="Default Changelist" comment="">
+    <list default="true" id="d4500819-6bbe-42f2-b785-80183b8c2a51" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -37,14 +33,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1vIDFDuxeNA4Ok0Sll6QWPfKL6I" />
+  <component name="ProjectId" id="1vJTp3kEuSJCK81hZ2oDH3gm6kV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.petfolio.infinituss.responsepojo" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Wed14\app\src\main\res\layout" />
+      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Wed14\app\src\main\java\com\petfolio\infinituss\doctor" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -54,7 +61,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="PetFolio.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -116,42 +123,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="87e7082f-e263-493f-a9b2-9e2d8009af0a" name="Default Changelist" comment="" />
-      <created>1626240604273</created>
+      <changelist id="d4500819-6bbe-42f2-b785-80183b8c2a51" name="Default Changelist" comment="" />
+      <created>1626279371771</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1626240604273</updated>
+      <updated>1626279371771</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog" timestamp="1626253172384">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="488" y="164" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1626253172384" />
-    <state width="1237" height="458" key="GridCell.Tab.0.bottom" timestamp="1626264238743">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="458" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
-    <state width="1237" height="458" key="GridCell.Tab.0.center" timestamp="1626264238743">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="458" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
-    <state width="1237" height="458" key="GridCell.Tab.0.left" timestamp="1626264238743">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="458" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
-    <state width="1237" height="458" key="GridCell.Tab.0.right" timestamp="1626264238743">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="458" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626264238743" />
-    <state x="247" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1626259774795">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="247" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1626259774795" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626253250463">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626253250463" />
   </component>
 </project>
