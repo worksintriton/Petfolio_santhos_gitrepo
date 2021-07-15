@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/cv_root"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="@dimen/_10dp"
+	app:cardBackgroundColor="@color/white"
+	app:cardCornerRadius="@dimen/_10dp">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginStart="@dimen/_10dp"
+		android:layout_marginTop="@dimen/_10dp"
+		android:layout_marginEnd="@dimen/_10dp"
+		android:visibility="visible"
+		tools:ignore="UselessParent">
+
+		<ImageView
+			android:id="@+id/img_product_image"
+			android:layout_width="@dimen/_100dp"
+			android:layout_height="@dimen/_100dp"
+			android:layout_marginLeft="@dimen/_10dp"
+			android:layout_marginTop="@dimen/_10dp"
+			android:layout_marginEnd="@dimen/_20dp"
+			android:layout_marginRight="@dimen/_10dp"
+			android:layout_marginBottom="@dimen/_10dp"
+			android:contentDescription="@string/image_description"
+			android:scaleType="fitXY"
+			app:srcCompat="@drawable/primg3" />
+
+		<TextView
+			android:id="@+id/txt_product_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_20dp"
+			android:layout_toEndOf="@+id/img_product_image"
+			android:ellipsize="end"
+			android:fontFamily="@font/lato_bold"
+			android:maxLines="@integer/_int1"
+			android:text="@string/k_metal"
+			android:textColor="@color/dark_grey"
+			android:textSize="@dimen/_14sp" />
+
+		<TextView
+			android:id="@+id/txt_parts_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/txt_product_name"
+			android:layout_marginTop="@dimen/_10dp"
+			android:layout_toEndOf="@+id/img_product_image"
+			android:ellipsize="end"
+			android:fontFamily="@font/lato_regular"
+			android:lineSpacingExtra="@dimen/_8sp"
+			android:maxLines="@integer/_int2"
+			android:text="@string/parts_name"
+			android:textColor="@color/dark_grey"
+			android:textSize="@dimen/_12sp" />
+
+		<!--		<RatingBar-->
+		<!--			android:id="@+id/ratingBar"-->
+		<!--			style="@style/Widget.AppCompat.RatingBar.Small"-->
+		<!--			android:layout_width="wrap_content"-->
+		<!--			android:layout_height="wrap_content"-->
+		<!--			android:layout_below="@+id/txt_parts_name"-->
+		<!--			android:layout_marginTop="@dimen/_10dp"-->
+		<!--			android:layout_toEndOf="@+id/img_product_image"-->
+		<!--			android:numStars="5"-->
+		<!--			android:rating="4" />-->
+
+		<TextView
+			android:id="@+id/txt_price"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/txt_parts_name"
+			android:layout_alignParentEnd="false"
+			android:layout_marginTop="@dimen/_10dp"
+			android:layout_toEndOf="@id/img_product_image"
+			android:ellipsize="end"
+			android:fontFamily="@font/lato_regular"
+			android:maxLines="@integer/_int1"
+			android:text="@string/price"
+			android:textColor="@color/dark_grey"
+			android:textSize="@dimen/_12sp" />
+
+		<TextView
+			android:id="@+id/txt_prod_count"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/txt_parts_name"
+			android:layout_alignParentEnd="true"
+			android:layout_marginTop="@dimen/_10dp"
+			android:layout_marginEnd="@dimen/_10dp"
+			android:ellipsize="end"
+			android:fontFamily="@font/lato_regular"
+			android:maxLines="@integer/_int1"
+			android:text="@string/x_1"
+			android:textColor="@color/dark_grey"
+			android:textSize="@dimen/_12sp" />
+
+	</RelativeLayout>
+</androidx.cardview.widget.CardView>

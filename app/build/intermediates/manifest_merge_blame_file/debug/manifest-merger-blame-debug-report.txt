@@ -1,0 +1,599 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.triton.bertsproject"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml
+10
+11    <supports-screens
+11-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:6:5-10:40
+12        android:anyDensity="true"
+12-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:7:9-34
+13        android:largeScreens="true"
+13-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:8:9-36
+14        android:smallScreens="true"
+14-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:9:9-36
+15        android:xlargeScreens="true" />
+15-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:10:9-37
+16
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:12:5-79
+17-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:12:22-76
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:13:5-67
+18-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:13:22-64
+19
+20    <!-- Permission will be merged into the manifest of the hosting app. -->
+21    <!-- Is required to launch foreground extraction service for targetSdkVersion 28+. -->
+22    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+22-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:8:3-74
+22-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:8:20-72
+23    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+23-->[com.android.installreferrer:installreferrer:1.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\3a8acfd96715fe92a56cc0d1cfd3b026\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+23-->[com.android.installreferrer:installreferrer:1.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\3a8acfd96715fe92a56cc0d1cfd3b026\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+24
+25    <application
+25-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:15:5-291:19
+26        android:name="com.triton.bertsproject.app.App"
+26-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:16:9-32
+27        android:allowBackup="true"
+27-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:17:9-35
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.3.1] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\8dbd859d1cd89239b42e7382b4fc40d7\core-1.3.1\AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:icon="@mipmap/ic_launcher"
+30-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:18:9-43
+31        android:label="@string/app_name"
+31-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:19:9-41
+32        android:largeHeap="true"
+32-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:20:9-33
+33        android:requestLegacyExternalStorage="true"
+33-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:21:9-52
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:22:9-54
+35        android:screenOrientation="portrait"
+35-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:23:9-45
+36        android:supportsRtl="true"
+36-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:24:9-35
+37        android:testOnly="true"
+38        android:usesCleartextTraffic="true" >
+38-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:25:9-44
+39        <activity
+39-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:28:9-32:55
+40            android:name="com.triton.bertsproject.retailer.OrderDetailListActivity"
+40-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:28:19-67
+41            android:screenOrientation="portrait"
+41-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:29:13-49
+42            android:theme="@style/Theme.BertsProject.SearchProduct"
+42-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:30:13-68
+43            android:windowSoftInputMode="adjustPan" />
+43-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:31:13-52
+44        <activity
+44-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:33:9-38:56
+45            android:name="com.triton.bertsproject.retailer.RetailerProductListBasedOnCategActivity"
+45-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:34:13-77
+46            android:screenOrientation="portrait"
+46-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:35:13-49
+47            android:theme="@style/Theme.BertsProject.SearchProduct"
+47-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:36:13-68
+48            android:windowSoftInputMode="adjustPan" />
+48-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:37:13-52
+49        <activity
+49-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:39:9-44:56
+50            android:name="com.triton.bertsproject.retailer.RetailerProductListBasedOnMakeActivity"
+50-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:40:13-76
+51            android:screenOrientation="portrait"
+51-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:41:13-49
+52            android:theme="@style/Theme.BertsProject.SearchProduct"
+52-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:42:13-68
+53            android:windowSoftInputMode="adjustPan" />
+53-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:43:13-52
+54        <activity
+54-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:45:9-50:56
+55            android:name="com.triton.bertsproject.retailer.ShowAllChildMakesActivity"
+55-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:46:13-63
+56            android:screenOrientation="portrait"
+56-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:47:13-49
+57            android:theme="@style/Theme.BertsProject.SearchProduct"
+57-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:48:13-68
+58            android:windowSoftInputMode="adjustPan" />
+58-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:49:13-52
+59        <activity
+59-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:51:9-56:56
+60            android:name="com.triton.bertsproject.retailer.ShowAllChildMakesListActivity"
+60-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:52:13-67
+61            android:screenOrientation="portrait"
+61-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:53:13-49
+62            android:theme="@style/Theme.BertsProject.SearchProduct"
+62-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:54:13-68
+63            android:windowSoftInputMode="adjustPan" />
+63-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:55:13-52
+64        <activity
+64-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:57:9-62:56
+65            android:name="com.triton.bertsproject.retailer.ShowAllChildCategActivity"
+65-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:58:13-63
+66            android:screenOrientation="portrait"
+66-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:59:13-49
+67            android:theme="@style/Theme.BertsProject.SearchProduct"
+67-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:60:13-68
+68            android:windowSoftInputMode="adjustPan" />
+68-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:61:13-52
+69        <activity
+69-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:63:9-68:56
+70            android:name="com.triton.bertsproject.retailer.ShowAllParentMakesActivity"
+70-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:64:13-64
+71            android:screenOrientation="portrait"
+71-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:65:13-49
+72            android:theme="@style/Theme.BertsProject.SearchProduct"
+72-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:66:13-68
+73            android:windowSoftInputMode="adjustPan" />
+73-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:67:13-52
+74        <activity
+74-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:69:9-74:56
+75            android:name="com.triton.bertsproject.retailer.ShowAllBrandsActivity"
+75-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:70:13-59
+76            android:screenOrientation="portrait"
+76-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:71:13-49
+77            android:theme="@style/Theme.BertsProject.SearchProduct"
+77-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:72:13-68
+78            android:windowSoftInputMode="adjustPan" />
+78-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:73:13-52
+79        <activity
+79-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:75:9-80:56
+80            android:name="com.triton.bertsproject.retailer.ShowAllParentCategoriesActivity"
+80-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:76:13-69
+81            android:screenOrientation="portrait"
+81-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:77:13-49
+82            android:theme="@style/Theme.BertsProject.SearchProduct"
+82-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:78:13-68
+83            android:windowSoftInputMode="adjustPan" />
+83-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:79:13-52
+84        <activity
+84-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:81:9-86:56
+85            android:name="com.triton.bertsproject.retailer.SampleActivity"
+85-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:82:13-52
+86            android:screenOrientation="portrait"
+86-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:83:13-49
+87            android:theme="@style/Theme.BertsProject.SearchProduct"
+87-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:84:13-68
+88            android:windowSoftInputMode="adjustPan" />
+88-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:85:13-52
+89        <activity
+89-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:87:9-92:56
+90            android:name="com.triton.bertsproject.retailer.PaymentMethodActivity"
+90-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:88:13-59
+91            android:screenOrientation="portrait"
+91-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:89:13-49
+92            android:theme="@style/Theme.BertsProject.SearchProduct"
+92-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:90:13-68
+93            android:windowSoftInputMode="adjustPan" />
+93-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:91:13-52
+94        <activity
+94-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:93:9-98:56
+95            android:name="com.triton.bertsproject.retailer.CouponApplyDetailActivity"
+95-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:94:13-63
+96            android:screenOrientation="portrait"
+96-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:95:13-49
+97            android:theme="@style/Theme.BertsProject.SearchProduct"
+97-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:96:13-68
+98            android:windowSoftInputMode="adjustPan" />
+98-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:97:13-52
+99        <activity
+99-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:99:9-104:56
+100            android:name="com.triton.bertsproject.retailer.CheckoutScreenActivity"
+100-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:100:13-60
+101            android:screenOrientation="portrait"
+101-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:101:13-49
+102            android:theme="@style/Theme.BertsProject.SearchProduct"
+102-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:102:13-68
+103            android:windowSoftInputMode="adjustPan" />
+103-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:103:13-52
+104        <activity
+104-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:105:9-110:56
+105            android:name="com.triton.bertsproject.retailer.ShippingMethodActivity"
+105-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:106:13-60
+106            android:screenOrientation="portrait"
+106-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:107:13-49
+107            android:theme="@style/Parent"
+107-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:108:13-42
+108            android:windowSoftInputMode="adjustPan" />
+108-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:109:13-52
+109        <activity
+109-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:111:9-116:56
+110            android:name="com.triton.bertsproject.retailer.RetailerAllCategoriesActivity"
+110-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:112:13-67
+111            android:screenOrientation="portrait"
+111-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:113:13-49
+112            android:theme="@style/Theme.BertsProject.SearchProduct"
+112-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:114:13-68
+113            android:windowSoftInputMode="adjustPan" />
+113-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:115:13-52
+114        <activity
+114-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:117:9-122:56
+115            android:name="com.triton.bertsproject.retailer.RetailerSetttingsActivity"
+115-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:118:13-63
+116            android:screenOrientation="portrait"
+116-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:119:13-49
+117            android:theme="@style/Theme.BertsProject.SearchProduct"
+117-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:120:13-68
+118            android:windowSoftInputMode="adjustPan" />
+118-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:121:13-52
+119        <activity
+119-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:123:9-128:56
+120            android:name="com.triton.bertsproject.retailer.ProductDetailDescriptionActivity"
+120-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:124:13-70
+121            android:screenOrientation="portrait"
+121-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:125:13-49
+122            android:theme="@style/Theme.BertsProject.SearchProduct"
+122-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:126:13-68
+123            android:windowSoftInputMode="adjustPan" />
+123-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:127:13-52
+124        <activity
+124-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:129:9-134:56
+125            android:name="com.triton.bertsproject.retailer.AddVehicleActivity"
+125-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:130:13-56
+126            android:screenOrientation="portrait"
+126-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:131:13-49
+127            android:theme="@style/Customtheme"
+127-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:132:13-47
+128            android:windowSoftInputMode="adjustPan" />
+128-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:133:13-52
+129        <activity
+129-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:135:9-140:56
+130            android:name="com.triton.bertsproject.retailer.EditVehicleActivity"
+130-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:136:13-57
+131            android:screenOrientation="portrait"
+131-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:137:13-49
+132            android:theme="@style/Customtheme"
+132-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:138:13-47
+133            android:windowSoftInputMode="adjustPan" />
+133-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:139:13-52
+134        <activity
+134-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:141:9-146:56
+135            android:name="com.triton.bertsproject.retailer.RetailerReceiptActivity"
+135-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:142:13-61
+136            android:screenOrientation="portrait"
+136-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:143:13-49
+137            android:theme="@style/Customtheme"
+137-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:144:13-47
+138            android:windowSoftInputMode="adjustPan" />
+138-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:145:13-52
+139        <activity
+139-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:147:9-152:56
+140            android:name="com.triton.bertsproject.retailer.ChangePasswordActivity"
+140-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:148:13-60
+141            android:screenOrientation="portrait"
+141-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:149:13-49
+142            android:theme="@style/Customtheme"
+142-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:150:13-47
+143            android:windowSoftInputMode="adjustPan" />
+143-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:151:13-52
+144        <activity
+144-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:153:9-167:20
+145            android:name="com.triton.bertsproject.retailer.FilterlistActivity"
+145-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:154:13-56
+146            android:screenOrientation="portrait"
+146-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:155:13-49
+147            android:theme="@style/Customtheme"
+147-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:156:13-47
+148            android:windowSoftInputMode="adjustPan" >
+148-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:157:13-52
+149
+150            <!--
+151                 <intent-filter>
+152             <action android:name="android.intent.action.MAIN" />
+153
+154
+155             <category android:name="android.intent.category.LAUNCHER" />
+156             </intent-filter>
+157            -->
+158
+159        </activity>
+160        <activity
+160-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:168:9-173:56
+161            android:name="com.triton.bertsproject.retailer.ShippingAddressAddActivity"
+161-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:169:13-64
+162            android:screenOrientation="portrait"
+162-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:170:13-49
+163            android:theme="@style/Theme.BertsProject"
+163-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:171:13-54
+164            android:windowSoftInputMode="adjustPan" />
+164-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:172:13-52
+165        <activity
+165-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:174:9-179:56
+166            android:name="com.triton.bertsproject.retailer.ShippingAddressEditActivity"
+166-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:175:13-65
+167            android:screenOrientation="portrait"
+167-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:176:13-49
+168            android:theme="@style/Theme.BertsProject"
+168-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:177:13-54
+169            android:windowSoftInputMode="adjustPan" />
+169-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:178:13-52
+170        <activity
+170-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:180:9-185:56
+171            android:name="com.triton.bertsproject.retailer.ShippingAddressActivity"
+171-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:181:13-61
+172            android:screenOrientation="portrait"
+172-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:182:13-49
+173            android:theme="@style/Customtheme"
+173-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:183:13-47
+174            android:windowSoftInputMode="adjustPan" />
+174-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:184:13-52
+175        <activity
+175-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:186:9-191:56
+176            android:name="com.triton.bertsproject.retailer.RetailerProfileAccountActivity"
+176-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:187:13-68
+177            android:screenOrientation="portrait"
+177-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:188:13-49
+178            android:theme="@style/Customtheme"
+178-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:189:13-47
+179            android:windowSoftInputMode="adjustPan" />
+179-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:190:13-52
+180        <activity
+180-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:192:9-197:56
+181            android:name="com.triton.bertsproject.retailer.MyWishlistActivity"
+181-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:193:13-56
+182            android:screenOrientation="portrait"
+182-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:194:13-49
+183            android:theme="@style/Theme.BertsProject.Cart"
+183-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:195:13-59
+184            android:windowSoftInputMode="adjustPan" />
+184-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:196:13-52
+185        <activity
+185-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:198:9-203:56
+186            android:name="com.triton.bertsproject.retailer.RetailerOrderTrackActivity"
+186-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:199:13-64
+187            android:screenOrientation="portrait"
+187-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:200:13-49
+188            android:theme="@style/Theme.BertsProject.Cart"
+188-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:201:13-59
+189            android:windowSoftInputMode="adjustPan" />
+189-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:202:13-52
+190        <activity
+190-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:204:9-209:56
+191            android:name="com.triton.bertsproject.retailer.OrderListActivity"
+191-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:205:13-55
+192            android:screenOrientation="portrait"
+192-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:206:13-49
+193            android:theme="@style/Theme.BertsProject.Cart"
+193-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:207:13-59
+194            android:windowSoftInputMode="adjustPan" />
+194-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:208:13-52
+195        <activity
+195-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:210:9-215:56
+196            android:name="com.triton.bertsproject.retailer.RetailerCartActivity"
+196-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:211:13-58
+197            android:screenOrientation="portrait"
+197-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:212:13-49
+198            android:theme="@style/Theme.BertsProject.Cart"
+198-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:213:13-59
+199            android:windowSoftInputMode="adjustPan" />
+199-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:214:13-52
+200        <activity
+200-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:216:9-221:56
+201            android:name="com.triton.bertsproject.retailer.SearchProductListActivity"
+201-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:217:13-63
+202            android:screenOrientation="portrait"
+202-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:218:13-49
+203            android:theme="@style/Theme.BertsProject.SearchProduct"
+203-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:219:13-68
+204            android:windowSoftInputMode="adjustPan" />
+204-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:220:13-52
+205        <activity
+205-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:222:9-227:56
+206            android:name="com.triton.bertsproject.retailer.RetailerProductListActivity"
+206-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:223:13-65
+207            android:screenOrientation="portrait"
+207-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:224:13-49
+208            android:theme="@style/Theme.BertsProject.SearchProduct"
+208-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:225:13-68
+209            android:windowSoftInputMode="adjustPan" />
+209-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:226:13-52
+210        <activity
+210-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:228:9-233:56
+211            android:name="com.triton.bertsproject.retailer.SearchProductsActivity"
+211-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:229:13-60
+212            android:screenOrientation="portrait"
+212-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:230:13-49
+213            android:theme="@style/Theme.BertsProject.SearchProduct"
+213-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:231:13-68
+214            android:windowSoftInputMode="adjustPan" />
+214-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:232:13-52
+215        <activity
+215-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:234:9-239:56
+216            android:name="com.triton.bertsproject.retailer.RetailerDashboardActivity"
+216-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:235:13-63
+217            android:screenOrientation="portrait"
+217-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:236:13-49
+218            android:theme="@style/Parent"
+218-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:237:13-42
+219            android:windowSoftInputMode="adjustPan" />
+219-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:238:13-52
+220        <activity
+220-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:240:9-245:56
+221            android:name="com.triton.bertsproject.activities.ForgetPasswordActivity"
+221-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:241:13-62
+222            android:screenOrientation="portrait"
+222-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:242:13-49
+223            android:theme="@style/Customtheme"
+223-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:243:13-47
+224            android:windowSoftInputMode="adjustPan" />
+224-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:244:13-52
+225        <activity
+225-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:246:9-251:56
+226            android:name="com.triton.bertsproject.activities.RegisterActivity"
+226-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:247:13-56
+227            android:screenOrientation="portrait"
+227-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:248:13-49
+228            android:theme="@style/Customtheme"
+228-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:249:13-47
+229            android:windowSoftInputMode="adjustPan" />
+229-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:250:13-52
+230        <activity
+230-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:252:9-263:20
+231            android:name="com.triton.bertsproject.activities.SplashActivity"
+231-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:253:13-54
+232            android:screenOrientation="portrait"
+232-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:254:13-49
+233            android:theme="@style/Customtheme"
+233-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:255:13-47
+234            android:windowSoftInputMode="adjustPan" >
+234-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:256:13-52
+235            <intent-filter>
+235-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:258:13-262:29
+236                <action android:name="android.intent.action.MAIN" />
+236-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:259:17-69
+236-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:259:25-66
+237
+238                <category android:name="android.intent.category.LAUNCHER" />
+238-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:261:17-77
+238-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:261:27-74
+239            </intent-filter>
+240        </activity>
+241        <activity
+241-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:264:9-269:56
+242            android:name="com.triton.bertsproject.activities.LoginActivity"
+242-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:265:13-53
+243            android:screenOrientation="portrait"
+243-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:266:13-49
+244            android:theme="@style/Customtheme"
+244-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:267:13-47
+245            android:windowSoftInputMode="adjustPan" />
+245-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:268:13-52
+246
+247        <meta-data
+247-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:271:9-273:55
+248            android:name="com.facebook.sdk.ApplicationId"
+248-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:272:13-58
+249            android:value="@string/facebook_app_id" />
+249-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:273:13-52
+250
+251        <activity
+251-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:275:9-278:48
+252            android:name="com.facebook.FacebookActivity"
+252-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:276:13-57
+253            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+253-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:277:13-96
+254            android:label="@string/app_name"
+254-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:278:13-45
+255            android:theme="@style/com_facebook_activity_theme" />
+255-->[com.facebook.android:facebook-common:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\7b3a0b24c505cfab5f35d12434496a64\jetified-facebook-common-5.15.3\AndroidManifest.xml:33:13-63
+256        <activity
+256-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:279:9-290:20
+257            android:name="com.facebook.CustomTabActivity"
+257-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:280:13-58
+258            android:exported="true" >
+258-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:281:13-36
+259            <intent-filter>
+259-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:282:13-289:29
+260                <action android:name="android.intent.action.VIEW" />
+260-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:283:17-69
+260-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:283:25-66
+261
+262                <category android:name="android.intent.category.DEFAULT" />
+262-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:285:17-76
+262-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:285:27-73
+263                <category android:name="android.intent.category.BROWSABLE" />
+263-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:286:17-78
+263-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:286:27-75
+264
+265                <data android:scheme="@string/fb_login_protocol_scheme" />
+265-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:288:17-75
+265-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:288:23-72
+266            </intent-filter>
+267            <intent-filter>
+267-->[com.facebook.android:facebook-common:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\7b3a0b24c505cfab5f35d12434496a64\jetified-facebook-common-5.15.3\AndroidManifest.xml:39:13-48:29
+268                <action android:name="android.intent.action.VIEW" />
+268-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:283:17-69
+268-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:283:25-66
+269
+270                <category android:name="android.intent.category.DEFAULT" />
+270-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:285:17-76
+270-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:285:27-73
+271                <category android:name="android.intent.category.BROWSABLE" />
+271-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:286:17-78
+271-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:286:27-75
+272
+273                <data
+273-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:288:17-75
+274                    android:host="cct.com.triton.bertsproject"
+275                    android:scheme="fbconnect" />
+275-->D:\Workspace\BertsProject\app\src\main\AndroidManifest.xml:288:23-72
+276            </intent-filter>
+277        </activity>
+278        <activity android:name="com.facebook.CustomTabMainActivity" />
+278-->[com.facebook.android:facebook-common:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\7b3a0b24c505cfab5f35d12434496a64\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:9-71
+278-->[com.facebook.android:facebook-common:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\7b3a0b24c505cfab5f35d12434496a64\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:19-68
+279        <!--
+280         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+281         with the application context. This config is merged in with the host app's manifest,
+282         but there can only be one provider with the same authority activated at any given
+283         point; so if the end user has two or more different apps that use Facebook SDK, only the
+284         first one will be able to use the provider. To work around this problem, we use the
+285         following placeholder in the authority to identify each host application as if it was
+286         a completely different provider.
+287        -->
+288        <provider
+288-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:39:9-42:40
+289            android:name="com.facebook.internal.FacebookInitProvider"
+289-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:40:13-70
+290            android:authorities="com.triton.bertsproject.FacebookInitProvider"
+290-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:41:13-72
+291            android:exported="false" />
+291-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:42:13-37
+292
+293        <receiver
+293-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:44:9-50:20
+294            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+294-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:45:13-86
+295            android:exported="false" >
+295-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:46:13-37
+296            <intent-filter>
+296-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:47:13-49:29
+297                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+297-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:17-95
+297-->[com.facebook.android:facebook-core:5.15.3] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\babd47b4d45dd3d3c4059bc771915e81\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:25-92
+298            </intent-filter>
+299        </receiver> <!-- The activities will be merged into the manifest of the hosting app. -->
+300        <activity
+300-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:5-271
+301            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+301-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:15-102
+302            android:enabled="false"
+302-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:103-126
+303            android:exported="false"
+303-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:127-151
+304            android:launchMode="singleInstance"
+304-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:204-239
+305            android:process=":playcore_missing_splits_activity"
+305-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:152-203
+306            android:stateNotNeeded="true" />
+306-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:12:240-269
+307        <activity
+307-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:5-226
+308            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+308-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:15-95
+309            android:enabled="false"
+309-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:96-119
+310            android:exported="false"
+310-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:120-144
+311            android:stateNotNeeded="true"
+311-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:145-174
+312            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The service will be merged into the manifest of the hosting app. -->
+312-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:13:175-224
+313        <service
+313-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:16:5-145
+314            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+314-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:16:14-95
+315            android:enabled="false"
+315-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:16:96-119
+316            android:exported="true" />
+316-->[com.google.android.play:core:1.8.0] C:\Users\santh\.gradle\caches\transforms-2\files-2.1\6a74f0f02d3ef4aa5a8a18cdb59244ba\jetified-core-1.8.0\AndroidManifest.xml:16:120-143
+317    </application>
+318
+319</manifest>

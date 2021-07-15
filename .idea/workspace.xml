@@ -5,53 +5,184 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4500819-6bbe-42f2-b785-80183b8c2a51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorPrescriptionDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/DoctorPrescriptionDetailsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/doctor/PrescriptionActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/PrescriptionFetchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petfolio/infinituss/responsepojo/PrescriptionFetchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_prescription_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_doctor_prescription_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-    </list>
+    <list default="true" id="be77938c-2c0e-4b64-872c-18e75b4f06f7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\santh\.android\avd\5.1_WVGA_API_30_6.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BertsProject" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BertsProject" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BertsProject" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
-  <component name="ProjectId" id="1vJTp3kEuSJCK81hZ2oDH3gm6kV" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="1q9llGZQkR64RFeL65yyBjdaqyh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-16T11:34:47.641041100Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-viewC:/Users/santh/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/androidx/cardview/widget/CardView.java_SELECTED" value="CardView" />
+    <property name="android-custom-viewC:/Users/santh/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-viewC:/Users/santh/.gradle/caches/modules-2/files-2.1/com.github.ybq/Android-SpinKit/1.4.0/f58852551150babe66d223b0c3107ecece8eff7f/Android-SpinKit-1.4.0-sources.jar!/com/github/ybq/android/spinkit/SpinKitView.java_SELECTED" value="SpinKitView" />
+    <property name="android-custom-viewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/customView/CustomEditText.java_SELECTED" value="CustomEditText" />
+    <property name="android-custom-viewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/customView/CustomTextarea.java_SELECTED" value="CustomTextarea" />
+    <property name="android-custom-viewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/utils/RoundedCornerImageView.java_SELECTED" value="RoundRectCornerImageView" />
+    <property name="android-custom-viewD:/sdk/sources/android-28/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewD:/sdk/sources/android-28/android/widget/CompoundButton.java_SELECTED" value="CompoundButton" />
+    <property name="android-custom-viewD:/sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewD:/sdk/sources/android-30/android/widget/LinearLayout.java_SELECTED" value="LinearLayout" />
+    <property name="android-custom-viewD:/sdk/sources/android-30/android/widget/TextView.java_SELECTED" value="TextView" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="multi-representation-previewC:/Users/santh/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/androidx/cardview/widget/CardView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/customView/CustomEditText.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/customView/CustomTextarea.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Workspace/BertsProject/app/src/main/java/com/triton/bertsproject/utils/RoundedCornerImageView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/sdk/sources/android-30/android/widget/LinearLayout.java_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.petfolio.infinituss.responsepojo" />
+    <key name="android.template.-1865872857">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-516327407">
+      <recent name="com.triton.bertsproject.retailer" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Wed14\app\src\main\res\layout" />
-      <recent name="D:\Workspace\Petfolio_Andriod_Dev_Wed14\app\src\main\java\com\petfolio\infinituss\doctor" />
+      <recent name="D:\Workspace\BertsProject\app\src\main\res\layout" />
+      <recent name="D:\Workspace\BertsProject\app\src\main\res\drawable" />
+      <recent name="D:\Workspace\BertsProject\app\src\main\java\com\triton\bertsproject" />
+      <recent name="D:\Workspace\BertsProject\app\src\main\res\values" />
+      <recent name="D:\Workspace\BertsProject\app\src\main\java\com\triton\bertsproject\adapter" />
     </key>
+    <key name="android.template.2052238705">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1643683297">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.1849795793">
+      <recent name="com.triton.bertsproject.activities" />
+      <recent name="com.triton.bertsproject" />
+    </key>
+    <key name="android.template.-1922022028">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1224234381">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1549758946">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.7972722">
+      <recent name="com.triton.bertsproject.activities" />
+    </key>
+    <key name="android.template.-395323783">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.2145212326">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1687636461">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1534217382">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1483949449">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workspace\BertsProject\app\src\main\res\drawable" />
+    </key>
+    <key name="android.template.-2081321107">
+      <recent name="com.triton.bertsproject.fragment" />
+    </key>
+    <key name="android.template.38968534">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-1363301434">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.438786722">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.triton.bertsproject.interfaces" />
+      <recent name="com.triton.bertsproject.responsepojo" />
+      <recent name="com.triton.bertsproject.requestpojo" />
+      <recent name="com.triton.bertsproject.adapter" />
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.1299025605">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+    <key name="android.template.-728976159">
+      <recent name="com.triton.bertsproject.retailer" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="open BertsProject" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -61,8 +192,8 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="PetFolio.app" />
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="BertsProject.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -121,14 +252,153 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d4500819-6bbe-42f2-b785-80183b8c2a51" name="Default Changelist" comment="" />
-      <created>1626279371771</created>
+      <changelist id="be77938c-2c0e-4b64-872c-18e75b4f06f7" name="Default Changelist" comment="" />
+      <created>1616499835586</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1626279371771</updated>
+      <updated>1616499835586</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="158" y="107" key="#PSD" timestamp="1619105302001">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="158" y="107" key="#PSD/0.0.1280.720@0.0.1280.720" timestamp="1619105302001" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623074356244">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1622115976391" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1623074356244" />
+    <state x="446" y="0" width="388" height="720" key="#com.intellij.ide.util.MemberChooser" timestamp="1624190588274">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="446" y="0" width="388" height="720" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1624190588274" />
+    <state x="265" y="285" width="739" height="150" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1626368041714">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="265" y="269" width="730" height="149" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1622119352913" />
+    <state x="265" y="285" width="739" height="150" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1626368041714" />
+    <state x="424" y="229" width="522" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1623349526143">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="424" y="229" width="522" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1623349526143" />
+    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619081244173">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1619081244173" />
+    <state x="100" y="100" width="1080" height="520" key="AVDManager" timestamp="1624211801477">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="100" y="100" width="1080" height="520" key="AVDManager/0.0.1280.720@0.0.1280.720" timestamp="1624211801477" />
+    <state x="221" y="115" key="AndroidCreateResourceFileDialog" timestamp="1623233103834">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="221" y="115" key="AndroidCreateResourceFileDialog/0.0.1280.720@0.0.1280.720" timestamp="1623233103834" />
+    <state x="488" y="164" key="AndroidCreateXmlResourceDialog" timestamp="1626364877771">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="488" y="164" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1626364877771" />
+    <state x="438" y="107" key="AndroidProcessChooserDialog" timestamp="1623938561520">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="438" y="107" key="AndroidProcessChooserDialog/0.0.1280.720@0.0.1280.720" timestamp="1623938561520" />
+    <state x="421" y="115" key="FileChooserDialogImpl" timestamp="1623049477752">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1623049477752" />
+    <state width="1237" height="400" key="GridCell.Tab.0.bottom" timestamp="1626367993564">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="347" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
+    <state width="1237" height="400" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626367993564" />
+    <state width="1237" height="400" key="GridCell.Tab.0.center" timestamp="1626367993564">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="347" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
+    <state width="1237" height="400" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626367993564" />
+    <state width="1237" height="400" key="GridCell.Tab.0.left" timestamp="1626367993564">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="347" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
+    <state width="1237" height="400" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626367993564" />
+    <state width="1237" height="400" key="GridCell.Tab.0.right" timestamp="1626367993564">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="347" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
+    <state width="1237" height="400" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626367993564" />
+    <state width="1237" height="248" key="GridCell.Tab.1.bottom" timestamp="1623767444260">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="248" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1623767444260" />
+    <state width="1237" height="248" key="GridCell.Tab.1.center" timestamp="1623767444259">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="248" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1623767444259" />
+    <state width="1237" height="248" key="GridCell.Tab.1.left" timestamp="1623767444259">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="248" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1623767444259" />
+    <state width="1237" height="248" key="GridCell.Tab.1.right" timestamp="1623767444260">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="248" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1623767444260" />
+    <state x="142" y="5" key="SettingsEditor" timestamp="1623075480061">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1623075480061" />
+    <state width="498" height="473" key="SwitcherDM" timestamp="1623047705744">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1280.680@0.0.1280.680" timestamp="1622101844108" />
+    <state width="498" height="473" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1623047705744" />
+    <state x="273" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1624215693658">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="273" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1622115222094" />
+    <state x="273" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1624215693658" />
+    <state x="455" y="195" width="953" height="706" key="dock-window-1" timestamp="1619608262508">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="455" y="195" width="953" height="706" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1619608262508" />
+    <state x="346" y="93" width="589" height="534" key="find.popup" timestamp="1626243415541">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="346" y="93" width="589" height="534" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1626243415541" />
+    <state x="472" y="118" key="refactoring.ChangeSignatureDialog" timestamp="1624257655049">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="472" y="118" key="refactoring.ChangeSignatureDialog/0.0.1280.720@0.0.1280.720" timestamp="1624257655049" />
+    <state x="298" y="161" width="672" height="677" key="run.anything.popup" timestamp="1626366762785">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="298" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1626366762785" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626367989556">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1622131785060" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626367989556" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/triton/bertsproject/retailerfragment/HomeFragment.java</url>
+          <line>582</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/triton/bertsproject/retailer/FilterlistActivity.java</url>
+          <line>1265</line>
+          <properties class="com.triton.bertsproject.retailer.FilterlistActivity" method="getBrandIDListener" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

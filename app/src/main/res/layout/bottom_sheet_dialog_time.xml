@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_edt_white"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="60dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20dp"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/image_description"
+            android:src="@drawable/rect_line" />
+
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/lato_bold"
+            android:padding="@dimen/_5dp"
+            android:text="@string/time_format"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGrouptime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonampm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:fontFamily="@font/lato_bold"
+                android:paddingStart="10dip"
+                android:paddingEnd="10dip"
+                android:text="@string/am_pm" />
+
+            <RadioButton
+                android:id="@+id/radioButton25h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:drawablePadding="50dp"
+                android:fontFamily="@font/lato_bold"
+                android:paddingStart="10dip"
+                android:paddingEnd="10dip"
+                android:text="@string/_25h" />
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>
