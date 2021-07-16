@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,14 +32,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.triton.bertsproject.R;
 import com.triton.bertsproject.activities.LoginActivity;
+import com.triton.bertsproject.activities.RegisterActivity;
 import com.triton.bertsproject.adapter.RetailerProductListAdapter;
 import com.triton.bertsproject.api.APIClient;
 import com.triton.bertsproject.api.RestApiInterface;
+import com.triton.bertsproject.interfaces.AddProductListener;
 import com.triton.bertsproject.interfaces.ProductListener;
 import com.triton.bertsproject.interfaces.WishlistAddProductListener;
 import com.triton.bertsproject.model.RetailerProductlistModel;
+import com.triton.bertsproject.requestpojo.AddToCartRequest;
 import com.triton.bertsproject.requestpojo.AddWishistRequest;
 import com.triton.bertsproject.requestpojo.FetchProductBasedOnCatRequest;
+import com.triton.bertsproject.responsepojo.AddToCartResponse;
 import com.triton.bertsproject.responsepojo.ProductListResponse;
 import com.triton.bertsproject.responsepojo.WishlistSuccessResponse;
 import com.triton.bertsproject.sessionmanager.Connectivity;
@@ -58,7 +63,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RetailerProductListBasedOnCategActivity extends AppCompatActivity implements WishlistAddProductListener, ProductListener {
+public class RetailerProductListBasedOnCategActivity extends AppCompatActivity implements WishlistAddProductListener, ProductListener, AddProductListener {
 
     Context context = RetailerProductListBasedOnCategActivity.this;
 
@@ -591,7 +596,7 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
 
         rv_prodlist.setItemAnimator(new DefaultItemAnimator());
 
-        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnCategActivity.this, prdouctsBeanList, false,this,this);
+        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnCategActivity.this, prdouctsBeanList, false,this,this,this);
 
         rv_prodlist.setAdapter(retailerProductListAdapter);
 
@@ -665,7 +670,7 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
 
         rv_prodlist.setItemAnimator(new DefaultItemAnimator());
 
-        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnCategActivity.this, prdouctsBeanList,true,this,this);
+        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnCategActivity.this, prdouctsBeanList,true,this,this,this);
 
         rv_prodlist.setAdapter(retailerProductListAdapter);
 
@@ -764,13 +769,13 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
 
         else {
 
-            showAlert();
+            showLoginAlert();
         }
 
 
     }
 
-    private void showAlert() {
+    private void showLoginAlert() {
 
         AlertDialog.Builder builder=new AlertDialog.Builder(RetailerProductListBasedOnCategActivity.this);
         builder.setTitle("Alert");
@@ -858,4 +863,129 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
 
         startActivity(intent);
     }
+
+    @Override
+    public void addproductListener(String prod_id, String quantity, String unit_price, Button btn_addcart) {
+
+        if(sessionManager.isLoggedIn()){
+
+            if(dd4YouConfig.isInternetConnectivity()){
+
+                btn_addcart.setText("Added to Cart");
+
+                addcartlistResponseCall(prod_id,quantity,unit_price);
+            }
+
+            else {
+
+                callnointernet();
+            }
+        }
+
+        else {
+
+            showAlert();
+        }
+
+    }
+
+    private void showAlert() {
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(RetailerProductListBasedOnCategActivity.this);
+        builder.setTitle("Alert");
+        builder.setMessage("Please Login to add Products");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Login", (dialogInterface, i) -> {
+            Intent intent = new Intent(RetailerProductListBasedOnCategActivity.this, LoginActivity.class);
+
+            intent.putExtra("fromActivity",TAG);
+
+            startActivity(intent);
+        });
+        builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
+            Intent intent = new Intent(RetailerProductListBasedOnCategActivity.this, RegisterActivity.class);
+
+            intent.putExtra("fromActivity",TAG);
+
+            startActivity(intent);
+        });
+        builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
+
+
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    @SuppressLint("LongLogTag")
+    private void addcartlistResponseCall(String prod_id, String quantity, String unit_price) {
+
+        spin_kit_loadingView.setVisibility(View.VISIBLE);
+        //Creating an object of our api interface
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<AddToCartResponse> call = apiInterface.addcartlistResponseCall(RestUtils.getContentType(),AddToCartRequest(prod_id,quantity,unit_price));
+        Log.w(TAG,"AddToCartResponse url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<AddToCartResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NonNull Call<AddToCartResponse> call, @NonNull Response<AddToCartResponse> response) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+
+                    if(200==response.body().getCode()) {
+
+                        Log.w(TAG, "AddToCartResponse" + new Gson().toJson(response.body()));
+
+                        Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
+
+                      // fetchallproductsListResponseCall(searchString);
+
+                    }
+
+                    else {
+
+                        showErrorLoading(response.body().getMessage());
+
+                    }
+
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(@NonNull Call<AddToCartResponse> call,@NonNull  Throwable t) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+                Log.w(TAG,"AddToCartResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+    @SuppressLint("LongLogTag")
+    private AddToCartRequest AddToCartRequest(String prod_id, String quantity, String unit_price) {
+
+
+        /*
+         * USER_ID : 541
+         * PRODUCT_ID : 2
+         * QUANTITY : 1
+         * UNIT_PRICE : 50000
+         * MODE : ADDTOCART
+         */
+
+        AddToCartRequest AddToCartRequest = new AddToCartRequest();
+        AddToCartRequest.setUNIT_PRICE(unit_price);
+        AddToCartRequest.setQUANTITY(quantity);
+        AddToCartRequest.setPRODUCT_ID(prod_id);
+        AddToCartRequest.setUSER_ID(user_id);
+        AddToCartRequest.setMODE("ADDTOCART");
+
+        Log.w(TAG,"AddToCartRequest "+ new Gson().toJson(AddToCartRequest));
+        return AddToCartRequest;
+    }
+
 }

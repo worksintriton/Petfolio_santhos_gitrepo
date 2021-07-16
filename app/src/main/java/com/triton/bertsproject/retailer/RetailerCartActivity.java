@@ -3,7 +3,6 @@ package com.triton.bertsproject.retailer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,37 +27,29 @@ import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.triton.bertsproject.R;
 import com.triton.bertsproject.activities.LoginActivity;
 import com.triton.bertsproject.activities.RegisterActivity;
 import com.triton.bertsproject.adapter.CartProductListAdapter;
-import com.triton.bertsproject.adapter.MywishListAdapter;
 import com.triton.bertsproject.api.APIClient;
 import com.triton.bertsproject.api.RestApiInterface;
 import com.triton.bertsproject.interfaces.AddProductListener;
 import com.triton.bertsproject.interfaces.CartRemoveProductListener;
 import com.triton.bertsproject.interfaces.RemoveProductListener;
 import com.triton.bertsproject.model.DeleteCartListRequest;
-import com.triton.bertsproject.model.RetailerProductlistModel;
 import com.triton.bertsproject.requestpojo.AddToCartRequest;
 import com.triton.bertsproject.requestpojo.RemoveOverallProductsRequest;
-import com.triton.bertsproject.requestpojo.RemoveWishistRequest;
 import com.triton.bertsproject.requestpojo.RemovefromCartRequest;
 import com.triton.bertsproject.requestpojo.ShowCartListRequest;
-import com.triton.bertsproject.requestpojo.ShowWishistRequest;
 import com.triton.bertsproject.responsepojo.AddToCartResponse;
 import com.triton.bertsproject.responsepojo.RemoveOverallProductsResponse;
 import com.triton.bertsproject.responsepojo.RemovefromCartResponse;
 import com.triton.bertsproject.responsepojo.ShowCartListResponse;
-import com.triton.bertsproject.responsepojo.ShowCartListResponse;
 import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
-import com.triton.bertsproject.utils.SwipeToDeleteCallback;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -142,9 +132,9 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
     @BindView(R.id.cv_shipping)
     CardView cv_shipping;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.cv_shipcharge)
-    CardView cv_shipcharge;
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.cv_shipcharge)
+//    CardView cv_shipcharge;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.cv_price)
@@ -317,7 +307,7 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
         cv_shipping.setVisibility(View.GONE);
 
-        cv_shipcharge.setVisibility(View.GONE);
+       // cv_shipcharge.setVisibility(View.GONE);
 
         ll_proceed.setVisibility(View.GONE);
 
@@ -522,7 +512,7 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
                             cv_shipping.setVisibility(View.VISIBLE);
 
-                            cv_shipcharge.setVisibility(View.VISIBLE);
+                     //       cv_shipcharge.setVisibility(View.VISIBLE);
 
                             ll_proceed.setVisibility(View.VISIBLE);
 
@@ -661,7 +651,7 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
                             cv_shipping.setVisibility(View.GONE);
 
-                            cv_shipcharge.setVisibility(View.GONE);
+                          //  cv_shipcharge.setVisibility(View.GONE);
 
                             ll_proceed.setVisibility(View.GONE);
 
@@ -934,7 +924,7 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
     }
 
     @Override
-    public void addproductListener(String prod_id, String quantity, String unit_price) {
+    public void addproductListener(String prod_id, String quantity, String unit_price, Button btn_addcart) {
 
         addcartlistResponseCall(prod_id,quantity,unit_price);
 

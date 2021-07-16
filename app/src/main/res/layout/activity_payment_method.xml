@@ -102,18 +102,26 @@
                     tools:ignore="UselessParent">
 
                     <RadioButton
-                        android:id="@+id/rdPaypal"
+                        android:id="@+id/rdpaymgtwy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/paypal"
+                        android:text="@string/payment_gateway"
                         android:textColor="@color/txt_common"
                         android:textSize="@dimen/_16sp" />
 
                     <RadioButton
-                        android:id="@+id/rdOffline"
+                        android:id="@+id/rdcreditlimit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/credit_value"
+                        android:textColor="@color/txt_common"
+                        android:textSize="@dimen/_16sp" />
+
+                    <RadioButton
+                        android:id="@+id/rdcod"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/offline_payment"
+                        android:text="@string/cod"
                         android:textColor="@color/txt_common"
                         android:textSize="@dimen/_16sp" />
                 </RadioGroup>
@@ -129,50 +137,65 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45dp"
-            android:layout_marginStart="@dimen/_20dp"
+        <Button
+            android:id="@+id/btn_payment_gateway"
+            android:layout_width="@dimen/_260dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20dp"
-            android:layout_marginEnd="@dimen/_20dp"
             android:layout_marginBottom="@dimen/_20dp"
-            android:background="@drawable/rectangle_corner_light_yellow_background"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:background="@drawable/rectangle_corner_yellow_background"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/select_payment_method"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/_14sp" />
 
-            <TextView
-                android:id="@+id/txt_checkout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp"
-                android:layout_weight="0.75"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/select_payment_method"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="@dimen/_14sp" />
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_payment_gateway"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_45dp"-->
+<!--            android:layout_marginStart="@dimen/_20dp"-->
+<!--            android:layout_marginTop="@dimen/_20dp"-->
+<!--            android:layout_marginEnd="@dimen/_20dp"-->
+<!--            android:layout_marginBottom="@dimen/_20dp"-->
+<!--            android:background="@drawable/rectangle_corner_light_yellow_background"-->
+<!--            android:orientation="horizontal"-->
+<!--            tools:ignore="UselessParent">-->
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
-                android:visibility="gone">
+<!--            <TextView-->
+<!--                android:id="@+id/txt_checkout"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_20dp"-->
+<!--                android:layout_marginTop="@dimen/_10dp"-->
+<!--                android:layout_weight="0.75"-->
+<!--                android:fontFamily="@font/lato_bold"-->
+<!--                android:text="@string/select_payment_method"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@color/dark_blue"-->
+<!--                android:textSize="@dimen/_14sp" />-->
 
-                <ImageView
-                    android:id="@+id/img_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/_10dp"
-                    android:layout_marginBottom="@dimen/_10dp"
-                    android:contentDescription="@string/image_description"
-                    android:src="@drawable/right_arrow" />
+<!--            <RelativeLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="0.25"-->
+<!--                android:visibility="gone">-->
 
-            </RelativeLayout>
+<!--                <ImageView-->
+<!--                    android:id="@+id/img_arrow"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginEnd="@dimen/_10dp"-->
+<!--                    android:layout_marginBottom="@dimen/_10dp"-->
+<!--                    android:contentDescription="@string/image_description"-->
+<!--                    android:src="@drawable/right_arrow" />-->
 
-        </LinearLayout>
+<!--            </RelativeLayout>-->
+
+<!--        </LinearLayout>-->
 
     </RelativeLayout>
 

@@ -357,7 +357,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_10dp"
-                                    android:layout_marginBottom="@dimen/_10dp">
+                                    android:layout_marginBottom="@dimen/_10dp"
+                                    android:visibility="gone">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -584,7 +585,7 @@
                                 tools:ignore="UseCompoundDrawables">
 
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="110dp"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
 
@@ -598,6 +599,17 @@
                                         android:textColor="@color/dark_grey"
                                         android:textSize="@dimen/_16sp" />
 
+                                    <TextView
+                                        android:id="@+id/txt_selectpymthd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_10dp"
+                                        android:layout_marginTop="@dimen/_5dp"
+                                        android:fontFamily="@font/lato_bold"
+                                        android:text="@string/_24_hours"
+                                        android:textColor="@color/light_grey"
+                                        android:textSize="@dimen/_12sp" />
+
                                 </LinearLayout>
 
                                 <RelativeLayout
@@ -606,6 +618,7 @@
                                     android:visibility="visible">
 
                                     <RelativeLayout
+                                        android:id="@+id/rl_payment_method"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentEnd="true"

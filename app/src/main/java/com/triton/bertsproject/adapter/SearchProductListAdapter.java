@@ -10,22 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
-import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.triton.bertsproject.R;
 import com.triton.bertsproject.interfaces.AddProductListener;
-import com.triton.bertsproject.interfaces.WishlistAddProductListener;
-import com.triton.bertsproject.model.RetailerProductlistModel;
 import com.triton.bertsproject.responsepojo.SearchProductsResponse;
 import com.triton.bertsproject.retailer.ProductDetailDescriptionActivity;
-import com.triton.bertsproject.retailer.RetailerProductListActivity;
 
 import java.util.List;
 
@@ -137,6 +131,13 @@ public class SearchProductListAdapter extends RecyclerView.Adapter<SearchProduct
 
         }
 
+        else {
+
+            String review = "(" +" 0 "+ ")";
+
+            holder.txt_total_reviews.setText(review);
+        }
+
         if (prdouctsBean.getPrice()!= null) {
 
             String price = "$ "+prdouctsBean.getPrice();
@@ -149,7 +150,7 @@ public class SearchProductListAdapter extends RecyclerView.Adapter<SearchProduct
             @Override
             public void onClick(View v) {
 
-                addProductListener.addproductListener(prdouctsBean.getId(),"1",prdouctsBean.getPrice());
+                addProductListener.addproductListener(prdouctsBean.getId(),"1",prdouctsBean.getPrice(), holder.btn_addcart);
 
             }
         });

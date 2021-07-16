@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,11 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,8 +28,6 @@ import com.google.gson.Gson;
 import com.triton.bertsproject.R;
 import com.triton.bertsproject.activities.LoginActivity;
 import com.triton.bertsproject.activities.RegisterActivity;
-import com.triton.bertsproject.adapter.RetailerProductListAdapter;
-import com.triton.bertsproject.adapter.SearchFilterlistAdapter;
 import com.triton.bertsproject.adapter.SearchProductListAdapter;
 import com.triton.bertsproject.api.APIClient;
 import com.triton.bertsproject.api.RestApiInterface;
@@ -44,10 +41,8 @@ import com.triton.bertsproject.responsepojo.AddToCartResponse;
 import com.triton.bertsproject.responsepojo.FilterResponse;
 import com.triton.bertsproject.responsepojo.SearchProductsResponse;
 import com.triton.bertsproject.sessionmanager.SessionManager;
-import com.triton.bertsproject.utils.GridSpacingItemDecoration;
 import com.triton.bertsproject.utils.RestUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -431,7 +426,7 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
     }
 
     @Override
-    public void addproductListener(String prod_id, String quantity, String unit_price) {
+    public void addproductListener(String prod_id, String quantity, String unit_price, Button btn_addcart) {
 
         if(sessionManager.isLoggedIn()){
 

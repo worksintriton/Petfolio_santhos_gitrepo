@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
+import androidx.appcompat.widget.SwitchCompat;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import com.github.ybq.android.spinkit.SpinKitView;
@@ -35,9 +36,7 @@ public class RetailerSetttingsActivity_ViewBinding implements Unbinder {
     target.txt_toolbar_title = Utils.findRequiredViewAsType(source, R.id.txt_toolbar_title, "field 'txt_toolbar_title'", TextView.class);
     target.rl_lang = Utils.findRequiredViewAsType(source, R.id.rl_lang, "field 'rl_lang'", RelativeLayout.class);
     target.rl_currncy = Utils.findRequiredViewAsType(source, R.id.rl_currncy, "field 'rl_currncy'", RelativeLayout.class);
-    target.rl_date = Utils.findRequiredViewAsType(source, R.id.rl_date, "field 'rl_date'", RelativeLayout.class);
-    target.rl_time = Utils.findRequiredViewAsType(source, R.id.rl_time, "field 'rl_time'", RelativeLayout.class);
-    target.rl_measurment_unit = Utils.findRequiredViewAsType(source, R.id.rl_measurment_unit, "field 'rl_measurment_unit'", RelativeLayout.class);
+    target.swcm_push_notifn = Utils.findRequiredViewAsType(source, R.id.swcm_push_notifn, "field 'swcm_push_notifn'", SwitchCompat.class);
   }
 
   @Override
@@ -54,8 +53,6 @@ public class RetailerSetttingsActivity_ViewBinding implements Unbinder {
     target.txt_toolbar_title = null;
     target.rl_lang = null;
     target.rl_currncy = null;
-    target.rl_date = null;
-    target.rl_time = null;
-    target.rl_measurment_unit = null;
+    target.swcm_push_notifn = null;
   }
 }

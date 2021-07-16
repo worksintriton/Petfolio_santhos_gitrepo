@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.triton.bertsproject.R;
+import com.triton.bertsproject.interfaces.AddProductListener;
 import com.triton.bertsproject.interfaces.ProductListener;
 import com.triton.bertsproject.interfaces.WishlistAddProductListener;
 import com.triton.bertsproject.model.RetailerProductlistModel;
@@ -36,13 +38,14 @@ public class RetailerProductListAdapter extends RecyclerView.Adapter<RetailerPro
     ProductListener productListener;
 
     private final static String TAG = "RetailerProductListAdapter";
+    AddProductListener addProductListener;
 
-
-    public RetailerProductListAdapter(Context context,List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList , boolean check, WishlistAddProductListener wishlistAddProductListener, ProductListener productListener) {
+    public RetailerProductListAdapter(Context context,List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList , boolean check, WishlistAddProductListener wishlistAddProductListener, ProductListener productListener,AddProductListener addProductListener) {
         this.context = context;
         this.prdouctsBeanList = prdouctsBeanList ;
         this.check = check;
         this.wishlistAddProductListener=wishlistAddProductListener;
+        this.addProductListener = addProductListener;
         this.productListener = productListener;
 
     }
@@ -180,6 +183,15 @@ public class RetailerProductListAdapter extends RecyclerView.Adapter<RetailerPro
             }
         });
 
+        holder.btn_addcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                addProductListener.addproductListener(prdouctsBean.getId(),"1",prdouctsBean.getPrice(),holder.btn_addcart);
+
+            }
+        });
+
         holder.cv_root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +255,7 @@ public class RetailerProductListAdapter extends RecyclerView.Adapter<RetailerPro
         LinearLayout ll_product_status;
         public ImageView hand_img1,hand_img2,hand_img3,hand_img4,hand_img5;
         CardView cv_root;
+        Button btn_addcart;
 
         public ShoplistHolder(View itemView) {
             super(itemView);
@@ -254,6 +267,8 @@ public class RetailerProductListAdapter extends RecyclerView.Adapter<RetailerPro
             txt_parts_name = itemView.findViewById(R.id.txt_parts_name);
 
             cv_root = itemView.findViewById(R.id.cv_root);
+
+            btn_addcart = itemView.findViewById(R.id.btn_addcart);
 
 //            ratingBar = itemView.findViewById(R.id.ratingBar);
 

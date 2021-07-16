@@ -88,13 +88,19 @@ public class VehicletListAdapter extends RecyclerView.Adapter<VehicletListAdapte
 
         holder.txt_select_vehc2.setText(year + " " + make_name +" "+ model_name);
 
+        holder.txt_select_vehc3.setVisibility(View.INVISIBLE);
+
         if(addvehicleBean.getAv_default().equals("1")){
+
+            holder.txt_select_vehc.setText("Selected Vehicle");
 
             holder.txt_select_vehc.setTextColor(context.getResources().getColor(R.color.white));
 
             holder.txt_select_vehc2.setTextColor(context.getResources().getColor(R.color.white));
 
-            holder.txt_select_vehc3.setTextColor(context.getResources().getColor(R.color.white));
+            holder.txt_select_vehc3.setVisibility(View.INVISIBLE);
+
+            //holder.txt_select_vehc3.setTextColor(context.getResources().getColor(R.color.white));
 
             holder.img_vehc_icon.setImageResource(R.drawable.tick);
 

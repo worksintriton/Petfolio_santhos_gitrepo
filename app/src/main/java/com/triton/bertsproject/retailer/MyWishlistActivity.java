@@ -299,7 +299,20 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
 
                         rv_productlist.setVisibility(View.GONE);
 
-                        txt_no_records.setText("No Products Found");
+                        txt_no_records.setVisibility(View.VISIBLE);
+
+                        btn_continue_shop.setVisibility(View.VISIBLE);
+
+                        txt_no_records.setText("Your wishlist seems empty!");
+
+                        btn_continue_shop.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                callDirections("2");
+
+                            }
+                        });
                     }
 
                 }

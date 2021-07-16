@@ -346,6 +346,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5dp"
                             android:padding="@dimen/_10dp"
+                            android:visibility="gone"
                             tools:ignore="RtlSymmetry">
 
                             <TextView
@@ -378,7 +379,8 @@
                             android:layout_marginStart="@dimen/_20dp"
                             android:layout_marginTop="@dimen/_5dp"
                             android:layout_marginEnd="@dimen/_20dp"
-                            android:background="@color/background_color" />
+                            android:background="@color/background_color"
+                            android:visibility="gone" />
 
                         <RelativeLayout
                             android:id="@+id/rl_time"
@@ -386,6 +388,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5dp"
                             android:padding="@dimen/_10dp"
+                            android:visibility="gone"
                             tools:ignore="RtlSymmetry">
 
                             <TextView
@@ -419,7 +422,8 @@
                             android:layout_marginStart="@dimen/_20dp"
                             android:layout_marginTop="@dimen/_5dp"
                             android:layout_marginEnd="@dimen/_20dp"
-                            android:background="@color/background_color" />
+                            android:background="@color/background_color"
+                            android:visibility="gone" />
 
                         <RelativeLayout
                             android:id="@+id/rl_measurment_unit"
@@ -428,6 +432,7 @@
                             android:layout_marginTop="@dimen/_5dp"
                             android:layout_marginBottom="@dimen/_10dp"
                             android:padding="@dimen/_10dp"
+                            android:visibility="gone"
                             tools:ignore="RtlSymmetry">
 
                             <TextView
@@ -475,14 +480,28 @@
                                 android:textSize="@dimen/_16sp"
                                 tools:ignore="RelativeOverlap" />
 
-                            <ImageView
-                                android:id="@+id/img_arrowwrit18"
-                                android:layout_width="@dimen/_60dp"
-                                android:layout_height="@dimen/_30dp"
+<!--                            <ImageView-->
+<!--                                android:id="@+id/img_arrowwrit18"-->
+<!--                                android:layout_width="@dimen/_60dp"-->
+<!--                                android:layout_height="@dimen/_30dp"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_marginEnd="@dimen/margin_common"-->
+<!--                                android:contentDescription="@string/image_description"-->
+<!--                                android:src="@drawable/push_notifcation" />-->
+
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/swcm_push_notifn"
+                                android:layout_width="@dimen/_150dp"
+                                android:layout_height="@dimen/_0dp"
+                                android:thumb="@drawable/thumb"
                                 android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="@dimen/margin_common"
-                                android:contentDescription="@string/image_description"
-                                android:src="@drawable/push_notifcation" />
+                                app:track="@drawable/track"
+                                app:showText="false"
+                                android:textOn=""
+                                android:textOff=""/>
+
+
 
                         </RelativeLayout>
 

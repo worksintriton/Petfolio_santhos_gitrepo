@@ -87,4 +87,5 @@
     <dimen name="_165dp">165dp</dimen>
 
     <dimen name="width_appoitmentdetails">135dp</dimen>
+    <dimen name="_260dp">260dp</dimen>
 </resources>

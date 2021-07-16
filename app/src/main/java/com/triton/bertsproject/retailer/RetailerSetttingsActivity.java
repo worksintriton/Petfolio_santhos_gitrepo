@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -25,6 +28,7 @@ import com.triton.bertsproject.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public class RetailerSetttingsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -71,16 +75,20 @@ public class RetailerSetttingsActivity extends AppCompatActivity implements Bott
     RelativeLayout rl_currncy;
 
     @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_date)
-    RelativeLayout rl_date;
+    @BindView(R.id.swcm_push_notifn)
+    SwitchCompat swcm_push_notifn;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_time)
-    RelativeLayout rl_time;
-
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_measurment_unit)
-    RelativeLayout rl_measurment_unit;
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.rl_date)
+//    RelativeLayout rl_date;
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.rl_time)
+//    RelativeLayout rl_time;
+//
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.rl_measurment_unit)
+//    RelativeLayout rl_measurment_unit;
 
 
     @Override
@@ -124,29 +132,53 @@ public class RetailerSetttingsActivity extends AppCompatActivity implements Bott
             }
         });
 
-        rl_measurment_unit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        swcm_push_notifn.setOnClickListener(new View.OnClickListener() {
 
-                showMeasurementUnitSheetDialog();
+            @Override
+
+            public void onClick(View view) {
+
+                if (swcm_push_notifn.isChecked()){
+
+                    //custom Toast
+
+                    Toasty.success(RetailerSetttingsActivity.this, "Push Notification Enabled!", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    //custom Toast
+
+                    Toasty.error(RetailerSetttingsActivity.this, "Push Notification Disabled!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
+
         });
 
-        rl_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showDateSheetDialog();
-            }
-        });
-
-        rl_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showTimeSheetDialog();
-            }
-        });
+//        rl_measurment_unit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                showMeasurementUnitSheetDialog();
+//            }
+//        });
+//
+//        rl_date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                showDateSheetDialog();
+//            }
+//        });
+//
+//        rl_time.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                showTimeSheetDialog();
+//            }
+//        });
     }
 
     public void showLangBottomSheetDialog() {
@@ -155,7 +187,20 @@ public class RetailerSetttingsActivity extends AppCompatActivity implements Bott
 
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_lang);
 
+        Button btn_save = bottomSheetDialog.findViewById(R.id.btn_save);
+
         RecyclerView rv_language_list = bottomSheetDialog.findViewById(R.id.rv_language_list);
+
+        assert btn_save != null;
+//        btn_save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                bottomSheetDialog.dismiss();
+//            }
+//        });
+
+        btn_save.setVisibility(View.GONE);
 
         bottomSheetDialog.show();
     }
@@ -168,6 +213,18 @@ public class RetailerSetttingsActivity extends AppCompatActivity implements Bott
 
         RecyclerView rv_currency_list = bottomSheetDialog.findViewById(R.id.rv_currency_list);
 
+        Button btn_save = bottomSheetDialog.findViewById(R.id.btn_save);
+
+        assert btn_save != null;
+//        btn_save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                bottomSheetDialog.dismiss();
+//            }
+//        });
+
+        btn_save.setVisibility(View.GONE);
         bottomSheetDialog.show();
     }
 

@@ -542,145 +542,154 @@
 
                         </LinearLayout>
 
-                        <RelativeLayout
+                        <LinearLayout
+                            android:id="@+id/ll_product_info"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/textView"
-                                android:layout_width="@dimen/_130dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/manufacturer"
-                                android:textColor="@color/dark_grey" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/txt_manufacturer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_toEndOf="@+id/textView"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/lato_regular"
-                                android:maxLines="@integer/_int1"
-                                android:text="@string/power_stop"
-                                android:textColor="@color/dark_grey" />
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/manufacturer"
+                                    android:textColor="@color/dark_grey" />
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txt_manufacturer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_toEndOf="@+id/textView"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:maxLines="@integer/_int1"
+                                    android:text="@string/power_stop"
+                                    android:textColor="@color/dark_grey" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:orientation="horizontal">
+                            </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/textView1"
-                                android:layout_width="@dimen/_130dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/brandsss"
-                                android:textColor="@color/dark_grey" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/txt_brand"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_toEndOf="@+id/textView1"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/lato_regular"
-                                android:maxLines="@integer/_int1"
-                                android:text="@string/power_stop"
-                                android:textColor="@color/dark_grey" />
+                                <TextView
+                                    android:id="@+id/textView1"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/brandsss"
+                                    android:textColor="@color/dark_grey" />
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txt_brand"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_toEndOf="@+id/textView1"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:maxLines="@integer/_int1"
+                                    android:text="@string/power_stop"
+                                    android:textColor="@color/dark_grey" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:orientation="horizontal">
+                            </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/textView2"
-                                android:layout_width="@dimen/_130dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/model"
-                                android:textColor="@color/dark_grey" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/txt_model"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_toEndOf="@+id/textView2"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/lato_regular"
-                                android:maxLines="@integer/_int2"
-                                android:text="@string/model_valu"
-                                android:textColor="@color/dark_grey" />
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/model"
+                                    android:textColor="@color/dark_grey" />
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txt_model"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_toEndOf="@+id/textView2"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:maxLines="@integer/_int2"
+                                    android:text="@string/model_valu"
+                                    android:textColor="@color/dark_grey" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:orientation="horizontal">
+                            </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/textView3"
-                                android:layout_width="@dimen/_130dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/weight"
-                                android:textColor="@color/dark_grey" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/txt_weight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_toEndOf="@+id/textView3"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/lato_regular"
-                                android:maxLines="@integer/_int1"
-                                android:text="@string/_119_pounds"
-                                android:textColor="@color/dark_grey" />
+                                <TextView
+                                    android:id="@+id/textView3"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/weight"
+                                    android:textColor="@color/dark_grey" />
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txt_weight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_toEndOf="@+id/textView3"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:maxLines="@integer/_int1"
+                                    android:text="@string/_119_pounds"
+                                    android:textColor="@color/dark_grey" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:orientation="horizontal">
+                            </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/textView4"
-                                android:layout_width="@dimen/_130dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/product_dimensions"
-                                android:textColor="@color/dark_grey" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/txt_dimen"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_toEndOf="@+id/textView4"
-                                android:ellipsize="end"
-                                android:fontFamily="@font/lato_regular"
-                                android:maxLines="@integer/_int1"
-                                android:text="@string/_14_x_14_x_10_inches"
-                                android:textColor="@color/dark_grey" />
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/product_dimensions"
+                                    android:textColor="@color/dark_grey" />
 
-                        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txt_dimen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_toEndOf="@+id/textView4"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:maxLines="@integer/_int1"
+                                    android:text="@string/_14_x_14_x_10_inches"
+                                    android:textColor="@color/dark_grey" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -691,7 +700,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp">
 
@@ -1171,415 +1180,423 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_star_review"
+                            android:id="@+id/ll_cust_revw"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_10dp"
-                            android:orientation="vertical"
-                            tools:ignore="UseCompoundDrawables">
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/ll_image1"
+                                android:id="@+id/ll_star_review"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_10dp"
+                                android:orientation="vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <LinearLayout
+                                    android:id="@+id/ll_image1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/hand_img11"
+                                        android:layout_width="@dimen/_13dp"
+                                        android:layout_height="@dimen/_13dp"
+                                        android:background="@drawable/ic_star_filled"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageView
+                                        android:id="@+id/hand_img21"
+                                        android:layout_width="@dimen/_13dp"
+                                        android:layout_height="@dimen/_13dp"
+                                        android:layout_marginStart="5dp"
+                                        android:background="@drawable/ic_star_filled"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageView
+                                        android:id="@+id/hand_img31"
+                                        android:layout_width="@dimen/_13dp"
+                                        android:layout_height="@dimen/_13dp"
+                                        android:layout_marginStart="5dp"
+                                        android:background="@drawable/ic_star_filled"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageView
+                                        android:id="@+id/hand_img41"
+                                        android:layout_width="@dimen/_13dp"
+                                        android:layout_height="@dimen/_13dp"
+                                        android:layout_marginStart="5dp"
+                                        android:background="@drawable/ic_star_filled"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageView
+                                        android:id="@+id/hand_img51"
+                                        android:layout_width="@dimen/_13dp"
+                                        android:layout_height="@dimen/_13dp"
+                                        android:layout_marginStart="5dp"
+                                        android:background="@drawable/ic_star_empty"
+                                        tools:ignore="ContentDescription" />
+
+                                </LinearLayout>
 
                                 <ImageView
-                                    android:id="@+id/hand_img11"
-                                    android:layout_width="@dimen/_13dp"
-                                    android:layout_height="@dimen/_13dp"
-                                    android:background="@drawable/ic_star_filled"
-                                    tools:ignore="ContentDescription" />
+                                    android:id="@+id/img_star2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10dp"
+                                    android:contentDescription="@string/image_description"
+                                    android:visibility="gone"
+                                    app:srcCompat="@drawable/star_rating" />
 
-                                <ImageView
-                                    android:id="@+id/hand_img21"
-                                    android:layout_width="@dimen/_13dp"
-                                    android:layout_height="@dimen/_13dp"
-                                    android:layout_marginStart="5dp"
-                                    android:background="@drawable/ic_star_filled"
-                                    tools:ignore="ContentDescription" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10dp"
+                                    android:orientation="horizontal">
 
-                                <ImageView
-                                    android:id="@+id/hand_img31"
-                                    android:layout_width="@dimen/_13dp"
-                                    android:layout_height="@dimen/_13dp"
-                                    android:layout_marginStart="5dp"
-                                    android:background="@drawable/ic_star_filled"
-                                    tools:ignore="ContentDescription" />
+                                    <TextView
+                                        android:id="@+id/txt_total_rating_calc"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/lato_bold"
+                                        android:text="@string/_4_5_out_of_5"
+                                        android:textColor="@color/dark_grey"
+                                        android:textSize="@dimen/_16sp" />
 
-                                <ImageView
-                                    android:id="@+id/hand_img41"
-                                    android:layout_width="@dimen/_13dp"
-                                    android:layout_height="@dimen/_13dp"
-                                    android:layout_marginStart="5dp"
-                                    android:background="@drawable/ic_star_filled"
-                                    tools:ignore="ContentDescription" />
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:id="@+id/hand_img51"
-                                    android:layout_width="@dimen/_13dp"
-                                    android:layout_height="@dimen/_13dp"
-                                    android:layout_marginStart="5dp"
-                                    android:background="@drawable/ic_star_empty"
-                                    tools:ignore="ContentDescription" />
+                                        <TextView
+                                            android:id="@+id/txt_review_countings"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_marginEnd="@dimen/_10dp"
+                                            android:fontFamily="@font/lato_bold"
+                                            android:text="@string/_120_ratings1"
+                                            android:textColor="@color/dark_grey"
+                                            android:textSize="@dimen/_14sp" />
+                                    </RelativeLayout>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
-                            <ImageView
-                                android:id="@+id/img_star2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10dp"
-                                android:contentDescription="@string/image_description"
-                                android:visibility="gone"
-                                app:srcCompat="@drawable/star_rating" />
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10dp"
                                 android:layout_marginTop="@dimen/_10dp"
-                                android:orientation="horizontal">
+                                android:layout_marginEnd="@dimen/_10dp"
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                tools:ignore="UselessParent">
 
                                 <TextView
-                                    android:id="@+id/txt_total_rating_calc"
+                                    android:id="@+id/txt_5star_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/lato_bold"
-                                    android:text="@string/_4_5_out_of_5"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/_5_star"
                                     android:textColor="@color/dark_grey"
                                     android:textSize="@dimen/_16sp" />
 
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                <LinearLayout
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="@integer/_int1"
+                                    android:background="@drawable/rectangle_corner_solid_white_background"
+                                    android:orientation="vertical">
 
-                                    <TextView
-                                        android:id="@+id/txt_review_countings"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
+                                    <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                                        android:id="@+id/progress_bar_5star"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_20dp"
+                                        android:layout_marginStart="@dimen/_5dp"
+                                        android:layout_marginTop="@dimen/_5dp"
                                         android:layout_marginEnd="@dimen/_10dp"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="@string/_120_ratings1"
-                                        android:textColor="@color/dark_grey"
-                                        android:textSize="@dimen/_14sp" />
-                                </RelativeLayout>
+                                        android:layout_marginBottom="5dp"
+                                        android:indeterminate="false"
+                                        android:maxHeight="@dimen/_24dp"
+                                        android:minHeight="@dimen/_24dp"
+                                        android:progress="80"
+                                        app:backgroundColor="@color/white"
+                                        app:isRounded="false"
+                                        app:progressColor="@color/orange" />
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:id="@+id/txt_5star_perc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:gravity="end"
+                                    android:text="@string/_80"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
+
 
                             </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10dp"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:layout_marginEnd="@dimen/_10dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible"
-                            tools:ignore="UselessParent">
-
-                            <TextView
-                                android:id="@+id/txt_5star_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/_5_star"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
 
                             <LinearLayout
-                                android:layout_width="200dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="@integer/_int1"
-                                android:background="@drawable/rectangle_corner_solid_white_background"
-                                android:orientation="vertical">
-
-                                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
-                                    android:id="@+id/progress_bar_5star"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_20dp"
-                                    android:layout_marginStart="@dimen/_5dp"
-                                    android:layout_marginTop="@dimen/_5dp"
-                                    android:layout_marginEnd="@dimen/_10dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:indeterminate="false"
-                                    android:maxHeight="@dimen/_24dp"
-                                    android:minHeight="@dimen/_24dp"
-                                    android:progress="80"
-                                    app:backgroundColor="@color/white"
-                                    app:isRounded="false"
-                                    app:progressColor="@color/orange" />
-                            </LinearLayout>
-
-
-                            <TextView
-                                android:id="@+id/txt_5star_perc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_10dp"
                                 android:layout_marginEnd="@dimen/_10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_bold"
-                                android:gravity="end"
-                                android:text="@string/_80"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                tools:ignore="UselessParent">
+
+                                <TextView
+                                    android:id="@+id/txt_4star_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/_4_star"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="@integer/_int1"
+                                    android:background="@drawable/rectangle_corner_solid_white_background"
+                                    android:orientation="vertical">
+
+                                    <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                                        android:id="@+id/progress_bar_4star"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_20dp"
+                                        android:layout_marginStart="@dimen/_5dp"
+                                        android:layout_marginTop="@dimen/_5dp"
+                                        android:layout_marginEnd="@dimen/_10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:indeterminate="false"
+                                        android:maxHeight="@dimen/_24dp"
+                                        android:minHeight="@dimen/_24dp"
+                                        android:progress="60"
+                                        app:backgroundColor="@color/white"
+                                        app:isRounded="false"
+                                        app:progressColor="@color/orange" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/txt_4star_perc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:gravity="end"
+                                    android:text="@string/_60"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
 
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10dp"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:layout_marginEnd="@dimen/_10dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible"
-                            tools:ignore="UselessParent">
-
-                            <TextView
-                                android:id="@+id/txt_4star_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/_4_star"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                            </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="@integer/_int1"
-                                android:background="@drawable/rectangle_corner_solid_white_background"
-                                android:orientation="vertical">
-
-                                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
-                                    android:id="@+id/progress_bar_4star"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_20dp"
-                                    android:layout_marginStart="@dimen/_5dp"
-                                    android:layout_marginTop="@dimen/_5dp"
-                                    android:layout_marginEnd="@dimen/_10dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:indeterminate="false"
-                                    android:maxHeight="@dimen/_24dp"
-                                    android:minHeight="@dimen/_24dp"
-                                    android:progress="60"
-                                    app:backgroundColor="@color/white"
-                                    app:isRounded="false"
-                                    app:progressColor="@color/orange" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/txt_4star_perc"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_10dp"
                                 android:layout_marginEnd="@dimen/_10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_bold"
-                                android:gravity="end"
-                                android:text="@string/_60"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                tools:ignore="UselessParent">
+
+                                <TextView
+                                    android:id="@+id/txt_3star_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/_3_star"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="@integer/_int1"
+                                    android:background="@drawable/rectangle_corner_solid_white_background"
+                                    android:orientation="vertical">
+
+                                    <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                                        android:id="@+id/progress_bar_3star"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_20dp"
+                                        android:layout_marginStart="@dimen/_5dp"
+                                        android:layout_marginTop="@dimen/_5dp"
+                                        android:layout_marginEnd="@dimen/_10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:indeterminate="false"
+                                        android:maxHeight="@dimen/_24dp"
+                                        android:minHeight="@dimen/_24dp"
+                                        android:progress="40"
+                                        app:backgroundColor="@color/white"
+                                        app:isRounded="false"
+                                        app:progressColor="@color/orange" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/txt_3star_perc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:gravity="end"
+                                    android:text="@string/_40"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
 
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10dp"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:layout_marginEnd="@dimen/_10dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible"
-                            tools:ignore="UselessParent">
-
-                            <TextView
-                                android:id="@+id/txt_3star_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/_3_star"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                            </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="@integer/_int1"
-                                android:background="@drawable/rectangle_corner_solid_white_background"
-                                android:orientation="vertical">
-
-                                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
-                                    android:id="@+id/progress_bar_3star"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_20dp"
-                                    android:layout_marginStart="@dimen/_5dp"
-                                    android:layout_marginTop="@dimen/_5dp"
-                                    android:layout_marginEnd="@dimen/_10dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:indeterminate="false"
-                                    android:maxHeight="@dimen/_24dp"
-                                    android:minHeight="@dimen/_24dp"
-                                    android:progress="40"
-                                    app:backgroundColor="@color/white"
-                                    app:isRounded="false"
-                                    app:progressColor="@color/orange" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/txt_3star_perc"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_10dp"
                                 android:layout_marginEnd="@dimen/_10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_bold"
-                                android:gravity="end"
-                                android:text="@string/_40"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                tools:ignore="UselessParent">
+
+                                <TextView
+                                    android:id="@+id/txt_2star_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/_2_star"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="@integer/_int1"
+                                    android:background="@drawable/rectangle_corner_solid_white_background"
+                                    android:orientation="vertical">
+
+                                    <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                                        android:id="@+id/progress_bar_2star"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_20dp"
+                                        android:layout_marginStart="@dimen/_5dp"
+                                        android:layout_marginTop="@dimen/_5dp"
+                                        android:layout_marginEnd="@dimen/_10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:indeterminate="false"
+                                        android:maxHeight="@dimen/_24dp"
+                                        android:minHeight="@dimen/_24dp"
+                                        android:progress="20"
+                                        app:backgroundColor="@color/white"
+                                        app:isRounded="false"
+                                        app:progressColor="@color/orange" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/txt_2star_perc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:gravity="end"
+                                    android:text="@string/_20"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
 
 
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10dp"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:layout_marginEnd="@dimen/_10dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible"
-                            tools:ignore="UselessParent">
-
-                            <TextView
-                                android:id="@+id/txt_2star_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/_2_star"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                            </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="@integer/_int1"
-                                android:background="@drawable/rectangle_corner_solid_white_background"
-                                android:orientation="vertical">
-
-                                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
-                                    android:id="@+id/progress_bar_2star"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_20dp"
-                                    android:layout_marginStart="@dimen/_5dp"
-                                    android:layout_marginTop="@dimen/_5dp"
-                                    android:layout_marginEnd="@dimen/_10dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:indeterminate="false"
-                                    android:maxHeight="@dimen/_24dp"
-                                    android:minHeight="@dimen/_24dp"
-                                    android:progress="20"
-                                    app:backgroundColor="@color/white"
-                                    app:isRounded="false"
-                                    app:progressColor="@color/orange" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/txt_2star_perc"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_10dp"
                                 android:layout_marginEnd="@dimen/_10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_bold"
-                                android:gravity="end"
-                                android:text="@string/_20"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                tools:ignore="UselessParent">
 
+                                <TextView
+                                    android:id="@+id/txt_1star_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="@string/_1_star"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
 
-                        </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="@integer/_int1"
+                                    android:background="@drawable/rectangle_corner_solid_white_background"
+                                    android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10dp"
-                            android:layout_marginTop="@dimen/_10dp"
-                            android:layout_marginEnd="@dimen/_10dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible"
-                            tools:ignore="UselessParent">
+                                    <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                                        android:id="@+id/progress_bar_1star"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_20dp"
+                                        android:layout_marginStart="@dimen/_5dp"
+                                        android:layout_marginTop="@dimen/_5dp"
+                                        android:layout_marginEnd="@dimen/_10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:indeterminate="false"
+                                        android:maxHeight="@dimen/_24dp"
+                                        android:minHeight="@dimen/_24dp"
+                                        android:progress="5"
+                                        app:backgroundColor="@color/white"
+                                        app:isRounded="false"
+                                        app:progressColor="@color/orange" />
 
-                            <TextView
-                                android:id="@+id/txt_1star_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_regular"
-                                android:text="@string/_1_star"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
+                                </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="@integer/_int1"
-                                android:background="@drawable/rectangle_corner_solid_white_background"
-                                android:orientation="vertical">
-
-                                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
-                                    android:id="@+id/progress_bar_1star"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_20dp"
-                                    android:layout_marginStart="@dimen/_5dp"
-                                    android:layout_marginTop="@dimen/_5dp"
+                                <TextView
+                                    android:id="@+id/txt_1star_perc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10dp"
                                     android:layout_marginEnd="@dimen/_10dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:indeterminate="false"
-                                    android:maxHeight="@dimen/_24dp"
-                                    android:minHeight="@dimen/_24dp"
-                                    android:progress="5"
-                                    app:backgroundColor="@color/white"
-                                    app:isRounded="false"
-                                    app:progressColor="@color/orange" />
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:gravity="end"
+                                    android:text="@string/_5"
+                                    android:textColor="@color/dark_grey"
+                                    android:textSize="@dimen/_16sp" />
 
                             </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/txt_1star_perc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10dp"
-                                android:layout_marginEnd="@dimen/_10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/lato_bold"
-                                android:gravity="end"
-                                android:text="@string/_5"
-                                android:textColor="@color/dark_grey"
-                                android:textSize="@dimen/_16sp" />
-
                         </LinearLayout>
+
 
                         <Button
                             android:id="@+id/btn_sigin_with_facebook"

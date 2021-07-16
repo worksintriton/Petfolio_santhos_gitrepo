@@ -67,6 +67,8 @@ public class ProductDetailDescriptionActivity_ViewBinding implements Unbinder {
     target.img_desc = Utils.findRequiredViewAsType(source, R.id.img_desc, "field 'img_desc'", ImageView.class);
     target.img_prod_info = Utils.findRequiredViewAsType(source, R.id.img_prod_info, "field 'img_prod_info'", ImageView.class);
     target.img_cust_revw = Utils.findRequiredViewAsType(source, R.id.img_cust_revw, "field 'img_cust_revw'", ImageView.class);
+    target.ll_product_info = Utils.findRequiredViewAsType(source, R.id.ll_product_info, "field 'll_product_info'", LinearLayout.class);
+    target.ll_cust_revw = Utils.findRequiredViewAsType(source, R.id.ll_cust_revw, "field 'll_cust_revw'", LinearLayout.class);
     target.hand_img1 = Utils.findRequiredViewAsType(source, R.id.hand_img1, "field 'hand_img1'", ImageView.class);
     target.hand_img2 = Utils.findRequiredViewAsType(source, R.id.hand_img2, "field 'hand_img2'", ImageView.class);
     target.hand_img3 = Utils.findRequiredViewAsType(source, R.id.hand_img3, "field 'hand_img3'", ImageView.class);
@@ -129,6 +131,8 @@ public class ProductDetailDescriptionActivity_ViewBinding implements Unbinder {
     target.img_desc = null;
     target.img_prod_info = null;
     target.img_cust_revw = null;
+    target.ll_product_info = null;
+    target.ll_cust_revw = null;
     target.hand_img1 = null;
     target.hand_img2 = null;
     target.hand_img3 = null;

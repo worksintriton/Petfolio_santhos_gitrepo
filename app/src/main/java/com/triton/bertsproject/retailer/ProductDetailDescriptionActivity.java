@@ -201,6 +201,16 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
     @BindView(R.id.img_cust_revw)
     ImageView img_cust_revw;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_product_info)
+    LinearLayout ll_product_info;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_cust_revw)
+    LinearLayout ll_cust_revw;
+
+
+
     int currentPage = 0;
     Timer timer;
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
@@ -1153,7 +1163,71 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(isdesc){
 
+                    isdesc = false;
+
+                    txt_prod_desc.setVisibility(View.GONE);
+
+                    img_desc.setImageResource(R.drawable.ic_right_down);
+                }
+
+                else {
+
+                    isdesc = true;
+
+                    txt_prod_desc.setVisibility(VISIBLE);
+
+                    img_desc.setImageResource(R.drawable.ic_up_arrow);
+                }
+            }
+        });
+
+        img_prod_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isprodInfo){
+
+                    isprodInfo = false;
+
+                    ll_product_info.setVisibility(View.GONE);
+
+                    img_prod_info.setImageResource(R.drawable.ic_right_down);
+                }
+
+                else {
+
+                    isprodInfo = true;
+
+                    ll_product_info.setVisibility(VISIBLE);
+
+                    img_prod_info.setImageResource(R.drawable.ic_up_arrow);
+                }
+            }
+        });
+
+        img_cust_revw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(iscustrvw){
+
+                    iscustrvw = false;
+
+                    ll_cust_revw.setVisibility(View.GONE);
+
+                    img_cust_revw.setImageResource(R.drawable.ic_right_down);
+                }
+
+                else {
+
+                    iscustrvw = true;
+
+                    ll_cust_revw.setVisibility(VISIBLE);
+
+                    img_cust_revw.setImageResource(R.drawable.ic_up_arrow);
+                }
             }
         });
 

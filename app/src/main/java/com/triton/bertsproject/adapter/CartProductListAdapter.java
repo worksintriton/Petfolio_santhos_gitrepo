@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +18,6 @@ import com.triton.bertsproject.api.APIClient;
 import com.triton.bertsproject.interfaces.AddProductListener;
 import com.triton.bertsproject.interfaces.CartRemoveProductListener;
 import com.triton.bertsproject.interfaces.RemoveProductListener;
-import com.triton.bertsproject.model.RetailerProductlistModel;
 import com.triton.bertsproject.responsepojo.ShowCartListResponse;
 
 import java.util.List;
@@ -29,6 +29,7 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
     CartRemoveProductListener cartRemoveProductListener;
     AddProductListener addProductListener;
     RemoveProductListener removeProductListener;
+    Button button;
 
     public CartProductListAdapter(Context context2, List<ShowCartListResponse.DataBean.CartBean> cartBeanList,CartRemoveProductListener cartRemoveProductListener,AddProductListener addProductListener,RemoveProductListener removeProductListener) {
         this.context = context2;
@@ -118,7 +119,7 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
             @Override
             public void onClick(View v) {
 
-                addProductListener.addproductListener(cartBean.getBasket_product_id(),"1",cartBean.getBasket_unit_price());
+                addProductListener.addproductListener(cartBean.getBasket_product_id(),"1",cartBean.getBasket_unit_price(),button);
 
             }
         });

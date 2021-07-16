@@ -77,6 +77,11 @@ public class CheckoutScreenActivity extends AppCompatActivity {
     @BindView(R.id.txt_toolbar_title)
     TextView txt_toolbar_title;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_selectpymthd)
+    TextView txt_selectpymthd;
+
+
     //    @SuppressLint("NonConstantResourceId")
 //    @BindView(R.id.btn_proceed)
 //    Button btn_proceed;
@@ -144,6 +149,10 @@ public class CheckoutScreenActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_total_price)
     TextView txt_total_price;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rl_payment_method)
+    RelativeLayout rl_payment_method;
 
     List<ShowCartListResponse.DataBean.CartBean> cartBeanList ;
 
@@ -439,7 +448,12 @@ public class CheckoutScreenActivity extends AppCompatActivity {
 
                                 if(response.body().getData().getCart_total()!=0){
 
-                                    txt_order_total.setText(""+response.body().getData().getCart_total());
+                                    txt_order_total.setText("$ "+response.body().getData().getCart_total());
+                                }
+
+                                else {
+
+                                    txt_order_total.setText("$ 0");
                                 }
 
                                 setView(cartBeanList);
@@ -507,7 +521,11 @@ public class CheckoutScreenActivity extends AppCompatActivity {
 
                                 ll_proceed.setOnClickListener(v -> {
 
-                                    if(cartBeanList.size()>0&&!shipid.isEmpty()){
+                                    if(txt_selectpymthd.getText().toString().equals("Choose Payment Method")){
+
+                                        Toasty.warning(getApplicationContext(),"Please Choose Payment Method",Toasty.LENGTH_LONG).show();
+                                    }
+                                    else if(cartBeanList.size()>0&&!shipid.isEmpty()){
 
                                         if (dd4YouConfig.isInternetConnectivity()) {
 
@@ -557,6 +575,17 @@ public class CheckoutScreenActivity extends AppCompatActivity {
 
                                     txt_total_price.setText("0");
                                 }
+
+                                txt_selectpymthd.setText("Choose Payment Method");
+
+                                rl_payment_method.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        Intent intent=new Intent(CheckoutScreenActivity.this,PaymentMethodActivity.class);
+                                        startActivityForResult(intent, 2);// Activity is started with requestCode 2
+                                    }
+                                });
 
                             }
 
@@ -767,6 +796,30 @@ public class CheckoutScreenActivity extends AppCompatActivity {
         try {
             alertDialog.dismiss();
         }catch (Exception ignored){
+
+        }
+    }
+
+    // Call Back method  to get the Message form other Activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==2)
+        {
+            String message=data.getStringExtra("MESSAGE");
+
+            if(message!=null){
+
+                txt_selectpymthd.setText(" "+message);
+            }
+
+            else {
+
+                txt_selectpymthd.setText("Choose Payment Method");
+            }
+
 
         }
     }

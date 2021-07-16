@@ -1424,6 +1424,7 @@ dimen _23sp
 dimen _24dp
 dimen _24sp
 dimen _25dp
+dimen _260dp
 dimen _2dp
 dimen _2sp
 dimen _30dp
@@ -2194,12 +2195,14 @@ drawable tc_img2
 drawable tc_img3
 drawable tc_img4
 drawable test_custom_background
+drawable thumb
 drawable thumbs_down
 drawable thumbs_up
 drawable tick
 drawable toast_frame
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable track
 drawable trash
 drawable txt_counter_bgnd
 drawable update_bg
@@ -2357,9 +2360,11 @@ id btn_addnewaddr
 id btn_apply
 id btn_continue_shop
 id btn_no
+id btn_payment_gateway
 id btn_proceed
 id btn_reset
 id btn_reset_link
+id btn_save
 id btn_saveaddr
 id btn_selveh
 id btn_shopnow
@@ -2620,7 +2625,6 @@ id img_arrow_pr_range
 id img_arrow_rate
 id img_arrow_year
 id img_arrowwrit1
-id img_arrowwrit18
 id img_arrowwrit2
 id img_arrowwrit3
 id img_arrowwrit4
@@ -2740,6 +2744,7 @@ id ll_address_list_show
 id ll_brand
 id ll_categ
 id ll_color
+id ll_cust_revw
 id ll_default
 id ll_delete
 id ll_edit
@@ -2754,6 +2759,7 @@ id ll_new
 id ll_orderdetails
 id ll_price_range
 id ll_proceed
+id ll_product_info
 id ll_product_status
 id ll_productdetails
 id ll_rating
@@ -2899,8 +2905,9 @@ id rb_3star
 id rb_4star
 id rb_5star
 id rdGroupPayment
-id rdOffline
-id rdPaypal
+id rdcod
+id rdcreditlimit
+id rdpaymgtwy
 id rectangles
 id refresh_layout
 id reverseSawtooth
@@ -2932,6 +2939,7 @@ id rl_model
 id rl_orderstatus
 id rl_ordrhist
 id rl_ordrtrack
+id rl_payment_method
 id rl_profile
 id rl_push_notifications
 id rl_receipt
@@ -3047,6 +3055,7 @@ id success_frame
 id success_tick
 id sure_btn
 id sw_saveasdefault
+id swcm_push_notifn
 id tabDots
 id tabMode
 id tabRetailer
@@ -3289,6 +3298,7 @@ id txt_select_vehc21
 id txt_select_vehc3
 id txt_select_vehc31
 id txt_selected_vehc
+id txt_selectpymthd
 id txt_settings
 id txt_ship_subtotal_value
 id txt_shipaddrchange
@@ -3836,6 +3846,7 @@ string coupon_description
 string coupon_name
 string coupons
 string create_account
+string credit_value
 string currency
 string customer_reviews
 string date
@@ -4021,6 +4032,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string payment
+string payment_gateway
 string payment_method
 string payment_successful
 string paypal
@@ -4072,6 +4084,7 @@ string salem_636009_tamilnadu
 string sample
 string sample_adrar_algeria
 string save_address
+string save_done
 string search
 string search_key_info
 string search_key_info_desc
