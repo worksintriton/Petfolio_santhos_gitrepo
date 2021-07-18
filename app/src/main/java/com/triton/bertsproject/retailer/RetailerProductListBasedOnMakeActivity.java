@@ -776,7 +776,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
         else {
 
-            showAlert();
+            showLoginAlert();
         }
 
 
@@ -899,14 +899,34 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
         builder.setPositiveButton("Login", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, LoginActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("make_id",make_id);
+
+            intent.putExtra("make_name",make_name);
+
+            intent.putExtra("model_id", model_id);
+
+            intent.putExtra("model_name",model_name);
+
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
 
             startActivity(intent);
         });
         builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, RegisterActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("make_id",make_id);
+
+            intent.putExtra("make_name",make_name);
+
+            intent.putExtra("model_id", model_id);
+
+            intent.putExtra("model_name",model_name);
+
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
 
             startActivity(intent);
         });

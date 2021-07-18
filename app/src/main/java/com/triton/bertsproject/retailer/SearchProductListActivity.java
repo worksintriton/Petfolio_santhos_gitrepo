@@ -443,12 +443,12 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
 
         else {
 
-            showAlert();
+            showAlert(prod_id,quantity,unit_price);
         }
 
     }
 
-    private void showAlert() {
+    private void showAlert(String prod_id, String quantity, String unit_price) {
 
         AlertDialog.Builder builder=new AlertDialog.Builder(SearchProductListActivity.this);
         builder.setTitle("Alert");
@@ -459,8 +459,13 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
 
             intent.putExtra("search_text",search_text);
 
+            intent.putExtra("prod_id",prod_id);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("quantity",quantity);
+
+            intent.putExtra("unit_price",unit_price);
+
+            intent.putExtra("fromactivity",TAG);
 
             startActivity(intent);
         });
@@ -469,8 +474,13 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
 
             intent.putExtra("search_text",search_text);
 
+            intent.putExtra("prod_id",prod_id);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("quantity",quantity);
+
+            intent.putExtra("unit_price",unit_price);
+
+            intent.putExtra("fromactivity",TAG);
 
             startActivity(intent);
         });

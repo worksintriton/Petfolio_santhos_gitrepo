@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Che" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ProductDetailDescriptionActivity" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -20,7 +20,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\santh\.android\avd\5.1_WVGA_API_30_6.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@ZF6222CF2C]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -313,26 +313,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1623049477752" />
-    <state width="1237" height="348" key="GridCell.Tab.0.bottom" timestamp="1626450298974">
+    <state width="1237" height="319" key="GridCell.Tab.0.bottom" timestamp="1626633110698">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
-    <state width="1237" height="348" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626450298974" />
-    <state width="1237" height="348" key="GridCell.Tab.0.center" timestamp="1626450298974">
+    <state width="1237" height="319" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
+    <state width="1237" height="319" key="GridCell.Tab.0.center" timestamp="1626633110698">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
-    <state width="1237" height="348" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626450298974" />
-    <state width="1237" height="348" key="GridCell.Tab.0.left" timestamp="1626450298974">
+    <state width="1237" height="319" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
+    <state width="1237" height="319" key="GridCell.Tab.0.left" timestamp="1626633110698">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
-    <state width="1237" height="348" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626450298974" />
-    <state width="1237" height="348" key="GridCell.Tab.0.right" timestamp="1626450298974">
+    <state width="1237" height="319" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
+    <state width="1237" height="319" key="GridCell.Tab.0.right" timestamp="1626633110698">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
-    <state width="1237" height="348" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626450298974" />
+    <state width="1237" height="319" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
     <state width="1237" height="248" key="GridCell.Tab.1.bottom" timestamp="1623767444260">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -363,27 +363,27 @@
     </state>
     <state x="273" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1622115222094" />
     <state x="273" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1626442070971" />
-    <state x="455" y="195" width="953" height="706" key="dock-window-1" timestamp="1619608262508">
+    <state x="220" y="157" width="1038" height="707" key="dock-window-1" timestamp="1626609243455">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="455" y="195" width="953" height="706" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1619608262508" />
-    <state x="346" y="93" width="589" height="534" key="find.popup" timestamp="1626243415541">
+    <state x="220" y="157" width="1038" height="707" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1626609243455" />
+    <state x="346" y="93" width="728" height="534" key="find.popup" timestamp="1626546267800">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="346" y="93" width="589" height="534" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1626243415541" />
+    <state x="346" y="93" width="728" height="534" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1626546267800" />
     <state x="472" y="118" key="refactoring.ChangeSignatureDialog" timestamp="1626443832824">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="472" y="118" key="refactoring.ChangeSignatureDialog/0.0.1280.720@0.0.1280.720" timestamp="1626443832824" />
-    <state x="298" y="161" width="672" height="677" key="run.anything.popup" timestamp="1626366762785">
+    <state x="298" y="161" width="672" height="677" key="run.anything.popup" timestamp="1626634376608">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="298" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1626366762785" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626446306953">
+    <state x="298" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1626634376608" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1626631363888">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1622131785060" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626446306953" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1626631363888" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

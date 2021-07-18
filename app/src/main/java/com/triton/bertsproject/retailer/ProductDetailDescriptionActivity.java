@@ -324,7 +324,7 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
 
-    String brand_id,brand_name,parent_id,categ_name,subcategid,subcategname,make_id,model_id,model_name;
+    String brand_id,brand_name,parent_id,categ_name,subcategid,subcategname,make_id,make_name,model_id,model_name;
 
     int minteger = 1;
 
@@ -380,6 +380,8 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
                 subcategname = extras.getString("subcategname");
 
                 make_id = extras.getString("make_id");
+
+                make_name = extras.getString("make_name");
 
                 model_id = extras.getString("model_id");
 
@@ -1463,17 +1465,23 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
             intent.putExtra("parent_id",parent_id);
 
+            intent.putExtra("categ_name",categ_name);
+
             intent.putExtra("subcategid",subcategid);
 
             intent.putExtra("subcategname",subcategname);
 
             intent.putExtra("make_id",make_id);
 
+            intent.putExtra("make_name",make_name);
+
             intent.putExtra("model_id", model_id);
 
-            intent.putExtra("model_id",model_name);
+            intent.putExtra("model_name",model_name);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
 
             startActivity(intent);
         });
@@ -1490,23 +1498,31 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
             intent.putExtra("parent_id",parent_id);
 
+            intent.putExtra("categ_name",categ_name);
+
             intent.putExtra("subcategid",subcategid);
 
             intent.putExtra("subcategname",subcategname);
 
             intent.putExtra("make_id",make_id);
 
+            intent.putExtra("make_name",make_name);
+
             intent.putExtra("model_id", model_id);
 
-            intent.putExtra("model_id",model_name);
+            intent.putExtra("model_name",model_name);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
 
             startActivity(intent);
+
+
         });
         builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
 
-
+            dialogInterface.dismiss();
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

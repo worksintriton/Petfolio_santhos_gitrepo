@@ -858,19 +858,37 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
         builder.setPositiveButton("Login", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListActivity.this, LoginActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("brand_id",brand_id);
+
+            intent.putExtra("brand_name",brand_name);
+
+            connectivity.storeData(context,"BrandProduct",fromactivity);
 
             startActivity(intent);
+
+            finish();
         });
         builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListActivity.this, RegisterActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("brand_id",brand_id);
+
+            intent.putExtra("brand_name",brand_name);
+
+            connectivity.storeData(context,"BrandProduct",fromactivity);
 
             startActivity(intent);
+
+            finish();
+
         });
         builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
 
+            dialogInterface.dismiss();
 
         });
         AlertDialog alertDialog = builder.create();

@@ -769,7 +769,7 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
 
         else {
 
-            showLoginAlert();
+            showAlert();
         }
 
 
@@ -898,16 +898,39 @@ public class RetailerProductListBasedOnCategActivity extends AppCompatActivity i
         builder.setPositiveButton("Login", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListBasedOnCategActivity.this, LoginActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("parent_id",parent_id);
+
+            intent.putExtra("categ_name",categ_name);
+
+            intent.putExtra("subcategid",subcategid);
+
+            intent.putExtra("subcategname",subcategname);
+
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(context,"ProductListCategories",fromactivity);
 
             startActivity(intent);
+
+
         });
         builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerProductListBasedOnCategActivity.this, RegisterActivity.class);
 
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("parent_id",parent_id);
+
+            intent.putExtra("categ_name",categ_name);
+
+            intent.putExtra("subcategid",subcategid);
+
+            intent.putExtra("subcategname",subcategname);
+
+            intent.putExtra("fromactivity",TAG);
+
+            connectivity.storeData(context,"ProductListCategories",fromactivity);
 
             startActivity(intent);
+
         });
         builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
 

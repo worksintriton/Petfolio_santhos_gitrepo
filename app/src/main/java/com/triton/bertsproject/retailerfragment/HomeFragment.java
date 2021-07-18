@@ -272,7 +272,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
 
-                intent.putExtra("fromActivity",TAG);
+                intent.putExtra("fromactivity",TAG);
 
                 startActivity(intent);
 
@@ -283,7 +283,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 Intent intent = new Intent(getContext(), RegisterActivity.class);
 
-                intent.putExtra("fromActivity",TAG);
+                intent.putExtra("fromactivity",TAG);
 
                 startActivity(intent);
 

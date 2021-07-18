@@ -51,8 +51,14 @@ import com.triton.bertsproject.requestpojo.SignupWholesalerRequest;
 import com.triton.bertsproject.responsepojo.GetCountryResponse;
 import com.triton.bertsproject.responsepojo.GetStateResponse;
 import com.triton.bertsproject.responsepojo.SignupResponse;
+import com.triton.bertsproject.retailer.ProductDetailDescriptionActivity;
+import com.triton.bertsproject.retailer.RetailerCartActivity;
 import com.triton.bertsproject.retailer.RetailerDashboardActivity;
+import com.triton.bertsproject.retailer.RetailerProductListActivity;
+import com.triton.bertsproject.retailer.RetailerProductListBasedOnCategActivity;
+import com.triton.bertsproject.retailer.RetailerProductListBasedOnMakeActivity;
 import com.triton.bertsproject.retailer.RetailerProfileAccountActivity;
+import com.triton.bertsproject.retailer.SearchProductListActivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -159,9 +165,16 @@ public class WholeSalerRegisterFragment extends Fragment {
 
     String zipcode,revenue;
 
-    public WholeSalerRegisterFragment(String fromActivity) {
+    JSONObject data;
+
+    String brand_id,brand_name,parent_id,subcategid,categ_name,subcategname,make_id,make_name,model_id,model_name, prod_id,prod_name;;
+
+    String search_text , quantity, unit_price;
+
+    public WholeSalerRegisterFragment(String fromActivity, JSONObject data) {
         // Required empty public constructor
         this.fromActivity = fromActivity;
+        this.data = data;
     }
 
     @Override
@@ -170,6 +183,7 @@ public class WholeSalerRegisterFragment extends Fragment {
 
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -202,6 +216,64 @@ public class WholeSalerRegisterFragment extends Fragment {
         else
         {
             callnointernet();
+
+        }
+
+        Log.w("Oncreate ", TAG + "fromActivity " +fromActivity);
+
+        Log.w(TAG, "Data" + new Gson().toJson(data));
+
+        if(data!=null){
+
+            try {
+                prod_id = data.getString("prod_id");
+
+                //prod_id = "2";
+
+                prod_name = data.getString("prod_name");
+
+                brand_id = data.getString("brand_id");
+
+                brand_name = data.getString("brand_name");
+
+                parent_id = data.getString("parent_id");
+
+                categ_name = data.getString("categ_name");
+
+                subcategid = data.getString("subcategid");
+
+                subcategname = data.getString("subcategname");
+
+                make_id = data.getString("make_id");
+
+                make_name = data.getString("make_name");
+
+                model_id = data.getString("model_id");
+
+                model_name = data.getString("model_name");
+
+                search_text = data.getString("search_text");
+
+                quantity = data.getString("quantity");
+
+                unit_price = data.getString("unit_price");
+
+                Log.w(TAG,"brand_id "+brand_id+"brand_name "+ brand_name+"parent_id : "+parent_id+ "categ_name : "+categ_name+"subcategid :" +subcategid
+
+                        + "subcategname : "+subcategname +
+
+                        "make_id : "+make_id +"make_name :" +make_name +"model_id :" +model_id
+
+                        + "model_name : "+model_name+ "quantity "+quantity+ "unit_price : "+unit_price+
+
+                        "search_text : "+search_text+
+
+                        "fromactivity :" +fromActivity);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
         }
 
@@ -947,7 +1019,7 @@ public class WholeSalerRegisterFragment extends Fragment {
 
                         Toasty.success(Objects.requireNonNull(getContext()),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                        startActivity(new Intent(getContext(), RetailerDashboardActivity.class));
+                        onBackPressed();
 
                     }
 
@@ -1076,6 +1148,235 @@ public class WholeSalerRegisterFragment extends Fragment {
         }
 
         return sb.toString();
+    }
+
+    public void onBackPressed() {
+
+        if(fromActivity!=null) {
+
+            if (fromActivity.equals("HomeFragment")) {
+
+                callDirections("1");
+
+
+            }
+
+            else if(fromActivity.equals("MyGarageFragment")){
+
+                callDirections("2");
+
+            }
+
+
+            else if(fromActivity.equals("ProfileFragment")){
+
+                callDirections("5");
+            }
+
+            else if(fromActivity.equals("RetailerCartActivity")){
+
+                gotoCartActivity();
+            }
+
+            else if(fromActivity.equals("SearchProdListActivity")){
+
+                gotoSearchProductListActivity();
+            }
+
+            else if(fromActivity.equals("ProductDetailDescriptionActivity")){
+
+                gotoProductDetailDescriptionActivity();
+            }
+
+
+            else if(fromActivity.equals("RetailerProductListActivity")){
+
+                gotoBrandProductListActivity();
+
+            }
+
+            else if(fromActivity.equals("RetailerProductListBasedOnCategActivity")){
+
+                gotoCategoryProductListActivity();
+            }
+
+            else if(fromActivity.equals("RetailerProductListBasedOnMakeActivity")){
+
+                gotoMakeProductListActivity();
+            }
+
+            else  {
+
+                Intent intent = new Intent(getContext(),RetailerDashboardActivity.class);
+                intent.putExtra("fromactivity",fromActivity);
+                startActivity(intent);
+                Objects.requireNonNull(getActivity()).finish();
+
+            }
+
+        }
+        else  {
+
+            Intent intent = new Intent(getContext(),RetailerDashboardActivity.class);
+            intent.putExtra("fromactivity",fromActivity);
+            startActivity(intent);
+            Objects.requireNonNull(getActivity()).finish();
+
+        }
+    }
+
+    public void callDirections(String tag){
+        Intent intent = new Intent(getContext(),RetailerDashboardActivity.class);
+        intent.putExtra("tag",tag);
+        intent.putExtra("fromactivity",fromActivity);
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+
+
+    private void gotoMakeProductListActivity() {
+
+        Intent intent = new Intent(getContext(), RetailerProductListBasedOnMakeActivity.class);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("fromactivity",TAG);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+    private void gotoCategoryProductListActivity() {
+
+        Intent intent = new Intent(getContext(), RetailerProductListBasedOnCategActivity.class);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("fromactivity",TAG);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+    private void gotoBrandProductListActivity() {
+
+        Intent intent = new Intent(getContext(), RetailerProductListActivity.class);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("fromactivity",TAG);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+
+    private void gotoCartActivity() {
+
+        Intent intent = new Intent(getContext(), RetailerCartActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_id",model_name);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+
+
+    private void gotoSearchProductListActivity() {
+
+        Intent intent = new Intent(getContext(), SearchProductListActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("search_text",search_text);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("quantity",quantity);
+
+        intent.putExtra("unit_price",unit_price);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
+
+    }
+
+    private void gotoProductDetailDescriptionActivity() {
+
+        Intent intent = new Intent(getContext(), ProductDetailDescriptionActivity.class);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_id",model_name);
+
+        intent.putExtra("fromactivity",TAG);
+
+        startActivity(intent);
+
+        Objects.requireNonNull(getActivity()).finish();
     }
 
 

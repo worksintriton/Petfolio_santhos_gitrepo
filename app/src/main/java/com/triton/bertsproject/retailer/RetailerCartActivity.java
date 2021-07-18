@@ -1102,13 +1102,39 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
         builder.setCancelable(false);
         builder.setPositiveButton("Login", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerCartActivity.this,LoginActivity.class);
-            intent.putExtra("fromActivity",TAG);
+
+            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("prod_id",prod_id);
+
+            intent.putExtra("prod_name",prod_name);
+
+            intent.putExtra("brand_id",brand_id);
+
+            intent.putExtra("brand_name",brand_name);
+
+            intent.putExtra("parent_id",parent_id);
+
+            intent.putExtra("categ_name",categ_name);
+
+            intent.putExtra("subcategid",subcategid);
+
+            intent.putExtra("subcategname",subcategname);
+
+            intent.putExtra("make_id",make_id);
+
+            intent.putExtra("make_name", make_name);
+
+            intent.putExtra("model_id", model_id);
+
+            intent.putExtra("model_id",model_name);
+
             startActivity(intent);
-            finish();
+
         });
         builder.setNegativeButton("SignUp", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerCartActivity.this, RegisterActivity.class);
-            intent.putExtra("fromActivity",TAG);
+            intent.putExtra("fromactivity",TAG);
             startActivity(intent);
             finish();
         });
