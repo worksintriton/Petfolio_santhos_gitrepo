@@ -39,6 +39,8 @@ import com.triton.bertsproject.api.APIClient;
 import com.triton.bertsproject.api.RestApiInterface;
 import com.triton.bertsproject.model.RetailerProductlistModel;
 import com.triton.bertsproject.requestpojo.AddToCartRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardResponse;
 import com.triton.bertsproject.requestpojo.ProductDetailRequest;
 import com.triton.bertsproject.responsepojo.AddToCartResponse;
 import com.triton.bertsproject.responsepojo.ProductDetailRespone;
@@ -334,6 +336,16 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
     String value,search_text;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
+
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -464,12 +476,34 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
             HashMap<String, String> user = sessionManager.getProfileDetails();
 
             user_id = user.get(SessionManager.KEY_ID);
+
+            rlcart.setOnClickListener(v -> {
+
+               gotoCartActivity();
+
+            });
+
+
+            cart_count = connectivity.getData(context,"Cart_Count");
+
+            Log.w(TAG,"cart_count "+cart_count);
+
+            if(cart_count!=null&&!cart_count.equals("0")){
+
+                txt_cart_count.setText(""+cart_count);
+            }
+
+            else {
+
+                txt_cart_count.setVisibility(View.GONE);
+            }
+
         }
 
         else {
 
             user_id  = "";
-
+            txt_cart_count.setVisibility(View.GONE);
         }
 
         txt_product_name.setVisibility(View.GONE);
@@ -544,6 +578,45 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
 
     }
+
+    private void gotoCartActivity() {
+
+        Intent intent = new Intent(ProductDetailDescriptionActivity.this, RetailerCartActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
+
+        startActivity(intent);
+
+        finish();
+
+    }
+
 
     @SuppressLint("LongLogTag")
     @Override
@@ -1258,35 +1331,7 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                        Intent intent = new Intent(ProductDetailDescriptionActivity.this, RetailerCartActivity.class);
-
-                        intent.putExtra("prod_id",prod_id);
-
-                        intent.putExtra("prod_name",prod_name);
-
-                        intent.putExtra("brand_id",brand_id);
-
-                        intent.putExtra("brand_name",brand_name);
-
-                        intent.putExtra("parent_id",parent_id);
-
-                        intent.putExtra("categ_name",categ_name);
-
-                        intent.putExtra("subcategid",subcategid);
-
-                        intent.putExtra("subcategname",subcategname);
-
-                        intent.putExtra("make_id",make_id);
-
-                        intent.putExtra("model_id", model_id);
-
-                        intent.putExtra("model_id",model_name);
-
-                        intent.putExtra("fromactivity",TAG);
-
-                        connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
-
-                        startActivity(intent);
+                        usercommonResponseCall();
 
                     }
 
@@ -1527,4 +1572,154 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+    @SuppressLint("LongLogTag")
+    private void usercommonResponseCall() {
+
+        spin_kit_loadingView.setVisibility(View.VISIBLE);
+        //Creating an object of our api interface
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<HomepageDashboardResponse> call = apiInterface.usercommonResponseCall(RestUtils.getContentType(),HomepageDashboardRequest());
+        Log.w(TAG,"HomepageDashboardResponse url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<HomepageDashboardResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NonNull Call<HomepageDashboardResponse> call, @NonNull Response<HomepageDashboardResponse> response) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+
+                    if(response.body().getData()!=null){
+
+                        if(200==response.body().getCode()) {
+
+                            Log.w(TAG, "HomepageDashboardResponse" + new Gson().toJson(response.body()));
+
+                            cart_count = String.valueOf(response.body().getData().getCart_count());
+
+                            Log.w(TAG, "Cart_Count" + cart_count);
+
+                            if (cart_count!=null&&!cart_count.equals("0"))  {
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.clearData(context,"Cart_Count");
+
+                                connectivity.storeData(context,"Cart_Count",String.valueOf(cart_count));
+
+                                gotoNextActivity();
+
+                            }
+
+                            else {
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.clearData(context,"Cart_Count");
+
+                                connectivity.storeData(context,"Cart_Count","0");
+
+                                gotoNextActivity();
+
+                            }
+
+
+                        }
+
+                        else {
+
+                            cart_count="0";
+//                            showErrorLoading(response.body().getMessage());
+                            Connectivity connectivity = new Connectivity();
+
+                            connectivity.clearData(context,"Cart_Count");
+
+                            connectivity.storeData(context,"Cart_Count","0");
+
+                            gotoNextActivity();
+                        }
+                    }
+
+                    else {
+
+                        cart_count="0";
+
+                        txt_cart_count.setVisibility(View.GONE);
+
+                        Connectivity connectivity = new Connectivity();
+
+                        connectivity.clearData(context,"Cart_Count");
+
+                        connectivity.storeData(context,"Cart_Count","0");
+
+                        gotoNextActivity();
+                    }
+
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(@NonNull Call<HomepageDashboardResponse> call,@NonNull  Throwable t) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+                Log.w(TAG,"HomepageDashboardResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+
+    @SuppressLint("LongLogTag")
+    private HomepageDashboardRequest HomepageDashboardRequest() {
+
+        /*
+         * USER_ID : 541
+         */
+
+
+        HomepageDashboardRequest HomepageDashboardRequest = new HomepageDashboardRequest();
+        HomepageDashboardRequest.setUSER_ID(user_id);
+
+        Log.w(TAG,"HomepageDashboardRequest "+ new Gson().toJson(HomepageDashboardRequest));
+        return HomepageDashboardRequest;
+    }
+
+
+    public void gotoNextActivity(){
+
+        Intent intent = new Intent(ProductDetailDescriptionActivity.this, RetailerCartActivity.class);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_id",model_name);
+
+        intent.putExtra("fromactivity",TAG);
+
+        connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
+
+        startActivity(intent);
+
+
+    }
+
 }

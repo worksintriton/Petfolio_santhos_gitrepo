@@ -39,6 +39,8 @@ public class ProfileFragment_ViewBinding implements Unbinder {
     target.img_profile = Utils.findRequiredViewAsType(source, R.id.img_profile, "field 'img_profile'", ImageView.class);
     target.btn_sigin = Utils.findRequiredViewAsType(source, R.id.btn_signin, "field 'btn_sigin'", Button.class);
     target.txt_user_login = Utils.findRequiredViewAsType(source, R.id.txt_user_login, "field 'txt_user_login'", TextView.class);
+    target.txt_cart_count = Utils.findRequiredViewAsType(source, R.id.txt_cart_count, "field 'txt_cart_count'", TextView.class);
+    target.rlcart = Utils.findRequiredViewAsType(source, R.id.rlcart, "field 'rlcart'", RelativeLayout.class);
   }
 
   @Override
@@ -63,5 +65,7 @@ public class ProfileFragment_ViewBinding implements Unbinder {
     target.img_profile = null;
     target.btn_sigin = null;
     target.txt_user_login = null;
+    target.txt_cart_count = null;
+    target.rlcart = null;
   }
 }

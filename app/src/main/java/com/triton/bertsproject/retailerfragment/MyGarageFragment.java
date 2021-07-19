@@ -41,7 +41,9 @@ import com.triton.bertsproject.responsepojo.ShowVehiclelistResponse;
 import com.triton.bertsproject.responsepojo.WishlistSuccessResponse;
 import com.triton.bertsproject.retailer.AddVehicleActivity;
 import com.triton.bertsproject.retailer.MyWishlistActivity;
+import com.triton.bertsproject.retailer.RetailerCartActivity;
 import com.triton.bertsproject.retailer.RetailerDashboardActivity;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.GridSpacingItemDecoration;
 import com.triton.bertsproject.utils.RestUtils;
@@ -97,6 +99,15 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
     @BindView(R.id.txt_user_login)
     TextView txt_user_login;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
 
 
     List<ShowVehiclelistResponse.DataBean.AddvehicleBean> showvehicleBeanList ;
@@ -155,6 +166,7 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
 
          // user_id  = "541";
 
+
         if (sessionManager.isLoggedIn()) {
 
             cl_loginbefore.setVisibility(View.GONE);
@@ -162,6 +174,23 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
             cv_addvehicle.setVisibility(View.GONE);
 
             rl_vehicle.setVisibility(View.GONE);
+
+
+            Connectivity connectivity = new Connectivity();
+
+            cart_count = connectivity.getData(getContext(),"Cart_Count");
+
+            Log.w(TAG,"cart_count "+cart_count);
+
+            if(cart_count!=null&&!cart_count.equals("0")){
+
+                txt_cart_count.setText(""+cart_count);
+            }
+
+            else {
+
+                txt_cart_count.setVisibility(View.GONE);
+            }
 
             if(dd4YouConfig.isInternetConnectivity()) {
 
@@ -181,6 +210,8 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
             rl_vehicle.setVisibility(View.GONE);
 
             cl_loginbefore.setVisibility(View.VISIBLE);
+
+            txt_cart_count.setVisibility(View.GONE);
 
             spin_kit_loadingView.setVisibility(View.GONE);
 
@@ -209,7 +240,17 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
 
 
         }
+        rlcart.setOnClickListener(v -> {
 
+            Intent intent = new Intent(getContext(), RetailerCartActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            startActivity(intent);
+
+            Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
+
+        });
         return view;
     }
 

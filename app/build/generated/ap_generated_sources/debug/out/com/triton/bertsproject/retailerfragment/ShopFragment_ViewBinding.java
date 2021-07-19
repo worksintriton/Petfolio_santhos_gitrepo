@@ -2,6 +2,7 @@
 package com.triton.bertsproject.retailerfragment;
 
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
@@ -35,6 +36,8 @@ public class ShopFragment_ViewBinding implements Unbinder {
     target.tb_topcat = Utils.findRequiredViewAsType(source, R.id.tb_topcat, "field 'tb_topcat'", TableLayout.class);
     target.tb_brand = Utils.findRequiredViewAsType(source, R.id.tb_brand, "field 'tb_brand'", TableLayout.class);
     target.tb_makes = Utils.findRequiredViewAsType(source, R.id.tb_makes, "field 'tb_makes'", TableLayout.class);
+    target.txt_cart_count = Utils.findRequiredViewAsType(source, R.id.txt_cart_count, "field 'txt_cart_count'", TextView.class);
+    target.rlcart = Utils.findRequiredViewAsType(source, R.id.rlcart, "field 'rlcart'", RelativeLayout.class);
   }
 
   @Override
@@ -58,5 +61,7 @@ public class ShopFragment_ViewBinding implements Unbinder {
     target.tb_topcat = null;
     target.tb_brand = null;
     target.tb_makes = null;
+    target.txt_cart_count = null;
+    target.rlcart = null;
   }
 }

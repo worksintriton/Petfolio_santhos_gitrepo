@@ -9,6 +9,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.gson.Gson;
 import com.triton.bertsproject.R;
@@ -30,13 +32,17 @@ import com.triton.bertsproject.api.RestApiInterface;
 import com.triton.bertsproject.responsepojo.FetchAllBrandsResponse;
 import com.triton.bertsproject.responsepojo.FetchAllParentCategoriesResponse;
 import com.triton.bertsproject.responsepojo.FetchAllParentMakesResponse;
+import com.triton.bertsproject.retailer.RetailerCartActivity;
 import com.triton.bertsproject.retailer.RetailerDashboardActivity;
 import com.triton.bertsproject.retailer.ShowAllBrandsActivity;
 import com.triton.bertsproject.retailer.ShowAllParentCategoriesActivity;
 import com.triton.bertsproject.retailer.ShowAllParentMakesActivity;
+import com.triton.bertsproject.sessionmanager.Connectivity;
+import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.GridSpacingItemDecoration;
 import com.triton.bertsproject.utils.RestUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -120,6 +126,16 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
     Context context;
 
     DD4YouConfig dd4YouConfig;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
 
     public ShopFragment() {
         // Required empty public constructor
@@ -214,6 +230,48 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("fromactivity",TAG);
 
             startActivity(intent);
+        });
+
+        SessionManager sessionManager = new SessionManager(getContext());
+
+        HashMap<String, String> user = sessionManager.getProfileDetails();
+
+        if(sessionManager.isLoggedIn())
+        {
+            Connectivity connectivity = new Connectivity();
+
+            cart_count = connectivity.getData(getContext(),"Cart_Count");
+
+            Log.w(TAG,"cart_count "+cart_count);
+
+            if(cart_count!=null&&!cart_count.equals("0")){
+
+                txt_cart_count.setText(""+cart_count);
+            }
+
+            else {
+
+                txt_cart_count.setVisibility(View.GONE);
+            }
+
+        }
+
+        else{
+
+
+            txt_cart_count.setVisibility(View.GONE);
+        }
+
+        rlcart.setOnClickListener(v -> {
+
+            Intent intent = new Intent(getContext(), RetailerCartActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            startActivity(intent);
+
+            Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
+
         });
 
 

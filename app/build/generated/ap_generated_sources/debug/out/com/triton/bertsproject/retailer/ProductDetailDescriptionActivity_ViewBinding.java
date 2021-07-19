@@ -89,6 +89,8 @@ public class ProductDetailDescriptionActivity_ViewBinding implements Unbinder {
     target.txt_2star_perc = Utils.findRequiredViewAsType(source, R.id.txt_2star_perc, "field 'txt_2star_perc'", TextView.class);
     target.progress_bar_1star = Utils.findRequiredViewAsType(source, R.id.progress_bar_1star, "field 'progress_bar_1star'", RoundedHorizontalProgressBar.class);
     target.txt_1star_perc = Utils.findRequiredViewAsType(source, R.id.txt_1star_perc, "field 'txt_1star_perc'", TextView.class);
+    target.txt_cart_count = Utils.findRequiredViewAsType(source, R.id.txt_cart_count, "field 'txt_cart_count'", TextView.class);
+    target.rlcart = Utils.findRequiredViewAsType(source, R.id.rlcart, "field 'rlcart'", RelativeLayout.class);
   }
 
   @Override
@@ -153,5 +155,7 @@ public class ProductDetailDescriptionActivity_ViewBinding implements Unbinder {
     target.txt_2star_perc = null;
     target.progress_bar_1star = null;
     target.txt_1star_perc = null;
+    target.txt_cart_count = null;
+    target.rlcart = null;
   }
 }

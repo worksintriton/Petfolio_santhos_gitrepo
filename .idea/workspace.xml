@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ProductDetailDescriptionActivity" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -74,7 +73,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@ZF6222CF2C" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-16T11:34:47.641041100Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-19T12:14:58.867035200Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android-custom-viewC:/Users/santh/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/androidx/cardview/widget/CardView.java_SELECTED" value="CardView" />
@@ -313,26 +312,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1623049477752" />
-    <state width="1237" height="319" key="GridCell.Tab.0.bottom" timestamp="1626633110698">
+    <state width="1237" height="562" key="GridCell.Tab.0.bottom" timestamp="1626702567852">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
-    <state width="1237" height="319" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
-    <state width="1237" height="319" key="GridCell.Tab.0.center" timestamp="1626633110698">
+    <state width="1237" height="562" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626702567852" />
+    <state width="1237" height="562" key="GridCell.Tab.0.center" timestamp="1626702567851">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
-    <state width="1237" height="319" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
-    <state width="1237" height="319" key="GridCell.Tab.0.left" timestamp="1626633110698">
+    <state width="1237" height="562" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626702567851" />
+    <state width="1237" height="562" key="GridCell.Tab.0.left" timestamp="1626702567851">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1622119167982" />
-    <state width="1237" height="319" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
-    <state width="1237" height="319" key="GridCell.Tab.0.right" timestamp="1626633110698">
+    <state width="1237" height="562" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626702567851" />
+    <state width="1237" height="562" key="GridCell.Tab.0.right" timestamp="1626702567851">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="347" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1622119167983" />
-    <state width="1237" height="319" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626633110698" />
+    <state width="1237" height="562" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626702567851" />
     <state width="1237" height="248" key="GridCell.Tab.1.bottom" timestamp="1623767444260">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -390,7 +389,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/triton/bertsproject/retailerfragment/HomeFragment.java</url>
-          <line>582</line>
+          <line>589</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-method">

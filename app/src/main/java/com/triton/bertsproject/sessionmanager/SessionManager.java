@@ -21,8 +21,6 @@ public class SessionManager {
     public static final String IS_LOGIN = "IsLoggedIn";
 
 
-
-
     public static final String KEY_EMAIL_ID = "emailid";
     public static final String KEY_TYPE = "type";
     public static final String KEY_ID = "id";
@@ -34,6 +32,8 @@ public class SessionManager {
     public static final String KEY_STATE_ID = "state_id";
     public static final String KEY_ZIPCODE = "zip_code";
     public static final String KEY_REVENUE = "revenue";
+
+    public static final String KEY_CART_COUNT = "cart_count";
 
     @SuppressLint("CommitPrefEdits")
     public SessionManager(Context context) {
@@ -80,7 +80,6 @@ public class SessionManager {
         editor.commit();
 
     }
-
 
 
     public HashMap<String, String> getProfileDetails() {

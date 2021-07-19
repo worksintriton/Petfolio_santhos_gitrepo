@@ -43,6 +43,8 @@ import com.triton.bertsproject.model.RetailerProductlistModel;
 import com.triton.bertsproject.requestpojo.AddToCartRequest;
 import com.triton.bertsproject.requestpojo.AddWishistRequest;
 import com.triton.bertsproject.requestpojo.FetchProductBasedOnMakeRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardResponse;
 import com.triton.bertsproject.responsepojo.AddToCartResponse;
 import com.triton.bertsproject.responsepojo.ProductListResponse;
 import com.triton.bertsproject.responsepojo.WishlistSuccessResponse;
@@ -150,6 +152,17 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
     String value,make_name;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
+
+
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,18 +244,44 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
         sessionManager=new SessionManager(this);
 
+        rlcart.setOnClickListener(v -> {
+
+            gotoCartActivity();
+
+        });
+
+
+
         if(sessionManager.isLoggedIn()){
 
             HashMap<String, String> user = sessionManager.getProfileDetails();
 
             user_id = user.get(SessionManager.KEY_ID);
+
+            Connectivity connectivity = new Connectivity();
+
+            cart_count = connectivity.getData(context,"Cart_Count");
+
+            Log.w(TAG,"cart_count "+cart_count);
+
+            if(cart_count!=null&&!cart_count.equals("0")){
+
+                txt_cart_count.setText(""+cart_count);
+            }
+
+            else {
+
+                txt_cart_count.setVisibility(View.GONE);
+            }
         }
 
         else {
 
             user_id  = "";
 
+            txt_cart_count.setVisibility(View.GONE);
         }
+
 
         if (dd4YouConfig.isInternetConnectivity()) {
 
@@ -276,6 +315,31 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
 
     }
+
+    private void gotoCartActivity() {
+
+        Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, RetailerCartActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
+
+        startActivity(intent);
+
+        finish();
+
+    }
+
 
     private void showBottomSheetDialog() {
 
@@ -964,6 +1028,8 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
                    //     fetchallproductsListResponseCall(searchString);
 
+                        usercommonResponseCall();
+
                     }
 
                     else {
@@ -1008,4 +1074,107 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
         Log.w(TAG,"AddToCartRequest "+ new Gson().toJson(AddToCartRequest));
         return AddToCartRequest;
     }
+
+    @SuppressLint("LongLogTag")
+    private void usercommonResponseCall() {
+
+        spin_kit_loadingView.setVisibility(View.VISIBLE);
+        //Creating an object of our api interface
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<HomepageDashboardResponse> call = apiInterface.usercommonResponseCall(RestUtils.getContentType(),HomepageDashboardRequest());
+        Log.w(TAG,"HomepageDashboardResponse url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<HomepageDashboardResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NonNull Call<HomepageDashboardResponse> call, @NonNull Response<HomepageDashboardResponse> response) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+
+                    if(response.body().getData()!=null){
+
+                        if(200==response.body().getCode()) {
+
+                            Log.w(TAG, "HomepageDashboardResponse" + new Gson().toJson(response.body()));
+
+                            cart_count = String.valueOf(response.body().getData().getCart_count());
+
+                            Log.w(TAG, "Cart_Count" + cart_count);
+
+                            if (cart_count!=null&&!cart_count.equals("0"))  {
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.storeData(context,"Cart_Count",String.valueOf(cart_count));
+
+                                txt_cart_count.setText(""+cart_count);
+                            }
+
+                            else {
+
+                                txt_cart_count.setVisibility(View.GONE);
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.storeData(context,"Cart_Count","0");
+
+                            }
+
+
+                        }
+
+                        else {
+
+                            cart_count="0";
+//                            showErrorLoading(response.body().getMessage());
+                            txt_cart_count.setVisibility(View.GONE);
+
+                            Connectivity connectivity = new Connectivity();
+
+                            connectivity.storeData(context,"Cart_Count","0");
+                        }
+                    }
+
+                    else {
+
+                        cart_count="0";
+
+                        txt_cart_count.setVisibility(View.GONE);
+
+                        Connectivity connectivity = new Connectivity();
+
+                        connectivity.storeData(context,"Cart_Count","0");
+                    }
+
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(@NonNull Call<HomepageDashboardResponse> call,@NonNull  Throwable t) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+                Log.w(TAG,"HomepageDashboardResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+
+    @SuppressLint("LongLogTag")
+    private HomepageDashboardRequest HomepageDashboardRequest() {
+
+        /*
+         * USER_ID : 541
+         */
+
+
+        HomepageDashboardRequest HomepageDashboardRequest = new HomepageDashboardRequest();
+        HomepageDashboardRequest.setUSER_ID(user_id);
+
+        Log.w(TAG,"HomepageDashboardRequest "+ new Gson().toJson(HomepageDashboardRequest));
+        return HomepageDashboardRequest;
+    }
+
 }

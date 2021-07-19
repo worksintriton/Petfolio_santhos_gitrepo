@@ -28,11 +28,13 @@ import com.triton.bertsproject.activities.LoginActivity;
 import com.triton.bertsproject.activities.RegisterActivity;
 import com.triton.bertsproject.retailer.MyWishlistActivity;
 import com.triton.bertsproject.retailer.OrderListActivity;
+import com.triton.bertsproject.retailer.RetailerCartActivity;
 import com.triton.bertsproject.retailer.RetailerDashboardActivity;
 import com.triton.bertsproject.retailer.RetailerOrderTrackActivity;
 import com.triton.bertsproject.retailer.RetailerProfileAccountActivity;
 import com.triton.bertsproject.retailer.RetailerSetttingsActivity;
 import com.triton.bertsproject.retailer.ShippingAddressActivity;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 
 import java.util.HashMap;
@@ -113,6 +115,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_user_login)
     TextView txt_user_login;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -244,6 +256,21 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         });
 
+            Connectivity connectivity = new Connectivity();
+
+            cart_count = connectivity.getData(getContext(),"Cart_Count");
+
+            Log.w(TAG,"cart_count "+cart_count);
+
+            if(cart_count!=null&&!cart_count.equals("0")){
+
+                txt_cart_count.setText(""+cart_count);
+            }
+
+            else {
+
+                txt_cart_count.setVisibility(View.GONE);
+            }
 
         }
 
@@ -254,6 +281,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             rl_login_after.setVisibility(View.GONE);
 
             ll_login_after.setVisibility(View.GONE);
+
+            txt_cart_count.setVisibility(View.GONE);
 
             txt_user_login.setOnClickListener(v -> {
 
@@ -281,6 +310,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
         }
+        rlcart.setOnClickListener(v -> {
+
+            Intent intent = new Intent(getContext(), RetailerCartActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            startActivity(intent);
+
+            Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
+
+        });
 
         spin_kit_loadingView.setVisibility(View.GONE);
 

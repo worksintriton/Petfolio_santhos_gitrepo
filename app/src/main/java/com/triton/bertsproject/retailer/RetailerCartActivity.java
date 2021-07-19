@@ -39,6 +39,8 @@ import com.triton.bertsproject.interfaces.CartRemoveProductListener;
 import com.triton.bertsproject.interfaces.RemoveProductListener;
 import com.triton.bertsproject.model.DeleteCartListRequest;
 import com.triton.bertsproject.requestpojo.AddToCartRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardRequest;
+import com.triton.bertsproject.requestpojo.HomepageDashboardResponse;
 import com.triton.bertsproject.requestpojo.RemoveOverallProductsRequest;
 import com.triton.bertsproject.requestpojo.RemovefromCartRequest;
 import com.triton.bertsproject.requestpojo.ShowCartListRequest;
@@ -178,7 +180,7 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
     Connectivity connectivity;
 
-    String value,categ_name,make_name,search_text;
+    String value,categ_name,make_name,search_text,cart_count;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -401,48 +403,50 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
             if(fromactivity.equals("HomeFragment")){
 
-                Intent intent = new Intent(RetailerCartActivity.this, RetailerDashboardActivity.class);
-                intent.putExtra("fromactivity",TAG);
-                connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
-                startActivity(intent);
-                finish();
+                callDirections("1");
             }
+            else if(fromactivity.equals("MyGarageFragment")){
 
+                callDirections("2");
+            }
+            else if(fromactivity.equals("ShopFragment")){
+
+                callDirections("3");
+            }
+            else if(fromactivity.equals("ProfileFragment")){
+
+             callDirections("5");
+            }
             else if(fromactivity.equals("ProductDetailDescriptionActivity")){
 
-                Intent intent = new Intent(RetailerCartActivity.this, ProductDetailDescriptionActivity.class);
+                connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
 
-                intent.putExtra("fromactivity",TAG);
+                gotoProductDescrActivity();
 
-                intent.putExtra("prod_id",prod_id);
+            }
 
-                intent.putExtra("prod_name",prod_name);
-
-                intent.putExtra("brand_id",brand_id);
-
-                intent.putExtra("brand_name",brand_name);
-
-                intent.putExtra("parent_id",parent_id);
-
-                intent.putExtra("categ_name",categ_name);
-
-                intent.putExtra("subcategid",subcategid);
-
-                intent.putExtra("subcategname",subcategname);
-
-                intent.putExtra("make_id",make_id);
-
-                intent.putExtra("make_name",make_name);
-
-                intent.putExtra("model_id", model_id);
-
-                intent.putExtra("model_id",model_name);
+            else if(fromactivity.equals("RetailerProductListActivity")){
 
                 connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
 
-                startActivity(intent);
+                gotoRetailerProductListActivity();
 
-                finish();
+            }
+
+            else if(fromactivity.equals("RetailerProductListBasedOnCategActivity")){
+
+                connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
+
+                gotoRetailerProductListBasedOnCategActivity();
+
+            }
+
+            else if(fromactivity.equals("RetailerProductListBasedOnMakeActivity")){
+
+                connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
+
+                gotoRetailerProductListBasedOnMakeActivity();
+
             }
             else {
                 Intent intent = new Intent(RetailerCartActivity.this, RetailerDashboardActivity.class);
@@ -461,6 +465,100 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
             finish();
 
         }
+    }
+
+    private void gotoRetailerProductListBasedOnMakeActivity() {
+
+        Intent intent = new Intent(RetailerCartActivity.this, RetailerProductListBasedOnMakeActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        startActivity(intent);
+
+        finish();
+    }
+
+    private void gotoRetailerProductListBasedOnCategActivity() {
+
+        Intent intent = new Intent(RetailerCartActivity.this, RetailerProductListBasedOnCategActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        startActivity(intent);
+
+        finish();
+
+    }
+
+    private void gotoRetailerProductListActivity() {
+
+        Intent intent = new Intent(RetailerCartActivity.this, RetailerProductListActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        startActivity(intent);
+
+        finish();
+    }
+
+    private void gotoProductDescrActivity() {
+
+            Intent intent = new Intent(RetailerCartActivity.this, ProductDetailDescriptionActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("prod_id",prod_id);
+
+            intent.putExtra("prod_name",prod_name);
+
+            intent.putExtra("brand_id",brand_id);
+
+            intent.putExtra("brand_name",brand_name);
+
+            intent.putExtra("parent_id",parent_id);
+
+            intent.putExtra("categ_name",categ_name);
+
+            intent.putExtra("subcategid",subcategid);
+
+            intent.putExtra("subcategname",subcategname);
+
+            intent.putExtra("make_id",make_id);
+
+            intent.putExtra("make_name",make_name);
+
+            intent.putExtra("model_id", model_id);
+
+            intent.putExtra("model_name",model_name);
+
+            startActivity(intent);
+
+            finish();
+
     }
 
 
@@ -484,6 +582,8 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
                     if(200==response.body().getCode()) {
 
                         Log.w(TAG, "ShowCartListResponse" + new Gson().toJson(response.body()));
+
+                        usercommonResponseCall();
 
                         cartBeanList=response.body().getData().getCart();
 
@@ -855,6 +955,8 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
                             showcartlistResponseCall();
 
+                            usercommonResponseCall();
+
                         }
 
                         else
@@ -964,6 +1066,8 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
                             showcartlistResponseCall();
 
+                            usercommonResponseCall();
+
                         }
 
                         else
@@ -1042,6 +1146,8 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
                         if (dd4YouConfig.isInternetConnectivity()) {
 
                             showcartlistResponseCall();
+
+                            usercommonResponseCall();
 
                         }
 
@@ -1129,13 +1235,44 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
 
             intent.putExtra("model_id",model_name);
 
+            connectivity.storeData(RetailerCartActivity.this,"RetailerCart",fromactivity);
+
             startActivity(intent);
+
+            finish();
 
         });
         builder.setNegativeButton("SignUp", (dialogInterface, i) -> {
             Intent intent = new Intent(RetailerCartActivity.this, RegisterActivity.class);
-            intent.putExtra("fromactivity",TAG);
+
+            intent.putExtra("prod_id",prod_id);
+
+            intent.putExtra("prod_name",prod_name);
+
+            intent.putExtra("brand_id",brand_id);
+
+            intent.putExtra("brand_name",brand_name);
+
+            intent.putExtra("parent_id",parent_id);
+
+            intent.putExtra("categ_name",categ_name);
+
+            intent.putExtra("subcategid",subcategid);
+
+            intent.putExtra("subcategname",subcategname);
+
+            intent.putExtra("make_id",make_id);
+
+            intent.putExtra("make_name", make_name);
+
+            intent.putExtra("model_id", model_id);
+
+            intent.putExtra("model_id",model_name);
+
+            connectivity.storeData(RetailerCartActivity.this,"RetailerCart",fromactivity);
+
             startActivity(intent);
+
             finish();
         });
         builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
@@ -1168,6 +1305,8 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
                         Log.w(TAG, "RemoveOverallProductsResponse" + new Gson().toJson(response.body()));
 
                         Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toast.LENGTH_LONG).show();
+
+                        usercommonResponseCall();
 
                         startActivity(new Intent(RetailerCartActivity.this,RetailerDashboardActivity.class));
                     }
@@ -1213,9 +1352,116 @@ public class RetailerCartActivity extends AppCompatActivity implements BottomNav
     public void callDirections(String tag){
         Intent intent = new Intent(RetailerCartActivity.this,RetailerDashboardActivity.class);
         intent.putExtra("tag",tag);
+        connectivity.clearData(RetailerCartActivity.this,"RetailerCart");
         startActivity(intent);
         finish();
 
     }
+
+
+    @SuppressLint("LongLogTag")
+    private void usercommonResponseCall() {
+
+        spin_kit_loadingView.setVisibility(View.VISIBLE);
+        //Creating an object of our api interface
+        RestApiInterface apiInterface = APIClient.getClient().create(RestApiInterface.class);
+        Call<HomepageDashboardResponse> call = apiInterface.usercommonResponseCall(RestUtils.getContentType(),HomepageDashboardRequest());
+        Log.w(TAG,"HomepageDashboardResponse url  :%s"+ call.request().url().toString());
+
+        call.enqueue(new Callback<HomepageDashboardResponse>() {
+            @SuppressLint("LogNotTimber")
+            @Override
+            public void onResponse(@NonNull Call<HomepageDashboardResponse> call, @NonNull Response<HomepageDashboardResponse> response) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+
+                    if(response.body().getData()!=null){
+
+                        if(200==response.body().getCode()) {
+
+                            Log.w(TAG, "HomepageDashboardResponse" + new Gson().toJson(response.body()));
+
+                            cart_count = String.valueOf(response.body().getData().getCart_count());
+
+                            Log.w(TAG, "Cart_Count" + cart_count);
+
+                            if (cart_count!=null&&!cart_count.equals("0"))  {
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.clearData(context,"Cart_Count");
+
+                                connectivity.storeData(context,"Cart_Count",String.valueOf(cart_count));
+
+
+                            }
+
+                            else {
+
+                                Connectivity connectivity = new Connectivity();
+
+                                connectivity.clearData(context,"Cart_Count");
+
+                                connectivity.storeData(context,"Cart_Count","0");
+
+                            }
+
+
+                        }
+
+                        else {
+
+//                            showErrorLoading(response.body().getMessage());
+                            Connectivity connectivity = new Connectivity();
+
+                            connectivity.clearData(context,"Cart_Count");
+
+                            connectivity.storeData(context,"Cart_Count","0");
+
+                        }
+                    }
+
+                    else {
+
+
+                        Connectivity connectivity = new Connectivity();
+
+                        connectivity.clearData(context,"Cart_Count");
+
+                        connectivity.storeData(context,"Cart_Count","0");
+
+                    }
+
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(@NonNull Call<HomepageDashboardResponse> call,@NonNull  Throwable t) {
+                spin_kit_loadingView.setVisibility(View.GONE);
+                Log.w(TAG,"HomepageDashboardResponse flr"+t.getMessage());
+            }
+        });
+
+    }
+
+
+    @SuppressLint("LongLogTag")
+    private HomepageDashboardRequest HomepageDashboardRequest() {
+
+        /*
+         * USER_ID : 541
+         */
+
+
+        HomepageDashboardRequest HomepageDashboardRequest = new HomepageDashboardRequest();
+        HomepageDashboardRequest.setUSER_ID(user_id);
+
+        Log.w(TAG,"HomepageDashboardRequest "+ new Gson().toJson(HomepageDashboardRequest));
+        return HomepageDashboardRequest;
+    }
+
 
 }

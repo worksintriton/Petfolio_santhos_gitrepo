@@ -48,6 +48,7 @@ import com.triton.bertsproject.retailer.MyWishlistActivity;
 import com.triton.bertsproject.retailer.RetailerCartActivity;
 import com.triton.bertsproject.retailer.SearchProductListActivity;
 import com.triton.bertsproject.retailer.SearchProductsActivity;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -479,6 +480,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             Log.w(TAG, "HomepageDashboardResponse" + new Gson().toJson(response.body()));
 
                             cart_count = response.body().getData().getCart_count();
+
+                            Log.w(TAG, "Cart_Count" + cart_count);
+
+                            Connectivity connectivity = new Connectivity();
+
+                            connectivity.storeData(getContext(),"Cart_Count",String.valueOf(cart_count));
 
                             defaultVehicleBeanList =response.body().getData().getDefault_vehicle();
 
