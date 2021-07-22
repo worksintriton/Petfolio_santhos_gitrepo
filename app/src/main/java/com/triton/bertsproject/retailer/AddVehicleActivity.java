@@ -109,6 +109,8 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     HashMap<String, String> hashMap_modelid = new HashMap<>();
 
+    String fromactivty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +126,15 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         HashMap<String, String> user = sessionManager.getProfileDetails();
 
-        userid = user.get(SessionManager.KEY_ID);
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+
+            fromactivty = extras.getString("fromactivity");
+        }
+
+
+            userid = user.get(SessionManager.KEY_ID);
 
         rl_year.setVisibility(View.GONE);
 
@@ -177,7 +187,23 @@ public class AddVehicleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        callDirections("5");
+        if(fromactivty!=null){
+
+            if(fromactivty.equals("HomeFragment")){
+
+                callDirections("1");
+            }
+
+            else {
+
+                callDirections("2");
+            }
+        }
+
+        else {
+
+            callDirections("1");
+        }
     }
 
 
@@ -265,7 +291,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                        callDirections("2");
+                        onBackPressed();
 
                        // startActivity(new Intent(AddVehicleActivity.this, RetailerDashboardActivity.class));
 

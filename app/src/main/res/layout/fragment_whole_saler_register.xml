@@ -102,10 +102,12 @@
                     <Spinner
                         android:id="@+id/sp_country"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toStartOf="@id/img_country"
                         android:background="@android:color/transparent" />
 
                     <ImageView
+                        android:id="@+id/img_country"
                         android:layout_width="@dimen/_24dp"
                         android:layout_height="@dimen/_24dp"
                         android:layout_alignParentEnd="true"
@@ -129,10 +131,12 @@
                     <Spinner
                         android:id="@+id/sp_state"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toStartOf="@id/img_state"
                         android:background="@android:color/transparent" />
 
                     <ImageView
+                        android:id="@+id/img_state"
                         android:layout_width="@dimen/_24dp"
                         android:layout_height="@dimen/_24dp"
                         android:layout_alignParentEnd="true"

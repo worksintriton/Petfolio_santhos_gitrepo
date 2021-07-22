@@ -58,6 +58,7 @@ import com.triton.bertsproject.retailer.RetailerProductListBasedOnCategActivity;
 import com.triton.bertsproject.retailer.RetailerProductListBasedOnMakeActivity;
 import com.triton.bertsproject.retailer.RetailerProfileAccountActivity;
 import com.triton.bertsproject.retailer.SearchProductListActivity;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -140,6 +141,8 @@ public class LoginActivity extends AppCompatActivity {
 
     String search_text , quantity, unit_price;
 
+    Connectivity connectivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,6 +210,8 @@ public class LoginActivity extends AppCompatActivity {
 
         dd4YouConfig = new DD4YouConfig(this);
 
+        connectivity = new Connectivity();
+
         img_back.setOnClickListener(v -> {
 
             onBackPressed();
@@ -215,13 +220,7 @@ public class LoginActivity extends AppCompatActivity {
 
         txt_forget_password.setOnClickListener(v -> {
 
-            Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
-
-            intent.putExtra("fromactivity",TAG);
-
-            startActivity(intent);
-
-            Animatoo.animateSwipeRight(context);
+           gotoForgetPasswordActivity();
 
         });
 
@@ -279,6 +278,51 @@ public class LoginActivity extends AppCompatActivity {
             disconnectFromFacebook();
         }
 
+
+    }
+
+    private void gotoForgetPasswordActivity() {
+
+        Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+
+        intent.putExtra("fromactivity",fromactivty);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("quantity",quantity);
+
+        intent.putExtra("unit_price",unit_price);
+
+
+        startActivity(intent);
+
+        finish();
 
     }
 
@@ -366,7 +410,7 @@ public class LoginActivity extends AppCompatActivity {
                                 response.body().getData().getProfile().getFirst_name(),
                                 response.body().getData().getProfile().getLast_name(),
                                 response.body().getData().getProfile().getEmail(),
-                                response.body().getData().getProfile().getUser_type(),
+                                response.body().getData().getProfile().getRole(),
                                 response.body().getData().getProfile().getAvatar(),
                                 response.body().getData().getProfile().getCountry_id(),
                                 response.body().getData().getProfile().getState_id(),
@@ -633,6 +677,8 @@ public class LoginActivity extends AppCompatActivity {
 
         intent.putExtra("fromactivity",TAG);
 
+        intent.putExtra("search_text",search_text);
+
         startActivity(intent);
 
         finish();
@@ -684,6 +730,8 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("model_id", model_id);
 
         intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         startActivity(intent);
 
@@ -926,7 +974,7 @@ public class LoginActivity extends AppCompatActivity {
                                 response.body().getData().getProfile().getFirst_name(),
                                 response.body().getData().getProfile().getLast_name(),
                                 response.body().getData().getProfile().getEmail(),
-                                response.body().getData().getProfile().getUser_type(),
+                                response.body().getData().getProfile().getRole(),
                                 response.body().getData().getProfile().getAvatar(),
                                 response.body().getData().getProfile().getCountry_id(),
                                 response.body().getData().getProfile().getState_id(),

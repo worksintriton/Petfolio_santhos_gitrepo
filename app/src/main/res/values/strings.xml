@@ -393,4 +393,7 @@
     <string name="save_done">Save Changes</string>
     <string name="credit_value">Credit Value</string>
     <string name="payment_gateway">Payment Gateway</string>
+    <string name="maintenance_servicing_parts">Maintenance Servicing Parts</string>
+    <string name="radiator_assembly_manual_transmission">Radiator Assembly (Manual Transmission)</string>
+    <string name="_zero">(0)</string>
 </resources>

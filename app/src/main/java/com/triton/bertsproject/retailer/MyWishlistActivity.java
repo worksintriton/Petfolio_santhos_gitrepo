@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import com.triton.bertsproject.requestpojo.RemoveWishistRequest;
 import com.triton.bertsproject.requestpojo.ShowWishistRequest;
 import com.triton.bertsproject.responsepojo.ProductListResponse;
 import com.triton.bertsproject.responsepojo.WishlistSuccessResponse;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 import com.triton.bertsproject.utils.SwipeToDeleteCallback;
@@ -47,6 +49,7 @@ import com.triton.bertsproject.utils.SwipeToDeleteCallback;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -118,6 +121,18 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
 
     SessionManager sessionManager;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,9 +165,7 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
 
         img_back.setOnClickListener(v -> {
 
-            startActivity(new Intent(MyWishlistActivity.this, RetailerDashboardActivity.class));
-
-            Animatoo.animateSwipeRight(context);
+           onBackPressed();
 
         });
 
@@ -172,6 +185,35 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
             callnointernet();
 
         }
+
+        Connectivity connectivity = new Connectivity();
+
+        cart_count = connectivity.getData(context,"Cart_Count");
+
+        Log.w(TAG,"cart_count "+cart_count);
+
+        if(cart_count!=null&&!cart_count.equals("0")){
+
+            txt_cart_count.setText(""+cart_count);
+        }
+
+        else {
+
+            txt_cart_count.setVisibility(View.GONE);
+        }
+
+        rlcart.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context, RetailerCartActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            startActivity(intent);
+
+            Animatoo.animateSwipeRight(context);
+
+        });
+
 
     }
 
@@ -198,15 +240,19 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
                 return true;
             case R.id.garage:
                 active_tag = "2";
+                callDirections("2");
                 return true;
             case R.id.home:
                 active_tag = "1";
+                callDirections("1");
                 return true;
             case R.id.profile:
                 active_tag = "5";
+                callDirections("5");
                 return true;
             case R.id.shop:
                 active_tag = "3";
+                callDirections("3");
                 return true;
             default:
                 return false;
@@ -233,11 +279,11 @@ public class MyWishlistActivity extends AppCompatActivity implements BottomNavig
         super.onPause();
     }
 
+    @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, RetailerDashboardActivity.class));
-        Animatoo.animateSwipeRight(this.context);
-    }
 
+        callDirections("5");
+    }
 
     @SuppressLint("LongLogTag")
     private void showwishlistResponseCall() {

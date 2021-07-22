@@ -153,6 +153,8 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
 
             search_text = extras.getString("search_text");
 
+            Log.w(TAG,"Connectivity fromactivity : "+fromactivity + "search_text : "+search_text);
+
         }
 
         sessionManager=new SessionManager(this);
@@ -518,7 +520,9 @@ public class SearchProductListActivity extends AppCompatActivity implements Bott
 
                         Intent intent = new Intent(SearchProductListActivity.this, RetailerCartActivity.class);
 
-                        intent.putExtra("fromActivity",TAG);
+                        intent.putExtra("fromactivity",TAG);
+
+                        intent.putExtra("search_text",search_text);
 
                         startActivity(intent);
 

@@ -69,6 +69,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     DD4YouConfig dd4YouConfig;
 
+    String fromactivty;
+
+    String brand_id,brand_name,parent_id,subcategid,categ_name,subcategname,make_id,make_name,model_id,model_name, prod_id,prod_name;;
+
+    String search_text , quantity, unit_price;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,18 +91,150 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         edt_email.setTitle(getString(R.string.email));
 
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+
+            fromactivty = extras.getString("fromactivity");
+
+            prod_id = extras.getString("prod_id");
+
+            //prod_id = "2";
+
+            prod_name = extras.getString("prod_name");
+
+            brand_id = extras.getString("brand_id");
+
+            brand_name = extras.getString("brand_name");
+
+            parent_id = extras.getString("parent_id");
+
+            categ_name = extras.getString("categ_name");
+
+            subcategid = extras.getString("subcategid");
+
+            subcategname = extras.getString("subcategname");
+
+            make_id = extras.getString("make_id");
+
+            make_name = extras.getString("make_name");
+
+            model_id = extras.getString("model_id");
+
+            model_name = extras.getString("model_name");
+
+            quantity = extras.getString("quantity");
+
+            unit_price = extras.getString("unit_price");
+
+            search_text = extras.getString("search_text");
+
+            Log.w(TAG,"brand_id "+brand_id+"brand_name "+ brand_name+"parent_id : "+parent_id+ "categ_name : "+categ_name+"subcategid :" +subcategid
+
+                    + "subcategname : "+subcategname +
+
+                    "make_id : "+make_id +"make_name :" +make_name +"model_id :" +model_id
+
+                    + "model_name : "+model_name+ "quantity : "+quantity+ "unit_price : "+unit_price+
+
+                    "search_text : "+search_text+ "fromactivity :" +fromactivty);
+
+
+        }
+
+        Log.w("Oncreate ", TAG + "fromActivity " +fromactivty);
+
         spin_kit_loadingView.setVisibility(View.GONE);
+
 
         img_back.setOnClickListener(v -> {
 
-            startActivity(new Intent(ForgetPasswordActivity.this,LoginActivity.class));
+            onBackPressed();
 
-            Animatoo.animateSwipeLeft(context);
         });
 
         btn_reset_link.setOnClickListener(v -> checkValidation());
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        // super.onBackPressed(); commented this line in order to disable back press
+        //Write your code here
+        if(fromactivty!=null){
+            if(fromactivty.equals("LoginActivity")){
+
+                gotologinActivity();
+
+            }
+
+
+            else {
+
+                Intent intent = new Intent(ForgetPasswordActivity.this, RetailerDashboardActivity.class);
+
+                startActivity(intent);
+
+                finish();
+            }
+        }
+
+        else {
+
+            Intent intent = new Intent(ForgetPasswordActivity.this, RetailerDashboardActivity.class);
+
+            startActivity(intent);
+
+            finish();
+        }
+    }
+
+    private void gotologinActivity() {
+
+        Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
+
+        intent.putExtra("fromactivity",fromactivty);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("quantity",quantity);
+
+        intent.putExtra("unit_price",unit_price);
+
+
+        startActivity(intent);
+
+        finish();
+
+    }
+
 
     private void checkValidation() {
 
@@ -231,14 +370,4 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    public void onBackPressed() {
-
-        super.onBackPressed();
-
-        startActivity(new Intent(ForgetPasswordActivity.this,ForgetPasswordActivity.class));
-
-        Animatoo.animateSwipeLeft(context);
-
-    }
 }

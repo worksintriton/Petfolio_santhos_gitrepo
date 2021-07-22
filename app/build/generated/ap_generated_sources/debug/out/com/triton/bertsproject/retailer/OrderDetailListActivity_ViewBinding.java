@@ -56,6 +56,9 @@ public class OrderDetailListActivity_ViewBinding implements Unbinder {
     target.view2 = Utils.findRequiredView(source, R.id.view2, "field 'view2'");
     target.txt_toolbar_title = Utils.findRequiredViewAsType(source, R.id.txt_toolbar_title, "field 'txt_toolbar_title'", TextView.class);
     target.cancel_overall_order = Utils.findRequiredViewAsType(source, R.id.cancel_overall_order, "field 'cancel_overall_order'", TextView.class);
+    target.ll_orderdetails_label = Utils.findRequiredViewAsType(source, R.id.ll_orderdetails_label, "field 'll_orderdetails_label'", LinearLayout.class);
+    target.ll_shippingaddress_label = Utils.findRequiredViewAsType(source, R.id.ll_shippingaddress_label, "field 'll_shippingaddress_label'", LinearLayout.class);
+    target.ll_productdetails_label = Utils.findRequiredViewAsType(source, R.id.ll_productdetails_label, "field 'll_productdetails_label'", LinearLayout.class);
   }
 
   @Override
@@ -93,5 +96,8 @@ public class OrderDetailListActivity_ViewBinding implements Unbinder {
     target.view2 = null;
     target.txt_toolbar_title = null;
     target.cancel_overall_order = null;
+    target.ll_orderdetails_label = null;
+    target.ll_shippingaddress_label = null;
+    target.ll_productdetails_label = null;
   }
 }

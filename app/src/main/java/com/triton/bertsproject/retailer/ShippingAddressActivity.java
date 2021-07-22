@@ -38,6 +38,7 @@ import com.triton.bertsproject.responsepojo.SetDefaultAddrResponse;
 import com.triton.bertsproject.responsepojo.UserAddressListResponse;
 import com.triton.bertsproject.responsepojo.UserAddressListResponse;
 import com.triton.bertsproject.responsepojo.DeleteAddressListResponse;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.GridSpacingItemDecoration;
 import com.triton.bertsproject.utils.RestUtils;
@@ -97,6 +98,17 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
     String isdefault = "0",fromActivity;
 
+    String brand_id,brand_name,parent_id,subcategid,subcategname,make_id,model_id,model_name;
+
+    String prod_id,prod_name,shipid;
+
+    String addr_name,address1,state_name,country_name;
+
+    Connectivity connectivity;
+
+    String value,categ_name,make_name,search_text,cart_count;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,13 +125,46 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
         HashMap<String, String> user = sessionManager.getProfileDetails();
 
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
 
             fromActivity = extras.getString("fromactivity");
 
-            Log.w(TAG,"fromActivity : "+fromActivity);
-        }
+            prod_id = extras.getString("prod_id");
 
+            //prod_id = "2";
+
+            prod_name = extras.getString("prod_name");
+
+            brand_id = extras.getString("brand_id");
+
+            brand_name = extras.getString("brand_name");
+
+            parent_id = extras.getString("parent_id");
+
+            categ_name = extras.getString("categ_name");
+
+            subcategid = extras.getString("subcategid");
+
+            subcategname = extras.getString("subcategname");
+
+            make_id = extras.getString("make_id");
+
+            make_name = extras.getString("make_name");
+
+            model_id = extras.getString("model_id");
+
+            model_name = extras.getString("model_name");
+
+            search_text = extras.getString("search_text");
+
+            Log.w(TAG,"Connectivity fromactivity : "+fromActivity+ "brand_id : "+brand_id + "brand_name : "+brand_name+"parent_id : "+parent_id+ "categ_name : "+categ_name+ "subcategid :" +subcategid
+
+                    + "subcategname : "+subcategname + "make_id : "+make_id + "model_id :" +model_id
+
+                    + "model_name : "+model_name + "search_text : "+search_text);
+
+        }
         if(sessionManager.isLoggedIn()) {
 
             userid = user.get(SessionManager.KEY_ID);
@@ -135,11 +180,37 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
                 Intent intent = new Intent(ShippingAddressActivity.this,ShippingAddressAddActivity.class);
 
-                intent.putExtra("isdefault",isdefault);
+                intent.putExtra("fromactivity",TAG);
 
-                intent.putExtra("fromActivity",fromActivity);
+                intent.putExtra("prod_id",prod_id);
+
+                intent.putExtra("prod_name",prod_name);
+
+                intent.putExtra("brand_id",brand_id);
+
+                intent.putExtra("brand_name",brand_name);
+
+                intent.putExtra("parent_id",parent_id);
+
+                intent.putExtra("categ_name",categ_name);
+
+                intent.putExtra("subcategid",subcategid);
+
+                intent.putExtra("subcategname",subcategname);
+
+                intent.putExtra("make_id",make_id);
+
+                intent.putExtra("make_name",make_name);
+
+                intent.putExtra("model_id", model_id);
+
+                intent.putExtra("model_name",model_name);
+
+                intent.putExtra("search_text",search_text);
 
                 startActivity(intent);
+
+                finish();
 
             }
         });
@@ -168,10 +239,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
             else if(fromActivity.equals("RetailerCartActivity")){
 
-                Intent intent = new Intent(ShippingAddressActivity.this,RetailerCartActivity.class);
-                intent.putExtra("fromActivity",fromActivity);
-                startActivity(intent);
-                finish();
+                gotoRetailerCartActivity();
             }
             else {
 
@@ -190,6 +258,43 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
 
 
+    }
+
+    private void gotoRetailerCartActivity() {
+
+        Intent intent = new Intent(ShippingAddressActivity.this, RetailerCartActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
+        startActivity(intent);
+
+        finish();
     }
 
     public void callDirections(String tag){
@@ -515,7 +620,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                       startActivity(new Intent(ShippingAddressActivity.this,RetailerCartActivity.class));
+                        gotoRetailerCartActivity();
                     }
 
                     else {
@@ -635,8 +740,6 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
         Intent intent = new Intent(ShippingAddressActivity.this,ShippingAddressEditActivity.class);
 
-        intent.putExtra("fromactivity",fromActivity);
-
         intent.putExtra("ADDRESS_ID",ADDRESS_ID);
 
         intent.putExtra("NAME",NAME);
@@ -661,7 +764,37 @@ public class ShippingAddressActivity extends AppCompatActivity implements SetDef
 
         intent.putExtra("isdefault",isdefault);
 
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
         startActivity(intent);
+
+        finish();
 
     }
 }

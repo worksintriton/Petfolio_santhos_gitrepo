@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -406,7 +407,7 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
                     + "subcategname : "+subcategname + "make_id : "+make_id + "model_id :" +model_id
 
-                    + "model_name : "+model_name);
+                    + "model_name : "+model_name + "search_text : "+search_text);
         }
 
         else {
@@ -449,7 +450,7 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
                         + "subcategname : "+subcategname + "make_id : "+make_id + "model_id :" +model_id
 
-                        + "model_name : "+model_name);
+                        + "model_name : "+model_name + "search_text : "+search_text);
 
             }
         }
@@ -608,6 +609,8 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
         intent.putExtra("model_id", model_id);
 
         intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
 
@@ -1493,84 +1496,127 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
 
     private void showAlert() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(ProductDetailDescriptionActivity.this);
-        builder.setTitle("Alert");
-        builder.setMessage("Please Login to add Products");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Login", (dialogInterface, i) -> {
-            Intent intent = new Intent(ProductDetailDescriptionActivity.this, LoginActivity.class);
 
-            intent.putExtra("prod_id",prod_id);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ProductDetailDescriptionActivity.this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+        dialogBuilder.setView(dialogView);
 
-            intent.putExtra("prod_name",prod_name);
+        dialogBuilder.setCancelable(false);
 
-            intent.putExtra("brand_id",brand_id);
+        RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-            intent.putExtra("brand_name",brand_name);
+        RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
 
-            intent.putExtra("parent_id",parent_id);
+        ImageView img_close = dialogView.findViewById(R.id.img_close);
 
-            intent.putExtra("categ_name",categ_name);
+        img_close.setVisibility(View.VISIBLE);
 
-            intent.putExtra("subcategid",subcategid);
+        TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
 
-            intent.putExtra("subcategname",subcategname);
+        alert_title_txtview.setText("Please Login to Add Products in Cart");
 
-            intent.putExtra("make_id",make_id);
+        TextView alert_title_login = dialogView.findViewById(R.id.textView6);
 
-            intent.putExtra("make_name",make_name);
+        alert_title_login.setText("Login");
 
-            intent.putExtra("model_id", model_id);
+        TextView alert_title_signup = dialogView.findViewById(R.id.textView7);
 
-            intent.putExtra("model_name",model_name);
+        alert_title_signup.setText("Signup");
 
-            intent.putExtra("fromactivity",TAG);
-
-            connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
-
-            startActivity(intent);
-        });
-        builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
-            Intent intent = new Intent(ProductDetailDescriptionActivity.this, RegisterActivity.class);
-
-            intent.putExtra("prod_id",prod_id);
-
-            intent.putExtra("prod_name",prod_name);
-
-            intent.putExtra("brand_id",brand_id);
-
-            intent.putExtra("brand_name",brand_name);
-
-            intent.putExtra("parent_id",parent_id);
-
-            intent.putExtra("categ_name",categ_name);
-
-            intent.putExtra("subcategid",subcategid);
-
-            intent.putExtra("subcategname",subcategname);
-
-            intent.putExtra("make_id",make_id);
-
-            intent.putExtra("make_name",make_name);
-
-            intent.putExtra("model_id", model_id);
-
-            intent.putExtra("model_name",model_name);
-
-            intent.putExtra("fromactivity",TAG);
-
-            connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
-
-            startActivity(intent);
-
-
-        });
-        builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
-
-            dialogInterface.dismiss();
-        });
-        AlertDialog alertDialog = builder.create();
+        AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
+
+        rl_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailDescriptionActivity.this, RegisterActivity.class);
+
+                intent.putExtra("prod_id",prod_id);
+
+                intent.putExtra("prod_name",prod_name);
+
+                intent.putExtra("brand_id",brand_id);
+
+                intent.putExtra("brand_name",brand_name);
+
+                intent.putExtra("parent_id",parent_id);
+
+                intent.putExtra("categ_name",categ_name);
+
+                intent.putExtra("subcategid",subcategid);
+
+                intent.putExtra("subcategname",subcategname);
+
+                intent.putExtra("make_id",make_id);
+
+                intent.putExtra("make_name",make_name);
+
+                intent.putExtra("model_id", model_id);
+
+                intent.putExtra("model_name",model_name);
+
+                intent.putExtra("fromactivity",TAG);
+
+                intent.putExtra("search_text",search_text);
+
+                connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
+
+                startActivity(intent);
+
+
+            }
+        });
+
+        rl_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailDescriptionActivity.this, LoginActivity.class);
+
+                intent.putExtra("prod_id",prod_id);
+
+                intent.putExtra("prod_name",prod_name);
+
+                intent.putExtra("brand_id",brand_id);
+
+                intent.putExtra("brand_name",brand_name);
+
+                intent.putExtra("parent_id",parent_id);
+
+                intent.putExtra("categ_name",categ_name);
+
+                intent.putExtra("subcategid",subcategid);
+
+                intent.putExtra("subcategname",subcategname);
+
+                intent.putExtra("make_id",make_id);
+
+                intent.putExtra("make_name",make_name);
+
+                intent.putExtra("model_id", model_id);
+
+                intent.putExtra("model_name",model_name);
+
+                intent.putExtra("fromactivity",TAG);
+
+                intent.putExtra("search_text",search_text);
+
+                connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
+
+                startActivity(intent);
+
+            }
+        });
+
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                alertDialog.dismiss();
+            }
+        });
     }
 
     @SuppressLint("LongLogTag")
@@ -1714,6 +1760,8 @@ public class ProductDetailDescriptionActivity extends AppCompatActivity {
         intent.putExtra("model_id",model_name);
 
         intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("search_text",search_text);
 
         connectivity.storeData(ProductDetailDescriptionActivity.this,"ProductDetailList",fromactivity);
 

@@ -129,10 +129,10 @@
                 android:layout_marginEnd="@dimen/_5dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/lato_bold"
-                android:maxLines="@integer/_int1"
-                android:text="@string/k_metal"
+                android:maxLines="@integer/_int2"
+                android:text="@string/radiator_assembly_manual_transmission"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/_14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/txt_parts_name"

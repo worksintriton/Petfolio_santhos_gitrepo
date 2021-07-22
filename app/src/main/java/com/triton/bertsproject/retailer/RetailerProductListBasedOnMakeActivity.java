@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -123,6 +124,9 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
     @BindView(R.id.txt_spinnertext)
     TextView txt_spinnertext;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_search)
+    ImageView img_search;
 
     private final static String TAG = "RetailerProductListBasedOnMakeActivity";
 
@@ -162,6 +166,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
     String cart_count ="0";
 
+    boolean isGrid = true;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -285,7 +290,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
         if (dd4YouConfig.isInternetConnectivity()) {
 
-            fetchallproductsListResponseCall(searchString);
+            fetchallproductsListResponseCall(searchString,isGrid);
 
         }
 
@@ -439,7 +444,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
                 if(dd4YouConfig.isInternetConnectivity()){
 
-                    fetchallproductsListResponseCall(searchString);
+                    fetchallproductsListResponseCall(searchString,isGrid);
                 }
                 else {
 
@@ -455,7 +460,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
 
     @SuppressLint("LongLogTag")
-    private void fetchallproductsListResponseCall(String searchString) {
+    private void fetchallproductsListResponseCall(String searchString,boolean isGrid) {
 
         spin_kit_loadingView.setVisibility(View.VISIBLE);
         //Creating an object of our api interface
@@ -482,7 +487,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
 
 
-                            setGridView(prdouctsBeanList);
+                            setGridView(prdouctsBeanList,isGrid);
 
 
                         }
@@ -524,50 +529,81 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
     }
 
-    private void searchText() {
+    private void searchText(boolean isGrid) {
 
-        edt_search.addTextChangedListener(new TextWatcher() {
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Log.w(TAG,"beforeTextChanged-->"+s.toString());
+        Log.w(TAG,"search_text-->"+edt_search.getText().toString());
+
+        searchString = edt_search.getText().toString();
+
+        if(!searchString.isEmpty()){
+            if(dd4YouConfig.isInternetConnectivity()){
+
+                fetchallproductsListResponseCall(searchString,isGrid);
             }
 
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.w(TAG,"onTextChanged-->"+s.toString());
-                searchString = s.toString();
+            else {
 
-
+                callnointernet();
             }
 
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void afterTextChanged(Editable s) {
-                Log.w(TAG,"afterTextChanged-->"+s.toString());
-                searchString = s.toString();
-                if(!searchString.isEmpty()){
-                    if(dd4YouConfig.isInternetConnectivity()){
-
-                        fetchallproductsListResponseCall(searchString);
-                    }
-
-                    else {
-
-                        callnointernet();
-                    }
 
 
 
+        }else{
+            searchString ="";
+            if(dd4YouConfig.isInternetConnectivity()){
 
-                }else{
-                    searchString ="";
-
-                }
-
+                fetchallproductsListResponseCall(searchString,isGrid);
             }
-        });
+
+            else {
+
+                callnointernet();
+            }
+        }
+//
+//        edt_search.addTextChangedListener(new TextWatcher() {
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                Log.w(TAG,"beforeTextChanged-->"+s.toString());
+//            }
+//
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                Log.w(TAG,"onTextChanged-->"+s.toString());
+//                searchString = s.toString();
+//
+//
+//            }
+//
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                Log.w(TAG,"afterTextChanged-->"+s.toString());
+//                searchString = s.toString();
+//                if(!searchString.isEmpty()){
+//                    if(dd4YouConfig.isInternetConnectivity()){
+//
+//                        fetchallproductsListResponseCall(searchString);
+//                    }
+//
+//                    else {
+//
+//                        callnointernet();
+//                    }
+//
+//
+//
+//
+//                }else{
+//                    searchString ="";
+//
+//                }
+//
+//            }
+//        });
 
 
     }
@@ -610,8 +646,9 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
         alertDialog.show();
     }
 
-    private void setGridView(List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList) {
+    private void setGridView(List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList,boolean isGrids) {
 
+        isGrid = isGrids;
 
         rv_prodlist.setVisibility(View.VISIBLE);
 
@@ -619,7 +656,13 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
         rl_search.setVisibility(View.VISIBLE);
 
-        searchText();
+        img_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                searchText(isGrid);
+            }
+        });
 
         rl_sort.setVisibility(View.VISIBLE);
 
@@ -633,11 +676,49 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
             }
         });
 
+        if(isGrid){
+            rlGrid.setBackgroundResource(R.drawable.bg_cycler_blue);
+
+            rlList.setBackgroundResource(R.color.transparent);
+
+            rv_prodlist.setLayoutManager(new GridLayoutManager(RetailerProductListBasedOnMakeActivity.this, 2));
+
+            rv_prodlist.setMotionEventSplittingEnabled(false);
+
+            rv_prodlist.setNestedScrollingEnabled(true);
+
+            int size =prdouctsBeanList.size();
+
+            int spanCount = 2; // 3 columns
+
+            int spacing = 0; // 50px
+
+            rv_prodlist.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, true));
+
+            rv_prodlist.setItemAnimator(new DefaultItemAnimator());
+
+            RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnMakeActivity.this, prdouctsBeanList, false,this,this,this);
+
+            rv_prodlist.setAdapter(retailerProductListAdapter);
+
+        }
+
+        else {
+
+            rlList.setBackgroundResource(R.drawable.bg_cycler_blue);
+
+            rlGrid.setBackgroundResource(R.color.transparent);
+
+            setlistView(prdouctsBeanList);
+        }
+
         rlList.setOnClickListener(v -> {
 
             rlList.setBackgroundResource(R.drawable.bg_cycler_blue);
 
             rlGrid.setBackgroundResource(R.color.transparent);
+
+            isGrid = false;
 
             setlistView(prdouctsBeanList);
         });
@@ -649,28 +730,12 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
             rlList.setBackgroundResource(R.color.transparent);
 
-            setGridView(prdouctsBeanList);
+            isGrid = true;
+
+            setGridView(prdouctsBeanList,isGrid);
+
+
         });
-
-        rv_prodlist.setLayoutManager(new GridLayoutManager(RetailerProductListBasedOnMakeActivity.this, 2));
-
-        rv_prodlist.setMotionEventSplittingEnabled(false);
-
-        rv_prodlist.setNestedScrollingEnabled(true);
-
-        int size =prdouctsBeanList.size();
-
-        int spanCount = 2; // 3 columns
-
-        int spacing = 0; // 50px
-
-        rv_prodlist.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, true));
-
-        rv_prodlist.setItemAnimator(new DefaultItemAnimator());
-
-        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListBasedOnMakeActivity.this, prdouctsBeanList, false,this,this,this);
-
-        rv_prodlist.setAdapter(retailerProductListAdapter);
 
 
 
@@ -751,7 +816,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
 
     @SuppressLint("LongLogTag")
-    private void wishlistaddResponseCall(String productId) {
+    private void wishlistaddResponseCall(String productId, boolean isGrid) {
 
         spin_kit_loadingView.setVisibility(View.VISIBLE);
         //Creating an object of our api interface
@@ -773,7 +838,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                        fetchallproductsListResponseCall(searchString);
+                        fetchallproductsListResponseCall(searchString, isGrid);
 
                     }
 
@@ -826,7 +891,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
             if (dd4YouConfig.isInternetConnectivity()) {
 
-                wishlistaddResponseCall(id);
+                wishlistaddResponseCall(id,isGrid);
 
             }
 
@@ -938,7 +1003,7 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
                 btn_addcart.setText("Added to Cart");
 
-                addcartlistResponseCall(prod_id,quantity,unit_price);
+                addcartlistResponseCall(prod_id,quantity,unit_price,isGrid);
             }
 
             else {
@@ -956,55 +1021,99 @@ public class RetailerProductListBasedOnMakeActivity extends AppCompatActivity im
 
     private void showLoginAlert() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(RetailerProductListBasedOnMakeActivity.this);
-        builder.setTitle("Alert");
-        builder.setMessage("Please Login to add Products");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Login", (dialogInterface, i) -> {
-            Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, LoginActivity.class);
 
-            intent.putExtra("make_id",make_id);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RetailerProductListBasedOnMakeActivity.this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+        dialogBuilder.setView(dialogView);
 
-            intent.putExtra("make_name",make_name);
+        dialogBuilder.setCancelable(false);
 
-            intent.putExtra("model_id", model_id);
+        RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-            intent.putExtra("model_name",model_name);
+        RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
 
-            intent.putExtra("fromactivity",TAG);
+        ImageView img_close= dialogView.findViewById(R.id.img_close);
 
-            connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
+        img_close.setVisibility(View.VISIBLE);
 
-            startActivity(intent);
-        });
-        builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
-            Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, RegisterActivity.class);
+        TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
 
-            intent.putExtra("make_id",make_id);
+        alert_title_txtview.setText("Please Login to Add Products");
 
-            intent.putExtra("make_name",make_name);
+        TextView alert_title_login = dialogView.findViewById(R.id.textView6);
 
-            intent.putExtra("model_id", model_id);
+        alert_title_login.setText("Login");
 
-            intent.putExtra("model_name",model_name);
+        TextView alert_title_signup = dialogView.findViewById(R.id.textView7);
 
-            intent.putExtra("fromactivity",TAG);
+        alert_title_signup.setText("Signup");
 
-            connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
-
-            startActivity(intent);
-        });
-        builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
-
-
-        });
-        AlertDialog alertDialog = builder.create();
+        AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
+
+        rl_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, RegisterActivity.class);
+
+                intent.putExtra("make_id",make_id);
+
+                intent.putExtra("make_name",make_name);
+
+                intent.putExtra("model_id", model_id);
+
+                intent.putExtra("model_name",model_name);
+
+                intent.putExtra("fromactivity",TAG);
+
+                connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
+
+                startActivity(intent);
+
+                alertDialog.dismiss();
+            }
+        });
+
+        rl_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RetailerProductListBasedOnMakeActivity.this, LoginActivity.class);
+
+                intent.putExtra("make_id",make_id);
+
+                intent.putExtra("make_name",make_name);
+
+                intent.putExtra("model_id", model_id);
+
+                intent.putExtra("model_name",model_name);
+
+                intent.putExtra("fromactivity",TAG);
+
+                connectivity.storeData(RetailerProductListBasedOnMakeActivity.this,"MakesProductList",fromactivity);
+
+                startActivity(intent);
+                alertDialog.dismiss();
+
+            }
+        });
+
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                alertDialog.dismiss();
+            }
+        });
     }
 
 
     @SuppressLint("LongLogTag")
-    private void addcartlistResponseCall(String prod_id, String quantity, String unit_price) {
+    private void addcartlistResponseCall(String prod_id, String quantity, String unit_price, boolean isGrid) {
 
         spin_kit_loadingView.setVisibility(View.VISIBLE);
         //Creating an object of our api interface

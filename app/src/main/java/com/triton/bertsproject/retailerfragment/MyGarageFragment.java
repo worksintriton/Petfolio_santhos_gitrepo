@@ -431,36 +431,54 @@ public class MyGarageFragment extends Fragment implements View.OnClickListener, 
 
     private void showAlert(String av_idd) {
 
-        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                .setTitleText("Alert!!")
-                .setContentText("Are You Sure to set this vehicle as Default vehicle")
-                .setCancelText("No")
-                .setConfirmText("Yes")
-                .showCancelButton(true)
-                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        sDialog.cancel();
-                    }
-                })
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        if(dd4YouConfig.isInternetConnectivity()) {
 
-                            setdafultvehResponseCall(av_idd);
-                        }
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+        dialogBuilder.setView(dialogView);
 
-                        else {
+        RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-                            callnointernet();
-                        }
+        RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
 
-                        sDialog.dismiss();
+        RelativeLayout rl_cancel = dialogView.findViewById(R.id.rl_cancel);
 
-                    }
-                })
-                .show();
+        rl_cancel.setVisibility(View.GONE);
+
+        TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
+
+        alert_title_txtview.setText("Are You Sure to set this vehicle as Default vehicle");
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        rl_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+            }
+        });
+
+        rl_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(dd4YouConfig.isInternetConnectivity()) {
+
+                    setdafultvehResponseCall(av_idd);
+                }
+
+                else {
+
+                    callnointernet();
+                }
+
+                alertDialog.dismiss();
+
+            }
+        });
 
     }
 

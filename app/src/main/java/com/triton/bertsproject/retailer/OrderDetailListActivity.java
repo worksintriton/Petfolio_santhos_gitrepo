@@ -11,11 +11,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +52,7 @@ import retrofit2.Response;
 
 public class OrderDetailListActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "SPOrderDetailsActivity" ;
+    private static final String TAG = "OrderDetailListActivity" ;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.txt_no_records)
@@ -167,6 +169,17 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
     @BindView(R.id.cancel_overall_order)
     TextView cancel_overall_order;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_orderdetails_label)
+    LinearLayout ll_orderdetails_label;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_shippingaddress_label)
+    LinearLayout ll_shippingaddress_label;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_productdetails_label)
+    LinearLayout ll_productdetails_label;
 
     AlertDialog alertDialog;
 
@@ -232,6 +245,12 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
 
         ll_productdetails.setVisibility(View.GONE);
 
+        ll_orderdetails_label.setVisibility(View.GONE);
+
+        ll_shippingaddress_label.setVisibility(View.GONE);
+
+        ll_productdetails_label.setVisibility(View.GONE);
+
         if (dd4YouConfig.isInternetConnectivity()) {
 
             orderDetailListResponseCall();
@@ -252,13 +271,13 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
                 Log.w(TAG, "button1IsVisible : "+button1IsVisible);
 
                 if(button1IsVisible) {
-                    ll_orderdetails.setVisibility(View.VISIBLE);
-                    img_expand_arrow.setImageResource(R.drawable.ic_up_arrow);
+                    ll_orderdetails.setVisibility(View.GONE);
+                    img_expand_arrow.setImageResource(R.drawable.ic_right_down);
                     button1IsVisible = false;
                 }
                 else {
-                    ll_orderdetails.setVisibility(View.GONE);
-                    img_expand_arrow.setImageResource(R.drawable.ic_right_down);
+                    ll_orderdetails.setVisibility(View.VISIBLE);
+                    img_expand_arrow.setImageResource(R.drawable.ic_up_arrow);
                     button1IsVisible = true;
 
                 }
@@ -273,12 +292,12 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
                 Log.w(TAG, "ShippingIsVisible : "+ShippingIsVisible);
 
                 if(ShippingIsVisible) {
-                    ll_shippingaddress.setVisibility(View.VISIBLE);
-                    img_expand_arrow_shipping.setImageResource(R.drawable.ic_up_arrow);
-                    ShippingIsVisible = false;
-                } else {
                     ll_shippingaddress.setVisibility(View.GONE);
                     img_expand_arrow_shipping.setImageResource(R.drawable.ic_right_down);
+                    ShippingIsVisible = false;
+                } else {
+                    ll_shippingaddress.setVisibility(View.VISIBLE);
+                    img_expand_arrow_shipping.setImageResource(R.drawable.ic_up_arrow);
                     ShippingIsVisible = true;
 
                 }
@@ -325,35 +344,65 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
 
         try {
 
-            new SweetAlertDialog(OrderDetailListActivity.this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Alert")
-                    .setContentText(msg)
-                    .setCancelText("No")
-                    .setConfirmText("Yes")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.cancel();
-                        }
-                    })
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
 
-                            if(dd4YouConfig.isInternetConnectivity()){
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OrderDetailListActivity.this);
+// ...Irrelevant code for customizing the buttons and title
+            LayoutInflater inflater = this.getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+            dialogBuilder.setView(dialogView);
 
-                                emptycartlistResponseCall();
-                            }
-                            else {
+            dialogBuilder.setCancelable(false);
 
-                                callnointernet();
-                            }
-                            sDialog.dismiss();
+            RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-                        }
-                    })
-                    .show();
+            RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
+
+            RelativeLayout rl_cancel = dialogView.findViewById(R.id.rl_cancel);
+
+            rl_cancel.setVisibility(View.GONE);
+
+            TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
+
+            alert_title_txtview.setText(""+msg);
+
+            TextView alert_title_login = dialogView.findViewById(R.id.textView6);
+
+            alert_title_login.setText("Yes");
+
+            TextView alert_title_signup = dialogView.findViewById(R.id.textView7);
+
+            alert_title_signup.setText("No");
+
+            AlertDialog alertDialog = dialogBuilder.create();
+            alertDialog.show();
+
+            rl_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    alertDialog.dismiss();
+                }
+            });
+
+            rl_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(dd4YouConfig.isInternetConnectivity()){
+
+                        emptycartlistResponseCall();
+                    }
+                    else {
+
+                        callnointernet();
+                    }
+
+
+                    alertDialog.dismiss();
+
+                }
+            });
 
         }
 
@@ -487,6 +536,12 @@ public class OrderDetailListActivity extends AppCompatActivity implements View.O
                             view2.setVisibility(View.VISIBLE);
 
                             ll_productdetails.setVisibility(View.VISIBLE);
+
+                            ll_orderdetails_label.setVisibility(View.VISIBLE);
+
+                            ll_shippingaddress_label.setVisibility(View.VISIBLE);
+
+                            ll_productdetails_label.setVisibility(View.VISIBLE);
 
                             ordersBeanList = response.body().getData().getOrders();
 

@@ -377,7 +377,8 @@
                             android:layout_marginStart="@dimen/_20dp"
                             android:layout_marginTop="@dimen/_5dp"
                             android:layout_marginEnd="@dimen/_20dp"
-                            android:background="@color/background_color" />
+                            android:background="@color/background_color"
+                            android:visibility="gone" />
 
                         <RelativeLayout
                             android:id="@+id/rl_ordrtrack"
@@ -385,6 +386,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5dp"
                             android:padding="@dimen/_10dp"
+                            android:visibility="gone"
                             tools:ignore="RtlSymmetry">
 
                             <ImageView

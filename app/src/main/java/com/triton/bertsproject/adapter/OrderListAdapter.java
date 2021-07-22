@@ -90,16 +90,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Orde
 
         if (orderlistModel.getStatus_name()!= null&&!orderlistModel.getStatus_name().isEmpty()) {
 
-            if(orderlistModel.getStatus_name().equals("Completed")){
-
-                holder.rl_order_status.setBackground(context.getResources().getDrawable(R.drawable.rectangle_corner_med_green_background));
-
-                holder.txt_order_status.setText("Completed");
-
-                holder.txt_order_status.setTextColor(context.getResources().getColor(R.color.white));
-            }
-
-            else if(orderlistModel.getStatus_name().equals("Cancelled")){
+           if(orderlistModel.getStatus_name().equals("Cancelled")){
 
                 holder.rl_order_status.setBackground(context.getResources().getDrawable(R.drawable.rectangle_corner_thick_red_background));
 
@@ -108,24 +99,21 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Orde
                 holder.txt_order_status.setTextColor(context.getResources().getColor(R.color.white));
             }
 
-            else if(orderlistModel.getStatus_name().equals("Pending")){
+            else {
 
                 holder.rl_order_status.setBackground(context.getResources().getDrawable(R.drawable.rectangle_corner_thickyellow_background));
 
-                holder.txt_order_status.setText("Cancelled");
+                holder.txt_order_status.setText(""+orderlistModel.getStatus_name());
 
                 holder.txt_order_status.setTextColor(context.getResources().getColor(R.color.white));
             }
 
-            else{
 
-                holder.rl_order_status.setBackground(context.getResources().getDrawable(R.drawable.rectangle_corner_thickyellow_background));
+        }
 
-                holder.txt_order_status.setText("On Going. . ");
+        else{
 
-                holder.txt_order_status.setTextColor(context.getResources().getColor(R.color.dark_grey));
-            }
-
+           holder.rl_order_status.setVisibility(View.GONE);
         }
 
         holder.cv_root.setOnClickListener(new View.OnClickListener() {

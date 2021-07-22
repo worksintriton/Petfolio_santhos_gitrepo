@@ -92,7 +92,7 @@ public class MywishListAdapter extends RecyclerView.Adapter<MywishListAdapter.Sh
 
         holder.ll_multipleadd.setVisibility(View.GONE);
 
-        holder.img_delete.setImageResource(R.drawable.heart_outline);
+        holder.img_delete.setImageResource(R.drawable.like);
 
         holder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override

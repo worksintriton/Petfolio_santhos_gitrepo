@@ -296,11 +296,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20dp"
-            android:background="@drawable/rectangle_corner_blue_background"
+            android:background="@drawable/rectangle_corner_light_yellow_background"
             android:fontFamily="@font/lato_bold"
             android:text="@string/add_new_address"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
 

@@ -31,6 +31,7 @@ import com.triton.bertsproject.requestpojo.GetStateRequest;
 import com.triton.bertsproject.responsepojo.EditAddressListResponse;
 import com.triton.bertsproject.responsepojo.GetCountryResponse;
 import com.triton.bertsproject.responsepojo.GetStateResponse;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -127,6 +128,17 @@ public class ShippingAddressEditActivity extends AppCompatActivity {
     ImageView img_back;
 
     String fromActivity,isdefault;
+
+    String brand_id,brand_name,parent_id,subcategid,subcategname,make_id,model_id,model_name;
+
+    String prod_id,prod_name,shipid;
+
+    String addr_name,address1,state_name,country_name;
+
+    Connectivity connectivity;
+
+    String value,categ_name,make_name,search_text,cart_count;
+
 
     @SuppressLint("LongLogTag")
     @Override
@@ -319,9 +331,45 @@ public class ShippingAddressEditActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        gotoShippingAddressActivity();
+    }
+
+    private void gotoShippingAddressActivity() {
+
         Intent intent = new Intent(ShippingAddressEditActivity.this,ShippingAddressActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
         startActivity(intent);
+
         finish();
+
     }
 
     /* Get Country */
@@ -748,13 +796,7 @@ public class ShippingAddressEditActivity extends AppCompatActivity {
 
                         Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(ShippingAddressEditActivity.this,ShippingAddressActivity.class);
-
-                        intent.putExtra("fromactivity",fromActivity);
-
-                        startActivity(intent);
-
-                        finish();
+                        onBackPressed();
 
                     }
 

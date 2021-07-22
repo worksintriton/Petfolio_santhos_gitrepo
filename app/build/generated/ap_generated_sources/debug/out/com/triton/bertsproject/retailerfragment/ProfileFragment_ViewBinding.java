@@ -27,7 +27,6 @@ public class ProfileFragment_ViewBinding implements Unbinder {
     target.spin_kit_loadingView = Utils.findRequiredViewAsType(source, R.id.spin_kit_loadingView, "field 'spin_kit_loadingView'", SpinKitView.class);
     target.rl_wishlist = Utils.findRequiredViewAsType(source, R.id.rl_wishlist, "field 'rl_wishlist'", RelativeLayout.class);
     target.rl_ordrhist = Utils.findRequiredViewAsType(source, R.id.rl_ordrhist, "field 'rl_ordrhist'", RelativeLayout.class);
-    target.rl_ordrtrack = Utils.findRequiredViewAsType(source, R.id.rl_ordrtrack, "field 'rl_ordrtrack'", RelativeLayout.class);
     target.rlEdit = Utils.findRequiredViewAsType(source, R.id.rlEdit, "field 'rlEdit'", RelativeLayout.class);
     target.rl_settings = Utils.findRequiredViewAsType(source, R.id.rl_settings, "field 'rl_settings'", RelativeLayout.class);
     target.rl_login_after = Utils.findRequiredViewAsType(source, R.id.rl_login_after, "field 'rl_login_after'", RelativeLayout.class);
@@ -53,7 +52,6 @@ public class ProfileFragment_ViewBinding implements Unbinder {
     target.spin_kit_loadingView = null;
     target.rl_wishlist = null;
     target.rl_ordrhist = null;
-    target.rl_ordrtrack = null;
     target.rlEdit = null;
     target.rl_settings = null;
     target.rl_login_after = null;

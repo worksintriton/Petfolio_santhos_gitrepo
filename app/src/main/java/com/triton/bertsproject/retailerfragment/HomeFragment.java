@@ -485,7 +485,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                             Connectivity connectivity = new Connectivity();
 
-                            connectivity.storeData(getContext(),"Cart_Count",String.valueOf(cart_count));
+                            if(getContext()!=null){
+
+                                connectivity.storeData(getContext(),"Cart_Count",String.valueOf(cart_count));
+
+                            }
+
 
                             defaultVehicleBeanList =response.body().getData().getDefault_vehicle();
 

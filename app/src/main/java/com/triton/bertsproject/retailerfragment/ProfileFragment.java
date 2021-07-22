@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -58,9 +59,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.rl_ordrhist)
     RelativeLayout rl_ordrhist;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.rl_ordrtrack)
-    RelativeLayout rl_ordrtrack;
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.rl_ordrtrack)
+//    RelativeLayout rl_ordrtrack;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rlEdit)
@@ -207,18 +208,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
 
             });
-
-            rl_ordrtrack.setOnClickListener(v -> {
-
-                Intent intent = new Intent(getContext(), RetailerOrderTrackActivity.class);
-
-                intent.putExtra("fromactivity",TAG);
-
-                startActivity(intent);
-
-                Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
-
-            });
+//
+//            rl_ordrtrack.setOnClickListener(v -> {
+//
+//                Intent intent = new Intent(getContext(), RetailerOrderTrackActivity.class);
+//
+//                intent.putExtra("fromactivity",TAG);
+//
+//                startActivity(intent);
+//
+//                Animatoo.animateSwipeRight(Objects.requireNonNull(getContext()));
+//
+//            });
 
             rl_settings.setOnClickListener(v -> {
 
@@ -367,60 +368,49 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         try {
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Alert")
-                    .setContentText("Are you sure want to logout?")
-                    .setCancelText("No")
-                    .setConfirmText("Yes")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.cancel();
-                        }
-                    })
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+// ...Irrelevant code for customizing the buttons and title
+            LayoutInflater inflater = this.getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+            dialogBuilder.setView(dialogView);
 
-                            sessionManager.logoutUser();
+            RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-                            sessionManager.setIsLogin(false);
+            RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
 
-                            startActivity(new Intent(getContext(), RetailerDashboardActivity.class));
+            RelativeLayout rl_cancel = dialogView.findViewById(R.id.rl_cancel);
 
-                            sDialog.dismiss();
+            rl_cancel.setVisibility(View.GONE);
 
-                        }
-                    })
-                    .show();
+            TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
 
-//            dialog = new Dialog(getContext());
-//
-//            dialog.setContentView(R.layout.alert_logout_layout);
-//
-//            Button btn_no = dialog.findViewById(R.id.btn_no);
-//
-//            Button btn_yes = dialog.findViewById(R.id.btn_yes);
-//
-//            btn_yes.setOnClickListener(view -> {
-//
-//                dialog.dismiss();
-//
-//                sessionManager.logoutUser();
-//
-//                sessionManager.setIsLogin(false);
-//
-//                startActivity(new Intent(getContext(), RetailerDashboardActivity.class));
-//
-//            });
-//
-//            btn_no.setOnClickListener(view -> dialog.dismiss());
-//
-//            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//            dialog.show();
-//
+            alert_title_txtview.setText("Are you sure want to logout?");
+
+            AlertDialog alertDialog = dialogBuilder.create();
+            alertDialog.show();
+
+            rl_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    alertDialog.dismiss();
+                }
+            });
+
+            rl_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    sessionManager.logoutUser();
+
+                    sessionManager.setIsLogin(false);
+
+                    startActivity(new Intent(getContext(), RetailerDashboardActivity.class));
+
+                    alertDialog.dismiss();
+
+                }
+            });
         }
 //
         catch (WindowManager.BadTokenException e) {

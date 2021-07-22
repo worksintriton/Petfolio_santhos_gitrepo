@@ -33,6 +33,7 @@ import com.triton.bertsproject.requestpojo.GetStateRequest;
 import com.triton.bertsproject.responsepojo.CreateAddressListResponse;
 import com.triton.bertsproject.responsepojo.GetCountryResponse;
 import com.triton.bertsproject.responsepojo.GetStateResponse;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -128,6 +129,17 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
 
     String fromActivity,isdefault;
 
+    String brand_id,brand_name,parent_id,subcategid,subcategname,make_id,model_id,model_name;
+
+    String prod_id,prod_name,shipid;
+
+    String addr_name,address1,state_name,country_name;
+
+    Connectivity connectivity;
+
+    String value,categ_name,make_name,search_text,cart_count;
+
+
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,10 +164,41 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
 
         if (extras != null) {
 
-            fromActivity = extras.getString("fromActivity");
+            fromActivity = extras.getString("fromactivity");
 
-            isdefault = extras.getString("isdefault");
+            prod_id = extras.getString("prod_id");
 
+            //prod_id = "2";
+
+            prod_name = extras.getString("prod_name");
+
+            brand_id = extras.getString("brand_id");
+
+            brand_name = extras.getString("brand_name");
+
+            parent_id = extras.getString("parent_id");
+
+            categ_name = extras.getString("categ_name");
+
+            subcategid = extras.getString("subcategid");
+
+            subcategname = extras.getString("subcategname");
+
+            make_id = extras.getString("make_id");
+
+            make_name = extras.getString("make_name");
+
+            model_id = extras.getString("model_id");
+
+            model_name = extras.getString("model_name");
+
+            search_text = extras.getString("search_text");
+
+            Log.w(TAG,"Connectivity fromactivity : "+fromActivity+ "brand_id : "+brand_id + "brand_name : "+brand_name+"parent_id : "+parent_id+ "categ_name : "+categ_name+ "subcategid :" +subcategid
+
+                    + "subcategname : "+subcategname + "make_id : "+make_id + "model_id :" +model_id
+
+                    + "model_name : "+model_name + "search_text : "+search_text);
 
         }
 
@@ -235,11 +278,45 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        gotoShippingAddressActivity();
+    }
+
+    private void gotoShippingAddressActivity() {
+
         Intent intent = new Intent(ShippingAddressAddActivity.this,ShippingAddressActivity.class);
 
-        intent.putExtra("fromActivity",fromActivity);
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         startActivity(intent);
+
+        finish();
+
     }
 
     /* Get Country */
@@ -660,7 +737,7 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
 
                         Toasty.success(getApplicationContext(),""+response.body().getMessage(),Toasty.LENGTH_LONG).show();
 
-                        onBackPressed();
+                        gotoCartActivity();
 
                     }
 
@@ -681,6 +758,44 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
                 Log.w(TAG,"CreateAddressListResponse flr"+t.getMessage());
             }
         });
+
+    }
+
+    private void gotoCartActivity() {
+
+        Intent intent = new Intent(ShippingAddressAddActivity.this,RetailerCartActivity.class);
+
+        intent.putExtra("fromactivity",TAG);
+
+        intent.putExtra("prod_id",prod_id);
+
+        intent.putExtra("prod_name",prod_name);
+
+        intent.putExtra("brand_id",brand_id);
+
+        intent.putExtra("brand_name",brand_name);
+
+        intent.putExtra("parent_id",parent_id);
+
+        intent.putExtra("categ_name",categ_name);
+
+        intent.putExtra("subcategid",subcategid);
+
+        intent.putExtra("subcategname",subcategname);
+
+        intent.putExtra("make_id",make_id);
+
+        intent.putExtra("make_name",make_name);
+
+        intent.putExtra("model_id", model_id);
+
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
+
+        startActivity(intent);
+
+        finish();
 
     }
 
@@ -710,7 +825,7 @@ public class ShippingAddressAddActivity extends AppCompatActivity {
         CreateAddressListRequest.setADDRESS1(addrln1);
         CreateAddressListRequest.setADDRESS2(addrln2);
         CreateAddressListRequest.setZIP_CODE(zip);
-        CreateAddressListRequest.setDEFAULT(is_default);
+        CreateAddressListRequest.setDEFAULT("1");
         CreateAddressListRequest.setMODE("INSERT");
 
         Log.w(TAG,"CreateAddressListRequest "+ new Gson().toJson(CreateAddressListRequest));

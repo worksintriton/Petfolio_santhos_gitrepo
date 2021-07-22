@@ -3,8 +3,11 @@ package com.triton.bertsproject.retailer;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -229,12 +232,45 @@ public class RetailerDashboardActivity extends AppCompatActivity implements Bott
         // super.onBackPressed(); commented this line in order to disable back press
         //Write your code here
 
-        new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", (dialog, id) -> RetailerDashboardActivity.this.finish())
-                .setNegativeButton("No", null)
-                .show();
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_logout_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
+
+        RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
+
+
+        TextView txt_alert_title = dialogView.findViewById(R.id.txt_alert_title);
+
+        txt_alert_title.setText("Are you sure want to exit");
+
+        TextView alert_header_txtview = dialogView.findViewById(R.id.alert_header_txtview);
+
+        alert_header_txtview.setText("Exit App");
+
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        rl_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+            }
+        });
+
+        rl_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RetailerDashboardActivity.this.finish();
+
+            }
+        });
     }
 
 }

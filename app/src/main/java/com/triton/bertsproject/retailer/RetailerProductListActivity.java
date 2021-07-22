@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,6 +126,10 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
     @BindView(R.id.txt_spinnertext)
     TextView txt_spinnertext;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.img_search)
+    ImageView img_search;
+
     String searchString = "",sorting="";
 
     private final static String TAG = "RetailerProductListActivity";
@@ -164,6 +169,9 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
     RelativeLayout rlcart;
 
     String cart_count ="0";
+
+    boolean isGrid = true;
+
 
     @SuppressLint("LongLogTag")
     @Override
@@ -267,7 +275,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
         if (dd4YouConfig.isInternetConnectivity()) {
 
-            fetchallproductsListResponseCall(searchString);
+            fetchallproductsListResponseCall(searchString,isGrid);
 
         }
 
@@ -328,7 +336,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
     }
 
     @SuppressLint("LongLogTag")
-    private void fetchallproductsListResponseCall(String searchString) {
+    private void fetchallproductsListResponseCall(String searchString,boolean isGrid) {
 
         spin_kit_loadingView.setVisibility(View.VISIBLE);
         //Creating an object of our api interface
@@ -353,7 +361,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
                         if(prdouctsBeanList != null && prdouctsBeanList.size()>0){
 
 
-                            setGridView(prdouctsBeanList);
+                            setGridView(prdouctsBeanList,isGrid);
                         }
 
                         else {
@@ -490,7 +498,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
                 if(dd4YouConfig.isInternetConnectivity()){
 
-                    fetchallproductsListResponseCall(searchString);
+                    fetchallproductsListResponseCall(searchString,isGrid);
                 }
                 else {
 
@@ -504,58 +512,90 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
         bottomSheetDialog.show();
     }
 
-    private void searchText() {
+    @SuppressLint("LongLogTag")
+    private void searchText(Boolean isGrids) {
 
-        edt_search.addTextChangedListener(new TextWatcher() {
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Log.w(TAG,"beforeTextChanged-->"+s.toString());
+        Log.w(TAG,"search_text-->"+edt_search.getText().toString());
+
+        searchString = edt_search.getText().toString();
+
+        if(!searchString.isEmpty()){
+            if(dd4YouConfig.isInternetConnectivity()){
+
+                fetchallproductsListResponseCall(searchString,isGrids);
             }
 
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.w(TAG,"onTextChanged-->"+s.toString());
-                searchString = s.toString();
+            else {
 
-
+                callnointernet();
             }
 
-            @SuppressLint({"LogNotTimber", "LongLogTag"})
-            @Override
-            public void afterTextChanged(Editable s) {
-                Log.w(TAG,"afterTextChanged-->"+s.toString());
-                searchString = s.toString();
-                if(!searchString.isEmpty()){
-
-                    if(dd4YouConfig.isInternetConnectivity()){
-
-                        fetchallproductsListResponseCall(searchString);
-                    }
-
-                    else {
-
-                        callnointernet();
-                    }
 
 
-                }else{
-                    searchString ="";
-                    if(dd4YouConfig.isInternetConnectivity()){
 
-                        fetchallproductsListResponseCall(searchString);
-                    }
+        }else{
+            searchString ="";
+            if(dd4YouConfig.isInternetConnectivity()){
 
-                    else {
-
-                        callnointernet();
-                    }
-
-                }
-
+                fetchallproductsListResponseCall(searchString,isGrids);
             }
-        });
+
+            else {
+
+                callnointernet();
+            }
+        }
+
+//        edt_search.addTextChangedListener(new TextWatcher() {
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                Log.w(TAG,"beforeTextChanged-->"+s.toString());
+//            }
+//
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                Log.w(TAG,"onTextChanged-->"+s.toString());
+//                searchString = s.toString();
+//
+//
+//            }
+//
+//            @SuppressLint({"LogNotTimber", "LongLogTag"})
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                Log.w(TAG,"afterTextChanged-->"+s.toString());
+//                searchString = s.toString();
+//                if(!searchString.isEmpty()){
+//
+//                    if(dd4YouConfig.isInternetConnectivity()){
+//
+//                        fetchallproductsListResponseCall(searchString,isGrid);
+//                    }
+//
+//                    else {
+//
+//                        callnointernet();
+//                    }
+//
+//
+//                }else{
+//                    searchString ="";
+//                    if(dd4YouConfig.isInternetConnectivity()){
+//
+//                        fetchallproductsListResponseCall(searchString,isGrid);
+//                    }
+//
+//                    else {
+//
+//                        callnointernet();
+//                    }
+//
+//                }
+//
+//            }
+//        });
 
 
     }
@@ -593,8 +633,9 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
         alertDialog.show();
     }
 
-    private void setGridView(List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList) {
+    private void setGridView(List<ProductListResponse.DataBean.ProductsBean> prdouctsBeanList,boolean isGrids) {
 
+        isGrid=isGrids;
 
         rv_prodlist.setVisibility(View.VISIBLE);
 
@@ -602,7 +643,13 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
         rl_search.setVisibility(View.VISIBLE);
 
-        searchText();
+        img_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                searchText(isGrids);
+            }
+        });
 
         rl_sort.setVisibility(View.VISIBLE);
 
@@ -616,11 +663,49 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
             }
         });
 
+        if(isGrid){
+            rlGrid.setBackgroundResource(R.drawable.bg_cycler_blue);
+
+            rlList.setBackgroundResource(R.color.transparent);
+
+            rv_prodlist.setLayoutManager(new GridLayoutManager(RetailerProductListActivity.this, 2));
+
+            rv_prodlist.setMotionEventSplittingEnabled(false);
+
+            rv_prodlist.setNestedScrollingEnabled(true);
+
+            int size =prdouctsBeanList.size();
+
+            int spanCount = 2; // 3 columns
+
+            int spacing = 0; // 50px
+
+            rv_prodlist.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, true));
+
+            rv_prodlist.setItemAnimator(new DefaultItemAnimator());
+
+            RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListActivity.this, prdouctsBeanList, false,this,this,this);
+
+            rv_prodlist.setAdapter(retailerProductListAdapter);
+
+        }
+
+        else {
+
+            rlList.setBackgroundResource(R.drawable.bg_cycler_blue);
+
+            rlGrid.setBackgroundResource(R.color.transparent);
+
+            setlistView(prdouctsBeanList);
+        }
+
         rlList.setOnClickListener(v -> {
 
             rlList.setBackgroundResource(R.drawable.bg_cycler_blue);
 
             rlGrid.setBackgroundResource(R.color.transparent);
+
+            isGrid = false;
 
             setlistView(prdouctsBeanList);
         });
@@ -632,28 +717,14 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
             rlList.setBackgroundResource(R.color.transparent);
 
-            setGridView(prdouctsBeanList);
+            isGrid = true;
+
+            setGridView(prdouctsBeanList,isGrid);
+
+
         });
 
-        rv_prodlist.setLayoutManager(new GridLayoutManager(RetailerProductListActivity.this, 2));
 
-        rv_prodlist.setMotionEventSplittingEnabled(false);
-
-        rv_prodlist.setNestedScrollingEnabled(true);
-
-        int size =prdouctsBeanList.size();
-
-        int spanCount = 2; // 3 columns
-
-        int spacing = 0; // 50px
-
-        rv_prodlist.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, true));
-
-        rv_prodlist.setItemAnimator(new DefaultItemAnimator());
-
-        RetailerProductListAdapter retailerProductListAdapter = new RetailerProductListAdapter(RetailerProductListActivity.this, prdouctsBeanList, false,this,this,this);
-
-        rv_prodlist.setAdapter(retailerProductListAdapter);
 
 
 
@@ -735,7 +806,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
 
     @SuppressLint("LongLogTag")
-    private void wishlistaddResponseCall(String productId) {
+    private void wishlistaddResponseCall(String productId, boolean isGrid) {
 
         spin_kit_loadingView.setVisibility(View.VISIBLE);
         //Creating an object of our api interface
@@ -757,7 +828,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
                         Toasty.success(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT, true).show();
 
-                        fetchallproductsListResponseCall(searchString);
+                        fetchallproductsListResponseCall(searchString, isGrid);
 
                     }
 
@@ -810,7 +881,7 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
             if (dd4YouConfig.isInternetConnectivity()) {
 
-                wishlistaddResponseCall(id);
+                wishlistaddResponseCall(id,isGrid);
 
             }
 
@@ -909,48 +980,86 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
     private void showLoginAlert() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(RetailerProductListActivity.this);
-        builder.setTitle("Alert");
-        builder.setMessage("Please Login to add Products");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Login", (dialogInterface, i) -> {
-            Intent intent = new Intent(RetailerProductListActivity.this, LoginActivity.class);
 
-            intent.putExtra("fromactivity",TAG);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RetailerProductListActivity.this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.alert_vehicle_layout, null);
+        dialogBuilder.setView(dialogView);
 
-            intent.putExtra("brand_id",brand_id);
+        dialogBuilder.setCancelable(false);
 
-            intent.putExtra("brand_name",brand_name);
+        RelativeLayout rl_yes = dialogView.findViewById(R.id.rl_yes);
 
-            connectivity.storeData(context,"BrandProduct",fromactivity);
+        RelativeLayout rl_no = dialogView.findViewById(R.id.rl_no);
 
-            startActivity(intent);
+        ImageView img_close = dialogView.findViewById(R.id.img_close);
 
-            finish();
-        });
-        builder.setNegativeButton("Sign In", (dialogInterface, i) -> {
-            Intent intent = new Intent(RetailerProductListActivity.this, RegisterActivity.class);
+        img_close.setVisibility(View.VISIBLE);
 
-            intent.putExtra("fromactivity",TAG);
+        TextView alert_title_txtview = dialogView.findViewById(R.id.alert_title_txtview);
 
-            intent.putExtra("brand_id",brand_id);
+        alert_title_txtview.setText("Please Login to Add Products");
 
-            intent.putExtra("brand_name",brand_name);
+        TextView alert_title_login = dialogView.findViewById(R.id.textView6);
 
-            connectivity.storeData(context,"BrandProduct",fromactivity);
+        alert_title_login.setText("Login");
 
-            startActivity(intent);
+        TextView alert_title_signup = dialogView.findViewById(R.id.textView7);
 
-            finish();
+        alert_title_signup.setText("Signup");
 
-        });
-        builder.setNeutralButton("Cancel", (dialogInterface, i) -> {
-
-            dialogInterface.dismiss();
-
-        });
-        AlertDialog alertDialog = builder.create();
+        AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
+
+        rl_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RetailerProductListActivity.this, RegisterActivity.class);
+
+                intent.putExtra("fromactivity",TAG);
+
+                intent.putExtra("brand_id",brand_id);
+
+                intent.putExtra("brand_name",brand_name);
+
+                connectivity.storeData(context,"BrandProduct",fromactivity);
+
+                startActivity(intent);
+
+                finish();
+            }
+        });
+
+        rl_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RetailerProductListActivity.this, LoginActivity.class);
+
+                intent.putExtra("fromactivity",TAG);
+
+                intent.putExtra("brand_id",brand_id);
+
+                intent.putExtra("brand_name",brand_name);
+
+                connectivity.storeData(context,"BrandProduct",fromactivity);
+
+                startActivity(intent);
+
+                finish();
+
+            }
+        });
+
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                alertDialog.dismiss();
+            }
+        });
     }
 
 
@@ -1055,7 +1164,11 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
 
                             if (cart_count!=null&&!cart_count.equals("0"))  {
 
+                                Log.w(TAG, "Cart_Count --> true");
+
                                 Connectivity connectivity = new Connectivity();
+
+                                connectivity.clearData(context,"Cart_Count");
 
                                 connectivity.storeData(context,"Cart_Count",String.valueOf(cart_count));
 
@@ -1063,6 +1176,8 @@ public class RetailerProductListActivity extends AppCompatActivity implements Wi
                             }
 
                             else {
+
+                                Log.w(TAG, "Cart_Count --> false");
 
                                 txt_cart_count.setVisibility(View.GONE);
 

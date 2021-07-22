@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.triton.bertsproject.requestpojo.ShowOrderlistRequest;
 import com.triton.bertsproject.responsepojo.OrderCreateResponse;
 import com.triton.bertsproject.responsepojo.ShowOrderlistResponse;
 import com.triton.bertsproject.responsepojo.ShowOrderlistResponse;
+import com.triton.bertsproject.sessionmanager.Connectivity;
 import com.triton.bertsproject.sessionmanager.SessionManager;
 import com.triton.bertsproject.utils.RestUtils;
 
@@ -86,6 +88,18 @@ public class OrderListActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.btn_continue_shop)
     Button btn_continue_shop;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_cart_count)
+    TextView txt_cart_count;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.rlcart)
+    RelativeLayout rlcart;
+
+    String cart_count ="0";
+
+
 
     String tag;
 
@@ -150,6 +164,34 @@ public class OrderListActivity extends AppCompatActivity {
             callnointernet();
 
         }
+
+        Connectivity connectivity = new Connectivity();
+
+        cart_count = connectivity.getData(context,"Cart_Count");
+
+        Log.w(TAG,"cart_count "+cart_count);
+
+        if(cart_count!=null&&!cart_count.equals("0")){
+
+            txt_cart_count.setText(""+cart_count);
+        }
+
+        else {
+
+            txt_cart_count.setVisibility(View.GONE);
+        }
+
+        rlcart.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context, RetailerCartActivity.class);
+
+            intent.putExtra("fromactivity",TAG);
+
+            startActivity(intent);
+
+            Animatoo.animateSwipeRight(context);
+
+        });
 
     }
 

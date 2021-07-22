@@ -41,6 +41,7 @@ public class RetailerProductListActivity_ViewBinding implements Unbinder {
     target.rl_sort = Utils.findRequiredViewAsType(source, R.id.rl_sort, "field 'rl_sort'", LinearLayout.class);
     target.rl_spinner = Utils.findRequiredViewAsType(source, R.id.rl_spinner, "field 'rl_spinner'", LinearLayout.class);
     target.txt_spinnertext = Utils.findRequiredViewAsType(source, R.id.txt_spinnertext, "field 'txt_spinnertext'", TextView.class);
+    target.img_search = Utils.findRequiredViewAsType(source, R.id.img_search, "field 'img_search'", ImageView.class);
     target.txt_cart_count = Utils.findRequiredViewAsType(source, R.id.txt_cart_count, "field 'txt_cart_count'", TextView.class);
     target.rlcart = Utils.findRequiredViewAsType(source, R.id.rlcart, "field 'rlcart'", RelativeLayout.class);
   }
@@ -64,6 +65,7 @@ public class RetailerProductListActivity_ViewBinding implements Unbinder {
     target.rl_sort = null;
     target.rl_spinner = null;
     target.txt_spinnertext = null;
+    target.img_search = null;
     target.txt_cart_count = null;
     target.rlcart = null;
   }

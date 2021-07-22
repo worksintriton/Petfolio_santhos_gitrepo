@@ -3,6 +3,7 @@ package com.triton.bertsproject.retailer;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import androidx.annotation.CallSuper;
@@ -26,6 +27,7 @@ public class PaymentMethodActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     target.rdGroupPayment = Utils.findRequiredViewAsType(source, R.id.rdGroupPayment, "field 'rdGroupPayment'", RadioGroup.class);
+    target.img_back = Utils.findRequiredViewAsType(source, R.id.img_back, "field 'img_back'", ImageView.class);
     target.rdpaymgtwy = Utils.findRequiredViewAsType(source, R.id.rdpaymgtwy, "field 'rdpaymgtwy'", RadioButton.class);
     target.rdcreditlimit = Utils.findRequiredViewAsType(source, R.id.rdcreditlimit, "field 'rdcreditlimit'", RadioButton.class);
     target.rdcod = Utils.findRequiredViewAsType(source, R.id.rdcod, "field 'rdcod'", RadioButton.class);
@@ -40,6 +42,7 @@ public class PaymentMethodActivity_ViewBinding implements Unbinder {
     this.target = null;
 
     target.rdGroupPayment = null;
+    target.img_back = null;
     target.rdpaymgtwy = null;
     target.rdcreditlimit = null;
     target.rdcod = null;

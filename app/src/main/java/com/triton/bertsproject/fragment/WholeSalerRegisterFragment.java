@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -169,7 +170,7 @@ public class WholeSalerRegisterFragment extends Fragment {
 
     String brand_id,brand_name,parent_id,subcategid,categ_name,subcategname,make_id,make_name,model_id,model_name, prod_id,prod_name;;
 
-    String search_text , quantity, unit_price;
+    String search_text , quantity, unit_price,country_name,state_name;
 
     public WholeSalerRegisterFragment(String fromActivity, JSONObject data) {
         // Required empty public constructor
@@ -682,15 +683,21 @@ public class WholeSalerRegisterFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.hint_color));
 
-                String country_name = sp_country.getSelectedItem().toString();
+                country_name = sp_country.getSelectedItem().toString();
 
                 countryid =  hashMap_Countryid.get(country_name) ;
 
                 Log.w(TAG,"country_id "+countryid);
 
+                Log.w(TAG,"country_name "+country_name);
+
                 if (dd4YouConfig.isInternetConnectivity()) {
 
-                    fetchallstateListResponseCall(countryid);
+                    if(!country_name.equals("Select Country")){
+
+                        fetchallstateListResponseCall(countryid);
+
+                    }
 
                 }
 
@@ -805,11 +812,13 @@ public class WholeSalerRegisterFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int arg2, long arg3) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.hint_color));
 
-                String state_name = sp_state.getSelectedItem().toString();
+                state_name = sp_state.getSelectedItem().toString();
 
                 stateid =  hashMap_Stateid.get(state_name) ;
 
                 Log.w(TAG,"stateid "+stateid);
+
+                Log.w(TAG,"state_name "+state_name);
 
             }
 
@@ -839,12 +848,16 @@ public class WholeSalerRegisterFragment extends Fragment {
     }
 
 
+    @SuppressLint({"LongLogTag", "SetTextI18n"})
     private void checkValidation() {
 
         boolean isvalid = true;
 
+        int passwd_length =0 , cfmpaswd_lenth = 0;
+
         String emailPattern = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,4})$";
 
+        String passwdPattern = "^(.{0,7}|[^0-9]*|[^a-z]*)$";
         firstname = edt_firstname.edtContent.getText().toString();
 
         lastname = edt_lastname.edtContent.getText().toString();
@@ -858,6 +871,14 @@ public class WholeSalerRegisterFragment extends Fragment {
         zipcode = edt_zipcode.edtContent.getText().toString();
 
         revenue = edt_revenue.edtContent.getText().toString();
+
+        passwd_length = edt_password.edtContent.getText().toString().length();
+
+        cfmpaswd_lenth = edt_cnfmpassword.edtContent.getText().toString().length();
+
+        Log.w(TAG,"passwd_length "+passwd_length);
+
+        Log.w(TAG,"cfmpaswd_lenth "+cfmpaswd_lenth);
 
 
         if(firstname.equals("")){
@@ -887,24 +908,6 @@ public class WholeSalerRegisterFragment extends Fragment {
             edt_email.requestFocus();
         }
 
-        else if(password.equals("")){
-
-            isvalid =false;
-
-            edt_password.setError("Please Fill Password");
-
-            edt_password.requestFocus();
-        }
-
-        else if(cnfm_password.equals("")){
-
-            isvalid =false;
-
-            edt_cnfmpassword.setError("Please Fill Confirm Password");
-
-            edt_cnfmpassword.requestFocus();
-        }
-
         else if(zipcode.equals("")){
 
             isvalid =false;
@@ -923,18 +926,53 @@ public class WholeSalerRegisterFragment extends Fragment {
             edt_revenue.requestFocus();
         }
 
-        else if(countryid.equals("")){
+        else if(password.equals("")||passwd_length<8||password.matches(passwdPattern)){
 
             isvalid =false;
 
-            Toast.makeText(getContext(),"Please Select Country",Toast.LENGTH_SHORT).show();
+            edt_password.setError("Please enter min 8 characters, at least 1 letter & 1 number");
+
+            edt_password.requestFocus();
         }
 
-        else if(stateid.equals("")){
+        else if(cnfm_password.equals("")||cfmpaswd_lenth<8&&cnfm_password.matches(passwdPattern)){
 
             isvalid =false;
 
-            Toast.makeText(getContext(),"Please Select State",Toast.LENGTH_SHORT).show();
+            edt_cnfmpassword.setError("Please enter min 8 characters, at least 1 letter & 1 number");
+
+            edt_cnfmpassword.requestFocus();
+        }
+
+        else if(!password.equals(cnfm_password)){
+
+            isvalid =false;
+
+            Toast.makeText(getContext(),"Password and Confirm Password Doesn't Match",Toast.LENGTH_SHORT).show();
+        }
+
+        else if(country_name.equals("Select Country")){
+
+            isvalid =false;
+
+
+            TextView errorText = (TextView)sp_country.getSelectedView();
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText.setText("Please Select Country");//changes the selected item text to this
+            errorText.setTextSize(10);
+
+        }
+
+        else if(state_name.equals("Select State")){
+
+            isvalid =false;
+
+            TextView errorText = (TextView)sp_state.getSelectedView();
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText.setText("Please Select State");//changes the selected item text to this
+            errorText.setTextSize(10);
         }
 
 
@@ -1009,7 +1047,7 @@ public class WholeSalerRegisterFragment extends Fragment {
                                 response.body().getData().getProfile().getFirst_name(),
                                 response.body().getData().getProfile().getLast_name(),
                                 response.body().getData().getProfile().getEmail(),
-                                response.body().getData().getProfile().getUser_type(),
+                                response.body().getData().getProfile().getRole(),
                                 response.body().getData().getProfile().getAvatar(),
                                 response.body().getData().getProfile().getCountry_id(),
                                 response.body().getData().getProfile().getState_id(),
@@ -1317,7 +1355,9 @@ public class WholeSalerRegisterFragment extends Fragment {
 
         intent.putExtra("model_id", model_id);
 
-        intent.putExtra("model_id",model_name);
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         startActivity(intent);
 
@@ -1370,7 +1410,9 @@ public class WholeSalerRegisterFragment extends Fragment {
 
         intent.putExtra("model_id", model_id);
 
-        intent.putExtra("model_id",model_name);
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         intent.putExtra("fromactivity",TAG);
 

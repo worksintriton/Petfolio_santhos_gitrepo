@@ -546,17 +546,30 @@ public class RetailerRegisterFragment extends Fragment {
     }
 
 
+    @SuppressLint("LongLogTag")
     private void checkValidation() {
 
         boolean isvalid = true;
 
+        int passwd_length =0 , cfmpaswd_lenth = 0;
+
         String emailPattern = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,4})$";
+
+        String passwdPattern = "^(.{0,7}|[^0-9]*|[^a-z]*)$";
 
         if(register_mode.equals("Manual")){
 
             password = edt_password.edtContent.getText().toString();
 
             cnfm_password = edt_cnfmpassword.edtContent.getText().toString();
+
+            passwd_length = edt_password.edtContent.getText().toString().length();
+
+            cfmpaswd_lenth = edt_cnfmpassword.edtContent.getText().toString().length();
+
+            Log.w(TAG,"passwd_length "+passwd_length);
+
+            Log.w(TAG,"cfmpaswd_lenth "+cfmpaswd_lenth);
         }
 
             firstname = edt_firstname.edtContent.getText().toString();
@@ -592,20 +605,32 @@ public class RetailerRegisterFragment extends Fragment {
             edt_email.requestFocus();
         }
 
-        else if(password.equals("")){
+        else if(password.equals("")||passwd_length<8||password.matches(passwdPattern)){
 
             isvalid =false;
 
-            edt_password.setError("Please Fill Password");
+            edt_password.setError("Please enter min 8 characters, at least 1 letter & 1 number");
 
             edt_password.requestFocus();
         }
 
-        else if(cnfm_password.equals("")){
+    else if(cnfm_password.equals("")||cfmpaswd_lenth<8&&cnfm_password.matches(passwdPattern)){
 
             isvalid =false;
 
-            edt_cnfmpassword.setError("Please Fill Confirm Password");
+            if(cnfm_password.matches(passwdPattern)){
+
+                Log.w(TAG,"cnfm_password --> true");
+
+            }
+
+            else {
+
+                Log.w(TAG,"cnfm_password --> false");
+            }
+
+
+            edt_cnfmpassword.setError("Please enter min 8 characters, at least 1 letter & 1 number");
 
             edt_cnfmpassword.requestFocus();
         }
@@ -685,7 +710,7 @@ public class RetailerRegisterFragment extends Fragment {
                                 response.body().getData().getProfile().getFirst_name(),
                                 response.body().getData().getProfile().getLast_name(),
                                 response.body().getData().getProfile().getEmail(),
-                                response.body().getData().getProfile().getUser_type(),
+                                response.body().getData().getProfile().getRole(),
                                 response.body().getData().getProfile().getAvatar(),
                                 response.body().getData().getProfile().getCountry_id(),
                                 response.body().getData().getProfile().getState_id(),
@@ -991,7 +1016,9 @@ public class RetailerRegisterFragment extends Fragment {
 
         intent.putExtra("model_id", model_id);
 
-        intent.putExtra("model_id",model_name);
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         startActivity(intent);
 
@@ -1043,7 +1070,9 @@ public class RetailerRegisterFragment extends Fragment {
 
         intent.putExtra("model_id", model_id);
 
-        intent.putExtra("model_id",model_name);
+        intent.putExtra("model_name",model_name);
+
+        intent.putExtra("search_text",search_text);
 
         intent.putExtra("fromactivity",TAG);
 
