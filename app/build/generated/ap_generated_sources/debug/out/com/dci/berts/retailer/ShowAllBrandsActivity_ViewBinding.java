@@ -1,0 +1,55 @@
+// Generated code from Butter Knife. Do not modify!
+package com.dci.berts.retailer;
+
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import androidx.annotation.CallSuper;
+import androidx.annotation.UiThread;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.dci.berts.R;
+import com.github.ybq.android.spinkit.SpinKitView;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class ShowAllBrandsActivity_ViewBinding implements Unbinder {
+  private ShowAllBrandsActivity target;
+
+  @UiThread
+  public ShowAllBrandsActivity_ViewBinding(ShowAllBrandsActivity target) {
+    this(target, target.getWindow().getDecorView());
+  }
+
+  @UiThread
+  public ShowAllBrandsActivity_ViewBinding(ShowAllBrandsActivity target, View source) {
+    this.target = target;
+
+    target.spin_kit_loadingView = Utils.findRequiredViewAsType(source, R.id.spin_kit_loadingView, "field 'spin_kit_loadingView'", SpinKitView.class);
+    target.rv_top_brands = Utils.findRequiredViewAsType(source, R.id.rv_top_brands, "field 'rv_top_brands'", RecyclerView.class);
+    target.txt_toolbar_title = Utils.findRequiredViewAsType(source, R.id.txt_toolbar_title, "field 'txt_toolbar_title'", TextView.class);
+    target.txt_no_records = Utils.findRequiredViewAsType(source, R.id.txt_no_records, "field 'txt_no_records'", TextView.class);
+    target.rl_root = Utils.findRequiredViewAsType(source, R.id.rl_root, "field 'rl_root'", RelativeLayout.class);
+    target.img_back = Utils.findRequiredViewAsType(source, R.id.img_back, "field 'img_back'", ImageView.class);
+    target.refresh_layout = Utils.findRequiredViewAsType(source, R.id.refresh_layout, "field 'refresh_layout'", SwipeRefreshLayout.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    ShowAllBrandsActivity target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
+
+    target.spin_kit_loadingView = null;
+    target.rv_top_brands = null;
+    target.txt_toolbar_title = null;
+    target.txt_no_records = null;
+    target.rl_root = null;
+    target.img_back = null;
+    target.refresh_layout = null;
+  }
+}

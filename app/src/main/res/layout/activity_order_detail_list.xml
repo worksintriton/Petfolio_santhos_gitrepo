@@ -125,10 +125,10 @@
                             android:layout_width="@dimen/width_appoitmentdetails"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="Order date"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -136,10 +136,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="@string/date"
-                            android:textColor="@color/dark_grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -155,10 +155,10 @@
                             android:layout_width="@dimen/width_appoitmentdetails"
                             android:layout_height="match_parent"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="Order #"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -166,10 +166,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="1234ABCD12344321"
-                            android:textColor="@color/dark_grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -185,10 +185,10 @@
                             android:layout_width="@dimen/width_appoitmentdetails"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="@string/payment_method"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -196,10 +196,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="Online"
-                            android:textColor="@color/dark_grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -215,10 +215,10 @@
                             android:layout_width="@dimen/width_appoitmentdetails"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="Order total"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -226,10 +226,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="\u20B9  0"
-                            android:textColor="@color/dark_grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -245,10 +245,10 @@
                             android:layout_width="@dimen/width_appoitmentdetails"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="@string/quantity"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -256,10 +256,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/lato_regular"
+                            android:fontFamily="@font/lato_black"
                             android:maxLines="1"
                             android:text="0"
-                            android:textColor="@color/dark_grey"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -322,9 +322,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="1"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -333,9 +333,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="2"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -344,9 +344,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="1"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -355,9 +355,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="1"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -366,9 +366,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="1"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -377,9 +377,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/lato_regular"
+                        android:fontFamily="@font/lato_black"
                         android:maxLines="1"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
 

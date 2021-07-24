@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "167590337357",
+    "project_id": "berts-auto-parts",
+    "storage_bucket": "berts-auto-parts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167590337357:android:79a3bd93c6c4445c01f504",
+        "android_client_info": {
+          "package_name": "com.dci.berts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167590337357-spu9aakev6op64pcrm0kftrue5ajd9r5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dci.berts",
+            "certificate_hash": "cc19f740ae75afc52818e2930398e24f52ccbcc1"
+          }
+        },
+        {
+          "client_id": "167590337357-tle9mvraupr5n4vdmof10pgshmvp0f2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-G3a9Jy7KZUItMM53tLw0pI6WMostd6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167590337357-tle9mvraupr5n4vdmof10pgshmvp0f2a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "167590337357-e1tljiqm6dkjbaqnt9i5od43slln5965.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DCI.Berts-Auto-Parts"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

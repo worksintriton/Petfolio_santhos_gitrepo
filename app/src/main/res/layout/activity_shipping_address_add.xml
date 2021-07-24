@@ -33,7 +33,7 @@
             android:orientation="vertical"
             android:layout_margin="@dimen/_20dp">
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 app:inputType="text_normal"
                 app:hint="Name"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_phoneno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 app:inputType="number"
                 app:hint="Phone Number"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
 
             </RelativeLayout>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edtAddress1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 app:inputType="text_normal"
                 app:hint="@string/addressline1"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edtAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 app:inputType="text_normal"
                 app:hint="@string/addressline2"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_zipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -34,14 +34,14 @@
             android:layout_margin="@dimen/_20dp"
             android:orientation="vertical">
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 app:inputType="email"
                 android:layout_height="wrap_content"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:orientation="vertical"

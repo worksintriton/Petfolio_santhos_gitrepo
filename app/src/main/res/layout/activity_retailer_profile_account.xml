@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_firstname"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     android:orientation="vertical"
                     app:inputType="text_normal" />
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_lastname"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
             </LinearLayout>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:orientation="vertical"
                 app:inputType="none" />
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:visibility="gone"
                 app:inputType="password" />
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_cnfmpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 android:visibility="gone"
                 app:inputType="password" />
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_zipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
 
                 </RelativeLayout>
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_country"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                     android:visibility="gone"
                     app:inputType="text_normal" />
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_state"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
 
             </LinearLayout>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_revenue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

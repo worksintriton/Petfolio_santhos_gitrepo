@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">167590337357-tle9mvraupr5n4vdmof10pgshmvp0f2a.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">167590337357</string>
+    <string name="google_api_key" translatable="false">AIzaSyA-G3a9Jy7KZUItMM53tLw0pI6WMostd6M</string>
+    <string name="google_app_id" translatable="false">1:167590337357:android:79a3bd93c6c4445c01f504</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA-G3a9Jy7KZUItMM53tLw0pI6WMostd6M</string>
+    <string name="google_storage_bucket" translatable="false">berts-auto-parts.appspot.com</string>
+    <string name="project_id" translatable="false">berts-auto-parts</string>
+</resources>

@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_firstname"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
 
                     />
 
-                <com.triton.bertsproject.customView.CustomEditText
+                <com.dci.berts.customView.CustomEditText
                     android:id="@+id/edt_lastname"
                     android:layout_width="@dimen/_0dp"
                     android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
 
             </LinearLayout>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_email"
                 android:layout_marginTop="@dimen/margin_common"                android:layout_width="match_parent"
                 android:orientation="vertical"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 app:hint="@string/email"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
@@ -73,7 +73,7 @@
                 app:hint="@string/password"
                 android:layout_height="wrap_content"/>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_cnfmpassword"
                 android:layout_width="match_parent"
                 android:orientation="vertical"

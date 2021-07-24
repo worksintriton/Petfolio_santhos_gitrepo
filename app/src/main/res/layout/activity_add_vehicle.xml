@@ -113,7 +113,7 @@
 
             </RelativeLayout>
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_vinno"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -123,7 +123,7 @@
                 app:hint="VIN NO"
                 app:inputType="number" />
 
-            <com.triton.bertsproject.customView.CustomEditText
+            <com.dci.berts.customView.CustomEditText
                 android:id="@+id/edt_partsname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
