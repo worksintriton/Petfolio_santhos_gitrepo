@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dci.berts"
+    package="com.petfolio.infinituss"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="23"
         android:targetSdkVersion="30" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <supports-screens
         android:anyDensity="true"
@@ -14,223 +36,53 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
+    <queries>
+
+        <!-- Needs to be explicitly declared on Android R+ -->
+        <package android:name="com.google.android.apps.maps" />
+    </queries> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Permission will be merged into the manifest of the hosting app. -->
-    <!-- Is required to launch foreground extraction service for targetSdkVersion 28+. -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 
     <application
-        android:name="com.dci.berts.app.App"
+        android:name="com.petfolio.infinituss.appUtils.ApplicationData"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:icon="@mipmap/ic_launcher"
+        android:extractNativeLibs="false"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:testOnly="true"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity
-            android:name="com.dci.berts.retailer.OrderDetailListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerProductListBasedOnCategActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerProductListBasedOnMakeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllChildMakesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllChildMakesListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllChildCategActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllParentMakesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllBrandsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShowAllParentCategoriesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.SampleActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.PaymentMethodActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.CouponApplyDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.CheckoutScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShippingMethodActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Parent"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerAllCategoriesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerSetttingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ProductDetailDescriptionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.AddVehicleActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.EditVehicleActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerReceiptActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ChangePasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.FilterlistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" >
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
-            <!--
-                 <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-            -->
-
-        </activity>
         <activity
-            android:name="com.dci.berts.retailer.ShippingAddressAddActivity"
+            android:name="com.petfolio.infinituss.activity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShippingAddressEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.ShippingAddressActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerProfileAccountActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.MyWishlistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.Cart"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerOrderTrackActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.Cart"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.OrderListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.Cart"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerCartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.Cart"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.SearchProductListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerProductListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.SearchProductsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.BertsProject.SearchProduct"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.retailer.RetailerDashboardActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Parent"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.activities.ForgetPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.activities.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.dci.berts.activities.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
+            android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -239,93 +91,944 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.dci.berts.activities.LoginActivity"
+            android:name="com.petfolio.infinituss.petlover.ShippingAddressEditActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Customtheme"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.MedicalHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ShippingAddressCreateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ShippingAddressAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ShippingAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.myaddresses.MyAddressesListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.myaddresses.AddNewShippingAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.myaddresses.MyAddressEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.DoctorClinicDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorUpdateOrderStatusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.EditManageProdcutsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetOtherInformationsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetEditOtherInformationsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ChoosePetTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ChooseBreedTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.BasicPetDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.BasicPetDetailsNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.AddNewPetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ConsultationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ConsultationIssuesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.VerifyOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.ChooseUserTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.VerifyEmailOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- Pet Lover -->
+        <activity
+            android:name="com.petfolio.infinituss.petlover.AddYourPetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.RegisterYourPetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetLoverDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewAppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.BookAppointmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetAppointment_Doctor_Date_Time_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetMyappointmentsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetLoverEditProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetLoverProfileScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetLoverEditProfileImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.EditYourPetProfileInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.AddYourPetOldUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.AddYourPetImageOlduserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.EditYourPetImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.FiltersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetMyOrdrersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetMyOrdrersNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ListOfProductsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.Service_Details_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ServiceBookAppointmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.SelectedServiceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetServiceAppointment_Doctor_Date_Time_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.SelectYourPetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetVerifyEmailOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.VideoCallPetLoverActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.ManageAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationAddNewAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.EditShippingAddresssActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationShippingAddressEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationAllowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.AddMyAddressShippingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationDenyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.AddMyAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PlacesSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.AddMyAddressOldUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.EditMyAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.SetLocationDoctorNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.SetLocationDoctorOldActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.SetLocationSPNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.SetLocationSPOldActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.petfolio.infinituss.activity.SliderActivity" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetCompletedAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetMissedAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetNewAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetSPNewAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.ProductFiltersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
+        <!-- Doctor -->
         <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@style/com_facebook_activity_theme" />
+            android:name="com.petfolio.infinituss.doctor.DoctorBusinessInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+            android:name="com.petfolio.infinituss.doctor.EditDoctorBusinessInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorMyCalendarNewUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorMyCalendarTimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.Doctor_Holiday_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorMyCalendarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorVerifyEmailOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.PrescriptionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorEditProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorProfileScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.EditDoctorProfileImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorPrescriptionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.PrescriptionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.VideoCallDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.ManageAddressDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+        <!-- Service Provider -->
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.ServiceProviderRegisterFormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPVerifyEmailOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPMyCalendarNewUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPEditProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPProfileScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.ServiceProviderEditFormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.ServiceProviderDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPMyCalendarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SP_Holiday_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPMyCalendarTimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPManageServiceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPSettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPFiltersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.SPEditProfileImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.ShippingAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SearchSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPCancelOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPListOfProductsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPShopTodayDealsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPTrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPMyOrdrersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.shop.SPProductsFavActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
 
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="cct.com.dci.berts"
-                    android:scheme="fbconnect" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.facebook.CustomTabMainActivity" />
+        <!-- Vendor -->
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorRegisterFormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorAddProductsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorCreateProductsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.NotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.SoSActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.EditSoSActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetShopTodayDealsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorMissedAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorCompletedAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorNewAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorEditProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorProfileScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.EditVendorProfileImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.EditVendorRegisterFormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorVerifyEmailOtpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetVendorOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetLoverVendorOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetVendorTrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.TrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetVendorCancelOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetReturnOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorTrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.VendorOrderDetailsNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.vendor.ManageProductsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.SearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorShopTodayDealsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorListOfProductsSeeMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorProductDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.SearchDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorTrackOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.shop.DoctorCancelOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorMyOrdrersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetloverFavListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationAddNewAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.AddMyAddressShippingSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.AddMyAddressDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.EditMyAddressDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.PickUpLocationEditDoctorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.activity.location.ShippingAddressAddSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorProductsFavActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.doctor.DoctorPaymentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetloverPaymentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.PickUpLocationEditSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.EditMyAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.AddMyAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.PickUpLocationSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.serviceprovider.ManageAddressSPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.petfolio.infinituss.petlover.PetloverPetDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
 
         <receiver
-            android:name="com.google.firebase.messaging.directboot.FirebaseMessagingDirectBootReceiver"
-            android:directBootAware="true"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:name="com.petfolio.infinituss.receiver.SmsBroadcastListener"
+            android:permission="android.permission.BROADCAST_SMS" >
             <intent-filter>
-                <action android:name="com.google.firebase.messaging.RECEIVE_DIRECT_BOOT" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </receiver>
-        <!--
-             FirebaseMessagingService performs security checks at runtime,
-             but set to not exported to explicitly avoid allowing another app to call it.
-        -->
+
         <service
-            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-            android:directBootAware="true"
+            android:name="com.petfolio.infinituss.fcm.MyFirebaseMessagingService"
             android:exported="false" >
-            <intent-filter android:priority="-500" >
+            <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/image_thumbnail" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.petfolio.infinituss.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider> <!-- Add your API key here -->
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_zioohqmxDjJJtd" />
+
+        <activity
+            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+            android:exported="false"
+            android:label="@string/places_autocomplete_label"
+            android:theme="@style/PlacesAutocompleteOverlay"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name="org.jitsi.meet.sdk.JitsiMeetActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+
         <service
-            android:name="com.google.firebase.components.ComponentDiscoveryService"
-            android:directBootAware="true"
-            android:exported="false" >
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
+            android:name="org.jitsi.meet.sdk.ConnectionService"
+            android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE" >
+            <intent-filter>
+                <action android:name="android.telecom.ConnectionService" />
+            </intent-filter>
         </service>
+        <service
+            android:name="org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService"
+            android:foregroundServiceType="mediaProjection" />
+
+        <provider
+            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
+            android:authorities="com.petfolio.infinituss.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
 
         <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
@@ -375,6 +1078,83 @@
             </intent-filter>
         </service>
         <service
+            android:name="com.google.firebase.components.ComponentDiscoveryService"
+            android:directBootAware="true"
+            android:exported="false" >
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+        </service> <!-- Needs to be explicitly declared on P+ -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <!--
+             FirebaseMessagingService performs security checks at runtime,
+             but set to not exported to explicitly avoid allowing another app to call it.
+        -->
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:directBootAware="true"
+            android:exported="false" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.razorpay.RzpTokenReceiver" >
+            <intent-filter>
+                <action android:name="rzp.device_token.share" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:theme="@style/CheckoutTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <data
+                    android:host="rzp.io"
+                    android:scheme="io.rzp" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="es.voghdev.pdfviewpager.library.service.CopyAssetService"
+            android:exported="false" >
+        </service>
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.petfolio.infinituss.com.squareup.picasso"
+            android:exported="false" />
+
+        <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
             android:exported="false" >
             <meta-data
@@ -384,10 +1164,24 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.dci.berts.firebaseinitprovider"
+            android:authorities="com.petfolio.infinituss.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />
+
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+            Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
@@ -413,27 +1207,12 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <!--
-         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
-         with the application context. This config is merged in with the host app's manifest,
-         but there can only be one provider with the same authority activated at any given
-         point; so if the end user has two or more different apps that use Facebook SDK, only the
-         first one will be able to use the provider. To work around this problem, we use the
-         following placeholder in the authority to identify each host application as if it was
-         a completely different provider.
-        -->
-        <provider
-            android:name="com.facebook.internal.FacebookInitProvider"
-            android:authorities="com.dci.berts.FacebookInitProvider"
-            android:exported="false" />
 
-        <receiver
-            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-            </intent-filter>
-        </receiver>
+        <provider
+            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:authorities="com.petfolio.infinituss.lifecycle-process"
+            android:exported="false"
+            android:multiprocess="true" />
 
         <service
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
@@ -443,24 +1222,7 @@
 
         <receiver
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-            android:exported="false" /> <!-- The activities will be merged into the manifest of the hosting app. -->
-        <activity
-            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
-            android:enabled="false"
-            android:exported="false"
-            android:launchMode="singleInstance"
-            android:process=":playcore_missing_splits_activity"
-            android:stateNotNeeded="true" />
-        <activity
-            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
-            android:enabled="false"
-            android:exported="false"
-            android:stateNotNeeded="true"
-            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The service will be merged into the manifest of the hosting app. -->
-        <service
-            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
-            android:enabled="false"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>
