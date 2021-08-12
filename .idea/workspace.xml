@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="666f3425-d1bc-4317-b1b0-80bf4c7e3294" name="Default Changelist" comment="">
+    <list default="true" id="c8a404ac-828c-4331-9525-b06b6391c5e6" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -23,10 +23,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1vemqtpq8flwRVqLmq5wO5ijod4" />
+  <component name="ProjectId" id="1wdBB4OZJ5a7pMb44upoJmk51cX" />
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="autoscrollToSource" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -40,7 +41,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="PetFolio.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -102,34 +103,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="666f3425-d1bc-4317-b1b0-80bf4c7e3294" name="Default Changelist" comment="" />
-      <created>1626931124335</created>
+      <changelist id="c8a404ac-828c-4331-9525-b06b6391c5e6" name="Default Changelist" comment="" />
+      <created>1628778448218</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1626931124335</updated>
+      <updated>1628778448218</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1237" height="176" key="GridCell.Tab.0.bottom" timestamp="1626937943141">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1626937943141" />
-    <state width="1237" height="176" key="GridCell.Tab.0.center" timestamp="1626937943140">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1626937943140" />
-    <state width="1237" height="176" key="GridCell.Tab.0.left" timestamp="1626937943140">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1626937943140" />
-    <state width="1237" height="176" key="GridCell.Tab.0.right" timestamp="1626937943140">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state width="1237" height="176" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1626937943140" />
-    <state x="458" y="274" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627141197974">
-      <screen x="0" y="0" width="1280" height="720" />
-    </state>
-    <state x="458" y="274" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1627141197974" />
   </component>
 </project>
