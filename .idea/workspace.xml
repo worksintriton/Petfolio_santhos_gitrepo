@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a404ac-828c-4331-9525-b06b6391c5e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +26,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,6 +46,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.111210886">
+      <recent name="com.petfolio.infinituss.petlover" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\Petfolio_santhos_gitrepo_SandyFCPY\app\src\main\res\layout" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -41,7 +64,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="PetFolio.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -109,6 +132,52 @@
       <option name="presentableId" value="Default" />
       <updated>1628778448218</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added Coupon, Payment Method">
+      <created>1628784855203</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628784855203</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Coupon, Payment Method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Coupon, Payment Method" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="487" y="146" key="AndroidCreateXmlResourceDialog" timestamp="1628784247842">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="487" y="146" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1628784247842" />
+    <state x="260" y="0" key="CommitChangelistDialog2" timestamp="1628784853324">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="260" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1628784853324" />
+    <state width="1237" height="522" key="GridCell.Tab.0.bottom" timestamp="1628784150210">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="522" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1628784150210" />
+    <state width="1237" height="522" key="GridCell.Tab.0.center" timestamp="1628784150210">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="522" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1628784150210" />
+    <state width="1237" height="522" key="GridCell.Tab.0.left" timestamp="1628784150209">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="522" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1628784150209" />
+    <state width="1237" height="522" key="GridCell.Tab.0.right" timestamp="1628784150210">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="522" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1628784150210" />
+    <state x="233" y="93" key="Vcs.Push.Dialog.v2" timestamp="1628784781526">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="233" y="93" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1628784781526" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1628780511947">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1628780511947" />
   </component>
 </project>
