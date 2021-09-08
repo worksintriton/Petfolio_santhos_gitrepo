@@ -483,6 +483,7 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         return appoinmentCompleteRequest;
     }
 
+ @SuppressLint("LogNotTimber")
  private void AppointmentCashRequestCall () {
         avi_indicator.setVisibility(View.VISIBLE);
         avi_indicator.smoothToShow();
@@ -491,6 +492,7 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         Log.w(TAG,"AppointmentCashRequestCall url  :%s"+" "+ call.request().url().toString());
 
         call.enqueue(new Callback<SuccessResponse>() {
+            @SuppressLint("LogNotTimber")
             @Override
             public void onResponse(@NonNull Call<SuccessResponse> call, @NonNull Response<SuccessResponse> response) {
 

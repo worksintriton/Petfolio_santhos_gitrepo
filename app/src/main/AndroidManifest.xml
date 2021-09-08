@@ -64,6 +64,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.SliderAfterSplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".petlover.ShippingAddressEditActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -232,6 +237,11 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".petlover.PetMyappointmentsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".petlover.PetWalkinappointmentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
@@ -425,6 +435,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".petlover.PetWalkinAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.SliderActivity" />
         <activity
             android:name=".petlover.PetCompletedAppointmentDetailsActivity"
@@ -505,6 +520,21 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".doctor.WalkinPrescriptionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".doctor.WalkinPrescriptionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".doctor.DoctorWalkinPrescriptionDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".doctor.DoctorEditProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -536,6 +566,11 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".doctor.DoctorAppointmentDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".doctor.DoctorWalkinAppointmentDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
@@ -862,6 +897,11 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".doctor.DoctorMyOrdrersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".doctor.DoctorWalkinAppointmentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />

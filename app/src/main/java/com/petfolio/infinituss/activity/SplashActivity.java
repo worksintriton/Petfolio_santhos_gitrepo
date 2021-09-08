@@ -13,9 +13,11 @@ import com.petfolio.infinituss.R;
 import com.petfolio.infinituss.doctor.DoctorDashboardActivity;
 import com.petfolio.infinituss.doctor.DoctorMyOrdrersActivity;
 
+import com.petfolio.infinituss.doctor.DoctorWalkinAppointmentsActivity;
 import com.petfolio.infinituss.petlover.PetLoverDashboardActivity;
 import com.petfolio.infinituss.petlover.PetMyOrdrersNewActivity;
 import com.petfolio.infinituss.petlover.PetMyappointmentsActivity;
+import com.petfolio.infinituss.petlover.PetWalkinappointmentsActivity;
 import com.petfolio.infinituss.serviceprovider.ServiceProviderDashboardActivity;
 import com.petfolio.infinituss.serviceprovider.shop.SPMyOrdrersActivity;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
@@ -67,17 +69,28 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             if(!islogedin) {
-                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+              /*  Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();*/
+                Intent i = new Intent(SplashActivity.this, SliderAfterSplashActivity.class);
                 startActivity(i);
                 finish();
             }else{
                 if(user_type != null){
                     if(user_type.equalsIgnoreCase("1")){
                         if(appintments != null && !appintments.isEmpty()){
-                            Intent intent = new Intent(SplashActivity.this, PetMyappointmentsActivity.class);
-                            intent.putExtra("appintments",appintments);
-                            startActivity(intent);
-                            finish();
+                            if(appintments.equalsIgnoreCase("Walkin")){
+                                Intent intent = new Intent(SplashActivity.this, PetWalkinappointmentsActivity.class);
+                                intent.putExtra("appintments",appintments);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(SplashActivity.this, PetMyappointmentsActivity.class);
+                                intent.putExtra("appintments",appintments);
+                                startActivity(intent);
+                                finish();
+                            }
+
                         }else if(orders != null && !orders.isEmpty()){
                             Intent intent = new Intent(SplashActivity.this, PetMyOrdrersNewActivity.class);
                             intent.putExtra("orders",orders);
@@ -123,10 +136,18 @@ public class SplashActivity extends AppCompatActivity {
 
                     }else if(user_type.equalsIgnoreCase("4")){
                         if(appintments != null && !appintments.isEmpty()){
-                            Intent intent = new Intent(SplashActivity.this, DoctorDashboardActivity.class);
-                            intent.putExtra("appintments",appintments);
-                            startActivity(intent);
-                            finish();
+                            if(appintments.equalsIgnoreCase("Walkin")){
+                                Intent intent = new Intent(SplashActivity.this, DoctorWalkinAppointmentsActivity.class);
+                                intent.putExtra("appintments",appintments);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(SplashActivity.this, DoctorDashboardActivity.class);
+                                intent.putExtra("appintments",appintments);
+                                startActivity(intent);
+                                finish();
+                            }
+
                         }else if(orders != null && !orders.isEmpty()){
                             Intent intent = new Intent(SplashActivity.this, DoctorMyOrdrersActivity.class);
                             intent.putExtra("orders",orders);
@@ -151,7 +172,10 @@ public class SplashActivity extends AppCompatActivity {
 
                 boolean islogedin1 = session.isLoggedIn();
                 if(!islogedin1) {
-                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                   /* Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish(); */
+                    Intent i = new Intent(SplashActivity.this, SliderAfterSplashActivity.class);
                     startActivity(i);
                     finish();
                 }

@@ -493,8 +493,8 @@ public class DoctorAppointmentDetailsActivity extends AppCompatActivity implemen
 
 
 
-                            if(pet_dob != null){
-                                txt_age.setText(pet_dob);
+                            if(petage != null){
+                                txt_age.setText(petage);
                                /* String[] separated = pet_dob.split("-");
                                 String day = separated[0];
                                 String month = separated[1];
