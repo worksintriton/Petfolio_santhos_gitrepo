@@ -134,7 +134,7 @@
             android:fontFamily="@font/futuramediumbt"
             android:hint="@string/product_price"
             android:inputType="numberDecimal"
-            android:maxLength="15"
+            android:maxLength="6"
             android:maxLines="1"
             android:imeOptions="actionDone"
             android:padding="15dp"
@@ -150,8 +150,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_corner"
             android:fontFamily="@font/futuramediumbt"
-            android:hint="Product threshould"
-            android:inputType="numberPassword"                android:maxLength="6"
+            android:hint="Product threshold"
+            android:inputType="numberPassword"
+            android:maxLength="6"
             android:maxLines="1"
             android:imeOptions="actionDone"
             android:padding="15dp"
@@ -198,7 +199,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="20dp">
         <Button
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
