@@ -40,6 +40,7 @@ import com.petfolio.infinituss.responsepojo.FileUploadResponse;
 import com.petfolio.infinituss.responsepojo.PetAddImageResponse;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.RestUtils;
+import com.theartofdev.edmodo.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
@@ -301,55 +302,24 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
     private void choosePetImage() {
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(AddYourPetImageOlduserActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
+        }
 
-            final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
-            //AlertDialog.Builder alert=new AlertDialog.Builder(this);
-            AlertDialog.Builder builder = new AlertDialog.Builder(AddYourPetImageOlduserActivity.this);
-            builder.setTitle("Choose option");
-            builder.setItems(items, (dialog, item) -> {
-                if (items[item].equals("Take Photo"))
-                {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(AddYourPetImageOlduserActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                    {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
-                    }
-                    else
-                    {
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(AddYourPetImageOlduserActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
+        }
+
+        else
+        {
 
 
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            CropImage.activity().start(AddYourPetImageOlduserActivity.this);
 
-                        startActivityForResult(intent, SELECT_CLINIC_CAMERA);
-                    }
-
-                }
-
-                else if (items[item].equals("Choose from Library"))
-                {
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(AddYourPetImageOlduserActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                    {
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
-                    }
-
-                    else{
-
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_CLINIC_PICTURE);
-
-
-                    }
-                }
-
-                else if (items[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
-
-
+            /*CropImage.activity().start(AddYourPetImageOlduserActivity.this);*/
+        }
 
     }
 
@@ -358,6 +328,50 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+
+                Log.w("selectedImageUri", " " + resultUri);
+
+                String filename = getFileName(resultUri);
+
+                Log.w("filename", " " + filename);
+
+                String filePath = FileUtil.getPath(AddYourPetImageOlduserActivity.this,resultUri);
+
+                assert filePath != null;
+
+                File file = new File(filePath); // initialize file here
+
+                long length = file.length() / 1024; // Size in KB
+
+                Log.w("filesize", " " + length);
+
+                if(length>2000){
+
+                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("File Size")
+                            .setContentText("Plz choose file size less than 2 MB ")
+                            .setConfirmText("Ok")
+                            .show();
+                }
+
+                else{
+
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
+                    String currentDateandTime = sdf.format(new Date());
+
+                    filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
+                    uploadPetImage();
+
+                }
+
+            }
+        }
 
         //	Toast.makeText(getActivity(),"kk",Toast.LENGTH_SHORT).show();
         if(requestCode== SELECT_CLINIC_PICTURE || requestCode == SELECT_CLINIC_CAMERA)
@@ -415,13 +429,26 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
                         Log.w("filesize", " " + length);
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
-                        String currentDateandTime = sdf.format(new Date());
+                        if(length>2000){
 
-                        filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("File Size")
+                                    .setContentText("Plz choose file size less than 2 MB ")
+                                    .setConfirmText("Ok")
+                                    .show();
+                         }
 
-                        uploadPetImage();
+                        else{
 
+
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
+                                String currentDateandTime = sdf.format(new Date());
+
+                                filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
+                                uploadPetImage();
+
+                        }
 
                     }
                 } catch (Exception e) {
@@ -540,13 +567,12 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_READ_CLINIC_PIC_PERMISSION) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_CLINIC_PICTURE);
+
+                CropImage.activity().start(AddYourPetImageOlduserActivity.this);
 
             } else {
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -558,7 +584,7 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
                             sDialog.dismissWithAnimation();
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
+                                requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
                             }
 
 
@@ -572,15 +598,11 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
             }
 
-        }
-
-        else if (requestCode == REQUEST_CLINIC_CAMERA_PERMISSION_CODE) {
+        } else if (requestCode == REQUEST_CLINIC_CAMERA_PERMISSION_CODE) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                startActivityForResult(intent, SELECT_CLINIC_CAMERA);
+                CropImage.activity().start(AddYourPetImageOlduserActivity.this);
 
             } else {
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -592,7 +614,7 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
                             sDialog.dismissWithAnimation();
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
+                                requestPermissions(new String[]{CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
                             }
 
 

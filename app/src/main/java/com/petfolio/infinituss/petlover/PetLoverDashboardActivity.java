@@ -46,7 +46,6 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.petfolio.infinituss.R;
 import com.petfolio.infinituss.api.API;
 
@@ -327,6 +326,7 @@ public class PetLoverDashboardActivity extends PetLoverNavigationDrawerNew imple
                 bundle.putString("fromactivity", fromactivity);
                 bundle.putString("specialization", specialization);
                 bundle.putInt("reviewcount", reviewcount);
+                bundle.putInt("communication_type", communication_type);
                 // set Fragmentclass Arguments
                 fragment.setArguments(bundle);
                 Log.w(TAG,"fromactivity : "+fromactivity);
