@@ -131,13 +131,19 @@ dependencies {
     implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
 
 
-    /*ucrop Library*/
-
-    implementation 'com.github.yalantis:ucrop:2.2.2'
-
     // This library is used for crop image feature
 
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+
+
+
+
+
+
+
+
+
 
 
 

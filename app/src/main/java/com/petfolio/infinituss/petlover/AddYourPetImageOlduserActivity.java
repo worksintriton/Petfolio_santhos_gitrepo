@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -314,10 +312,7 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
         else
         {
-
-
             CropImage.activity().start(AddYourPetImageOlduserActivity.this);
-
             /*CropImage.activity().start(AddYourPetImageOlduserActivity.this);*/
         }
 
