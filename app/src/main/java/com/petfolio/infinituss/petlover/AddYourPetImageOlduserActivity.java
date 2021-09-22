@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -312,7 +314,10 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
         else
         {
+
+
             CropImage.activity().start(AddYourPetImageOlduserActivity.this);
+
             /*CropImage.activity().start(AddYourPetImageOlduserActivity.this);*/
         }
 
@@ -322,118 +327,118 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        
+        try{
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    Uri resultUri = result.getUri();
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
+                    Log.w("selectedImageUri", " " + resultUri);
 
-                Log.w("selectedImageUri", " " + resultUri);
+                    String filename = getFileName(resultUri);
 
-                String filename = getFileName(resultUri);
+                    Log.w("filename", " " + filename);
 
-                Log.w("filename", " " + filename);
+                    String filePath = FileUtil.getPath(AddYourPetImageOlduserActivity.this,resultUri);
 
-                String filePath = FileUtil.getPath(AddYourPetImageOlduserActivity.this,resultUri);
+                    assert filePath != null;
 
-                assert filePath != null;
+                    File file = new File(filePath); // initialize file here
 
-                File file = new File(filePath); // initialize file here
+                    long length = file.length() / 1024; // Size in KB
 
-                long length = file.length() / 1024; // Size in KB
+                    Log.w("filesize", " " + length);
 
-                Log.w("filesize", " " + length);
+                    if(length>2000){
 
-                if(length>2000){
+                        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("File Size")
+                                .setContentText("Plz choose file size less than 2 MB ")
+                                .setConfirmText("Ok")
+                                .show();
+                    }
 
-                    new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("File Size")
-                            .setContentText("Plz choose file size less than 2 MB ")
-                            .setConfirmText("Ok")
-                            .show();
+                    else{
+
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
+                        String currentDateandTime = sdf.format(new Date());
+
+                        filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
+                        uploadPetImage();
+
+                    }
+
                 }
+            }
 
-                else{
+            //	Toast.makeText(getActivity(),"kk",Toast.LENGTH_SHORT).show();
+            if(requestCode== SELECT_CLINIC_PICTURE || requestCode == SELECT_CLINIC_CAMERA) {
 
+                if(requestCode == SELECT_CLINIC_CAMERA)
+                {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
 
+                    File file = new File(getFilesDir(), "Petfolio1" + ".jpg");
+
+                    OutputStream os;
+                    try {
+                        os = new FileOutputStream(file);
+                        photo.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                        os.flush();
+                        os.close();
+                    } catch (Exception e) {
+                        Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                    }
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
                     String currentDateandTime = sdf.format(new Date());
 
-                    filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("image*/"), file);
+
+                    filePart = MultipartBody.Part.createFormData("sampleFile",  userid+currentDateandTime+file.getName(), requestFile);
 
                     uploadPetImage();
 
                 }
 
-            }
-        }
+                else{
 
-        //	Toast.makeText(getActivity(),"kk",Toast.LENGTH_SHORT).show();
-        if(requestCode== SELECT_CLINIC_PICTURE || requestCode == SELECT_CLINIC_CAMERA)
-        {
+                    try {
+                        if (resultCode == Activity.RESULT_OK)
+                        {
 
-            if(requestCode == SELECT_CLINIC_CAMERA)
-            {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                            Log.w("VALUEEEEEEE1111", " " + data);
 
-                File file = new File(getFilesDir(), "Petfolio1" + ".jpg");
+                            Uri selectedImageUri = data.getData();
 
-                OutputStream os;
-                try {
-                    os = new FileOutputStream(file);
-                    photo.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.flush();
-                    os.close();
-                } catch (Exception e) {
-                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
-                }
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
-                String currentDateandTime = sdf.format(new Date());
+                            Log.w("selectedImageUri", " " + selectedImageUri);
 
-                RequestBody requestFile = RequestBody.create(MediaType.parse("image*/"), file);
+                            String filename = getFileName(selectedImageUri);
 
-                filePart = MultipartBody.Part.createFormData("sampleFile",  userid+currentDateandTime+file.getName(), requestFile);
+                            Log.w("filename", " " + filename);
 
-                uploadPetImage();
+                            String filePath = FileUtil.getPath(AddYourPetImageOlduserActivity.this,selectedImageUri);
 
-            }
+                            assert filePath != null;
 
-            else{
+                            File file = new File(filePath); // initialize file here
 
-                try {
-                    if (resultCode == Activity.RESULT_OK)
-                    {
+                            long length = file.length() / 1024; // Size in KB
 
-                        Log.w("VALUEEEEEEE1111", " " + data);
+                            Log.w("filesize", " " + length);
 
-                        Uri selectedImageUri = data.getData();
+                            if(length>2000){
 
-                        Log.w("selectedImageUri", " " + selectedImageUri);
+                                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("File Size")
+                                        .setContentText("Plz choose file size less than 2 MB ")
+                                        .setConfirmText("Ok")
+                                        .show();
+                            }
 
-                        String filename = getFileName(selectedImageUri);
-
-                        Log.w("filename", " " + filename);
-
-                        String filePath = FileUtil.getPath(AddYourPetImageOlduserActivity.this,selectedImageUri);
-
-                        assert filePath != null;
-
-                        File file = new File(filePath); // initialize file here
-
-                        long length = file.length() / 1024; // Size in KB
-
-                        Log.w("filesize", " " + length);
-
-                        if(length>2000){
-
-                            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                                    .setTitleText("File Size")
-                                    .setContentText("Plz choose file size less than 2 MB ")
-                                    .setConfirmText("Ok")
-                                    .show();
-                         }
-
-                        else{
+                            else{
 
 
                                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
@@ -443,17 +448,22 @@ public class AddYourPetImageOlduserActivity extends AppCompatActivity implements
 
                                 uploadPetImage();
 
+                            }
+
                         }
+                    } catch (Exception e) {
 
+                        Log.w("Exception", " " + e);
                     }
-                } catch (Exception e) {
 
-                    Log.w("Exception", " " + e);
                 }
 
             }
 
+        }catch (Exception e){
+            Log.w(TAG,"onActivityResult exception"+e.toString());
         }
+
 
 
 
