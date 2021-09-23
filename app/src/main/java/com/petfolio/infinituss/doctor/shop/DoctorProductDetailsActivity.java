@@ -314,7 +314,7 @@ public class DoctorProductDetailsActivity extends AppCompatActivity implements V
                     if(product_cart_counts == 1){
                         txt_cart_label.setText("Add to cart");
                     }else{
-                        txt_cart_label.setText("Go to cart");
+                        //txt_cart_label.setText("Go to cart");
                     }
 
                 }else{
@@ -347,7 +347,7 @@ public class DoctorProductDetailsActivity extends AppCompatActivity implements V
                             }else{
                                 if(product_cart_counts != 1){
                                     txt_cart_count.setText(product_cart_counts+"");
-                                    txt_cart_label.setText("Go to cart");
+                                    //txt_cart_label.setText("Go to cart");
                                 }else{
                                     txt_cart_label.setText("Add to cart");
                                 }
@@ -815,10 +815,10 @@ public class DoctorProductDetailsActivity extends AppCompatActivity implements V
 
         }
         if(product_price != 0 ){
-            txt_products_price.setText("\u20B9 "+product_price);
+            txt_products_price.setText("INR "+product_price);
 
         }else{
-            txt_products_price.setText("\u20B9 "+0);
+            txt_products_price.setText("INR "+0);
         }
         if(product_discount != 0 ){
             rl_discount.setVisibility(View.VISIBLE);

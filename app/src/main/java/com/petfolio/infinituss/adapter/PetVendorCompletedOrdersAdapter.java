@@ -71,17 +71,17 @@ public class PetVendorCompletedOrdersAdapter extends  RecyclerView.Adapter<Recyc
         }
         if(newOrderResponseList.get(position).getProduct_price() != 0 && newOrderResponseList.get(position).getProduct_quantity() != 0) {
             if(newOrderResponseList.get(position).getProduct_quantity() == 1){
-                holder.txt_products_price.setText("\u20B9 " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
+                holder.txt_products_price.setText("INR " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
             }else{
-                holder.txt_products_price.setText("\u20B9 " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
+                holder.txt_products_price.setText("INR " + newOrderResponseList.get(position).getProduct_price() + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
 
             }
         }
         else{
             if(newOrderResponseList.get(position).getProduct_quantity() == 1){
-                holder.txt_products_price.setText("\u20B9 " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
+                holder.txt_products_price.setText("INR " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " item )");
             }else{
-                holder.txt_products_price.setText("\u20B9 " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
+                holder.txt_products_price.setText("INR " + 0 + " (" + newOrderResponseList.get(position).getProduct_quantity() + " items )");
 
             }
 
@@ -137,8 +137,8 @@ public class PetVendorCompletedOrdersAdapter extends  RecyclerView.Adapter<Recyc
 
         });
 
-        if(newOrderResponseList.get(position).getUser_rate() != null && newOrderResponseList.get(position).getUser_rate().equalsIgnoreCase("0")){
-            holder.btn_add_review.setVisibility(View.VISIBLE);
+        if(newOrderResponseList.get(position).getUser_rate() ==0){
+            holder.btn_add_review.setVisibility(View.GONE);
         }else{
             holder.btn_add_review.setVisibility(View.GONE);
 

@@ -65,7 +65,6 @@
                 android:background="@drawable/rectangle_corner"
                 android:fontFamily="@font/futuramediumbt"
                 android:hint="@string/clinic_number"
-                android:inputType="number"
                 android:maxLength="50"
                 android:maxLines="1"
                 android:padding="15dp"
@@ -177,7 +176,7 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="12dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/futuramediumbt"
                 android:padding="2dp"
@@ -258,7 +257,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcyrl_added_edu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp" />
 
             <TextView
