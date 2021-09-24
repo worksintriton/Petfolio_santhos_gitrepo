@@ -38,7 +38,7 @@ import com.petfolio.infinituss.responsepojo.DoctorUpdateProfileImageResponse;
 import com.petfolio.infinituss.responsepojo.FileUploadResponse;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.RestUtils;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
@@ -116,6 +116,7 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
     private String refcode;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,8 +129,6 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
         btn_continue.setOnClickListener(this);
         txt_uploadpetimage.setOnClickListener(this);
         img_pet_imge.setOnClickListener(this);
-
-
 
         SessionManager session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getProfileDetails();
@@ -148,10 +147,14 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
             Glide.with(PetLoverEditProfileImageActivity.this)
                     .load(profileimage)
                     .into(img_pet_imge);
-        }else{
+            txt_uploadpetimage.setText("Change Image");
+        }
+        else{
             Glide.with(PetLoverEditProfileImageActivity.this)
                     .load(R.drawable.image_thumbnail)
                     .into(img_pet_imge);
+            txt_uploadpetimage.setText("Upload Image");
+
 
         }
 
@@ -161,7 +164,7 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
 
     }
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "ObsoleteSdkInt"})
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -296,7 +299,8 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
+
+      Uri resultUri = result.getUriContent();
 
                     if (resultUri != null) {
 
@@ -462,10 +466,12 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
                             Glide.with(PetLoverEditProfileImageActivity.this)
                                     .load(profileimage)
                                     .into(img_pet_imge);
+                            txt_uploadpetimage.setText("Change Image");
                         }else{
                             Glide.with(PetLoverEditProfileImageActivity.this)
                                     .load(R.drawable.image_thumbnail)
                                     .into(img_pet_imge);
+                            txt_uploadpetimage.setText("Upload Image");
 
                         }
 
@@ -499,10 +505,12 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
         if (requestCode == REQUEST_READ_CLINIC_PIC_PERMISSION) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_CLINIC_PICTURE);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_CLINIC_PICTURE);*/
+
+                choosePetLoverImage();
 
             } else {
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -534,9 +542,11 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+              /*  Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                startActivityForResult(intent, SELECT_CLINIC_CAMERA);
+                startActivityForResult(intent, SELECT_CLINIC_CAMERA);*/
+
+                choosePetLoverImage();
 
             } else {
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)

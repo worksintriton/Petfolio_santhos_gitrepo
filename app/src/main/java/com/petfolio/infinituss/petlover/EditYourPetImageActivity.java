@@ -41,7 +41,7 @@ import com.petfolio.infinituss.responsepojo.PetAddImageResponse;
 import com.petfolio.infinituss.responsepojo.PetListResponse;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.RestUtils;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
@@ -312,7 +312,8 @@ public class EditYourPetImageActivity extends AppCompatActivity implements View.
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
+
+      Uri resultUri = result.getUriContent();
 
                     if (resultUri != null) {
 

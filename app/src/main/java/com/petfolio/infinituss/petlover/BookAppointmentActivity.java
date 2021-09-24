@@ -79,7 +79,7 @@ import com.petfolio.infinituss.utils.ConnectionDetector;
 import com.petfolio.infinituss.utils.RestUtils;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONObject;
@@ -957,7 +957,8 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
              if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                  CropImage.ActivityResult result = CropImage.getActivityResult(data);
                  if (resultCode == RESULT_OK) {
-                     Uri resultUri = result.getUri();
+
+      Uri resultUri = result.getUriContent();
 
                      if (resultUri != null) {
 

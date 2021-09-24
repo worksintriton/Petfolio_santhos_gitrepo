@@ -71,7 +71,7 @@ import com.petfolio.infinituss.responsepojo.SubDiagnosisListResponse;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.ConnectionDetector;
 import com.petfolio.infinituss.utils.RestUtils;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
@@ -1365,6 +1365,7 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
 
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private void chooseGovIDPdf() {
 
         if(govtIdPicBeans!=null&&govtIdPicBeans.size()>=1){
@@ -1375,53 +1376,7 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
 
         else {
 
-//            final CharSequence[] items = {"Take Photo", "Pick from Gallery","Cancel"};
-//            //AlertDialog.Builder alert=new AlertDialog.Builder(this);
-//            AlertDialog.Builder builder = new AlertDialog.Builder(PrescriptionActivity.this);
-//            builder.setTitle("Choose option");
-//            builder.setItems(items, (dialog, item) -> {
-//                if (items[item].equals("Take Photo"))
-//                {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(PrescriptionActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-//                    {
-//                        requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_GOVTID_CAMERA_PERMISSION_CODE);
-//                    }
-//                    else
-//                    {
-//
-//
-//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//
-//                        startActivityForResult(intent, SELECT_GOVTID_CAMERA);
-//                    }
-//
-//                }
-//
-//                else if (items[item].equals("Pick from Gallery"))
-//                {
-//
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-//                    {
-//                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_GOVTID_PIC_PERMISSION);
-//                    }
-//
-//                    else{
-//
-//                        Intent intent = new Intent();
-//                        intent.setType("image/*");
-//                        intent.setAction(Intent.ACTION_GET_CONTENT);
-//                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_GOVTID_PICTURE);
-//
-//
-//                    }
-//                }
-//
-//
-//                else if (items[item].equals("Cancel")) {
-//                    dialog.dismiss();
-//                }
-//            });
-//            builder.show();
+
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(PrescriptionActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {
@@ -1435,11 +1390,8 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
 
             else
             {
-
-
                 CropImage.activity().start(PrescriptionActivity.this);
 
-                /*CropImage.activity().start(AddYourPetImageOlduserActivity.this);*/
             }
 
         }
@@ -1447,7 +1399,7 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
 
     }
 
-    @SuppressLint("MissingSuperCall")
+    @SuppressLint({"MissingSuperCall", "ObsoleteSdkInt"})
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -1565,7 +1517,8 @@ public class PrescriptionActivity extends AppCompatActivity implements Diagnosis
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
+
+      Uri resultUri = result.getUriContent();
 
                     if (resultUri != null) {
 

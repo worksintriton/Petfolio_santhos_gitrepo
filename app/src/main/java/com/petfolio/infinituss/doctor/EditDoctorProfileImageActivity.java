@@ -40,7 +40,7 @@ import com.petfolio.infinituss.responsepojo.DoctorUpdateProfileImageResponse;
 import com.petfolio.infinituss.responsepojo.FileUploadResponse;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.RestUtils;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.canhub.cropper.CropImage;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
@@ -149,10 +149,14 @@ public class EditDoctorProfileImageActivity extends AppCompatActivity implements
             Glide.with(EditDoctorProfileImageActivity.this)
                     .load(profileimage)
                     .into(img_pet_imge);
+            txt_uploadpetimage.setText("Change Image");
         }else{
             Glide.with(EditDoctorProfileImageActivity.this)
                     .load(R.drawable.image_thumbnail)
                     .into(img_pet_imge);
+
+            txt_uploadpetimage.setText("Upload Image");
+
 
         }
 
@@ -298,7 +302,8 @@ public class EditDoctorProfileImageActivity extends AppCompatActivity implements
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
+
+      Uri resultUri = result.getUriContent();
 
                     if (resultUri != null) {
 
@@ -462,10 +467,13 @@ public class EditDoctorProfileImageActivity extends AppCompatActivity implements
                             Glide.with(EditDoctorProfileImageActivity.this)
                                     .load(profileimage)
                                     .into(img_pet_imge);
+                            txt_uploadpetimage.setText("Change Image");
                         }else{
                             Glide.with(EditDoctorProfileImageActivity.this)
                                     .load(R.drawable.image_thumbnail)
                                     .into(img_pet_imge);
+                            txt_uploadpetimage.setText("Upload Image");
+
 
                         }
 
