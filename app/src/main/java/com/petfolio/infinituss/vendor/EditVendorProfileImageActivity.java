@@ -12,8 +12,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.util.IOUtils;
 import com.google.gson.Gson;
 import com.petfolio.infinituss.R;
 import com.petfolio.infinituss.api.APIClient;
@@ -44,6 +47,8 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,6 +70,7 @@ import retrofit2.Response;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.os.Environment.DIRECTORY_DOCUMENTS;
 
 public class EditVendorProfileImageActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = "EditVendorProfileImageActivity";
@@ -304,8 +310,7 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 if (resultCode == RESULT_OK) {
-
-      Uri resultUri = result.getUriContent();
+                    Uri resultUri = result.getUriContent();
 
                     if (resultUri != null) {
 
@@ -315,7 +320,7 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
 
                         Log.w("filename", " " + filename);
 
-                        String filePath = FileUtil.getPath(EditVendorProfileImageActivity.this, resultUri);
+                        String filePath = getFilePathFromURI(EditVendorProfileImageActivity.this, resultUri);
 
                         assert filePath != null;
 
@@ -466,7 +471,7 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
         Log.w(TAG,"url  :%s"+ call.request().url().toString());
 
         call.enqueue(new Callback<FileUploadResponse>() {
-            @SuppressLint("LongLogTag")
+            @SuppressLint({"LongLogTag", "SetTextI18n"})
             @Override
             public void onResponse(@NonNull Call<FileUploadResponse> call, @NonNull Response<FileUploadResponse> response) {
                 avi_indicator.smoothToHide();
@@ -490,7 +495,6 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
                                     .load(R.drawable.image_thumbnail)
                                     .into(img_pet_imge);
                             txt_uploadpetimage.setText("Upload Image");
-
 
                         }
 
@@ -610,6 +614,13 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
                     return false;
                 }
             }
+
+          /*  String fullName = path + "mylog";
+            File copyFile = new File (fullName);
+
+            *//* File copyFile = new File(Environment.DIRECTORY_DOWNLOADS + File.separator + fileName);*//*
+            copy(context, contentUri, copyFile);
+            return copyFile.getAbsolutePath();*/
         }
         return true;
     }
@@ -635,29 +646,54 @@ public class EditVendorProfileImageActivity extends AppCompatActivity implements
                 .show();
     }
 
-    public String getFileName(Uri uri) {
-        String result = null;
-        if (Objects.requireNonNull(uri.getScheme()).equals("content")) {
-            try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
+    public static String getFilePathFromURI(Context context, Uri contentUri) {
+        //copy file and send new file path
+        String fileName = getFileName(contentUri);
+        if (!TextUtils.isEmpty(fileName)) {
+
+            String path = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + "MyFirstApp/";
+            // Create the parent path
+            File dir = new File(path);
+            if (!dir.exists()) {
+                dir.mkdirs();
             }
+
+            String fullName = path + "mylog";
+            File copyFile = new File (fullName);
+
+            /* File copyFile = new File(Environment.DIRECTORY_DOWNLOADS + File.separator + fileName);*/
+            copy(context, contentUri, copyFile);
+            return copyFile.getAbsolutePath();
         }
-        if (result == null) {
-            result = uri.getPath();
-            int cut = 0;
-            if (result != null) {
-                cut = result.lastIndexOf('/');
-            }
-            if (cut != -1) {
-                if (result != null) {
-                    result = result.substring(cut + 1);
-                }
-            }
-        }
-        return result;
+        return null;
     }
+
+    public static String getFileName(Uri uri) {
+        if (uri == null) return null;
+        String fileName = null;
+        String path = uri.getPath();
+        int cut = path.lastIndexOf('/');
+        if (cut != -1) {
+            fileName = path.substring(cut + 1);
+        }
+        return fileName;
+    }
+
+    public static void copy(Context context, Uri srcUri, File dstFile) {
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(srcUri);
+            if (inputStream == null) return;
+            OutputStream outputStream = new FileOutputStream(dstFile);
+            IOUtils.copyStream(inputStream, outputStream);
+            inputStream.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
     @SuppressLint({"LogNotTimber", "LongLogTag"})
