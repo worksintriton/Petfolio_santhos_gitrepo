@@ -1,19 +1,19 @@
 package com.petfolio.infinituss.petlover;
 
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.os.Environment.DIRECTORY_DOCUMENTS;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -21,17 +21,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.provider.OpenableColumns;
+
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -55,12 +52,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.petfolio.infinituss.R;
 import com.petfolio.infinituss.activity.NotificationActivity;
-import com.petfolio.infinituss.adapter.AddImageListAdapter;
 import com.petfolio.infinituss.adapter.ManageAddressListVisitAdapter;
+import com.petfolio.infinituss.adapter.PetCurrentImageListAdapter;
 import com.petfolio.infinituss.adapter.ViewPagerPetlistAdapter;
 import com.petfolio.infinituss.api.APIClient;
 import com.petfolio.infinituss.api.RestApiInterface;
-import com.petfolio.infinituss.appUtils.FileUtil;
 import com.petfolio.infinituss.interfaces.LocationDefaultListener;
 import com.petfolio.infinituss.requestpojo.AddYourPetRequest;
 import com.petfolio.infinituss.requestpojo.BreedTypeRequest;
@@ -245,7 +241,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     private String petType;
     private String petBreed;
 
-    private final List<DocBusInfoUploadRequest.ClinicPicBean> clinicPicBeans = new ArrayList<>();
 
     private static final int REQUEST_CLINIC_CAMERA_PERMISSION_CODE = 785;
     private static final int SELECT_CLINIC_CAMERA = 1000;
@@ -299,6 +294,38 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
     String outputTimeStr = "";
 
+
+    int PERMISSION_CLINIC = 1;
+    int PERMISSION_CERT = 2;
+    int PERMISSION_GOVT = 3;
+    int PERMISSION_PHOTO = 4;
+
+    String[] PERMISSIONS = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+    };
+
+    List<PetAppointmentCreateRequest.PetImgBean> pet_imgList = new ArrayList();
+
+    ArrayList<PetAppointmentCreateRequest> PetAppointmentCreateRequestList = new ArrayList<>();
+
+    private String Doctor_id;
+    private String Booking_date;
+    private List<PetAppointmentCreateRequest.DocAttchedBean> Doc_attched;
+    private String Booking_time;
+    private String Booking_date_time;
+    private String Communication_type;
+    private String User_id;
+    private String Pet_id;
+    private String Display_date;
+    private String Appointment_types;
+    private int Amount;
+    private String Date_and_time;
+    private String Visit_type;
+    private String Location_id;
+    private String Health_issue_title;
+
     @SuppressLint("LogNotTimber")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,14 +354,51 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
             petname = extras.getString("petname");
             strpetimage = extras.getString("petimage");
 
-            Log.w(TAG, "strpetimage : " + strpetimage);
 
 
-           /* if(strpetimage != null) {
-                DocBusInfoUploadRequest.ClinicPicBean clinicPicBean = new DocBusInfoUploadRequest.ClinicPicBean(strpetimage);
-                clinicPicBeans.add(clinicPicBean);
-                setView();
-            }*/
+
+
+            PetAppointmentCreateRequestList = (ArrayList<PetAppointmentCreateRequest>) getIntent().getSerializableExtra("PetAppointmentCreateRequestList");
+            Log.w(TAG,"PetAppointmentCreateRequestList : "+new Gson().toJson(PetAppointmentCreateRequestList));
+
+            if(PetAppointmentCreateRequestList != null && PetAppointmentCreateRequestList.size()>0) {
+                for (int i = 0; i < PetAppointmentCreateRequestList.size(); i++) {
+                    Doctor_id =  PetAppointmentCreateRequestList.get(i).getDoctor_id();
+                    Booking_date =  PetAppointmentCreateRequestList.get(i).getBooking_date();
+                    Booking_time =  PetAppointmentCreateRequestList.get(i).getBooking_time();
+                    Booking_date_time =  PetAppointmentCreateRequestList.get(i).getBooking_date_time();
+                    Communication_type =  PetAppointmentCreateRequestList.get(i).getCommunication_type();
+                    User_id =  PetAppointmentCreateRequestList.get(i).getUser_id();
+                    Pet_id =  PetAppointmentCreateRequestList.get(i).getPet_id();
+                    Problem_info =  PetAppointmentCreateRequestList.get(i).getProblem_info();
+                    Doc_attched =  PetAppointmentCreateRequestList.get(i).getDoc_attched();
+                    Display_date =  PetAppointmentCreateRequestList.get(i).getDisplay_date();
+                    Appointment_types =  PetAppointmentCreateRequestList.get(i).getAppointment_types();
+                    Allergies =  PetAppointmentCreateRequestList.get(i).getAllergies();
+                    Amount =  PetAppointmentCreateRequestList.get(i).getAmount();
+                    Date_and_time =  PetAppointmentCreateRequestList.get(i).getDate_and_time();
+                    Visit_type =  PetAppointmentCreateRequestList.get(i).getVisit_type();
+                    Location_id =  PetAppointmentCreateRequestList.get(i).getLocation_id();
+                    Health_issue_title =  PetAppointmentCreateRequestList.get(i).getHealth_issue_title();
+                    pet_imgList =  PetAppointmentCreateRequestList.get(i).getPet_img();
+
+                }
+                Log.w(TAG,"doctorid : "+Doctor_id);
+                Log.w(TAG,"pet_imgList : "+new Gson().toJson(pet_imgList));
+
+                if(Allergies != null && !Allergies.isEmpty()){
+                    edt_allergies.setText(Allergies);
+                }if(Problem_info != null && !Problem_info.isEmpty()){
+                    edt_comment.setText(Problem_info);
+                }
+
+                if(pet_imgList != null && pet_imgList.size()>0) {
+                    setView();
+            }
+
+
+            }
+
 
         }
 
@@ -407,13 +471,13 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
         currentDateandTime = sdf.format(new Date());
 
-        if (userid != null) {
+       /* if (userid != null) {
             if (new ConnectionDetector(getApplicationContext()).isNetworkAvailable(getApplicationContext())) {
                 petDetailsResponseByUserIdCall();
             }
 
         }
-
+*/
         img_back.setOnClickListener(v -> onBackPressed());
 
         spr_selectyourpettype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -548,8 +612,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
         btn_continue.setOnClickListener(v -> {
             Log.w(TAG,"btn_continue selectedCommunicationtype : "+selectedCommunicationtype+" selectedVisitType : "+selectedVisitType);
-
-
 
             if (isVisit && selectedVisitType != null && selectedVisitType.isEmpty()) {
                 showErrorLoading("Please select visit type");
@@ -900,7 +962,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
     private void choosePetImage() {
 
-        if (clinicPicBeans!=null && clinicPicBeans.size() >= 3) {
+        if (pet_imgList!=null && pet_imgList.size() >= 3) {
 
             Toasty.warning(getApplicationContext(), "Sorry you can't Add more than 1", Toast.LENGTH_SHORT).show();
 
@@ -940,15 +1002,10 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
             });
             builder.show();*/
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(BookAppointmentActivity.this, CAMERA) != PackageManager.PERMISSION_GRANTED)
-            {
-                requestPermissions(new String[]{CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
+            if (!hasPermissions(this, PERMISSIONS)) {
+                ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_CLINIC);
             }
 
-            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(BookAppointmentActivity.this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            {
-                requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
-            }
 
             else
             {
@@ -962,6 +1019,18 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
         }
 
+    }
+
+
+    private boolean hasPermissions(Context context, String... permissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @SuppressLint("LogNotTimber")
@@ -1007,7 +1076,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                              SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
                              String currentDateandTime = sdf.format(new Date());
 
-                             filePart = MultipartBody.Part.createFormData("sampleFile", userid + currentDateandTime + file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                             filePart = MultipartBody.Part.createFormData("sampleFile", userid + currentDateandTime + filename, RequestBody.create(MediaType.parse("image/*"), file));
 
                              uploadPetImage();
 
@@ -1023,73 +1092,6 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                  }
              }
 
-             if (requestCode == SELECT_CLINIC_PICTURE || requestCode == SELECT_CLINIC_CAMERA) {
-
-                 if (requestCode == SELECT_CLINIC_CAMERA) {
-                     Bitmap photo = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
-
-                     File file = new File(getFilesDir(), "Petfolio1" + ".jpg");
-
-                     OutputStream os;
-                     try {
-                         os = new FileOutputStream(file);
-                         if (photo != null) {
-                             photo.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                         }
-                         os.flush();
-                         os.close();
-                     } catch (Exception e) {
-                         Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
-                     }
-
-                     RequestBody requestFile = RequestBody.create(MediaType.parse("image*/"), file);
-
-                     filePart = MultipartBody.Part.createFormData("sampleFile", userid+file.getName().trim(), requestFile);
-
-                     uploadPetImage();
-
-                 } else {
-
-                     try {
-                         if (resultCode == Activity.RESULT_OK) {
-
-                             Log.w("VALUEEEEEEE1111", " " + data);
-
-                             Uri selectedImageUri = data.getData();
-
-                             Log.w("selectedImageUri", " " + selectedImageUri);
-
-                             String filename = null;
-                             if (selectedImageUri != null) {
-                                 filename = getFileName(selectedImageUri);
-                             }
-
-                             Log.w("filename", " " + filename);
-
-                             String filePath = FileUtil.getPath(BookAppointmentActivity.this, selectedImageUri);
-
-                             assert filePath != null;
-
-                             File file = new File(filePath); // initialize file here
-                             if(file != null) {
-                                 long length = file.length() / 1024; // Size in KB
-                                 Log.w("filesize", " " + length);
-                             }
-
-
-                             filePart = MultipartBody.Part.createFormData("sampleFile", userid+currentDateandTime+file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
-                             uploadPetImage();
-
-
-                         }
-                     } catch (Exception e) {
-
-                         Log.w("Exception", " " + e);
-                     }
-
-                 }
-
-             }
 
          }
 
@@ -1126,9 +1128,12 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
                     if (200 == response.body().getCode()) {
                         Log.w(TAG, "Profpic" + "--->" + new Gson().toJson(response.body()));
 
-                        DocBusInfoUploadRequest.ClinicPicBean clinicPicBean = new DocBusInfoUploadRequest.ClinicPicBean(response.body().getData().trim());
-                        clinicPicBeans.add(clinicPicBean);
+                   /*     DocBusInfoUploadRequest.ClinicPicBean clinicPicBean = new DocBusInfoUploadRequest.ClinicPicBean(response.body().getData().trim());
+                        clinicPicBeans.add(clinicPicBean);*/
                         uploadimagepath = response.body().getData();
+                        PetAppointmentCreateRequest.PetImgBean petImgBean = new PetAppointmentCreateRequest.PetImgBean();
+                        petImgBean.setPet_img(uploadimagepath);
+                        pet_imgList.add(petImgBean);
                         if (uploadimagepath != null) {
                             img_pet_imge.setVisibility(View.GONE);
                             setView();
@@ -1156,18 +1161,20 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
     private void setView() {
         rv_upload_pet_images.setVisibility(View.VISIBLE);
-        rv_upload_pet_images.setLayoutManager(new LinearLayoutManager(this));
+        rv_upload_pet_images.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        //rv_upload_pet_images.setLayoutManager(new LinearLayoutManager(this));
         rv_upload_pet_images.setItemAnimator(new DefaultItemAnimator());
-        AddImageListAdapter addImageListAdapter = new AddImageListAdapter(getApplicationContext(), clinicPicBeans);
-        rv_upload_pet_images.setAdapter(addImageListAdapter);
+        PetCurrentImageListAdapter petCurrentImageListAdapter = new PetCurrentImageListAdapter(getApplicationContext(), pet_imgList);
+        rv_upload_pet_images.setAdapter(petCurrentImageListAdapter);
     }
 
     public static String getFilePathFromURI(Context context, Uri contentUri) {
         //copy file and send new file path
         String fileName = getFileName(contentUri);
         if (!TextUtils.isEmpty(fileName)) {
+            String path = context.getFilesDir() + "/" + "MyFirstApp/";
 
-            String path = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + "MyFirstApp/";
+            //String path = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + "MyFirstApp/";
             // Create the parent path
             File dir = new File(path);
             if (!dir.exists()) {
@@ -1579,7 +1586,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
         petAppointmentCreateRequest.setVisit_type(selectedVisitType);
         petAppointmentCreateRequest.setLocation_id(locationid);
         petAppointmentCreateRequest.setHealth_issue_title(health_issue_title);
-
+        petAppointmentCreateRequest.setPet_img(pet_imgList);
         ArrayList<PetAppointmentCreateRequest> PetAppointmentCreateRequestList = new ArrayList<>();
         PetAppointmentCreateRequestList.add(petAppointmentCreateRequest);
         Log.w(TAG,"petAppointmentCreateRequest"+ "--->" + new Gson().toJson(petAppointmentCreateRequest));
@@ -1848,75 +1855,38 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_READ_CLINIC_PIC_PERMISSION) {
+
+        if (requestCode == PERMISSION_CLINIC) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_CLINIC_PICTURE);
 
-                choosePetImage();
+                CropImage.activity().start(BookAppointmentActivity.this);
 
             } else {
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Permission Required")
+                        .setTitleText("Permisson Required")
                         .setContentText("Please Allow Permissions for choosing Images from Gallery ")
                         .setConfirmText("Ok")
                         .setConfirmClickListener(sDialog -> {
 
                             sDialog.dismissWithAnimation();
 
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, REQUEST_READ_CLINIC_PIC_PERMISSION);
+                            if (!hasPermissions(this, PERMISSIONS)) {
+                                ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_CLINIC);
                             }
-
 
                         })
                         .setCancelButton("Cancel", sDialog -> {
                             sDialog.dismissWithAnimation();
 
-                            showWarning(REQUEST_READ_CLINIC_PIC_PERMISSION);
-                        })
-                        .show();
-
-            }
-
-        } else if (requestCode == REQUEST_CLINIC_CAMERA_PERMISSION_CODE) {
-
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-              /*  Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                startActivityForResult(intent, SELECT_CLINIC_CAMERA);*/
-
-                choosePetImage();
-
-            } else {
-                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Permission Required")
-                        .setContentText("Please Allow Camera for taking picture")
-                        .setConfirmText("Ok")
-                        .setConfirmClickListener(sDialog -> {
-
-                            sDialog.dismissWithAnimation();
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(new String[]{CAMERA}, REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
-                            }
-
-
-                        })
-                        .setCancelButton("Cancel", sDialog -> {
-                            sDialog.dismissWithAnimation();
-
-                            showWarning(REQUEST_CLINIC_CAMERA_PERMISSION_CODE);
+                            showWarning(PERMISSION_CLINIC);
                         })
                         .show();
 
             }
 
         }
+
     }
 
     private void showWarning(int REQUEST_PERMISSION_CODE) {
@@ -1929,11 +1899,10 @@ public class BookAppointmentActivity extends AppCompatActivity implements Paymen
 
                     sDialog.dismissWithAnimation();
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                    {
-                        requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
-                    }
 
+                    if (!hasPermissions(this, PERMISSIONS)) {
+                        ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_CLINIC);
+                    }
 
                 })
                 .setCancelButton("Cancel", SweetAlertDialog::dismissWithAnimation)

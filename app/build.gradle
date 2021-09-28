@@ -8,8 +8,8 @@ android {
         applicationId "com.petfolio.infinituss"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 8
-        versionName "8.0"
+        versionCode 10
+        versionName "10.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -131,22 +131,8 @@ dependencies {
     implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
 
 
-/*
     // This library is used for crop image feature
-
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-*/
-
-    // This library is used for crop image feature
-
-    // api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-
     implementation 'com.github.CanHub:Android-Image-Cropper:3.1.1'
-
-
-
-
-
 
 
 
