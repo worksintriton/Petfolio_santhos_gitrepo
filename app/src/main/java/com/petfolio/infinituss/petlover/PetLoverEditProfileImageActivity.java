@@ -338,7 +338,6 @@ public class PetLoverEditProfileImageActivity extends AppCompatActivity implemen
 
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.getDefault());
                             String currentDateandTime = sdf.format(new Date());
-
                             filePart = MultipartBody.Part.createFormData("sampleFile", userid + currentDateandTime + filename, RequestBody.create(MediaType.parse("image/*"), file));
 
                             uploadProfileImage();
