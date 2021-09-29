@@ -156,6 +156,7 @@ public class ShippingAddressSPActivity extends AppCompatActivity implements View
     private int discount_price;
 
     private int grand_total;
+    private int Total_price;
 
     private int prodcut_count;
 
@@ -216,6 +217,7 @@ public class ShippingAddressSPActivity extends AppCompatActivity implements View
             discount_price = extras.getInt("discount_price");
 
             grand_total = extras.getInt("grand_total");
+            Total_price = extras.getInt("Total_price");
 
             if (grand_total!=0){
 
@@ -600,17 +602,21 @@ public class ShippingAddressSPActivity extends AppCompatActivity implements View
         vendorOrderBookingCreateRequest.setShipping_charge(shipping_charge);
         vendorOrderBookingCreateRequest.setDiscount_price(discount_price);
         vendorOrderBookingCreateRequest.setGrand_total(grand_total);
+        vendorOrderBookingCreateRequest.setTotal_price(grand_total);
         vendorOrderBookingCreateRequest.setProdcut_count(prodcut_count);
         vendorOrderBookingCreateRequest.setProdcut_item_count(prodcut_item_count);
         vendorOrderBookingCreateRequest.setDate_of_booking_display(currentDateandTime);
         vendorOrderBookingCreateRequest.setDate_of_booking(currentDateandTime);
-        vendorOrderBookingCreateRequest.setCoupon_code("");
         vendorOrderBookingCreateRequest.setShipping_address_id("");
         vendorOrderBookingCreateRequest.setBillling_address_id("");
         vendorOrderBookingCreateRequest.setShipping_address("");
         vendorOrderBookingCreateRequest.setBilling_address("");
         vendorOrderBookingCreateRequest.setPayment_id(Payment_id);
         vendorOrderBookingCreateRequest.setShipping_details_id(shipid);
+        vendorOrderBookingCreateRequest.setOriginal_price(Original_price);
+        vendorOrderBookingCreateRequest.setCoupon_discount_price(Coupon_discount_price);
+        vendorOrderBookingCreateRequest.setCoupon_code(Coupon_code);
+        vendorOrderBookingCreateRequest.setCoupon_status(Coupon_status);
         Log.w(TAG,"vendorOrderBookingCreateRequest"+ "--->" + new Gson().toJson(vendorOrderBookingCreateRequest));
         return vendorOrderBookingCreateRequest;
     }

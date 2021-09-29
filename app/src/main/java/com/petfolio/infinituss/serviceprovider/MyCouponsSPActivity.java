@@ -1,6 +1,7 @@
-package com.petfolio.infinituss.petlover;
+package com.petfolio.infinituss.serviceprovider;
 
 import android.annotation.SuppressLint;
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +21,9 @@ import com.petfolio.infinituss.R;
 import com.petfolio.infinituss.adapter.MyCouponsAdapter;
 import com.petfolio.infinituss.api.APIClient;
 import com.petfolio.infinituss.api.RestApiInterface;
+import com.petfolio.infinituss.petlover.PetLoverDashboardActivity;
 import com.petfolio.infinituss.requestpojo.CouponCodeListRequest;
-
 import com.petfolio.infinituss.responsepojo.CouponCodeListResponse;
-
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.ConnectionDetector;
 import com.petfolio.infinituss.utils.RestUtils;
@@ -39,8 +39,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MyCouponsActivity extends AppCompatActivity {
-
+public class MyCouponsSPActivity extends AppCompatActivity {
+    private String TAG = "MyCouponsSPActivity";
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.tvNoRecords)
@@ -66,7 +66,7 @@ public class MyCouponsActivity extends AppCompatActivity {
 
 
 
-    private String TAG = "MyCouponsActivity";
+
 
     SessionManager session;
     String type = "",name = "",userid = "";
@@ -108,14 +108,14 @@ public class MyCouponsActivity extends AppCompatActivity {
         img_back.setOnClickListener(v -> onBackPressed());
 
 
-        if (new ConnectionDetector(MyCouponsActivity.this).isNetworkAvailable(MyCouponsActivity.this)) {
+        if (new ConnectionDetector(MyCouponsSPActivity.this).isNetworkAvailable(MyCouponsSPActivity.this)) {
             CouponCodeListResponseCall();
         }
 
         refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (new ConnectionDetector(MyCouponsActivity.this).isNetworkAvailable(MyCouponsActivity.this)) {
+                if (new ConnectionDetector(MyCouponsSPActivity.this).isNetworkAvailable(MyCouponsSPActivity.this)) {
                     CouponCodeListResponseCall();
                 }
             }
@@ -132,7 +132,7 @@ public class MyCouponsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(),PetLoverDashboardActivity.class));
+        startActivity(new Intent(getApplicationContext(), ServiceProviderDashboardActivity.class));
         finish();
 
 
@@ -172,7 +172,7 @@ public class MyCouponsActivity extends AppCompatActivity {
                         }else{
                             rvnotifiaction.setVisibility(View.GONE);
                             tvNorecords.setVisibility(View.VISIBLE);
-                            tvNorecords.setText("no coupons");
+                            tvNorecords.setText("No coupons");
 
                         }
 

@@ -14,7 +14,6 @@
         app:cardCornerRadius="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
-
         <LinearLayout
             android:id="@+id/ll_root"
             android:layout_width="match_parent"
@@ -23,17 +22,18 @@
             tools:ignore="UselessParent">
 
 
+
             <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
@@ -42,10 +42,10 @@
                         android:layout_height="120dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="8dp"
                         app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true">
+                        app:cardUseCompatPadding="true"
+                        app:cardCornerRadius="8dp"
+                        android:elevation="10dp">
 
                         <ImageView
                             android:id="@+id/img_doctors_image"
@@ -53,9 +53,9 @@
                             android:layout_height="match_parent"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/image_thumbnail"
                             android:contentDescription="@string/image"
-                            android:scaleType="fitXY" />
+                            android:scaleType="fitXY"
+                            android:background="@drawable/image_thumbnail" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -88,13 +88,13 @@
                             android:id="@+id/txt_doctors_clinicname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
                             android:fontFamily="@font/futuramediumbt"
                             android:maxLines="1"
                             android:text="@string/clinic_name"
                             android:textColor="@color/coolGrey"
                             android:textSize="12sp"
-                            android:textStyle="normal" />
+                            android:textStyle="normal"
+                            android:layout_marginTop="3dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -237,12 +237,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:ellipsize="end"
                                 android:fontFamily="@font/futuramediumbt"
                                 android:maxLines="2"
                                 android:text="@string/specialization"
                                 android:textColor="@color/coolGrey"
                                 android:textSize="12sp"
+                                android:ellipsize="end"
                                 android:textStyle="normal" />
 
                             <!--                            <TextView-->
@@ -265,15 +265,13 @@
 
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
                     android:layout_weight=".7"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:layout_marginStart="5dp"
                     android:visibility="gone">
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -290,7 +288,8 @@
                             android:text="@string/book"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            />
                     </RelativeLayout>
 
 
@@ -298,6 +297,9 @@
 
 
             </LinearLayout>
+
+
+
 
 
         </LinearLayout>
