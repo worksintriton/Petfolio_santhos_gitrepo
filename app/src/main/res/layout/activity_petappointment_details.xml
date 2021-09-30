@@ -358,7 +358,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/ll_gender">
 
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
@@ -382,7 +383,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/ll_color">
 
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
@@ -406,7 +408,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/ll_weight">
 
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
@@ -428,7 +431,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/ll_age">
 
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
@@ -767,6 +771,52 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_original_price">
+
+                <TextView
+                    android:layout_width="@dimen/width_appoitmentdetails"
+                    android:layout_height="wrap_content"
+                    android:text="Original Price"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_original_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/new_sec_txt_color"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_discount_price">
+
+                <TextView
+                    android:layout_width="@dimen/width_appoitmentdetails"
+                    android:layout_height="wrap_content"
+                    android:text="Coupon Price"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_discount_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/new_sec_txt_color"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -784,6 +834,9 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

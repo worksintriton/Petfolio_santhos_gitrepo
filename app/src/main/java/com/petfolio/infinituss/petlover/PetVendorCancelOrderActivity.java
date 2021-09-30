@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +43,7 @@ import com.petfolio.infinituss.responsepojo.DropDownListResponse;
 import com.petfolio.infinituss.responsepojo.SuccessResponse;
 import com.petfolio.infinituss.responsepojo.VendorOrderUpdateResponse;
 import com.petfolio.infinituss.responsepojo.VendorReasonListResponse;
+import com.petfolio.infinituss.serviceprovider.SPProfileScreenActivity;
 import com.petfolio.infinituss.sessionmanager.SessionManager;
 import com.petfolio.infinituss.utils.ConnectionDetector;
 import com.petfolio.infinituss.utils.RestUtils;
@@ -212,6 +214,20 @@ public class PetVendorCancelOrderActivity extends AppCompatActivity implements V
 
         img_sos.setVisibility(View.GONE);
         img_cart.setVisibility(View.GONE);
+
+
+        img_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            }
+        });
+        img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), PetLoverProfileScreenActivity.class));
+            }
+        });
         edt_comment.setVisibility(View.GONE);
 
         img_notification.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +315,11 @@ public class PetVendorCancelOrderActivity extends AppCompatActivity implements V
         btn_cancel_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCancelAlert();
+
+                if(validdSelectedReason()){
+                    showCancelAlert();
+                }
+
             }
         });
 
@@ -362,7 +382,7 @@ public class PetVendorCancelOrderActivity extends AppCompatActivity implements V
     @SuppressLint("LongLogTag")
     private void setReasonList(List<VendorReasonListResponse.DataBean.CancelStatusBean> cancel_status) {
         ArrayList<String> pettypeArrayList = new ArrayList<>();
-       // pettypeArrayList.add("Select Pet Type");
+        pettypeArrayList.add("Select the reason");
         for (int i = 0; i < cancel_status.size(); i++) {
             String petType = cancel_status.get(i).getTitle();
             Log.w(TAG,"petType-->"+petType);
@@ -377,8 +397,7 @@ public class PetVendorCancelOrderActivity extends AppCompatActivity implements V
     private void showCancelAlert() {
 
         try {
-
-             dialog = new Dialog(PetVendorCancelOrderActivity.this);
+            dialog = new Dialog(PetVendorCancelOrderActivity.this);
             dialog.setContentView(R.layout.alert_cancel_layout);
             dialog.setCanceledOnTouchOutside(false);
             Button btn_ok = dialog.findViewById(R.id.btn_ok);
@@ -956,5 +975,19 @@ public class PetVendorCancelOrderActivity extends AppCompatActivity implements V
 
 
 
+    }
+
+    public boolean validdSelectedReason() {
+        if (strSelectedReason.equalsIgnoreCase("Select the reason")) {
+            final AlertDialog alertDialog = new AlertDialog.Builder(PetVendorCancelOrderActivity.this).create();
+            alertDialog.setMessage(getString(R.string.err_msg_type_of_reason_for_cancellation));
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok",
+                    (dialog, which) -> alertDialog.cancel());
+            alertDialog.show();
+
+            return false;
+        }
+
+        return true;
     }
 }

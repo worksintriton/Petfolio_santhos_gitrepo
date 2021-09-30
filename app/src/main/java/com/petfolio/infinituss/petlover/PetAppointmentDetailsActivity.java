@@ -212,7 +212,6 @@ public class PetAppointmentDetailsActivity extends AppCompatActivity implements 
     @BindView(R.id.include_petlover_footer)
     View include_petlover_footer;
 
-    BottomNavigationView bottom_navigation_view;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.include_petlover_header)
@@ -349,6 +348,40 @@ public class PetAppointmentDetailsActivity extends AppCompatActivity implements 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.rl_homes)
     RelativeLayout rl_homes;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_original_price)
+    LinearLayout ll_original_price;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_discount_price)
+    LinearLayout ll_discount_price;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_original_price)
+    TextView txt_original_price;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.txt_discount_price)
+    TextView txt_discount_price;
+
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_gender)
+    LinearLayout ll_gender;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_color)
+    LinearLayout ll_color;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_weight)
+    LinearLayout ll_weight;
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.ll_age)
+    LinearLayout ll_age;
+
 
     TextView txt_no_records_coupon;
     RecyclerView rv_successfully_cancelled;
@@ -599,6 +632,24 @@ public class PetAppointmentDetailsActivity extends AppCompatActivity implements 
                         String vaccinated, addr = null, usrname = null;
 
 
+                        if(response.body().getData() != null){
+                            if(response.body().getData().getCoupon_status() != null && response.body().getData().getCoupon_status().equalsIgnoreCase("Applied")){
+                                ll_original_price.setVisibility(View.VISIBLE);
+                                ll_discount_price.setVisibility(View.VISIBLE);
+                                if(response.body().getData().getOriginal_price() != 0){
+                                    txt_original_price.setText("INR "+response.body().getData().getOriginal_price());
+                                }
+                                if(response.body().getData().getDiscount_price() != 0){
+                                    txt_discount_price.setText("INR "+response.body().getData().getDiscount_price());
+                                }
+
+                            }else{
+                                ll_original_price.setVisibility(View.GONE);
+                                ll_discount_price.setVisibility(View.GONE);
+                            }
+                        }
+
+
                         if (response.body().getData() != null) {
 
                             if(response.body().getData().getAppointment_types() != null && response.body().getData().getAppointment_types().equalsIgnoreCase("Emergency")){
@@ -622,9 +673,35 @@ public class PetAppointmentDetailsActivity extends AppCompatActivity implements 
                             String breed = response.body().getData().getPet_id().getPet_breed();
                             String gender = response.body().getData().getPet_id().getPet_gender();
                             String colour = response.body().getData().getPet_id().getPet_color();
-                            double weight = response.body().getData().getPet_id().getPet_weight();
+                            int weight = response.body().getData().getPet_id().getPet_weight();
                             String pet_dob = response.body().getData().getPet_id().getPet_dob();
                             String pet_age = response.body().getData().getPet_id().getPet_age();
+
+                            if(gender != null && !gender.isEmpty()){
+                                ll_gender.setVisibility(View.VISIBLE);
+                            }else{
+                                ll_gender.setVisibility(View.GONE);
+                            }
+
+                             if(colour != null && !colour.isEmpty()){
+                                ll_color.setVisibility(View.VISIBLE);
+                            }else{
+                                 ll_color.setVisibility(View.GONE);
+                            }
+
+                              if(weight != 0 ){
+                                ll_weight.setVisibility(View.VISIBLE);
+                            }else{
+                                  ll_weight.setVisibility(View.GONE);
+                            }
+
+                            if(pet_age != null && !pet_age.isEmpty()){
+                                ll_age.setVisibility(View.VISIBLE);
+                            }else{
+                                ll_age.setVisibility(View.GONE);
+                            }
+
+
                             if(pet_age != null && !pet_age.isEmpty()){
                                 txt_age.setText(pet_age);
                             }else {
@@ -1217,6 +1294,23 @@ public class PetAppointmentDetailsActivity extends AppCompatActivity implements 
                         scrollablContent.setVisibility(View.VISIBLE);
                         String vaccinated, addr, usrname;
                         String usr_image = "";
+
+                        if(response.body().getData() != null){
+                            if(response.body().getData().getCoupon_status() != null && response.body().getData().getCoupon_status().equalsIgnoreCase("Applied")){
+                                ll_original_price.setVisibility(View.VISIBLE);
+                                ll_discount_price.setVisibility(View.VISIBLE);
+                                if(response.body().getData().getOriginal_price() != 0){
+                                    txt_original_price.setText("INR "+response.body().getData().getOriginal_price());
+                                }
+                                if(response.body().getData().getDiscount_price() != 0){
+                                    txt_discount_price.setText("INR "+response.body().getData().getDiscount_price());
+                                }
+
+                            }else{
+                                ll_original_price.setVisibility(View.GONE);
+                                ll_discount_price.setVisibility(View.GONE);
+                            }
+                        }
                         if (response.body().getData() != null) {
 
                             spid = response.body().getData().getSp_id().get_id();
