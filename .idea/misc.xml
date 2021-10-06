@@ -116,10 +116,23 @@
         <entry key="..\:/TritonAppsGIt/Petfolio_Andriod_Dev/app/src/main/res/menu/navigation_menu_drawer_doctor.xml" value="0.25416666666666665" />
         <entry key="..\:/TritonAppsGIt/Petfolio_Andriod_Dev/app/src/main/res/menu/navigation_menu_drawer_sp.xml" value="0.25416666666666665" />
         <entry key="..\:/TritonAppsGIt/Petfolio_Andriod_Dev/app/src/main/res/menu/navigation_menu_drawer_vendor.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/drawable-v24/tab_background.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/drawable/new_rounded_corner_btn.xml" value="0.290625" />
         <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/drawable/rectangle_corner_bg_white.xml" value="0.290625" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_basic_pet_details.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_doctor_business_info.xml" value="0.275" />
         <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_my_coupons.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_pet_lover_dashboard.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/activity_pet_myappointments.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/nav_header_main.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/navigation_drawer_layout.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/navigation_drawer_layout_new.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/navigation_drawer_sp_layout.xml" value="0.19882246376811594" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/toolbar_layout.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/layout/toolbar_layout_old.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/menu/bottom_navigation.xml" value="0.275" />
+        <entry key="..\:/Users/santh/Documents/GitHub/Petfolio_santhos_gitrepo/app/src/main/res/menu/navigation_menu_drawer.xml" value="0.275" />
       </map>
     </option>
   </component>
