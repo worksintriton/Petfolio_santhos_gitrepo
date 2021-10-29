@@ -76,7 +76,7 @@
     <string name="search_location_address">Search Location Address</string>
     <string name="search_for_breed">Search for breed...</string>
     <string name="noplacesfound">No Places Found</string>
-    <string name="save_this_location_and_procced">Save this location &amp; Proceed</string>
+    <string name="save_this_location_and_procced">Save this location &amp; proceed</string>
 
 
     <string name="doctor_business_info_title">Doctor Business Info</string>
@@ -233,7 +233,7 @@
 
     <string name="medical_history">Medical History</string>
     <string name="appointmentdateandtime">Appointment Date and Time</string>
-    <string name="order_date">Order date</string>
+    <string name="order_date">Order Date</string>
     <string name="bookingdate">Booked Date</string>
     <string name="order">Order #</string>
     <string name="bookingid">Booking ID</string>
@@ -384,7 +384,7 @@
     <string name="discountamount">Discount Amount</string>
     <string name="shippingamount">Shipping Amount</string>
     <string name="totalamount">Total Amount</string>
-    <string name="proceedtobuy">Proceed to Buy</string>
+    <string name="proceedtobuy">Proceed to buy</string>
     <string name="coupon_applied">coupon applied</string>
     <string name="coupon">Coupon </string>
     <string name="percentage_discount">0 % discount </string>
@@ -592,7 +592,7 @@
     <string name="shop_name">Shop Name</string>
     <string name="successfullycancelled">Successfully Cancelled</string>
     <string name="turn_off">Turn off</string>
-    <string name="version">Version V.29.9</string>
+    <string name="version">Version V.13.10</string>
     <string name="tablet_name">Tablet Name</string>
     <string name="consumption">Consumption</string>
     <string name="seems_there_is_a_connectivity_issue_please_check_your_internet_connection_and_try_again">Seems there is a connectivity issue. Please check your internet connection and try again</string>

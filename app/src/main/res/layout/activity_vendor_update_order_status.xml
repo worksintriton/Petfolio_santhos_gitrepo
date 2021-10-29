@@ -68,7 +68,7 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_user"
+                    android:src="@drawable/new_user"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
 
@@ -170,7 +170,7 @@
                 <TextView
                     android:layout_width="@dimen/width_appoitmentdetails"
                     android:layout_height="wrap_content"
-                    android:text="Order date"
+                    android:text="Order Date"
                     android:fontFamily="@font/futuramediumbt"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
